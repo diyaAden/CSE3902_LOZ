@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Content.Items
 {
@@ -26,7 +23,35 @@ namespace LegendOfZelda.Content.Items
 
         public void LoadAllTextures(ContentManager content)
         {
-            itemSpriteSheet = content.Load<Texture2D>("itemSpriteSheet");
+            itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/itemSpriteSheet");
         }
+
+        //public ISprite CreateCompassSprite
+
+        //public ISprite CreateMapSprite
+
+        //public ISprite CreateKeySprite
+
+        //public ISprite CreateHeartContainerSprite
+
+        //public ISprite CreateTriforcePieceSprite
+
+        //public ISprite CreateWoodBoonerangSprite
+
+        //public ISprite CreateBowSprite
+
+        //public ISprite CreateHeartSprite
+
+        //public ISprite CreateRupeeSprite
+
+        //public ISprite CreateArrowSprite
+
+        //public ISprite CreateBombSprite
+
+        //public ISprite CreateFairySprite
+
+        //public ISprite CreateClockSprite
+
+        //Other sprites may be necessary
     }
 }

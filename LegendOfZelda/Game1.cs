@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Content.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -28,6 +29,7 @@ namespace LegendOfZelda
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            ItemSpriteFactory.Instance.LoadAllTextures(Content);
         }
 
         protected override void Update(GameTime gameTime)
