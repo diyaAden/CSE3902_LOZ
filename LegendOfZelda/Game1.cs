@@ -1,7 +1,10 @@
 ﻿using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Links;
+using LegendOfZelda.Content.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 
 namespace LegendOfZelda
 {
@@ -9,6 +12,9 @@ namespace LegendOfZelda
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        public ILink link;
+        public Vector2 position = new Vector2(400, 200);
 
         public Game1()
         {
@@ -20,7 +26,7 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            link = new Link(this, position);
             base.Initialize();
         }
 
@@ -30,14 +36,18 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
+
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                link.state.MoveRight();
+            }
+            link.Update();
 
             base.Update(gameTime);
         }
@@ -45,9 +55,9 @@ namespace LegendOfZelda
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            _spriteBatch.Begin();
+            link.Draw(_spriteBatch);
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }
