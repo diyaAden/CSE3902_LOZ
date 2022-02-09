@@ -12,7 +12,7 @@ namespace LegendOfZelda.Content.Links.State
     {
         Texture2D mario;
         Game1 game;
-        ILink link;
+        private ILink link;
         RightIdleLinkSprite RightIdleLinkSprite;
 
 
@@ -31,7 +31,6 @@ namespace LegendOfZelda.Content.Links.State
 
         public void MoveUp()
         {
-
         }
 
         public void MoveDown()

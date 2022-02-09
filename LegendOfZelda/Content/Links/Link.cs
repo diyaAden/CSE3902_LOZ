@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using LegendOfZelda.Content.Links.State;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +9,39 @@ namespace LegendOfZelda.Content.Links
 {
     class Link: ILink
     {
-        ILinkState state;
+        public ILinkState state;
+        public Link(Game1 game, Vector2 position)
+        {
+            state = new RightIdleLinkState(this, game, position);
+        }
+
+        //Motions that link will have, and change the state.
+        public void MoveUp()
+        {
+            state.MoveUp();
+        }
+        public void MoveDown()
+        {
+            state.MoveDown();
+        }
+        public void MoveRight()
+        {
+            state.MoveRight();
+        }
+        public void MoveLeft()
+        {
+            state.MoveLeft();
+        }
+        public void Walk()
+        {
+            state.Walk();
+        }
+        public void Attack()
+        {
+            state.Attack();
+        }
+
+        //Update and draw
         public void Update()
         {
             state.Update();

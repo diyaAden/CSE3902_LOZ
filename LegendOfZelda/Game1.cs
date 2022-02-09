@@ -36,7 +36,7 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-            link = new RightIdleLinkState(link, this, position);
+            link = new Link(this, position);
         }
 
         protected override void Update(GameTime gameTime)
