@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.Sprite
 {
-    class RedRightIdleLinkSprite
+    class RightIdleLinkSprite
     {
         private Vector2 Pos;
         public Vector2 Position { get; set; }
@@ -20,7 +20,7 @@ namespace LegendOfZelda.Content.Links.Sprite
 
         private bool movingLeft = true;
 
-        public RedRightIdleLinkSprite(Texture2D texture, Vector2 Position)
+        public RightIdleLinkSprite(Texture2D texture, Vector2 Position)
         {
             Texture = texture;
             Rows = 1;
