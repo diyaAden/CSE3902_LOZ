@@ -36,7 +36,6 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-            link.LoadTexture(Content);
 
         }
 

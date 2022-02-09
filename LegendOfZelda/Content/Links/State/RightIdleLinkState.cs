@@ -13,6 +13,8 @@ namespace LegendOfZelda.Content.Links.State
         Texture2D linkLeftMove;
         ILink link;
         ISprite sprite;
+        int timer = 50;
+
 
 
         public RightIdleLinkState(ILink link, Game1 game, Vector2 position, ISprite sprite)
@@ -25,7 +27,13 @@ namespace LegendOfZelda.Content.Links.State
 
         public void Update()
         {
-            sprite.Update();
+            timer--;
+            if (timer == 0)
+            {
+                sprite.Update();
+                timer = 50; //make sure change that when change timer at the beginning
+            }
+            
         }
 
         public void MoveUp()

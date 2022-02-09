@@ -10,7 +10,5 @@ namespace LegendOfZelda.Content.Links
     {
         void Update();
         void Draw(SpriteBatch spriteBatch);
-
-        void LoadTexture(ContentManager content);
     }
 }
