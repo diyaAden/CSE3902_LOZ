@@ -1,16 +1,15 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Links
+namespace LegendOfZelda.Content.Links.Sprite
 {
-    public interface ILink
+    public interface ISprite
     {
+        Vector2 getPos();
         void Update();
         void Draw(SpriteBatch spriteBatch);
-
-        void LoadTexture(ContentManager content);
     }
 }

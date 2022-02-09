@@ -10,23 +10,22 @@ namespace LegendOfZelda.Content.Links.State
 {
     public class RightIdleLinkState: ILinkState
     {
-        Texture2D mario;
-        Game1 game;
-        private ILink link;
-        RightIdleLinkSprite RightIdleLinkSprite;
+        Texture2D linkLeftMove;
+        ILink link;
+        ISprite sprite;
 
 
-        public RightIdleLinkState(ILink link, Game1 game, Vector2 position)
+        public RightIdleLinkState(ILink link, Game1 game, Vector2 position, ISprite sprite)
         {
             LoadTexture(game.Content);
             this.link = link;
-            this.RightIdleLinkSprite = new RightIdleLinkSprite(mario, position);
+            this.sprite = new RightIdleLinkSprite(linkLeftMove, position);
         }
         
 
         public void Update()
         {
-            RightIdleLinkSprite.Update();
+            sprite.Update();
         }
 
         public void MoveUp()
@@ -56,12 +55,12 @@ namespace LegendOfZelda.Content.Links.State
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            RightIdleLinkSprite.Draw(spriteBatch);
+            this.sprite.Draw(spriteBatch);
         }
 
         public void LoadTexture(ContentManager content)
         {
-            mario = content.Load<Texture2D>("SpriteSheets/MarioSheet");
+            linkLeftMove = content.Load<Texture2D>("SpriteSheets/Link/LinkLeftMove");
         }
 
         

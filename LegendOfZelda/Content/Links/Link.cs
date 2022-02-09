@@ -1,5 +1,7 @@
-﻿using LegendOfZelda.Content.Links.State;
+﻿using LegendOfZelda.Content.Links.Sprite;
+using LegendOfZelda.Content.Links.State;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,11 @@ namespace LegendOfZelda.Content.Links
     class Link: ILink
     {
         public ILinkState state;
+        private ISprite sprite;
+
         public Link(Game1 game, Vector2 position)
         {
-            state = new RightIdleLinkState(this, game, position);
+            state = new RightIdleLinkState(this, game, position, sprite);
         }
 
         //Motions that link will have, and change the state.
@@ -48,7 +52,12 @@ namespace LegendOfZelda.Content.Links
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+            state.Draw(spriteBatch);
+        }
+
+        public void LoadTexture(ContentManager content)
+        {
+            state.LoadTexture(content);
         }
 
         

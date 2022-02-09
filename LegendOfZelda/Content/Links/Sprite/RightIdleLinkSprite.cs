@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.Sprite
 {
-    class RightIdleLinkSprite
+    class RightIdleLinkSprite: ISprite
     {
         private Vector2 Pos;
         public Vector2 Position { get; set; }
@@ -24,7 +24,7 @@ namespace LegendOfZelda.Content.Links.Sprite
         {
             Texture = texture;
             Rows = 1;
-            Columns = 4;
+            Columns = 2;
             currentFrame = 0;
             totalFrames = Rows * Columns;
 
@@ -38,18 +38,6 @@ namespace LegendOfZelda.Content.Links.Sprite
         public void Update()
         {
             currentFrame = (currentFrame + 1) % totalFrames;
-            if (movingLeft)
-            {
-                Pos.X -= 2;
-                if (Pos.X <= 0)
-                    movingLeft = false;
-            }
-            else
-            {
-                Pos.X += 2;
-                if (Pos.X >= 780)
-                    movingLeft = true;
-            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -26,7 +26,7 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            link = new Link(this, position);
             base.Initialize();
         }
 
@@ -36,7 +36,8 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-            link = new Link(this, position);
+            link.LoadTexture(Content);
+
         }
 
         protected override void Update(GameTime gameTime)
