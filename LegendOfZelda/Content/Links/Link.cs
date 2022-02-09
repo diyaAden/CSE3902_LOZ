@@ -9,14 +9,14 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links
 {
-    class Link: ILink
+    public class Link: ILink
     {
-        public ILinkState state;
+        public ILinkState state{ get; set; }
         private ISprite sprite;
 
         public Link(Game1 game, Vector2 position)
         {
-            state = new RightIdleLinkState(this, game, position, sprite);
+            this.state = new LeftWalkLinkState(this, game, position, sprite);
         }
 
         //Motions that link will have, and change the state.

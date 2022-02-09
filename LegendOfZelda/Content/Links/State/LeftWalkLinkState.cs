@@ -8,20 +8,24 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.State
 {
-    public class RightIdleLinkState: ILinkState
+    public class LeftWalkLinkState: ILinkState
     {
         Texture2D linkLeftMove;
         ILink link;
+        Game1 game;
+        Vector2 position;
         ISprite sprite;
-        int timer = 50;
+        int timer = 20;
 
 
 
-        public RightIdleLinkState(ILink link, Game1 game, Vector2 position, ISprite sprite)
+        public LeftWalkLinkState(ILink link, Game1 game, Vector2 position, ISprite sprite)
         {
             LoadTexture(game.Content);
+            this.game = game;
             this.link = link;
-            this.sprite = new RightIdleLinkSprite(linkLeftMove, position);
+            this.position = position;
+            this.sprite = new LeftWalkLinkSprite(linkLeftMove, position);
         }
         
 
@@ -31,13 +35,14 @@ namespace LegendOfZelda.Content.Links.State
             if (timer == 0)
             {
                 sprite.Update();
-                timer = 50; //make sure change that when change timer at the beginning
+                timer = 20; //make sure change that when change timer at the beginning
             }
             
         }
 
         public void MoveUp()
         {
+           
         }
 
         public void MoveDown()
@@ -50,7 +55,8 @@ namespace LegendOfZelda.Content.Links.State
         }
         public void MoveRight()
         {
-
+            
+            link.state = new RightWalkLinkState(link, game, position, sprite);
         }
         public void Walk()
         {

@@ -8,7 +8,6 @@ namespace LegendOfZelda.Content.Links.Sprite
 {
     public interface ISprite
     {
-        Vector2 getPos();
         void Update();
         void Draw(SpriteBatch spriteBatch);
     }
