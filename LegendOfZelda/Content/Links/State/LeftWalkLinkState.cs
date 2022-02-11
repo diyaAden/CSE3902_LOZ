@@ -35,6 +35,7 @@ namespace LegendOfZelda.Content.Links.State
             if (timer == 0)
             {
                 sprite.Update();
+                position = sprite.Position;
                 timer = 20; //make sure change that when change timer at the beginning
             }
             

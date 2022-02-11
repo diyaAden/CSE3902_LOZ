@@ -22,6 +22,7 @@ namespace LegendOfZelda
         public ILink link;
         public Vector2 position = new Vector2(400, 200);
 
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);

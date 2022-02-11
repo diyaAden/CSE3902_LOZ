@@ -9,7 +9,11 @@ namespace LegendOfZelda.Content.Links.Sprite
     class LeftWalkLinkSprite: ISprite
     {
         private Vector2 Pos;
-        public Vector2 Position { get; set; }
+        public Vector2 Position
+        {
+            get { return Pos; }
+            set { Pos = value; }
+        }
 
         public Texture2D Texture { get; set; }
 
@@ -27,8 +31,7 @@ namespace LegendOfZelda.Content.Links.Sprite
             currentFrame = 0;
             totalFrames = Rows * Columns;
 
-            Pos.X = Position.X;
-            Pos.Y = Position.Y;
+            this.Position = Position;
         }
         public void Update()
         {
