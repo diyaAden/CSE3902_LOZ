@@ -55,11 +55,6 @@ namespace LegendOfZelda.Content.Links
             state.Draw(spriteBatch);
         }
 
-        public void LoadTexture(ContentManager content)
-        {
-            state.LoadTexture(content);
-        }
-
         
     }
 }

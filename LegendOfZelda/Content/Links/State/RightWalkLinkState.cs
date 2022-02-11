@@ -10,7 +10,6 @@ namespace LegendOfZelda.Content.Links.State
 {
     public class RightWalkLinkState: ILinkState
     {
-        Texture2D linkRightMove;
         ILink link;
         Game1 game;
         Vector2 position;
@@ -21,11 +20,10 @@ namespace LegendOfZelda.Content.Links.State
 
         public RightWalkLinkState(ILink link, Game1 game, Vector2 position, ISprite sprite)
         {
-            LoadTexture(game.Content);
             this.game = game;
             this.link = link;
             this.position = position;
-            this.sprite = new RightWalkLinkSprite(linkRightMove, position);
+            this.sprite = new RightWalkLinkSprite(LoadLink.linkRightMove, position);
         }
         
 
@@ -71,14 +69,6 @@ namespace LegendOfZelda.Content.Links.State
         {
             this.sprite.Draw(spriteBatch);
         }
-
-        public void LoadTexture(ContentManager content)
-        {
-            linkRightMove = content.Load<Texture2D>("SpriteSheets/Link/LinkRightMove");
-        }
-
-        
-
         
     }
 }

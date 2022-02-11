@@ -38,7 +38,7 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.A, new SetLinkLeft(this));
             control.RegisterCommand(Keys.D, new SetLinkRight(this));
             controllerList.Add(control);
-            link = new Link(this, position);
+            
             base.Initialize();
         }
 
@@ -48,7 +48,8 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-
+            LoadLink.LoadTexture(Content);
+            link = new Link(this, position);
         }
 
         protected override void Update(GameTime gameTime)
