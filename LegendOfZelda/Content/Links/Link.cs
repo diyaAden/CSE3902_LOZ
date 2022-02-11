@@ -16,7 +16,7 @@ namespace LegendOfZelda.Content.Links
 
         public Link(Game1 game, Vector2 position)
         {
-            this.state = new LeftWalkLinkState(this, game, position, sprite);
+            this.state = new LeftWalkLinkState(this, position, sprite);
         }
 
         //Motions that link will have, and change the state.

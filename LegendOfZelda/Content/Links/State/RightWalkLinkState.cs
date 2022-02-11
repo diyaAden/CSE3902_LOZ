@@ -8,67 +8,13 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.State
 {
-    public class RightWalkLinkState: ILinkState
+    public class RightWalkLinkState: BasicLinkState
     {
-        ILink link;
-        Game1 game;
-        Vector2 position;
-        ISprite sprite;
-        int timer = 20;
-
-
-
-        public RightWalkLinkState(ILink link, Game1 game, Vector2 position, ISprite sprite)
+        public RightWalkLinkState(ILink link, Vector2 position, ISprite sprite)
         {
-            this.game = game;
             this.link = link;
             this.position = position;
             this.sprite = new RightWalkLinkSprite(LoadLink.linkRightMove, position);
         }
-        
-
-        public void Update()
-        {
-            timer--;
-            if (timer == 0)
-            {
-                sprite.Update();
-                position = sprite.Position;
-                timer = 20; //make sure change that when change timer at the beginning
-            }
-            
-        }
-
-        public void MoveUp()
-        {
-           
-        }
-
-        public void MoveDown()
-        {
-
-        }
-        public void MoveLeft()
-        {
-            link.state = new LeftWalkLinkState(link, game, position, sprite);
-        }
-        public void MoveRight()
-        {
-            //Do nothing
-        }
-        public void Walk()
-        {
-            
-        }
-
-        public void Attack()
-        {
-            
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            this.sprite.Draw(spriteBatch);
-        }
-        
     }
 }
