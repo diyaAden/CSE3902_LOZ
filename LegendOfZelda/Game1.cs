@@ -28,14 +28,24 @@ namespace LegendOfZelda
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
+        private void RegisterCommands(KeyboardController control)
+        {
+            //Game Controls
+            control.RegisterCommand(Keys.Q, new QuitGame(this));
+            control.RegisterCommand(Keys.R, new ResetGame(this));
+            //KeyboardControls for Link
+            control.RegisterCommand(Keys.A, new SetLinkLeft(this));
+            control.RegisterCommand(Keys.D, new SetLinkRight(this));
+            control.RegisterCommand(Keys.Left, new SetLinkLeft(this));
+            control.RegisterCommand(Keys.Right, new SetLinkRight(this));
+        }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
             controllerList = new List<IController>();
             KeyboardController control = new KeyboardController();
-            control.RegisterCommand(Keys.A, new SetLinkLeft(this));
-            control.RegisterCommand(Keys.D, new SetLinkRight(this));
+            RegisterCommands(control);
             controllerList.Add(control);
             link = new Link(this, position);
             base.Initialize();

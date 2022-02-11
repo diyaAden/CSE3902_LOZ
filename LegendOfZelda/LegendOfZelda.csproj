@@ -12,6 +12,11 @@
   <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="Content\Input\Command\Commands\SetLink\" />
+    <None Remove="Content\Input\Command\Commands\SetItem\" />
+    <None Remove="Content\Input\Command\Commands\SetBlock\" />
+    <None Remove="Content\Input\Command\Commands\SetNPC\" />
+    <None Remove="Content\Input\Command\Commands\GameControl\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -29,5 +34,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Commands\" />
+    <Folder Include="Content\Input\Command\Commands\SetLink\" />
+    <Folder Include="Content\Input\Command\Commands\SetItem\" />
+    <Folder Include="Content\Input\Command\Commands\SetBlock\" />
+    <Folder Include="Content\Input\Command\Commands\SetNPC\" />
+    <Folder Include="Content\Input\Command\Commands\GameControl\" />
   </ItemGroup>
 </Project>
