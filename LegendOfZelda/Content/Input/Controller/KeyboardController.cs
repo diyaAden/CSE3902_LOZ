@@ -19,11 +19,15 @@ namespace LegendOfZelda.Content.Controller
         }
         public void Update()
         {
-            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+            KeyboardState state = Keyboard.GetState();
 
-            foreach (Keys key in pressedKeys)
+
+            if (state.IsKeyDown(Keys.A))
             {
-                    controllerMappings[key].Execute();
+                controllerMappings[Keys.A].Execute();
+                Console.WriteLine("Here");
+            }else if(state.IsKeyDown(Keys.D)){
+                controllerMappings[Keys.D].Execute();
             }
         }
     }

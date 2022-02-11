@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Input.Command
+namespace LegendOfZelda.Content.Input.Command.Commands
 {
     public class SetLinkLeft : ICommand
     {
@@ -13,7 +13,7 @@ namespace LegendOfZelda.Content.Input.Command
         }
         public void Execute()
         {
-            //myGame.link = new SetLink(myGame.LinkTexture);
+            myGame.link.state.MoveLeft();
         }
     }
 }

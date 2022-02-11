@@ -1,5 +1,10 @@
-﻿using LegendOfZelda.Content.Items;
+﻿using System.Collections.Generic;
+using LegendOfZelda.Content.Controller;
+using LegendOfZelda.Content.Input.Command;
+using LegendOfZelda.Content.Input.Command.Commands;
+using LegendOfZelda.Content.Items;
 using LegendOfZelda.Content.Links;
+using LegendOfZelda.Content.Links.Sprite;
 using LegendOfZelda.Content.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +18,7 @@ namespace LegendOfZelda
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        List<IController> controllerList;
         public ILink link;
         public Vector2 position = new Vector2(400, 200);
 
@@ -26,6 +32,11 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            controllerList = new List<IController>();
+            KeyboardController control = new KeyboardController();
+            control.RegisterCommand(Keys.A, new SetLinkLeft(this));
+            control.RegisterCommand(Keys.D, new SetLinkRight(this));
+            controllerList.Add(control);
             link = new Link(this, position);
             base.Initialize();
         }
@@ -43,9 +54,9 @@ namespace LegendOfZelda
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            foreach (IController controller in controllerList)
             {
-                link.state.MoveRight();
+                controller.Update();
             }
             link.Update();
 
