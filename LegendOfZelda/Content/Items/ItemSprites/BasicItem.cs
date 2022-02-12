@@ -1,0 +1,33 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+
+namespace LegendOfZelda.Content.Items.ItemSprites
+{
+    public abstract class BasicItem : IItem
+    {
+        protected Texture2D spriteSheet;
+        protected List<Rectangle> animationFrames;
+        protected int currentFrame = 0;
+        protected Vector2 pos = new Vector2(400, 200);
+        public Vector2 position
+        {
+            get
+            {
+                return pos;
+            }
+            set
+            {
+                pos = value;
+            }
+        }
+
+        public abstract void Update();
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
+        }
+    }
+}
