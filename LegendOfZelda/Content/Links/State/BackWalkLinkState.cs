@@ -8,14 +8,15 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.State
 {
-    class RightWalkLinkState: BasicLinkState
+    class BackWalkLinkState : BasicLinkState
     {
-        public RightWalkLinkState(ILink link, Vector2 position, ISprite sprite)
+        public BackWalkLinkState(ILink link, Vector2 position, ISprite sprite)
         {
-            direction = 3;
+            direction = 1;
             this.link = link;
             this.position = position;
-            this.sprite = new RightWalkLinkSprite(LoadLink.linkRightMove, position);
+            this.sprite = new BackWalkLinkSprite(LoadLink.linkBackMove, position);
         }
+
     }
 }

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.Sprite
 {
-    class RightWalkLinkSprite : BasicLinkSprite
-    {
-        public RightWalkLinkSprite(Texture2D texture, Vector2 Position)
+    class FrontWalkLinkSprite: BasicLinkSprite
+    {    
+        public FrontWalkLinkSprite(Texture2D texture, Vector2 Position)
         {
             Rows = 1;
             Columns = 2;
@@ -19,7 +19,7 @@ namespace LegendOfZelda.Content.Links.Sprite
         }
         public override void Update()
         {
-            Pos = new Vector2(Pos.X + 3, Pos.Y);
+            Pos = new Vector2(Pos.X, Pos.Y + 3);
             CurrentFrame = (CurrentFrame + 1) % TotalFrames;
         }
     }

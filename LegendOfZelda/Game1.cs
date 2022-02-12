@@ -22,6 +22,7 @@ namespace LegendOfZelda
         public ILink link;
         public Vector2 position = new Vector2(400, 200);
 
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -47,7 +48,7 @@ namespace LegendOfZelda
             KeyboardController control = new KeyboardController();
             RegisterCommands(control);
             controllerList.Add(control);
-            link = new Link(this, position);
+            
             base.Initialize();
         }
 
@@ -57,7 +58,8 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-
+            LoadLink.LoadTexture(Content);
+            link = new Link(this, position);
         }
 
         protected override void Update(GameTime gameTime)
