@@ -36,9 +36,9 @@ namespace LegendOfZelda.Content.Links
         {
             state.MoveLeft();
         }
-        public void Walk()
+        public void UseItem()
         {
-            state.Walk();
+            state.UseItem();
         }
         public void Attack()
         {

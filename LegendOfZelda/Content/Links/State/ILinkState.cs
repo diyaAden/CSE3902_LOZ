@@ -12,7 +12,7 @@ namespace LegendOfZelda.Content.Links
         void MoveDown();
         void MoveRight();
         void MoveLeft();
-        void Walk();
+        void UseItem();
         void Attack();
         void Update();
         void Draw(SpriteBatch spriteBatch);

@@ -8,11 +8,22 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.State
 {
-    public class BasicLinkState: ILinkState
+    class BasicLinkState : ILinkState
     {
         public virtual ILink link { get; set; }
         public virtual Vector2 position { get; set; }
         public virtual ISprite sprite { get; set; }
+        /*
+            direction = 0 ->Front
+            direction = 1 ->Back
+            direction = 2 ->Left
+            direction = 3 ->Right
+
+            only move could change direction
+            use static to let child change parent data.
+        */
+
+        protected static int direction = 2;
         protected int timer = 20;
 
         public virtual void Update()
@@ -42,12 +53,29 @@ namespace LegendOfZelda.Content.Links.State
         }
         public virtual void MoveRight()
         {
-            
             link.state = new RightWalkLinkState(link, position, sprite);
         }
-        public virtual void Walk()
+
+        public virtual void UseItem()
         {
-            
+           
+            if (direction == 0)
+            {
+                link.state = new FrontUseItemLinkState(link, position, sprite);
+            }
+            else if(direction == 1)
+            {
+                link.state = new BackUseItemLinkState(link, position, sprite);
+            }
+            else if (direction == 2)
+            {
+                link.state = new LeftUseItemLinkState(link, position, sprite);
+            }
+            else if (direction == 3)
+            {
+                link.state = new RightUseItemLinkState(link, position, sprite);
+            }
+           
         }
 
         public virtual void Attack()

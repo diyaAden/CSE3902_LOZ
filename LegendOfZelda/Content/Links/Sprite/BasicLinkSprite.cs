@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Links.Sprite
 {
-    public abstract class BasicLinkSprite: ISprite
+    abstract class BasicLinkSprite: ISprite
     {
         protected virtual Vector2 Pos { get; set; }
         public virtual Vector2 Position
