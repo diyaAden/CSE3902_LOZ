@@ -19,7 +19,7 @@ namespace LegendOfZelda.Content.Links.Sprite
         }
         public override void Update()
         {
-            Pos = new Vector2(Pos.X - 3, Pos.Y);
+            Pos = new Vector2(Pos.X-3, Pos.Y);
             CurrentFrame = (CurrentFrame + 1) % TotalFrames;
         }
     }

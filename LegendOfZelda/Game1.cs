@@ -39,6 +39,12 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.D, new SetLinkRight(this));
             control.RegisterCommand(Keys.Left, new SetLinkLeft(this));
             control.RegisterCommand(Keys.Right, new SetLinkRight(this));
+            control.RegisterCommand(Keys.W, new SetLinkUp(this));
+            control.RegisterCommand(Keys.S, new SetLinkDown(this));
+            control.RegisterCommand(Keys.Up, new SetLinkUp(this));
+            control.RegisterCommand(Keys.Down, new SetLinkDown(this));
+            control.RegisterCommand(Keys.X, new UseItem(this));
+            control.RegisterCommand(Keys.M, new UseItem(this));
         }
 
         protected override void Initialize()
