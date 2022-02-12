@@ -10,12 +10,14 @@ namespace LegendOfZelda.Content.Links.Sprite
     {
         public static Texture2D linkLeftMove;
         public static Texture2D linkRightMove;
-        //public static Texture2D linkFrontMove;
-        //public static Texture2D linkBackMove;
+        public static Texture2D linkFrontMove;
+        public static Texture2D linkBackMove;
         public static void LoadTexture(ContentManager content)
         {
             linkLeftMove = content.Load<Texture2D>("SpriteSheets/Link/LinkLeftMove");
             linkRightMove = content.Load<Texture2D>("SpriteSheets/Link/LinkRightMove");
+            linkFrontMove = content.Load<Texture2D>("SpriteSheets/Link/LinkFrontMove");
+            linkBackMove = content.Load<Texture2D>("SpriteSheets/Link/LinkBackMove");
         }
     }
 }

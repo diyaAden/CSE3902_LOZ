@@ -29,12 +29,12 @@ namespace LegendOfZelda.Content.Links.State
 
         public virtual void MoveUp()
         {
-           
+            link.state = new BackWalkLinkState(link, position, sprite);
         }
 
         public virtual void MoveDown()
         {
-
+            link.state = new FrontWalkLinkState(link, position, sprite);
         }
         public virtual void MoveLeft()
         {
