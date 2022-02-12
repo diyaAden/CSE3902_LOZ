@@ -22,6 +22,8 @@ namespace LegendOfZelda
         public ILink link;
         public Vector2 position = new Vector2(400, 200);
 
+        private ItemCollection itemCollection;
+        int timer = 0;
 
         public Game1()
         {
@@ -64,6 +66,7 @@ namespace LegendOfZelda
 
             // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
+            itemCollection = new ItemCollection();
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
         }
@@ -77,6 +80,14 @@ namespace LegendOfZelda
                 controller.Update();
             }
             link.Update();
+            itemCollection.Update();
+
+            //if statement and timer used for testing items, will remove later
+            if (++timer > 100)
+            {
+                itemCollection.PreviousItem();
+                timer = 0;
+            }
 
             base.Update(gameTime);
         }
@@ -85,6 +96,7 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+            itemCollection.Draw(_spriteBatch);
             link.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
