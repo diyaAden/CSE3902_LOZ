@@ -23,7 +23,7 @@ namespace LegendOfZelda
         public Vector2 position = new Vector2(400, 200);
 
         private ItemCollection itemCollection;
-        int timer = 0;
+        int timer = 0; //this is part of testing and will be removed later
 
         public Game1()
         {
@@ -51,7 +51,6 @@ namespace LegendOfZelda
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             controllerList = new List<IController>();
             KeyboardController control = new KeyboardController();
             RegisterCommands(control);
@@ -64,7 +63,6 @@ namespace LegendOfZelda
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             itemCollection = new ItemCollection();
             LoadLink.LoadTexture(Content);

@@ -17,6 +17,15 @@ namespace LegendOfZelda.Content.Items
             items.Add(ItemSpriteFactory.Instance.CreateKeySprite());
             items.Add(ItemSpriteFactory.Instance.CreateHeartContainerSprite());
             items.Add(ItemSpriteFactory.Instance.CreateTriforcePieceSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateWoodBoomerangSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateBowSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateHeartSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateRupeeSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateArrowItemSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateFairySprite());
+            items.Add(ItemSpriteFactory.Instance.CreateBlueRupeeSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateClockSprite());
         }
 
         public void NextItem()
@@ -26,8 +35,7 @@ namespace LegendOfZelda.Content.Items
 
         public void PreviousItem()
         {
-            currentItem--;
-            if (currentItem < 0)
+            if (--currentItem < 0)
             {
                 currentItem = items.Count - 1;
             }
