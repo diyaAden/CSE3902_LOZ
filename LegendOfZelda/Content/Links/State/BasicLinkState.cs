@@ -37,7 +37,27 @@ namespace LegendOfZelda.Content.Links.State
             }
             
         }
+        
+        public virtual void ToIdle()
+        {
+            if (direction == 0)
+            {
+                link.state = new FrontIdleLinkState(link, position, sprite);
+            }
+            else if (direction == 1)
+            {
+                link.state = new BackIdleLinkState(link, position, sprite);
+            }
+            else if (direction == 2)
+            {
+                link.state = new LeftIdleLinkState(link, position, sprite);
+            }
+            else if (direction == 3)
+            {
+                link.state = new RightIdleLinkState(link, position, sprite);
+            }
 
+        }
         public virtual void MoveUp()
         {
             link.state = new BackWalkLinkState(link, position, sprite);
