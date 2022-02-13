@@ -10,8 +10,7 @@ namespace LegendOfZelda.Content.Items
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet;
-        private List<Rectangle> frames;
-
+        private Texture2D NPCSpriteSheet;
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance
@@ -21,116 +20,81 @@ namespace LegendOfZelda.Content.Items
                 return instance;
             }
         }
-
         private ItemSpriteFactory()
         {
         }
-
         public void LoadAllTextures(ContentManager content)
         {
             itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/itemSpriteSheet");
+            NPCSpriteSheet = content.Load<Texture2D>("SpriteSheets/NPCSpriteSheet");
         }
-
         public IItem CreateCompassSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(258, 1, 11, 12));
-            return new CompassSprite(itemSpriteSheet, frames);
+            return new CompassSprite(itemSpriteSheet);
         }
-
         public IItem CreateMapSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(88, 0, 8, 16));
-            return new MapSprite(itemSpriteSheet, frames);
+            return new MapSprite(itemSpriteSheet);
         }
-
         public IItem CreateKeySprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(240, 0, 8, 16));
-            return new KeySprite(itemSpriteSheet, frames);
+            return new KeySprite(itemSpriteSheet);
         }
-
         public IItem CreateHeartContainerSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(25, 1, 13, 13));
-            return new HeartContainerSprite(itemSpriteSheet, frames);
+            return new HeartContainerSprite(itemSpriteSheet);
         }
-
         public IItem CreateTriforcePieceSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(275, 3, 10, 10));
-            frames.Add(new Rectangle(275, 19, 10, 10));
-            return new TriforcePieceSprite(itemSpriteSheet, frames);
+            return new TriforcePieceSprite(itemSpriteSheet);
         }
-
-        public IItem CreateWoodBoomerangSprite()
+        public IItem CreateWoodBoomerangItemSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(129, 3, 5, 8));
-            return new WoodBoomerangItemSprite(itemSpriteSheet, frames);
+            return new WoodBoomerangItemSprite(itemSpriteSheet);
         }
-
+        public IItem CreateMagicBoomerangItemSprite()
+        {
+            return new MagicBoomerangItemSprite(itemSpriteSheet);
+        }
         public IItem CreateBowSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(144, 0, 8, 16));
-            return new BowSprite(itemSpriteSheet, frames);
+            return new BowSprite(itemSpriteSheet);
         }
-
         public IItem CreateHeartSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(0, 0, 7, 8));
-            frames.Add(new Rectangle(0, 8, 7, 8));
-            return new HeartSprite(itemSpriteSheet, frames);
+            return new HeartSprite(itemSpriteSheet);
         }
-
         public IItem CreateRupeeSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(72, 0, 8, 16));
-            frames.Add(new Rectangle(72, 16, 8, 16));
-            return new RupeeSprite(itemSpriteSheet, frames);
+            return new RupeeSprite(itemSpriteSheet);
         }
-
         public IItem CreateArrowItemSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(154, 0, 5, 16));
-            return new ArrowItemSprite(itemSpriteSheet, frames);
+            return new ArrowItemSprite(itemSpriteSheet);
         }
-
+        public IItem CreateMagicArrowItemSprite()
+        {
+            return new MagicArrowItemSprite(itemSpriteSheet);
+        }
         public IItem CreateBombItemSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(136, 0, 8, 14));
-            return new BombItemSprite(itemSpriteSheet, frames);
+            return new BombItemSprite(itemSpriteSheet);
         }
-
         public IItem CreateFairySprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(40, 0, 8, 16));
-            frames.Add(new Rectangle(48, 0, 8, 16));
-            return new FairySprite(itemSpriteSheet, frames);
+            return new FairySprite(itemSpriteSheet);
         }
-
+        public IItem CreateFireItemSprite()
+        {
+            return new FireItemSprite(NPCSpriteSheet);
+        }
         public IItem CreateBlueRupeeSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(72, 16, 8, 16));
-            return new BlueRupeeSprite(itemSpriteSheet, frames);
+            return new BlueRupeeSprite(itemSpriteSheet);
         }
-
         public IItem CreateClockSprite()
         {
-            frames = new List<Rectangle>();
-            frames.Add(new Rectangle(58, 0, 11, 16));
-            return new ClockSprite(itemSpriteSheet, frames);
+            return new ClockSprite(itemSpriteSheet);
         }
     }
 }

@@ -7,10 +7,10 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     public class HeartContainerSprite : BasicItem
     {
         
-        public HeartContainerSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public HeartContainerSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(25, 1, 13, 13));
         }
 
         public override void Update()

@@ -7,10 +7,10 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     public class ClockSprite : BasicItem
     {
         
-        public ClockSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public ClockSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(58, 0, 11, 16));
         }
 
         public override void Update()

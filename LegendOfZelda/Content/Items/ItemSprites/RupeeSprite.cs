@@ -8,10 +8,11 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     {
         private int animationTimer = 0;
         
-        public RupeeSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public RupeeSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(72, 0, 8, 16));
+            animationFrames.Add(new Rectangle(72, 16, 8, 16));
         }
 
         public override void Update()

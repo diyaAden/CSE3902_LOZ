@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Items.ItemSprites
 {
-    public class HeartSprite : BasicItem
+    public class FireItemSprite : BasicItem
     {
         private int animationTimer = 0;
         
-        public HeartSprite(Texture2D itemSpriteSheet)
+        public FireItemSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 7, 8));
-            animationFrames.Add(new Rectangle(0, 8, 7, 8));
+            animationFrames.Add(new Rectangle(52, 11, 16, 16));
+            animationFrames.Add(new Rectangle(69, 11, 16, 16));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 7)
+            if (++animationTimer > 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;

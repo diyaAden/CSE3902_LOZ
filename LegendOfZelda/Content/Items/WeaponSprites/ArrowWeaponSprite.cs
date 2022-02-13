@@ -2,15 +2,15 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Items.ItemSprites
+namespace LegendOfZelda.Content.Items.WeaponSprites
 {
-    public class CompassSprite : BasicItem
+    public class ArrowWeaponSprite : BasicItem
     {
         
-        public CompassSprite(Texture2D itemSpriteSheet)
+        public ArrowWeaponSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(258, 1, 11, 12));
+            animationFrames.Add(new Rectangle(154, 0, 5, 16));
         }
 
         public override void Update()
