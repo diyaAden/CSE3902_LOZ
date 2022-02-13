@@ -16,6 +16,7 @@ namespace LegendOfZelda.Content.Links.Sprite
         public static Texture2D linkRightItem;
         public static Texture2D linkFrontItem;
         public static Texture2D linkBackItem;
+       
         public static void LoadTexture(ContentManager content)
         {
             //Walk or idle
@@ -28,6 +29,10 @@ namespace LegendOfZelda.Content.Links.Sprite
             linkRightItem = content.Load<Texture2D>("SpriteSheets/Link/RightUseItem");
             linkFrontItem = content.Load<Texture2D>("SpriteSheets/Link/FrontUseItem");
             linkBackItem = content.Load<Texture2D>("SpriteSheets/Link/BackUseItem");
+
+            
+
+
         }
     }
 }
