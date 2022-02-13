@@ -8,10 +8,11 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     {
         private int animationTimer = 0;
         
-        public TriforcePieceSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public TriforcePieceSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(275, 3, 10, 10));
+            animationFrames.Add(new Rectangle(275, 19, 10, 10));
         }
 
         public override void Update()

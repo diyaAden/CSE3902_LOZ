@@ -7,10 +7,10 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     public class ArrowItemSprite : BasicItem
     {
         
-        public ArrowItemSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public ArrowItemSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(154, 0, 5, 16));
         }
 
         public override void Update()

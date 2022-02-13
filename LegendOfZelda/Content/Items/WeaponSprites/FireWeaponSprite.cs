@@ -1,23 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Items.ItemSprites
+namespace LegendOfZelda.Content.Items.WeaponSprites
 {
-    public class HeartSprite : BasicItem
+    public class FireWeaponSprite : BasicItem
     {
         private int animationTimer = 0;
         
-        public HeartSprite(Texture2D itemSpriteSheet)
+        public FireWeaponSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 7, 8));
-            animationFrames.Add(new Rectangle(0, 8, 7, 8));
+            animationFrames.Add(new Rectangle(0, 0, 16, 16));
+            animationFrames.Add(new Rectangle(17, 0, 16, 16));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 7)
+            if (++animationTimer > 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;

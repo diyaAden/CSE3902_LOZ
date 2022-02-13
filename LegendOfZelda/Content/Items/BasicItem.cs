@@ -2,12 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Items.ItemSprites
+namespace LegendOfZelda.Content.Items
 {
     public abstract class BasicItem : IItem
     {
         protected Texture2D spriteSheet;
-        protected List<Rectangle> animationFrames;
+        protected List<Rectangle> animationFrames = new List<Rectangle>();
         protected int currentFrame = 0;
         protected Vector2 pos = new Vector2(400, 200);
         public Vector2 position

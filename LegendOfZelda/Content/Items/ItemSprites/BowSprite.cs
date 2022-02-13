@@ -7,10 +7,10 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     public class BowSprite : BasicItem
     {
         
-        public BowSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public BowSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(144, 0, 8, 16));
         }
 
         public override void Update()
