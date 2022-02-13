@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LegendOfZelda.Content.Blocks;
 using LegendOfZelda.Content.Controller;
 using LegendOfZelda.Content.Input.Command;
 using LegendOfZelda.Content.Input.Command.Commands;
@@ -23,6 +24,7 @@ namespace LegendOfZelda
         public Vector2 position = new Vector2(400, 200);
 
         private ItemCollection itemCollection;
+        private BlockCollection blockCollection;
         int timer = 0; //this is part of testing and will be removed later
 
         public Game1()
@@ -65,6 +67,8 @@ namespace LegendOfZelda
 
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             itemCollection = new ItemCollection();
+            BlockSpriteFactory.Instance.LoadAllTextures(Content);
+            blockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
         }
@@ -79,10 +83,12 @@ namespace LegendOfZelda
             }
             link.Update();
             itemCollection.Update();
+            blockCollection.Update();
 
-            //if statement and timer used for testing items, will remove later
+            //if statement and timer used for testing, will remove later
             if (++timer > 100)
             {
+                blockCollection.PreviousBlock();
                 itemCollection.PreviousItem();
                 timer = 0;
             }
@@ -94,6 +100,7 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+            blockCollection.Draw(_spriteBatch);
             itemCollection.Draw(_spriteBatch);
             link.Draw(_spriteBatch);
             _spriteBatch.End();

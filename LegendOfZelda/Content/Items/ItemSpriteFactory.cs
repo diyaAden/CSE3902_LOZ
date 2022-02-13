@@ -10,7 +10,7 @@ namespace LegendOfZelda.Content.Items
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet;
-        private Texture2D NPCSpriteSheet;
+        private Texture2D fireSpriteSheet;
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance
@@ -25,8 +25,8 @@ namespace LegendOfZelda.Content.Items
         }
         public void LoadAllTextures(ContentManager content)
         {
-            itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/itemSpriteSheet");
-            NPCSpriteSheet = content.Load<Texture2D>("SpriteSheets/NPCSpriteSheet");
+            itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ItemSpriteSheet");
+            fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
         }
         public IItem CreateCompassSprite()
         {
@@ -86,7 +86,7 @@ namespace LegendOfZelda.Content.Items
         }
         public IItem CreateFireItemSprite()
         {
-            return new FireItemSprite(NPCSpriteSheet);
+            return new FireItemSprite(fireSpriteSheet);
         }
         public IItem CreateBlueRupeeSprite()
         {

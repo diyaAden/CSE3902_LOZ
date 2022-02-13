@@ -11,8 +11,8 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public FireItemSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(52, 11, 16, 16));
-            animationFrames.Add(new Rectangle(69, 11, 16, 16));
+            animationFrames.Add(new Rectangle(0, 0, 16, 16));
+            animationFrames.Add(new Rectangle(17, 0, 16, 16));
         }
 
         public override void Update()

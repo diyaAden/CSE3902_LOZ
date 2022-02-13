@@ -1,16 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using LegendOfZelda.Content.Items.WeaponSprites;
-using LegendOfZelda.Content.Items.ItemSprites;
 
 namespace LegendOfZelda.Content.Items
 {
     public class WeaponSpriteFactory
     {
         private Texture2D itemSpriteSheet;
-        private Texture2D NPCSpriteSheet;
+        private Texture2D fireSpriteSheet;
         private static WeaponSpriteFactory instance = new WeaponSpriteFactory();
 
         public static WeaponSpriteFactory Instance
@@ -25,8 +22,8 @@ namespace LegendOfZelda.Content.Items
         }
         public void LoadAllTextures(ContentManager content)
         {
-            itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/itemSpriteSheet");
-            NPCSpriteSheet = content.Load<Texture2D>("SpriteSheets/NPCSpriteSheet");
+            itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ItemSpriteSheet");
+            fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
         }
         public IItem CreateWoodBoomerangWeaponSprite()
         {
@@ -50,7 +47,7 @@ namespace LegendOfZelda.Content.Items
         }
         public IItem CreateFireWeaponSprite()
         {
-            return new FireWeaponSprite(NPCSpriteSheet);
+            return new FireWeaponSprite(fireSpriteSheet);
         }
     }
 }
