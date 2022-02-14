@@ -73,7 +73,7 @@ namespace LegendOfZelda
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
-            weaponManager = new WeaponManager();
+            weaponManager = new WeaponManager(Content);
         }
 
         protected override void Update(GameTime gameTime)

@@ -21,7 +21,7 @@ namespace LegendOfZelda.Content.Items
 
         public WeaponManager(ContentManager content)
         {
-            smokeCloud = content.Load<Texture2D>("SpreteSheets/Items/WeaponParticlesSpreteSheet.png");
+            //smokeCloud = content.Load<Texture2D>("SpreteSheets/Items/WeaponParticlesSpreteSheet.png");
         }
 
         public void Update()
