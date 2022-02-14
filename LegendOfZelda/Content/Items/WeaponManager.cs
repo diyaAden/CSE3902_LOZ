@@ -6,10 +6,9 @@ namespace LegendOfZelda.Content.Items
 {
     class WeaponManager
     {
-        private enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Other, None}
-        public enum Direction { Up, Down, Left, Right}
+        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Other, None}
         private bool magic = false;
-        private WeaponType weaponType = WeaponType.None;
+        public WeaponType weaponType { get; private set; }
         private int timer = 0;
         private IItem weapon { get; set; }
         public Vector2 position { get; set; }
@@ -36,6 +35,7 @@ namespace LegendOfZelda.Content.Items
         public WeaponManager(Vector2 pos)
         {
             weapon = null;
+            weaponType = WeaponType.None;
             position = pos;
         }
 
@@ -65,12 +65,12 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public void BecomeArrow(Direction facing)
+        public void BecomeArrow(int facingDirection)
         {
             weaponType = WeaponType.Arrow;
-            switch (facing)
+            switch (facingDirection)
             {
-                case Direction.Up:
+                case 1:
                     weapon = WeaponSpriteFactory.Instance.CreateArrowUpWeaponSprite();
                     weapon.position = position;
                     break;
@@ -79,20 +79,20 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public void BecomeBomb(Direction facing)
+        public void BecomeBomb(int facing)
         {
             weaponType = WeaponType.Bomb;
             switch (facing)
             {
-                case Direction.Up:
+                case 1:
                     weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
                     weapon.position = new Vector2(position.X, position.Y - 16);
                     break;
-                case Direction.Down:
+                case 3:
                     weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
                     weapon.position = new Vector2(position.X, position.Y + 16);
                     break;
-                case Direction.Left:
+                case 4:
                     weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
                     weapon.position = new Vector2(position.X - 16, position.Y);
                     break;
@@ -101,6 +101,7 @@ namespace LegendOfZelda.Content.Items
                     weapon.position = new Vector2(position.X + 16, position.Y);
                     break;
             }
+            position = weapon.position;
         }
     }
 }
