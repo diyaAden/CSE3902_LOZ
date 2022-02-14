@@ -30,19 +30,18 @@ namespace LegendOfZelda.Content.Links.State
 
         public virtual void Update()
         {
-            timer--;
-            if (timer == 0)
-            {
+            
+            
+            
                 sprite.Update();
                 position = sprite.Position;
                 timer = 20; //make sure change that when change timer at the beginning
-            }
+            
             
         }
         
         public virtual void toDamaged()
         {
-            // link.sprite.isDamaged = true;
             isDamaged = true;
         }
         public virtual void ToIdle()

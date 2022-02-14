@@ -13,7 +13,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         public void Execute()
         {
-
+            myGame.ItemCollection.NextItem();
         }
     }
 }

@@ -21,12 +21,16 @@ namespace LegendOfZelda
 
         List<IController> controllerList;
         public ILink link;
+        private BlockCollection blockCollection;
+        private ItemCollection itemCollection;
         public Vector2 position = new Vector2(400, 200);
 
-        private ItemCollection itemCollection;
-        private BlockCollection blockCollection;
+        
         int timer = 0; //this is part of testing and will be removed later
         private WeaponManager weaponManager;
+
+        internal BlockCollection BlockCollection { get => blockCollection; set => blockCollection = value; }
+        internal ItemCollection ItemCollection { get => itemCollection; set => itemCollection = value; }
 
         public Game1()
         {
@@ -50,12 +54,19 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.Down, new SetLinkDown(this));
             control.RegisterCommand(Keys.X, new UseItem(this));
             control.RegisterCommand(Keys.M, new UseItem(this));
+            control.RegisterCommand(Keys.E, new SetLinkDamaged(this));
+            control.RegisterCommand(Keys.F, new SetLinkIdle(this));
+            //Block and item controls
+            control.RegisterCommand(Keys.T, new PreviousBlock(this));
+            control.RegisterCommand(Keys.Y, new NextBlock(this));
+            control.RegisterCommand(Keys.U, new PreviousItem(this));
+            control.RegisterCommand(Keys.I, new NextItem(this));
         }
 
         protected override void Initialize()
         {
             controllerList = new List<IController>();
-            KeyboardController control = new KeyboardController();
+            KeyboardController control = new KeyboardController(this);
             RegisterCommands(control);
             controllerList.Add(control);
             
@@ -67,9 +78,9 @@ namespace LegendOfZelda
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-            itemCollection = new ItemCollection();
+            ItemCollection = new ItemCollection();
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
-            blockCollection = new BlockCollection();
+            BlockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
@@ -78,24 +89,17 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
             foreach (IController controller in controllerList)
             {
                 controller.Update();
             }
             link.Update();
-            itemCollection.Update();
-            blockCollection.Update();
-            weaponManager.Update();
 
-            //if statement and timer used for testing, will remove later
-            if (++timer > 100)
-            {
-                blockCollection.PreviousBlock();
-                itemCollection.PreviousItem();
-                timer = 0;
-            }
+            weaponManager.Update();
+            ItemCollection.Update();
+            BlockCollection.Update();
+            
+
 
             base.Update(gameTime);
         }
@@ -104,9 +108,11 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
-            blockCollection.Draw(_spriteBatch);
-            itemCollection.Draw(_spriteBatch);
+
             weaponManager.Draw(_spriteBatch);
+            BlockCollection.Draw(_spriteBatch);
+            ItemCollection.Draw(_spriteBatch);
+
             link.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);

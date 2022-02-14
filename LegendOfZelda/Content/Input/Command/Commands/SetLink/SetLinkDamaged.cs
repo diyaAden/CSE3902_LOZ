@@ -4,16 +4,16 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Input.Command.Commands
 {
-    public class SetLinkDown : ICommand
+    public class SetLinkDamaged : ICommand
     {
         private Game1 myGame;
-        public SetLinkDown(Game1 game)
+        public SetLinkDamaged(Game1 game)
         {
             myGame = game;
         }
         public void Execute()
         {
-            myGame.link.state.MoveDown();
+            myGame.link.state.toDamaged();
         }
     }
 }
