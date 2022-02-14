@@ -11,7 +11,6 @@ namespace LegendOfZelda.Content.Items
         private WeaponType weaponType;
         private Direction direction;
         private IItem weapon = null;
-        private Texture2D smokeCloud;
         private int timer = 0;
 
         private void DestroyWeapon()
@@ -19,9 +18,8 @@ namespace LegendOfZelda.Content.Items
             //deal with arrows and bombs I think so far
         }
 
-        public WeaponManager(ContentManager content)
+        public WeaponManager()
         {
-            //smokeCloud = content.Load<Texture2D>("SpreteSheets/Items/WeaponParticlesSpreteSheet.png");
         }
 
         public void Update()
