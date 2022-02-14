@@ -8,7 +8,7 @@ namespace LegendOfZelda.Content.Links.Sprite
 {
     class RightUseItemLinkSprite : BasicLinkSprite
     {    
-        public RightUseItemLinkSprite(Texture2D texture, Vector2 Position)
+        public RightUseItemLinkSprite(Texture2D texture, Vector2 Position, bool damageState)
         {
             Rows = 1;
             Columns = 1;
@@ -16,6 +16,7 @@ namespace LegendOfZelda.Content.Links.Sprite
             TotalFrames = Rows * Columns;
             Texture = texture;
             Pos = Position;
+            checkDamageState = damageState;
         }
         public override void Update()
         {

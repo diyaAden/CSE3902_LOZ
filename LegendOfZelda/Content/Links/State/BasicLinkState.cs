@@ -26,6 +26,8 @@ namespace LegendOfZelda.Content.Links.State
         protected static int direction = 2;
         protected int timer = 20;
 
+        public bool isDamaged = false;
+
         public virtual void Update()
         {
             timer--;
@@ -38,6 +40,11 @@ namespace LegendOfZelda.Content.Links.State
             
         }
         
+        public virtual void toDamaged()
+        {
+            // link.sprite.isDamaged = true;
+            isDamaged = true;
+        }
         public virtual void ToIdle()
         {
             if (direction == 0)
@@ -70,6 +77,7 @@ namespace LegendOfZelda.Content.Links.State
         public virtual void MoveLeft()
         {
             link.state = new LeftWalkLinkState(link, position, sprite);
+            
         }
         public virtual void MoveRight()
         {
