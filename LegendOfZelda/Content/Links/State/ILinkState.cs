@@ -9,6 +9,7 @@ namespace LegendOfZelda.Content.Links
     public interface ILinkState
     {
         void ToIdle();
+        void toDamaged();
         void MoveUp();
         void MoveDown();
         void MoveRight();
