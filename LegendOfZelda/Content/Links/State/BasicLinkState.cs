@@ -23,8 +23,10 @@ namespace LegendOfZelda.Content.Links.State
             use static to let child change parent data.
         */
 
-        protected static int direction = 2;
+        protected static int direction = 3;
         protected int timer = 20;
+
+        public bool isDamaged = false;
 
         public virtual void Update()
         {
@@ -38,6 +40,11 @@ namespace LegendOfZelda.Content.Links.State
             
         }
         
+        public virtual void toDamaged()
+        {
+            // link.sprite.isDamaged = true;
+            isDamaged = true;
+        }
         public virtual void ToIdle()
         {
             if (direction == 0)
@@ -70,6 +77,7 @@ namespace LegendOfZelda.Content.Links.State
         public virtual void MoveLeft()
         {
             link.state = new LeftWalkLinkState(link, position, sprite);
+            
         }
         public virtual void MoveRight()
         {

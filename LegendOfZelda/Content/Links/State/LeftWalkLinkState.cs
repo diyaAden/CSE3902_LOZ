@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Links.State
             direction = 2;
             this.link = link;
             this.position = position;
-            this.sprite = new LeftWalkLinkSprite(LoadLink.linkLeftMove, position);
+            this.sprite = new LeftWalkLinkSprite(LoadLink.linkLeftMove, position, isDamaged);
         }
 
     }

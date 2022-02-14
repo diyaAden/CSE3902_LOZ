@@ -8,7 +8,7 @@ namespace LegendOfZelda.Content.Links.Sprite
 {
     class FrontWalkLinkSprite: BasicLinkSprite
     {    
-        public FrontWalkLinkSprite(Texture2D texture, Vector2 Position)
+        public FrontWalkLinkSprite(Texture2D texture, Vector2 Position, bool damageState)
         {
             Rows = 1;
             Columns = 2;
@@ -16,6 +16,7 @@ namespace LegendOfZelda.Content.Links.Sprite
             TotalFrames = Rows * Columns;
             Texture = texture;
             Pos = Position;
+            checkDamageState = damageState;
         }
         public override void Update()
         {
