@@ -5,10 +5,11 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
 {
     public class ArrowWeaponSprite : BasicItem
     {
-        private int direction; //1=up, 2=right, 3=down, 4=left
+        public enum Direction { Up, Down, Left, Right}
+        private Direction direction;
         private int speed = 2;
         
-        public ArrowWeaponSprite(Texture2D itemSpriteSheet, Rectangle sourceRect, int movingDirection)
+        public ArrowWeaponSprite(Texture2D itemSpriteSheet, Rectangle sourceRect, Direction movingDirection)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(sourceRect);
@@ -20,13 +21,13 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
         {
             switch (direction)
             {
-                case 1:
+                case Direction.Up:
                     pos.Y -= speed;
                     break;
-                case 2:
+                case Direction.Right:
                     pos.X += speed;
                     break;
-                case 3:
+                case Direction.Down:
                     pos.Y += speed;
                     break;
                 default:
