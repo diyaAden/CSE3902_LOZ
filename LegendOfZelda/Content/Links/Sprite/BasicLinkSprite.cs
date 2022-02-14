@@ -24,7 +24,7 @@ namespace LegendOfZelda.Content.Links.Sprite
         //set to false by default, change to true when "e" key is pressed. 
 
 
-        public bool checkDamageState = false;
+        public bool checkDamageState = true; //{ get; set; }
         public Color spriteColor { get; set; }
 
         public virtual void Update()

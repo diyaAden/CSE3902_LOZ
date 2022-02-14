@@ -42,7 +42,6 @@ namespace LegendOfZelda.Content.Links.State
         
         public virtual void toDamaged()
         {
-            // link.sprite.isDamaged = true;
             isDamaged = true;
         }
         public virtual void ToIdle()
