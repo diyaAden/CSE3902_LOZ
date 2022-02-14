@@ -1,4 +1,5 @@
-﻿using LegendOfZelda.Content.Links.Sprite;
+﻿using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Links.Sprite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,6 +29,8 @@ namespace LegendOfZelda.Content.Links.State
 
         public bool isDamaged = false;
 
+        
+
         public virtual void Update()
         {
             
@@ -36,7 +39,7 @@ namespace LegendOfZelda.Content.Links.State
                 sprite.Update();
                 position = sprite.Position;
                 timer = 20; //make sure change that when change timer at the beginning
-            
+
             
         }
         

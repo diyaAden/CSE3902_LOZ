@@ -33,10 +33,10 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public WeaponManager()
+        public WeaponManager(Vector2 pos)
         {
             weapon = null;
-            position = new Vector2(0, 0);
+            position = pos;
         }
 
         public IItem CurrentWeapon()
@@ -65,7 +65,7 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public void CreateArrow(Direction facing)
+        public void BecomeArrow(Direction facing)
         {
             weaponType = WeaponType.Arrow;
             switch (facing)
@@ -79,16 +79,26 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public void CreateBomb(Direction facing)
+        public void BecomeBomb(Direction facing)
         {
             weaponType = WeaponType.Bomb;
             switch (facing)
             {
                 case Direction.Up:
                     weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-                    weapon.position = position;
+                    weapon.position = new Vector2(position.X, position.Y - 16);
+                    break;
+                case Direction.Down:
+                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
+                    weapon.position = new Vector2(position.X, position.Y + 16);
+                    break;
+                case Direction.Left:
+                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
+                    weapon.position = new Vector2(position.X - 16, position.Y);
                     break;
                 default:
+                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
+                    weapon.position = new Vector2(position.X + 16, position.Y);
                     break;
             }
         }
