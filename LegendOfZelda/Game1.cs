@@ -27,6 +27,7 @@ namespace LegendOfZelda
 
         
         int timer = 0; //this is part of testing and will be removed later
+        private WeaponManager weaponManager;
 
         internal BlockCollection BlockCollection { get => blockCollection; set => blockCollection = value; }
         internal ItemCollection ItemCollection { get => itemCollection; set => itemCollection = value; }
@@ -82,6 +83,8 @@ namespace LegendOfZelda
             BlockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
+            WeaponSpriteFactory.Instance.LoadAllTextures(Content);
+            weaponManager = new WeaponManager(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,9 +94,12 @@ namespace LegendOfZelda
                 controller.Update();
             }
             link.Update();
+
+            weaponManager.Update();
             ItemCollection.Update();
             BlockCollection.Update();
             
+
 
             base.Update(gameTime);
         }
@@ -102,8 +108,11 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+
+            weaponManager.Draw(_spriteBatch);
             BlockCollection.Draw(_spriteBatch);
             ItemCollection.Draw(_spriteBatch);
+
             link.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
