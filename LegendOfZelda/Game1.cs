@@ -1,11 +1,21 @@
 ﻿using System.Collections.Generic;
 using LegendOfZelda.Content.Blocks;
 using LegendOfZelda.Content.Controller;
+using LegendOfZelda.Content.Enemy.Stalfos;
+using LegendOfZelda.Content.Enemy.Stalfos.Sprite;
+using LegendOfZelda.Content.Enemy.Keese;
+using LegendOfZelda.Content.Enemy.Keese.Sprite;
+using LegendOfZelda.Content.Enemy.Aquamentus.Sprite;
+using LegendOfZelda.Content.Enemy.Aquamentus;
 using LegendOfZelda.Content.Input.Command;
 using LegendOfZelda.Content.Input.Command.Commands;
 using LegendOfZelda.Content.Items;
 using LegendOfZelda.Content.Links;
 using LegendOfZelda.Content.Links.Sprite;
+using LegendOfZelda.Content.Enemy.Trap;
+using LegendOfZelda.Content.Enemy.Trap.Sprite;
+using LegendOfZelda.Content.Enemy.Gel;
+using LegendOfZelda.Content.Enemy.Gel.Sprite;
 using LegendOfZelda.Content.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +32,25 @@ namespace LegendOfZelda
         List<IController> controllerList;
         public ILink link;
         public Vector2 position = new Vector2(400, 200);
+
+        // ENEMY TESTING
+        public IStalfos stalfos;
+        public Vector2 position2 = new Vector2(400, 100);
+
+        public IKeese keese;
+        public Vector2 position3 = new Vector2(200, 200);
+
+        public ITrap trap;
+        public Vector2 position4 = new Vector2(200, 100);
+
+        public IGel gel;
+        public Vector2 position5 = new Vector2(300, 200);
+
+        public IAquamentus aquamentus;
+        public Vector2 position6 = new Vector2(500, 300);
+
+        // ENEMY TESTING
+
 
         private ItemCollection itemCollection;
         private BlockCollection blockCollection;
@@ -67,6 +96,20 @@ namespace LegendOfZelda
 
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             itemCollection = new ItemCollection();
+
+            //ENEMY TESTING
+            LoadStalfos.LoadTexture(Content);
+            stalfos = new Stalfos(this, position2);
+            LoadKeese.LoadTexture(Content);
+            keese = new Keese(this, position3);
+            LoadTrap.LoadTexture(Content);
+            trap = new Trap(this, position4);
+            LoadGel.LoadTexture(Content);
+            gel = new Gel(this, position5);
+            LoadAquamentus.LoadTexture(Content);
+            aquamentus = new Aquamentus(this, position6);
+            // ENEMY TESTING
+
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             blockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
@@ -85,6 +128,14 @@ namespace LegendOfZelda
             itemCollection.Update();
             blockCollection.Update();
 
+            // ENEMY TESTING
+            stalfos.Update();
+            keese.Update();
+            trap.Update();
+            gel.Update();
+            aquamentus.Update();
+            // ENEMY TESTING
+
             //if statement and timer used for testing, will remove later
             if (++timer > 100)
             {
@@ -101,6 +152,15 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
             blockCollection.Draw(_spriteBatch);
+
+            // ENEMY TESTING
+            stalfos.Draw(_spriteBatch);
+            keese.Draw(_spriteBatch);
+            trap.Draw(_spriteBatch);
+            gel.Draw(_spriteBatch);
+            aquamentus.Draw(_spriteBatch);
+            // ENEMY TESTING
+
             itemCollection.Draw(_spriteBatch);
             link.Draw(_spriteBatch);
             _spriteBatch.End();
