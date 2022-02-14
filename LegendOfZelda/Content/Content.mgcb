@@ -61,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/Items/ItemSpriteSheet.png
 
-#begin SpriteSheets/Items/WeaponPatriclesSpriteSheet.png
+#begin SpriteSheets/Items/WeaponParticlesSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,7 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SpriteSheets/Items/WeaponPatriclesSpriteSheet.png
+/build:SpriteSheets/Items/WeaponParticlesSpriteSheet.png
 
 #begin SpriteSheets/Link/BackUseItem.png
 /importer:TextureImporter

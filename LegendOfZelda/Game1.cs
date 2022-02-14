@@ -23,7 +23,7 @@ namespace LegendOfZelda
         public ILink link;
         private BlockCollection blockCollection;
         private ItemCollection itemCollection;
-        public Vector2 position = new Vector2(400, 200);
+        public Vector2 position = new Vector2(400, 300);
         private WeaponManager weaponManager;
 
         internal BlockCollection BlockCollection { get => blockCollection; set => blockCollection = value; }
@@ -81,7 +81,6 @@ namespace LegendOfZelda
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
-            weaponManager = new WeaponManager();
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,7 +90,6 @@ namespace LegendOfZelda
                 controller.Update();
             }
             link.Update();
-            weaponManager.Update();
             ItemCollection.Update();
             BlockCollection.Update();
 
@@ -103,7 +101,6 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
 
-            weaponManager.Draw(_spriteBatch);
             BlockCollection.Draw(_spriteBatch);
             ItemCollection.Draw(_spriteBatch);
             link.Draw(_spriteBatch);
