@@ -7,6 +7,8 @@ using LegendOfZelda.Content.Enemy.Keese;
 using LegendOfZelda.Content.Enemy.Keese.Sprite;
 using LegendOfZelda.Content.Enemy.Aquamentus.Sprite;
 using LegendOfZelda.Content.Enemy.Aquamentus;
+using LegendOfZelda.Content.Enemy.Cloud;
+using LegendOfZelda.Content.Enemy.Cloud.Sprite;
 using LegendOfZelda.Content.Input.Command;
 using LegendOfZelda.Content.Input.Command.Commands;
 using LegendOfZelda.Content.Items;
@@ -14,8 +16,16 @@ using LegendOfZelda.Content.Links;
 using LegendOfZelda.Content.Links.Sprite;
 using LegendOfZelda.Content.Enemy.Trap;
 using LegendOfZelda.Content.Enemy.Trap.Sprite;
+using LegendOfZelda.Content.Enemy.Explosion.Sprite;
+using LegendOfZelda.Content.Enemy.Explosion;
+using LegendOfZelda.Content.Enemy.Fireball;
+using LegendOfZelda.Content.Enemy.Fireball.Sprite;
 using LegendOfZelda.Content.Enemy.Gel;
 using LegendOfZelda.Content.Enemy.Gel.Sprite;
+using LegendOfZelda.Content.Enemy.Goriya;
+using LegendOfZelda.Content.Enemy.Goriya.Sprite;
+using LegendOfZelda.Content.Enemy.WallMaster;
+using LegendOfZelda.Content.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Content.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,6 +44,7 @@ namespace LegendOfZelda
         public Vector2 position = new Vector2(400, 200);
 
         // ENEMY TESTING
+
         public IStalfos stalfos;
         public Vector2 position2 = new Vector2(400, 100);
 
@@ -48,6 +59,21 @@ namespace LegendOfZelda
 
         public IAquamentus aquamentus;
         public Vector2 position6 = new Vector2(500, 300);
+
+        public ICloud cloud;
+        public Vector2 position7 = new Vector2(100, 100);
+
+        public IExplosion explosion;
+        public Vector2 position8 = new Vector2(100, 200);
+
+        public IFireball fireball;
+        public Vector2 position9 = new Vector2(50, 50);
+
+        public IGoriya goriya;
+        public Vector2 position10 = new Vector2(250, 250);
+
+        public IWallMaster wallMaster;
+        public Vector2 position11 = new Vector2(400, 400);
 
         // ENEMY TESTING
 
@@ -108,6 +134,16 @@ namespace LegendOfZelda
             gel = new Gel(this, position5);
             LoadAquamentus.LoadTexture(Content);
             aquamentus = new Aquamentus(this, position6);
+            LoadCloud.LoadTexture(Content);
+            cloud = new Cloud(this, position7);
+            LoadExplosion.LoadTexture(Content);
+            explosion = new Explosion(this, position8);
+            LoadFireball.LoadTexture(Content);
+            fireball = new Fireball(this, position9);
+            LoadGoriya.LoadTexture(Content);
+            goriya = new Goriya(this, position10);
+            LoadWallMaster.LoadTexture(Content);
+            wallMaster = new WallMaster(this, position11);
             // ENEMY TESTING
 
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
@@ -134,6 +170,11 @@ namespace LegendOfZelda
             trap.Update();
             gel.Update();
             aquamentus.Update();
+            cloud.Update();
+            explosion.Update();
+            fireball.Update();
+            goriya.Update();
+            wallMaster.Update();
             // ENEMY TESTING
 
             //if statement and timer used for testing, will remove later
@@ -159,6 +200,11 @@ namespace LegendOfZelda
             trap.Draw(_spriteBatch);
             gel.Draw(_spriteBatch);
             aquamentus.Draw(_spriteBatch);
+            cloud.Draw(_spriteBatch);
+            explosion.Draw(_spriteBatch);
+            fireball.Draw(_spriteBatch);
+            goriya.Draw(_spriteBatch);
+            wallMaster.Draw(_spriteBatch);
             // ENEMY TESTING
 
             itemCollection.Draw(_spriteBatch);
