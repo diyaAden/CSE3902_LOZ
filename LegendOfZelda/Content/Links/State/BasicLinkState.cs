@@ -23,7 +23,7 @@ namespace LegendOfZelda.Content.Links.State
             use static to let child change parent data.
         */
 
-        protected static int direction = 2;
+        protected static int direction = 3;
         protected int timer = 20;
 
         public bool isDamaged = false;
