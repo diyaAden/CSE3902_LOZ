@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Items.ItemSprites
+namespace LegendOfZelda.Content.Items.WeaponSprites
 {
-    public class WoodBoomerangItemSprite : BasicItem
+    public class WoodBoomerangWeaponSprite : BasicItem
     {
         
-        public WoodBoomerangItemSprite(Texture2D itemSpriteSheet)
+        public WoodBoomerangWeaponSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(129, 3, 5, 8));

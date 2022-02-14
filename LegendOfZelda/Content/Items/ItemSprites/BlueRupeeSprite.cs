@@ -6,12 +6,11 @@ namespace LegendOfZelda.Content.Items.ItemSprites
 {
     public class BlueRupeeSprite : BasicItem
     {
-        private int animationTimer = 0;
         
-        public BlueRupeeSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public BlueRupeeSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(72, 16, 8, 16));
         }
 
         public override void Update()

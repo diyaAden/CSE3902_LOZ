@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Items.ItemSprites
 {
-    public class CompassSprite : BasicItem
+    public class MagicBoomerangItemSprite : BasicItem
     {
         
-        public CompassSprite(Texture2D itemSpriteSheet)
+        public MagicBoomerangItemSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(258, 1, 11, 12));
+            animationFrames.Add(new Rectangle(129, 19, 5, 8));
         }
 
         public override void Update()

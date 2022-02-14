@@ -7,10 +7,10 @@ namespace LegendOfZelda.Content.Items.ItemSprites
     public class MapSprite : BasicItem
     {
         
-        public MapSprite(Texture2D itemSpriteSheet, List<Rectangle> frames)
+        public MapSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames = frames;
+            animationFrames.Add(new Rectangle(88, 0, 8, 16));
         }
 
         public override void Update()

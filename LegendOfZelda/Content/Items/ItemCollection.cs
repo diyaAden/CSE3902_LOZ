@@ -6,26 +6,28 @@ namespace LegendOfZelda.Content.Items
     class ItemCollection
     {
         private List<IItem> items;
-        private int currentItem;
+        private int currentItem = 0;
 
         public ItemCollection()
         {
-            currentItem = 0;
             items = new List<IItem>();
             items.Add(ItemSpriteFactory.Instance.CreateCompassSprite());
             items.Add(ItemSpriteFactory.Instance.CreateMapSprite());
             items.Add(ItemSpriteFactory.Instance.CreateKeySprite());
             items.Add(ItemSpriteFactory.Instance.CreateHeartContainerSprite());
             items.Add(ItemSpriteFactory.Instance.CreateTriforcePieceSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateWoodBoomerangSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateWoodBoomerangItemSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateMagicBoomerangItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateBowSprite());
             items.Add(ItemSpriteFactory.Instance.CreateHeartSprite());
             items.Add(ItemSpriteFactory.Instance.CreateRupeeSprite());
             items.Add(ItemSpriteFactory.Instance.CreateArrowItemSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateMagicArrowItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateFairySprite());
+            items.Add(ItemSpriteFactory.Instance.CreateFireItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateBlueRupeeSprite());
             items.Add(ItemSpriteFactory.Instance.CreateClockSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateFairySprite());
         }
 
         public void NextItem()
