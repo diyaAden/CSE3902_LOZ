@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/Blocks/TileSpriteSheet.png
 
+#begin SpriteSheets/Items/ArrowSwordSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteSheets/Items/ArrowSwordSpriteSheet.png
+
 #begin SpriteSheets/Items/FireSpritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/Items/ItemSpriteSheet.png
 
-#begin SpriteSheets/Items/ItemSpriteSheet2.png
+#begin SpriteSheets/Items/WeaponPatriclesSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,7 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SpriteSheets/Items/ItemSpriteSheet2.png
+/build:SpriteSheets/Items/WeaponPatriclesSpriteSheet.png
 
 #begin SpriteSheets/Link/BackUseItem.png
 /importer:TextureImporter

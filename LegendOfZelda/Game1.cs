@@ -26,6 +26,7 @@ namespace LegendOfZelda
         private ItemCollection itemCollection;
         private BlockCollection blockCollection;
         int timer = 0; //this is part of testing and will be removed later
+        private WeaponManager weaponManager;
 
         public Game1()
         {
@@ -71,6 +72,8 @@ namespace LegendOfZelda
             blockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
+            WeaponSpriteFactory.Instance.LoadAllTextures(Content);
+            weaponManager = new WeaponManager();
         }
 
         protected override void Update(GameTime gameTime)
@@ -84,6 +87,7 @@ namespace LegendOfZelda
             link.Update();
             itemCollection.Update();
             blockCollection.Update();
+            weaponManager.Update();
 
             //if statement and timer used for testing, will remove later
             if (++timer > 100)
@@ -102,6 +106,7 @@ namespace LegendOfZelda
             _spriteBatch.Begin();
             blockCollection.Draw(_spriteBatch);
             itemCollection.Draw(_spriteBatch);
+            weaponManager.Draw(_spriteBatch);
             link.Draw(_spriteBatch);
             _spriteBatch.End();
             base.Draw(gameTime);
