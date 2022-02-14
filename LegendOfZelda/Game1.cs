@@ -49,12 +49,13 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.Down, new SetLinkDown(this));
             control.RegisterCommand(Keys.X, new UseItem(this));
             control.RegisterCommand(Keys.M, new UseItem(this));
+            control.RegisterCommand(Keys.F, new SetLinkIdle(this));
         }
 
         protected override void Initialize()
         {
             controllerList = new List<IController>();
-            KeyboardController control = new KeyboardController();
+            KeyboardController control = new KeyboardController(this);
             RegisterCommands(control);
             controllerList.Add(control);
             
@@ -75,8 +76,6 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
             foreach (IController controller in controllerList)
             {
                 controller.Update();

@@ -9,9 +9,11 @@ namespace LegendOfZelda.Content.Controller
     public class KeyboardController : IController
     {
         private Dictionary<Keys, ICommand> controllerMappings;
-        public KeyboardController()
+        private Game1 myGame;
+        public KeyboardController(Game1 game)
         {
             controllerMappings = new Dictionary<Keys, ICommand>();
+            myGame = game;
         }
         public void RegisterCommand(Keys key, ICommand command)
         {
@@ -19,13 +21,13 @@ namespace LegendOfZelda.Content.Controller
         }
         public void Update()
         {
+            bool moving = false;
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
+            
+            controllerMappings[Keys.F].Execute();
             foreach (Keys key in keys)
             {
-                if (Keyboard.GetState().IsKeyDown(key))
-                {
-                    controllerMappings[key].Execute();
-                }
+                controllerMappings[key].Execute();
             }
         }
     }
