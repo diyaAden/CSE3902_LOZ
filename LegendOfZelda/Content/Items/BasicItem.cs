@@ -10,7 +10,7 @@ namespace LegendOfZelda.Content.Items
         protected List<Rectangle> animationFrames = new List<Rectangle>();
         protected int currentFrame = 0;
         protected Vector2 pos = new Vector2(400, 200);
-        protected int timerLimit = 0;
+        protected int timerLimit = -1;
         public int timeLimit
         {
             get

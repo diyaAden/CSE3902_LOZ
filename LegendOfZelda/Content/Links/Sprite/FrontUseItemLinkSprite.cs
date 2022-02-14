@@ -7,7 +7,7 @@ using System.Text;
 namespace LegendOfZelda.Content.Links.Sprite
 {
     class FrontUseItemLinkSprite : BasicLinkSprite
-    {    
+    {
         public FrontUseItemLinkSprite(Texture2D texture, Vector2 Position, bool damageState)
         {
             Rows = 1;

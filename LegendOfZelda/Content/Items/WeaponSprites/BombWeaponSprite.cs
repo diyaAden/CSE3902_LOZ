@@ -9,11 +9,11 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(136, 0, 8, 14));
+            timerLimit = 90;
         }
 
         public override void Update()
         {
-            
         }
     }
 }

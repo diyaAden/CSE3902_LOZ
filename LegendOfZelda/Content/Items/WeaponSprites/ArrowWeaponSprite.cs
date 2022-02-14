@@ -9,12 +9,26 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
         private Direction direction;
         private int speed = 2;
         
-        public ArrowWeaponSprite(Texture2D itemSpriteSheet, Rectangle sourceRect, Direction movingDirection)
+        public ArrowWeaponSprite(Texture2D itemSpriteSheet, Direction movingDirection)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(sourceRect);
             direction = movingDirection;
             timerLimit = 20;
+            switch (direction)
+            {
+                case Direction.Up:
+                    animationFrames.Add(new Rectangle(52, 0, 5, 16));
+                    break;
+                case Direction.Right:
+                    //fill
+                    break;
+                case Direction.Down:
+                    //fill
+                    break;
+                default:
+                    //fill
+                    break;
+            }
         }
 
         public override void Update()

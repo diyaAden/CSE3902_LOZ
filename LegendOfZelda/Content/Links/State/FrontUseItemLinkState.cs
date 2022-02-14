@@ -1,4 +1,5 @@
-﻿using LegendOfZelda.Content.Links.Sprite;
+﻿using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Links.Sprite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +16,8 @@ namespace LegendOfZelda.Content.Links.State
             this.link = link;
             this.position = position;
             this.sprite = new FrontUseItemLinkSprite(LoadLink.linkFrontItem, position, isDamaged);
+
+           
         }
 
     }
