@@ -34,29 +34,33 @@ namespace LegendOfZelda.Content.Items
         {
             return new ExplosionSprite(smokeCloud);
         }
-        public IItem CreateWoodBoomerangWeaponSprite()
+        public IItem CreateArrowNickSprite()
         {
-            return new WoodBoomerangWeaponSprite(itemSpriteSheet);
+            return new ArrowNickSprite(smokeCloud);
         }
-        public IItem CreateMagicBoomerangWeaponSprite()
+        public IItem CreateWoodBoomerangWeaponSprite(int facing)
         {
-            return new MagicBoomerangWeaponSprite(itemSpriteSheet);
+            return new WoodBoomerangWeaponSprite(itemSpriteSheet, facing);
         }
-        public IItem CreateArrowUpWeaponSprite()
+        public IItem CreateMagicBoomerangWeaponSprite(int facing)
         {
-            return new ArrowWeaponSprite(arrowSwordSpriteSheet, ArrowWeaponSprite.Direction.Up);
+            return new MagicBoomerangWeaponSprite(itemSpriteSheet, facing);
         }
-        public IItem CreateMagicArrowUpWeaponSprite()
+        public IItem CreateArrowWeaponSprite(int facingDirection)
         {
-            return new MagicArrowUpWeaponSprite(arrowSwordSpriteSheet);
+            return new ArrowWeaponSprite(arrowSwordSpriteSheet, facingDirection);
+        }
+        public IItem CreateMagicArrowWeaponSprite(int facingDirection)
+        {
+            return new MagicArrowWeaponSprite(arrowSwordSpriteSheet, facingDirection);
         }
         public IItem CreateBombWeaponSprite()
         {
             return new BombWeaponSprite(itemSpriteSheet);
         }
-        public IItem CreateFireWeaponSprite()
+        public IItem CreateFireWeaponSprite(int facingDirection)
         {
-            return new FireWeaponSprite(fireSpriteSheet);
+            return new FireWeaponSprite(fireSpriteSheet, facingDirection);
         }
     }
 }

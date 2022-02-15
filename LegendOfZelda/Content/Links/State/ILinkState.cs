@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ namespace LegendOfZelda.Content.Links
 {
     public interface ILinkState
     {
+        Vector2 position { get; set; }
+        int Direction { get; }
         void ToIdle();
         void toDamaged();
         void MoveUp();

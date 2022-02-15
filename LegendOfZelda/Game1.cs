@@ -107,6 +107,17 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.E, new SetLinkDamaged(this));
             control.RegisterCommand(Keys.F, new SetLinkIdle(this));
             control.RegisterCommand(Keys.D1, new UseBomb(this));
+            control.RegisterCommand(Keys.NumPad1, new UseBomb(this));
+            control.RegisterCommand(Keys.D2, new UseArrow(this));
+            control.RegisterCommand(Keys.NumPad2, new UseArrow(this));
+            control.RegisterCommand(Keys.D3, new UseMagicArrow(this));
+            control.RegisterCommand(Keys.NumPad3, new UseMagicArrow(this));
+            control.RegisterCommand(Keys.D4, new UseFire(this));
+            control.RegisterCommand(Keys.NumPad4, new UseFire(this));
+            control.RegisterCommand(Keys.D5, new UseBoomerang(this));
+            control.RegisterCommand(Keys.NumPad5, new UseBoomerang(this));
+            control.RegisterCommand(Keys.D6, new UseMagicBoomerang(this));
+            control.RegisterCommand(Keys.NumPad6, new UseMagicBoomerang(this));
             //Block and item controls
             control.RegisterCommand(Keys.T, new PreviousBlock(this));
             control.RegisterCommand(Keys.Y, new NextBlock(this));
@@ -219,7 +230,10 @@ namespace LegendOfZelda
             ItemCollection.Draw(_spriteBatch);
             foreach (WeaponManager weapon in activeWeapons)
             {
-                weapon.Draw(_spriteBatch);
+                if (weapon.weaponType != WeaponManager.WeaponType.None)
+                {
+                    weapon.Draw(_spriteBatch);
+                }
             }
             link.Draw(_spriteBatch);
 

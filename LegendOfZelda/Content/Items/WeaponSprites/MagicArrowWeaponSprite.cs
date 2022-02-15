@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Content.Items.WeaponSprites
 {
-    public class ArrowWeaponSprite : BasicItem
+    public class MagicArrowWeaponSprite : BasicItem
     {
         private int direction;
-        private int speed = 2;
-        
-        public ArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
+        private int speed = 6;
+
+        public MagicArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {
             spriteSheet = itemSpriteSheet;
             direction = movingDirection;
@@ -16,16 +16,16 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
             switch (direction)
             {
                 case 0:
-                    animationFrames.Add(new Rectangle(46, 16, 5, 16));
+                    animationFrames.Add(new Rectangle(46, 0, 5, 16));
                     break;
                 case 1:
-                    animationFrames.Add(new Rectangle(52, 0, 5, 16));
+                    animationFrames.Add(new Rectangle(52, 16, 5, 16));
                     break;
                 case 2:
-                    animationFrames.Add(new Rectangle(14, 6, 16, 5));
+                    animationFrames.Add(new Rectangle(30, 6, 16, 5));
                     break;
                 default:
-                    animationFrames.Add(new Rectangle(30, 0, 16, 5));
+                    animationFrames.Add(new Rectangle(14, 0, 16, 5));
                     break;
             }
         }

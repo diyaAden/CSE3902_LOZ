@@ -10,7 +10,6 @@ namespace LegendOfZelda.Content.Links
 {
     public interface ILink
     {
-        public int Direction { get; }
         ILinkState state { get; set; }
 
         void Update();
