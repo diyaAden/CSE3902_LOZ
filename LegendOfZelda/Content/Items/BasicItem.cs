@@ -32,7 +32,7 @@ namespace LegendOfZelda.Content.Items
 
         public abstract void Update();
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);

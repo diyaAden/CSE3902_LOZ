@@ -9,17 +9,22 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
         private int acceleration = 1;
         private int direction;
         private int timer = 0;
-        
+        private float rotation = 0f;
+        private float rotationSpeed = 0.2f;
+        private Vector2 rotationOrigin;
+
         public WoodBoomerangWeaponSprite(Texture2D itemSpriteSheet, int facing)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(129, 3, 5, 8));
             direction = facing;
-            timerLimit = 60;
+            timerLimit = 60; 
+            rotationOrigin = new Vector2(animationFrames[0].Width / 2, animationFrames[0].Height / 2);
         }
 
         public override void Update()
         {
+            rotation += rotationSpeed;
             switch (direction)
             {
                 case 1:
@@ -41,6 +46,12 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
                 speed.X -= acceleration;
                 speed.Y -= acceleration;
             }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White, rotation, rotationOrigin, SpriteEffects.None, 0f);
         }
     }
 }
