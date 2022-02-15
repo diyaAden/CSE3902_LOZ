@@ -38,13 +38,13 @@ namespace LegendOfZelda.Content.Items
         {
             return new ArrowNickSprite(smokeCloud);
         }
-        public IItem CreateWoodBoomerangWeaponSprite()
+        public IItem CreateWoodBoomerangWeaponSprite(int facing)
         {
-            return new WoodBoomerangWeaponSprite(itemSpriteSheet);
+            return new WoodBoomerangWeaponSprite(itemSpriteSheet, facing);
         }
-        public IItem CreateMagicBoomerangWeaponSprite()
+        public IItem CreateMagicBoomerangWeaponSprite(int facing)
         {
-            return new MagicBoomerangWeaponSprite(itemSpriteSheet);
+            return new MagicBoomerangWeaponSprite(itemSpriteSheet, facing);
         }
         public IItem CreateArrowWeaponSprite(int facingDirection)
         {

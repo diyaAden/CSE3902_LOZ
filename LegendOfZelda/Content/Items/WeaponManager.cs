@@ -6,7 +6,7 @@ namespace LegendOfZelda.Content.Items
 {
     class WeaponManager
     {
-        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Nick, Other, None}
+        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Nick, None}
         public WeaponType weaponType { get; private set; }
         private int timer = 0;
         private IItem weapon { get; set; }
@@ -16,6 +16,7 @@ namespace LegendOfZelda.Content.Items
         {
             switch (weaponType)
             {
+                case WeaponType.Boomerang:
                 case WeaponType.Fire:
                 case WeaponType.Nick:
                 case WeaponType.Explosion:
@@ -82,6 +83,20 @@ namespace LegendOfZelda.Content.Items
         {
             weaponType = WeaponType.Arrow;
             weapon = WeaponSpriteFactory.Instance.CreateMagicArrowWeaponSprite(facing);
+            weapon.position = position;
+        }
+
+        public void BecomeBoomerang(int facing)
+        {
+            weaponType = WeaponType.Boomerang;
+            weapon = WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(facing);
+            weapon.position = position;
+        }
+
+        public void BecomeMagicBoomerang(int facing)
+        {
+            weaponType = WeaponType.Boomerang;
+            weapon = WeaponSpriteFactory.Instance.CreateMagicBoomerangWeaponSprite(facing);
             weapon.position = position;
         }
 

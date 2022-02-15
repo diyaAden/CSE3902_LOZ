@@ -114,6 +114,10 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.NumPad3, new UseMagicArrow(this));
             control.RegisterCommand(Keys.D4, new UseFire(this));
             control.RegisterCommand(Keys.NumPad4, new UseFire(this));
+            control.RegisterCommand(Keys.D5, new UseBoomerang(this));
+            control.RegisterCommand(Keys.NumPad5, new UseBoomerang(this));
+            control.RegisterCommand(Keys.D6, new UseMagicBoomerang(this));
+            control.RegisterCommand(Keys.NumPad6, new UseMagicBoomerang(this));
             //Block and item controls
             control.RegisterCommand(Keys.T, new PreviousBlock(this));
             control.RegisterCommand(Keys.Y, new NextBlock(this));
