@@ -24,7 +24,7 @@ namespace LegendOfZelda
         private BlockCollection blockCollection;
         private ItemCollection itemCollection;
         public Vector2 position = new Vector2(400, 300);
-        private WeaponManager weaponManager;
+        internal List<WeaponManager> activeWeapons;
 
         internal BlockCollection BlockCollection { get => blockCollection; set => blockCollection = value; }
         internal ItemCollection ItemCollection { get => itemCollection; set => itemCollection = value; }
@@ -53,6 +53,7 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.M, new UseItem(this));
             control.RegisterCommand(Keys.E, new SetLinkDamaged(this));
             control.RegisterCommand(Keys.F, new SetLinkIdle(this));
+            control.RegisterCommand(Keys.D1, new UseBomb(this));
             //Block and item controls
             control.RegisterCommand(Keys.T, new PreviousBlock(this));
             control.RegisterCommand(Keys.Y, new NextBlock(this));
@@ -66,6 +67,7 @@ namespace LegendOfZelda
             KeyboardController control = new KeyboardController(this);
             RegisterCommands(control);
             controllerList.Add(control);
+            activeWeapons = new List<WeaponManager>();
             
             base.Initialize();
         }
@@ -89,6 +91,13 @@ namespace LegendOfZelda
             {
                 controller.Update();
             }
+            foreach (WeaponManager weapon in activeWeapons)
+            {
+                if (weapon.weaponType != WeaponManager.WeaponType.None)
+                {
+                    weapon.Update();
+                }
+            }
             link.Update();
             ItemCollection.Update();
             BlockCollection.Update();
@@ -103,6 +112,10 @@ namespace LegendOfZelda
 
             BlockCollection.Draw(_spriteBatch);
             ItemCollection.Draw(_spriteBatch);
+            foreach (WeaponManager weapon in activeWeapons)
+            {
+                weapon.Draw(_spriteBatch);
+            }
             link.Draw(_spriteBatch);
 
             _spriteBatch.End();

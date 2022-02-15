@@ -43,11 +43,6 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public IItem CurrentItem()
-        {
-            return items[currentItem];
-        }
-
         public void Update()
         {
             items[currentItem].Update();

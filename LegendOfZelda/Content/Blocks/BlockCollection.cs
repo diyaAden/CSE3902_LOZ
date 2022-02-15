@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using LegendOfZelda.Content.Items;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Blocks
@@ -34,11 +35,6 @@ namespace LegendOfZelda.Content.Blocks
             {
                 currentBlock = blocks.Count - 1;
             }
-        }
-
-        public IBlock CurrentBlock()
-        {
-            return blocks[currentBlock];
         }
 
         public void Update()

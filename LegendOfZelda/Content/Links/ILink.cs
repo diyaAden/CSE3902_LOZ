@@ -4,11 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static LegendOfZelda.Content.Items.WeaponManager;
 
 namespace LegendOfZelda.Content.Links
 {
     public interface ILink
     {
+        public int Direction { get; }
         ILinkState state { get; set; }
 
         void Update();
