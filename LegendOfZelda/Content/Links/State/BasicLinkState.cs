@@ -25,6 +25,7 @@ namespace LegendOfZelda.Content.Links.State
         */
 
         protected static int direction = 3;
+        public int Direction { get { return direction; } }
         protected int timer = 20;
 
         public bool isDamaged = false;

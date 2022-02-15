@@ -16,41 +16,27 @@ namespace LegendOfZelda.Content.Links
         public ILinkState state{ get; set; }
         private ISprite sprite;
 
-        private int facingDirection;
-        public int Direction
-        {
-            get
-            {
-                return facingDirection;
-            }
-        }
-
         public Link(Game1 game, Vector2 position)
         {
             this.state = new RightIdleLinkState(this, position, sprite);
-            facingDirection = 2;
         }
 
         //Motions that link will have, and change the state.
         public void MoveUp()
         {
             state.MoveUp();
-            facingDirection = 1;
         }
         public void MoveDown()
         {
             state.MoveDown();
-            facingDirection = 3;
         }
         public void MoveRight()
         {
             state.MoveRight();
-            facingDirection = 2;
         }
         public void MoveLeft()
         {
             state.MoveLeft();
-            facingDirection = 4;
         }
         public void UseItem()
         {

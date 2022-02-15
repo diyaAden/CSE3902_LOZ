@@ -7,7 +7,6 @@ namespace LegendOfZelda.Content.Items
     class WeaponManager
     {
         public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Other, None}
-        private bool magic = false;
         public WeaponType weaponType { get; private set; }
         private int timer = 0;
         private IItem weapon { get; set; }
@@ -23,6 +22,12 @@ namespace LegendOfZelda.Content.Items
                     weaponType = WeaponType.None;
                     break;
                 case WeaponType.Bomb:
+                    weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
+                    weapon.position = position;
+                    weaponType = WeaponType.Explosion;
+                    break;
+                case WeaponType.Arrow:
+                    position = weapon.position;
                     weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
                     weapon.position = position;
                     weaponType = WeaponType.Explosion;
@@ -65,43 +70,40 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public void BecomeArrow(int facingDirection)
+        public void BecomeArrow(int facing)
         {
             weaponType = WeaponType.Arrow;
-            switch (facingDirection)
-            {
-                case 1:
-                    weapon = WeaponSpriteFactory.Instance.CreateArrowUpWeaponSprite();
-                    weapon.position = position;
-                    break;
-                default:
-                    break;
-            }
+            weapon = WeaponSpriteFactory.Instance.CreateArrowWeaponSprite(facing);
+            weapon.position = position;
+        }
+
+        public void BecomeMagicArrow(int facing)
+        {
+            weaponType = WeaponType.Arrow;
+            weapon = WeaponSpriteFactory.Instance.CreateMagicArrowWeaponSprite(facing);
+            weapon.position = position;
         }
 
         public void BecomeBomb(int facing)
         {
             weaponType = WeaponType.Bomb;
+            weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
             switch (facing)
             {
                 case 1:
-                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-                    weapon.position = new Vector2(position.X, position.Y - 16);
+                    position = new Vector2(position.X, position.Y - 16);
                     break;
-                case 3:
-                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-                    weapon.position = new Vector2(position.X, position.Y + 16);
+                case 0:
+                    position = new Vector2(position.X, position.Y + 16);
                     break;
-                case 4:
-                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-                    weapon.position = new Vector2(position.X - 16, position.Y);
+                case 2:
+                    position = new Vector2(position.X - 16, position.Y);
                     break;
                 default:
-                    weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-                    weapon.position = new Vector2(position.X + 16, position.Y);
+                    position = new Vector2(position.X + 16, position.Y);
                     break;
             }
-            position = weapon.position;
+            weapon.position = position;
         }
     }
 }

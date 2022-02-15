@@ -42,13 +42,13 @@ namespace LegendOfZelda.Content.Items
         {
             return new MagicBoomerangWeaponSprite(itemSpriteSheet);
         }
-        public IItem CreateArrowUpWeaponSprite()
+        public IItem CreateArrowWeaponSprite(int facingDirection)
         {
-            return new ArrowWeaponSprite(arrowSwordSpriteSheet, ArrowWeaponSprite.Direction.Up);
+            return new ArrowWeaponSprite(arrowSwordSpriteSheet, facingDirection);
         }
-        public IItem CreateMagicArrowUpWeaponSprite()
+        public IItem CreateMagicArrowWeaponSprite(int facingDirection)
         {
-            return new MagicArrowUpWeaponSprite(arrowSwordSpriteSheet);
+            return new MagicArrowWeaponSprite(arrowSwordSpriteSheet, facingDirection);
         }
         public IItem CreateBombWeaponSprite()
         {
