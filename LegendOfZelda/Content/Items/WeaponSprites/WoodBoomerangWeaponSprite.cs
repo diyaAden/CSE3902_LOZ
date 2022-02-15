@@ -5,10 +5,9 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
 {
     public class WoodBoomerangWeaponSprite : BasicItem
     {
-        private Vector2 speed = new Vector2(3, 3);
-        private int acceleration = 1;
+        private Vector2 speed = new Vector2(4f, 4f);
+        private float acceleration = 0.1f;
         private int direction;
-        private int timer = 0;
         private float rotation = 0f;
         private float rotationSpeed = 0.2f;
         private Vector2 rotationOrigin;
@@ -22,30 +21,26 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
             rotationOrigin = new Vector2(animationFrames[0].Width / 2.0f, animationFrames[0].Height / 2.0f);
         }
 
-        public override void Update()
+        public override void Update(Vector2 linkPosition)
         {
             rotation += rotationSpeed;
             switch (direction)
             {
                 case 1:
-                    pos.Y -= speed.Y;
+                    pos.Y -= (int)speed.Y;
                     break;
                 case 3:
-                    pos.X += speed.X;
+                    pos.X += (int)speed.X;
                     break;
                 case 0:
-                    pos.Y += speed.Y;
+                    pos.Y += (int)speed.Y;
                     break;
                 default:
-                    pos.X -= speed.X;
+                    pos.X -= (int)speed.X;
                     break;
             }
-            if (++timer == 9)
-            {
-                timer = 0;
-                speed.X -= acceleration;
-                speed.Y -= acceleration;
-            }
+            speed.X -= acceleration;
+            speed.Y -= acceleration;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

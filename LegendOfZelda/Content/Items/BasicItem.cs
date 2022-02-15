@@ -30,7 +30,9 @@ namespace LegendOfZelda.Content.Items
             }
         }
 
-        public abstract void Update();
+        public virtual void Update() { }
+
+        public virtual void Update(Vector2 linkPosition) { }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {

@@ -10,6 +10,8 @@ namespace LegendOfZelda.Content.Items
 
         public void Update();
 
+        public void Update(Vector2 linkPosition);
+
         public void Draw(SpriteBatch spriteBatch);
     }
 }
