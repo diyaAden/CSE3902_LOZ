@@ -34,6 +34,10 @@ namespace LegendOfZelda.Content.Items
         {
             return new ExplosionSprite(smokeCloud);
         }
+        public IItem CreateArrowNickSprite()
+        {
+            return new ArrowNickSprite(smokeCloud);
+        }
         public IItem CreateWoodBoomerangWeaponSprite()
         {
             return new WoodBoomerangWeaponSprite(itemSpriteSheet);
@@ -54,9 +58,9 @@ namespace LegendOfZelda.Content.Items
         {
             return new BombWeaponSprite(itemSpriteSheet);
         }
-        public IItem CreateFireWeaponSprite()
+        public IItem CreateFireWeaponSprite(int facingDirection)
         {
-            return new FireWeaponSprite(fireSpriteSheet);
+            return new FireWeaponSprite(fireSpriteSheet, facingDirection);
         }
     }
 }

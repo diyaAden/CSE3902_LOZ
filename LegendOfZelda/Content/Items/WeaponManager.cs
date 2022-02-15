@@ -6,7 +6,7 @@ namespace LegendOfZelda.Content.Items
 {
     class WeaponManager
     {
-        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Other, None}
+        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Nick, Other, None}
         public WeaponType weaponType { get; private set; }
         private int timer = 0;
         private IItem weapon { get; set; }
@@ -14,9 +14,10 @@ namespace LegendOfZelda.Content.Items
 
         private void DestroyWeapon()
         {
-            //deal with arrows and bombs I think so far
             switch (weaponType)
             {
+                case WeaponType.Fire:
+                case WeaponType.Nick:
                 case WeaponType.Explosion:
                     weapon = null;
                     weaponType = WeaponType.None;
@@ -28,9 +29,9 @@ namespace LegendOfZelda.Content.Items
                     break;
                 case WeaponType.Arrow:
                     position = weapon.position;
-                    weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
+                    weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
                     weapon.position = position;
-                    weaponType = WeaponType.Explosion;
+                    weaponType = WeaponType.Nick;
                     break;
                 default:
                     break;
@@ -81,6 +82,13 @@ namespace LegendOfZelda.Content.Items
         {
             weaponType = WeaponType.Arrow;
             weapon = WeaponSpriteFactory.Instance.CreateMagicArrowWeaponSprite(facing);
+            weapon.position = position;
+        }
+
+        public void BecomeFire(int facing)
+        {
+            weaponType = WeaponType.Fire;
+            weapon = WeaponSpriteFactory.Instance.CreateFireWeaponSprite(facing);
             weapon.position = position;
         }
 
