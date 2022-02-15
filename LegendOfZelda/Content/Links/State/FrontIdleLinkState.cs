@@ -14,7 +14,8 @@ namespace LegendOfZelda.Content.Links.State
         {
             this.link = link;
             this.position = position;
-            this.sprite = new FrontIdleLinkSprite(LoadLink.linkFrontMove, position);
+            this.sprite = new FrontIdleLinkSprite(LoadLink.linkFrontMove, position, isDamaged);
+            
         }
 
     }

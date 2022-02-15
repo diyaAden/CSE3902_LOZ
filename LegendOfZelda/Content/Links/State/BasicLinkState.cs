@@ -1,4 +1,5 @@
-﻿using LegendOfZelda.Content.Links.Sprite;
+﻿using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Links.Sprite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,21 +24,29 @@ namespace LegendOfZelda.Content.Links.State
             use static to let child change parent data.
         */
 
-        protected static int direction = 2;
+        protected static int direction = 3;
         protected int timer = 20;
+
+        public bool isDamaged = false;
+
+        
 
         public virtual void Update()
         {
-            timer--;
-            if (timer == 0)
-            {
+            
+            
+            
                 sprite.Update();
                 position = sprite.Position;
                 timer = 20; //make sure change that when change timer at the beginning
-            }
+
             
         }
         
+        public virtual void toDamaged()
+        {
+            isDamaged = true;
+        }
         public virtual void ToIdle()
         {
             if (direction == 0)
@@ -70,6 +79,7 @@ namespace LegendOfZelda.Content.Links.State
         public virtual void MoveLeft()
         {
             link.state = new LeftWalkLinkState(link, position, sprite);
+            
         }
         public virtual void MoveRight()
         {

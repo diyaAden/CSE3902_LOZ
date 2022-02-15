@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Content.Items.WeaponSprites;
+using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Content.Items
 {
@@ -8,6 +9,8 @@ namespace LegendOfZelda.Content.Items
     {
         private Texture2D itemSpriteSheet;
         private Texture2D fireSpriteSheet;
+        private Texture2D arrowSwordSpriteSheet;
+        private Texture2D smokeCloud;
         private static WeaponSpriteFactory instance = new WeaponSpriteFactory();
 
         public static WeaponSpriteFactory Instance
@@ -24,6 +27,12 @@ namespace LegendOfZelda.Content.Items
         {
             itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ItemSpriteSheet");
             fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
+            arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet");
+            smokeCloud = content.Load<Texture2D>("SpriteSheets/Items/WeaponParticlesSpriteSheet");
+        }
+        public IItem CreateExplosionSprite()
+        {
+            return new ExplosionSprite(smokeCloud);
         }
         public IItem CreateWoodBoomerangWeaponSprite()
         {
@@ -33,13 +42,13 @@ namespace LegendOfZelda.Content.Items
         {
             return new MagicBoomerangWeaponSprite(itemSpriteSheet);
         }
-        public IItem CreateArrowWeaponSprite()
+        public IItem CreateArrowUpWeaponSprite()
         {
-            return new ArrowWeaponSprite(itemSpriteSheet);
+            return new ArrowWeaponSprite(arrowSwordSpriteSheet, ArrowWeaponSprite.Direction.Up);
         }
-        public IItem CreateMagicArrowWeaponSprite()
+        public IItem CreateMagicArrowUpWeaponSprite()
         {
-            return new MagicArrowWeaponSprite(itemSpriteSheet);
+            return new MagicArrowUpWeaponSprite(arrowSwordSpriteSheet);
         }
         public IItem CreateBombWeaponSprite()
         {
