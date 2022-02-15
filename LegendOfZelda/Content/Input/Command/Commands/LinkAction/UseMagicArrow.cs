@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         public void Execute()
         {
             myGame.link.state.UseItem();
-            WeaponManager arrow = new WeaponManager(myGame.position);
+            WeaponManager arrow = new WeaponManager(myGame.link.state.position);
             arrow.BecomeMagicArrow(myGame.link.state.Direction);
             myGame.activeWeapons.Add(arrow);
         }

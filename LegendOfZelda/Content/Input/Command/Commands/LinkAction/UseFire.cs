@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         public void Execute()
         {
             myGame.link.state.UseItem();
-            WeaponManager fire = new WeaponManager(myGame.position);
+            WeaponManager fire = new WeaponManager(myGame.link.state.position);
             fire.BecomeFire(myGame.link.state.Direction);
             myGame.activeWeapons.Add(fire);
         }
