@@ -19,7 +19,7 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
             animationFrames.Add(new Rectangle(129, 19, 5, 8));
             direction = facing;
             timerLimit = 60;
-            rotationOrigin = new Vector2(animationFrames[0].Width / 2, animationFrames[0].Height / 2);
+            rotationOrigin = new Vector2(animationFrames[0].Width / 2.0f, animationFrames[0].Height / 2.0f);
         }
 
         public override void Update()
