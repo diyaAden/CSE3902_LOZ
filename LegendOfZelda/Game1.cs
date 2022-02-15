@@ -41,7 +41,6 @@ namespace LegendOfZelda
 
         List<IController> controllerList;
         public ILink link;
-        public Vector2 position = new Vector2(400, 200);
 
         // ENEMY TESTING
 
