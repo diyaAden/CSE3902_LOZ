@@ -128,12 +128,16 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             controllerList = new List<IController>();
-            KeyboardController control = new KeyboardController(this);
+            KeyboardController control = new KeyboardController();
             RegisterCommands(control);
             controllerList.Add(control);
             activeWeapons = new List<WeaponManager>();
             
             base.Initialize();
+        }
+        public void ResetGame()
+        {
+            //GraphicsDevice.Reset();
         }
 
         protected override void LoadContent()
