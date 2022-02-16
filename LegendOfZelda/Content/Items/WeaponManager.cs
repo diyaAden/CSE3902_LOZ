@@ -16,12 +16,7 @@ namespace LegendOfZelda.Content.Items
         {
             switch (weaponType)
             {
-                case WeaponType.Boomerang:
-                case WeaponType.Fire:
-                case WeaponType.Nick:
-                case WeaponType.Explosion:
-                    weapon = null;
-                    weaponType = WeaponType.None;
+                case WeaponType.None:
                     break;
                 case WeaponType.Bomb:
                     weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
@@ -35,6 +30,8 @@ namespace LegendOfZelda.Content.Items
                     weaponType = WeaponType.Nick;
                     break;
                 default:
+                    weapon = null;
+                    weaponType = WeaponType.None;
                     break;
             }
         }
@@ -57,6 +54,19 @@ namespace LegendOfZelda.Content.Items
             {
                 weapon.Update();
                 if (++timer == weapon.timeLimit)
+                {
+                    DestroyWeapon();
+                    timer = 0;
+                }
+            }
+        }
+
+        public void Update(Vector2 linkPosition)
+        {
+            if (weapon != null)
+            {
+                weapon.Update(linkPosition);
+                if (timer == weapon.timeLimit)
                 {
                     DestroyWeapon();
                     timer = 0;
