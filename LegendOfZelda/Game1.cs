@@ -196,10 +196,20 @@ namespace LegendOfZelda
             goriya.Update();
             wallMaster.Update();
             // ENEMY TESTING
-
+            for (int i = 0; i < activeWeapons.Count; i++)
+            {
+                while (i < activeWeapons.Count && activeWeapons[i].weaponType == WeaponManager.WeaponType.None)
+                {
+                    activeWeapons.RemoveAt(i);
+                }
+            }
             foreach (WeaponManager weapon in activeWeapons)
             {
-                if (weapon.weaponType != WeaponManager.WeaponType.None)
+                if (weapon.weaponType == WeaponManager.WeaponType.Boomerang)
+                {
+                    weapon.Update(link.state.position);
+                }
+                else if (weapon.weaponType != WeaponManager.WeaponType.None)
                 {
                     weapon.Update();
                 }
