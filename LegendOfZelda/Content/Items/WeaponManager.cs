@@ -66,7 +66,7 @@ namespace LegendOfZelda.Content.Items
             if (weapon != null)
             {
                 weapon.Update(linkPosition);
-                if (++timer == weapon.timeLimit)
+                if (timer == weapon.timeLimit)
                 {
                     DestroyWeapon();
                     timer = 0;
