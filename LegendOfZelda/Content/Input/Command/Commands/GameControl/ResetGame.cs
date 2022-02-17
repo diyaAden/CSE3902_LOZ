@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Content.Input.Command.Commands
 {
@@ -13,7 +14,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         public void Execute()
         {
-            //myGame.
+            myGame.ResetGame();
         }
     }
 }

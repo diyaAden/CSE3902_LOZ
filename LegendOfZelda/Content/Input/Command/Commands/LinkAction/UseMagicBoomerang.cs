@@ -13,11 +13,18 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             myGame = game;
         }
+        private static bool containsBoomerang(IWeapon weapon)
+        {
+            return weapon.GetWeaponType() == IWeapon.WeaponType.Boomerang;
+        }
         public void Execute()
         {
-            myGame.link.state.UseItem();
-            WeaponManager boomerang = new MagicBoomerangWeapon(myGame.link.state.position, myGame.link.state.Direction);
-            myGame.activeWeapons.Add(boomerang);
+            if (!myGame.activeWeapons.Exists(containsBoomerang))
+            {
+                myGame.link.state.UseItem();
+                WeaponManager boomerang = new MagicBoomerangWeapon(myGame.link.state.position, myGame.link.state.Direction);
+                myGame.activeWeapons.Add(boomerang);
+            }
         }
     }
 }
