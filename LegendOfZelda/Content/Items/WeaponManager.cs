@@ -1,16 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using static LegendOfZelda.Content.Items.IWeapon;
 
 namespace LegendOfZelda.Content.Items
 {
-    class WeaponManager
+    public abstract class WeaponManager : IWeapon
     {
-        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Nick, None}
-        public WeaponType weaponType { get; private set; }
         private int timer = 0;
-        private IItem weapon { get; set; }
-        public Vector2 position { get; set; }
+        protected Vector2 pos = new Vector2();
+        protected WeaponType weaponType;
+        protected IItem Weapon;
+        protected Vector2 position;
 
         private void DestroyWeapon()
         {
@@ -19,124 +19,47 @@ namespace LegendOfZelda.Content.Items
                 case WeaponType.None:
                     break;
                 case WeaponType.Bomb:
-                    weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
-                    weapon.position = position;
+                    Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
+                    Weapon.position = position;
                     weaponType = WeaponType.Explosion;
                     break;
                 case WeaponType.Arrow:
-                    position = weapon.position;
-                    weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
-                    weapon.position = position;
+                    position = Weapon.position;
+                    Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
+                    Weapon.position = position;
                     weaponType = WeaponType.Nick;
                     break;
                 default:
-                    weapon = null;
+                    Weapon = null;
                     weaponType = WeaponType.None;
                     break;
             }
+            timer = 0;
         }
-
-        public WeaponManager(Vector2 pos)
+        public Vector2 GetPosition()
         {
-            weapon = null;
-            weaponType = WeaponType.None;
-            position = pos;
+            return position;
         }
-
-        public IItem CurrentWeapon()
+        public WeaponType GetWeaponType()
         {
-            return weapon;
+            return weaponType;
         }
-
-        public void Update()
-        {
-            if (weapon != null)
-            {
-                weapon.Update();
-                if (++timer == weapon.timeLimit)
-                {
-                    DestroyWeapon();
-                    timer = 0;
-                }
-            }
-        }
-
         public void Update(Vector2 linkPosition)
         {
-            if (weapon != null)
+            if (weaponType == WeaponType.Boomerang)
             {
-                weapon.Update(linkPosition);
-                if (timer == weapon.timeLimit)
-                {
-                    DestroyWeapon();
-                    timer = 0;
-                }
+                Weapon.Update(linkPosition);
+                if (timer == Weapon.timeLimit) { DestroyWeapon(); }
+            }
+            else if (Weapon != null)
+            {
+                Weapon.Update();
+                if (++timer == Weapon.timeLimit) { DestroyWeapon(); }
             }
         }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (weapon != null)
-            {
-                weapon.Draw(spriteBatch);
-            }
-        }
-
-        public void BecomeArrow(int facing)
-        {
-            weaponType = WeaponType.Arrow;
-            weapon = WeaponSpriteFactory.Instance.CreateArrowWeaponSprite(facing);
-            weapon.position = position;
-        }
-
-        public void BecomeMagicArrow(int facing)
-        {
-            weaponType = WeaponType.Arrow;
-            weapon = WeaponSpriteFactory.Instance.CreateMagicArrowWeaponSprite(facing);
-            weapon.position = position;
-        }
-
-        public void BecomeBoomerang(int facing)
-        {
-            weaponType = WeaponType.Boomerang;
-            weapon = WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(facing);
-            weapon.position = position;
-        }
-
-        public void BecomeMagicBoomerang(int facing)
-        {
-            weaponType = WeaponType.Boomerang;
-            weapon = WeaponSpriteFactory.Instance.CreateMagicBoomerangWeaponSprite(facing);
-            weapon.position = position;
-        }
-
-        public void BecomeFire(int facing)
-        {
-            weaponType = WeaponType.Fire;
-            weapon = WeaponSpriteFactory.Instance.CreateFireWeaponSprite(facing);
-            weapon.position = position;
-        }
-
-        public void BecomeBomb(int facing)
-        {
-            weaponType = WeaponType.Bomb;
-            weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-            switch (facing)
-            {
-                case 1:
-                    position = new Vector2(position.X, position.Y - 16);
-                    break;
-                case 0:
-                    position = new Vector2(position.X, position.Y + 16);
-                    break;
-                case 2:
-                    position = new Vector2(position.X - 16, position.Y);
-                    break;
-                default:
-                    position = new Vector2(position.X + 16, position.Y);
-                    break;
-            }
-            weapon.position = position;
+            if (Weapon != null) { Weapon.Draw(spriteBatch); }
         }
     }
 }

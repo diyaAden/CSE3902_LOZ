@@ -11,13 +11,7 @@ namespace LegendOfZelda.Content.Items
         protected int currentFrame = 0;
         protected Vector2 pos = new Vector2(400, 200);
         protected int timerLimit = -1;
-        public int timeLimit
-        {
-            get
-            {
-                return timerLimit;
-            }
-        }
+        public int timeLimit => timerLimit;
         public Vector2 position
         {
             get

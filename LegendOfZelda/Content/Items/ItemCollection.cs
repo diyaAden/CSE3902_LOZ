@@ -5,12 +5,11 @@ namespace LegendOfZelda.Content.Items
 {
     class ItemCollection
     {
-        private List<IItem> items;
+        private List<IItem> items = new List<IItem>();
         private int currentItem = 0;
 
         public ItemCollection()
         {
-            items = new List<IItem>();
             items.Add(ItemSpriteFactory.Instance.CreateCompassSprite());
             items.Add(ItemSpriteFactory.Instance.CreateMapSprite());
             items.Add(ItemSpriteFactory.Instance.CreateKeySprite());
@@ -24,7 +23,7 @@ namespace LegendOfZelda.Content.Items
             items.Add(ItemSpriteFactory.Instance.CreateArrowItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateMagicArrowItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateFireItemSprite());
+            items.Add(ItemSpriteFactory.Instance.CreateFireItemSprite()); //move fire to blocks
             items.Add(ItemSpriteFactory.Instance.CreateBlueRupeeSprite());
             items.Add(ItemSpriteFactory.Instance.CreateClockSprite());
             items.Add(ItemSpriteFactory.Instance.CreateFairySprite());
