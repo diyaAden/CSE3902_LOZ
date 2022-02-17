@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         private static bool containsArrow(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.Arrow;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.ARROW;
         }
         public void Execute()
         {

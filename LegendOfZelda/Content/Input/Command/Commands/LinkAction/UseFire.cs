@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         private static bool containsFire(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.Fire;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.FIRE;
         }
         public void Execute()
         {
