@@ -53,5 +53,9 @@ namespace LegendOfZelda.Content.Items
         {
             return new FireWeaponSprite(fireSpriteSheet, facingDirection);
         }
+        public IItem CreateSwordWeaponSprite(int facingDirection)
+        {
+            return new SwordWeaponSprite(arrowSwordSpriteSheet, facingDirection);
+        }
     }
 }

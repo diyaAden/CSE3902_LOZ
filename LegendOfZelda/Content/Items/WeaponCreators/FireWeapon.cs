@@ -11,7 +11,7 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
         public FireWeapon(Vector2 pos, int facing)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateFireWeaponSprite(facing);
-            weaponType = WeaponType.Fire;
+            weaponType = WeaponType.FIRE;
             position = pos;
             Weapon.position = position;
         }

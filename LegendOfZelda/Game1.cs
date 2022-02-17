@@ -194,7 +194,7 @@ namespace LegendOfZelda
             // ENEMY TESTING
             for (int i = 0; i < activeWeapons.Count; i++)
             {
-                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.None)
+                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.NONE)
                 {
                     activeWeapons.RemoveAt(i);
                 }
@@ -233,7 +233,7 @@ namespace LegendOfZelda
             ItemCollection.Draw(_spriteBatch);
             foreach (WeaponManager weapon in activeWeapons)
             {
-                if (weapon.GetWeaponType() != IWeapon.WeaponType.None)
+                if (weapon.GetWeaponType() != IWeapon.WeaponType.NONE)
                 {
                     weapon.Draw(_spriteBatch);
                 }

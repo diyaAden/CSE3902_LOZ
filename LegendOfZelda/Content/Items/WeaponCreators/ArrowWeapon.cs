@@ -11,7 +11,7 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
         public ArrowWeapon(Vector2 pos, int facing)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateArrowWeaponSprite(facing);
-            weaponType = WeaponType.Arrow;
+            weaponType = WeaponType.ARROW;
             position = pos;
             Weapon.position = position;
         }

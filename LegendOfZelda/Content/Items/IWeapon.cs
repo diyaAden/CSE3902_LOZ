@@ -6,7 +6,7 @@ namespace LegendOfZelda.Content.Items
 {
     public interface IWeapon
     {
-        public enum WeaponType { Arrow, Bomb, Fire, Boomerang, Explosion, Nick, None }
+        public enum WeaponType { ARROW, BOMB, FIRE, BOOMERANG, SWORD, EXPLOSION, NICK, NONE }
 
         public Vector2 GetPosition();
 
