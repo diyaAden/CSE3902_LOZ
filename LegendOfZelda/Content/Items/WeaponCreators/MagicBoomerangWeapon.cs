@@ -11,9 +11,9 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
         public MagicBoomerangWeapon(Vector2 pos, int facing)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateMagicBoomerangWeaponSprite(facing);
-            CurrentWeaponType = WeaponType.Boomerang;
-            Position = pos;
-            Weapon.position = Position;
+            weaponType = WeaponType.Boomerang;
+            position = pos;
+            Weapon.position = position;
         }
     }
 }

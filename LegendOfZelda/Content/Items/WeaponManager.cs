@@ -9,62 +9,57 @@ namespace LegendOfZelda.Content.Items
         private int timer = 0;
         protected Vector2 pos = new Vector2();
         protected WeaponType weaponType;
-        protected IItem weapon;
-        public Vector2 Position {
-            get
-            {
-                return pos;
-            }
-            set
-            {
-                pos = value;
-            }
-        }
-        public WeaponType CurrentWeaponType { get; protected set; }
+        protected IItem Weapon;
+        protected Vector2 position;
 
         private void DestroyWeapon()
         {
-            switch (CurrentWeaponType)
+            switch (weaponType)
             {
                 case WeaponType.None:
                     break;
                 case WeaponType.Bomb:
-                    weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
-                    weapon.position = Position;
-                    CurrentWeaponType = WeaponType.Explosion;
+                    Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
+                    Weapon.position = position;
+                    weaponType = WeaponType.Explosion;
                     break;
                 case WeaponType.Arrow:
-                    Position = weapon.position;
-                    weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
-                    weapon.position = Position;
-                    CurrentWeaponType = WeaponType.Nick;
+                    position = Weapon.position;
+                    Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
+                    Weapon.position = position;
+                    weaponType = WeaponType.Nick;
                     break;
                 default:
-                    weapon = null;
-                    CurrentWeaponType = WeaponType.None;
+                    Weapon = null;
+                    weaponType = WeaponType.None;
                     break;
             }
             timer = 0;
         }
-        public void Update()
+        public Vector2 GetPosition()
         {
-            if (weapon != null)
-            {
-                weapon.Update();
-                if (++timer == weapon.timeLimit) { DestroyWeapon(); }
-            }
+            return position;
+        }
+        public WeaponType GetWeaponType()
+        {
+            return weaponType;
         }
         public void Update(Vector2 linkPosition)
         {
-            if (weapon != null)
+            if (weaponType == WeaponType.Boomerang)
             {
-                weapon.Update(linkPosition);
-                if (timer == weapon.timeLimit) { DestroyWeapon(); }
+                Weapon.Update(linkPosition);
+                if (timer == Weapon.timeLimit) { DestroyWeapon(); }
+            }
+            else if (Weapon != null)
+            {
+                Weapon.Update();
+                if (++timer == Weapon.timeLimit) { DestroyWeapon(); }
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (weapon != null) { weapon.Draw(spriteBatch); }
+            if (Weapon != null) { Weapon.Draw(spriteBatch); }
         }
     }
 }

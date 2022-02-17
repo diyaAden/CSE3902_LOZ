@@ -11,9 +11,9 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
         public BoomerangWeapon(Vector2 pos, int facing)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(facing);
-            CurrentWeaponType = WeaponType.Boomerang;
-            Position = pos;
-            Weapon.position = Position;
+            weaponType = WeaponType.Boomerang;
+            position = pos;
+            Weapon.position = position;
         }
     }
 }

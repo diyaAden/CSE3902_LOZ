@@ -11,23 +11,23 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
         public BombWeapon(Vector2 linkPosition, int facing)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-            CurrentWeaponType = WeaponType.Bomb;
+            weaponType = WeaponType.Bomb;
             switch (facing)
             {
                 case 0:
-                    Position = new Vector2(linkPosition.X, linkPosition.Y + 16);
+                    position = new Vector2(linkPosition.X, linkPosition.Y + 16);
                     break;
                 case 1:
-                    Position = new Vector2(linkPosition.X, linkPosition.Y - 16);
+                    position = new Vector2(linkPosition.X, linkPosition.Y - 16);
                     break;
                 case 2:
-                    Position = new Vector2(linkPosition.X - 16, linkPosition.Y);
+                    position = new Vector2(linkPosition.X - 16, linkPosition.Y);
                     break;
                 default:
-                    Position = new Vector2(linkPosition.X + 16, linkPosition.Y);
+                    position = new Vector2(linkPosition.X + 16, linkPosition.Y);
                     break;
             }
-            Weapon.position = Position;
+            Weapon.position = position;
         }
     }
 }

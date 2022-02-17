@@ -194,21 +194,14 @@ namespace LegendOfZelda
             // ENEMY TESTING
             for (int i = 0; i < activeWeapons.Count; i++)
             {
-                while (i < activeWeapons.Count && activeWeapons[i].CurrentWeaponType == IWeapon.WeaponType.None)
+                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.None)
                 {
                     activeWeapons.RemoveAt(i);
                 }
             }
             foreach (WeaponManager weapon in activeWeapons)
             {
-                if (weapon.CurrentWeaponType == IWeapon.WeaponType.Boomerang)
-                {
-                    weapon.Update(link.state.position);
-                }
-                else if (weapon.CurrentWeaponType != IWeapon.WeaponType.None)
-                {
-                    weapon.Update();
-                }
+                weapon.Update(link.state.position);
             }
             link.Update();
             ItemCollection.Update();
@@ -240,7 +233,7 @@ namespace LegendOfZelda
             ItemCollection.Draw(_spriteBatch);
             foreach (WeaponManager weapon in activeWeapons)
             {
-                if (weapon.CurrentWeaponType != IWeapon.WeaponType.None)
+                if (weapon.GetWeaponType() != IWeapon.WeaponType.None)
                 {
                     weapon.Draw(_spriteBatch);
                 }
