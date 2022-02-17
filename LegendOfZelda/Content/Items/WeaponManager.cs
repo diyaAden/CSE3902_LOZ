@@ -7,7 +7,6 @@ namespace LegendOfZelda.Content.Items
     public abstract class WeaponManager : IWeapon
     {
         private int timer = 0;
-        protected Vector2 pos = new Vector2();
         protected WeaponType weaponType;
         protected IItem Weapon;
         protected Vector2 position;

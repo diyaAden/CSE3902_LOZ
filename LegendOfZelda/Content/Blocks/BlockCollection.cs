@@ -22,6 +22,7 @@ namespace LegendOfZelda.Content.Blocks
             blocks.Add(BlockSpriteFactory.Instance.CreateSquareBlockSprite());
             blocks.Add(BlockSpriteFactory.Instance.CreateWhiteBrickSprite());
             blocks.Add(BlockSpriteFactory.Instance.CreateBlueGapSprite());
+            blocks.Add(BlockSpriteFactory.Instance.CreateFireBlockSprite());
         }
 
         public void NextBlock()

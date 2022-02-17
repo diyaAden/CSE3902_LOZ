@@ -23,7 +23,6 @@ namespace LegendOfZelda.Content.Items
             items.Add(ItemSpriteFactory.Instance.CreateArrowItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateMagicArrowItemSprite());
             items.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateFireItemSprite()); //move fire to blocks
             items.Add(ItemSpriteFactory.Instance.CreateBlueRupeeSprite());
             items.Add(ItemSpriteFactory.Instance.CreateClockSprite());
             items.Add(ItemSpriteFactory.Instance.CreateFairySprite());

@@ -22,7 +22,7 @@ namespace LegendOfZelda.Content.Blocks
 
         public abstract void Update();
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width, sourceRect.Height);
             spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White);
