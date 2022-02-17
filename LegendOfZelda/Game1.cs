@@ -77,7 +77,7 @@ namespace LegendOfZelda
         private BlockCollection blockCollection;
         private ItemCollection itemCollection;
         public Vector2 position = new Vector2(400, 300);
-        internal List<WeaponManager> activeWeapons;
+        internal List<IWeapon> activeWeapons;
 
         internal BlockCollection BlockCollection { get => blockCollection; set => blockCollection = value; }
         internal ItemCollection ItemCollection { get => itemCollection; set => itemCollection = value; }
@@ -131,7 +131,7 @@ namespace LegendOfZelda
             KeyboardController control = new KeyboardController();
             RegisterCommands(control);
             controllerList.Add(control);
-            activeWeapons = new List<WeaponManager>();
+            activeWeapons = new List<IWeapon>();
             
             base.Initialize();
         }
@@ -198,21 +198,14 @@ namespace LegendOfZelda
             // ENEMY TESTING
             for (int i = 0; i < activeWeapons.Count; i++)
             {
-                while (i < activeWeapons.Count && activeWeapons[i].weaponType == WeaponManager.WeaponType.None)
+                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.None)
                 {
                     activeWeapons.RemoveAt(i);
                 }
             }
             foreach (WeaponManager weapon in activeWeapons)
             {
-                if (weapon.weaponType == WeaponManager.WeaponType.Boomerang)
-                {
-                    weapon.Update(link.state.position);
-                }
-                else if (weapon.weaponType != WeaponManager.WeaponType.None)
-                {
-                    weapon.Update();
-                }
+                weapon.Update(link.state.position);
             }
             link.Update();
             ItemCollection.Update();
@@ -244,7 +237,7 @@ namespace LegendOfZelda
             ItemCollection.Draw(_spriteBatch);
             foreach (WeaponManager weapon in activeWeapons)
             {
-                if (weapon.weaponType != WeaponManager.WeaponType.None)
+                if (weapon.GetWeaponType() != IWeapon.WeaponType.None)
                 {
                     weapon.Draw(_spriteBatch);
                 }

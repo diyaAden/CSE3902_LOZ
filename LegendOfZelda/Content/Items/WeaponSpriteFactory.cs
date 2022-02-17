@@ -7,19 +7,10 @@ namespace LegendOfZelda.Content.Items
 {
     public class WeaponSpriteFactory
     {
-        private Texture2D itemSpriteSheet;
-        private Texture2D fireSpriteSheet;
-        private Texture2D arrowSwordSpriteSheet;
-        private Texture2D smokeCloud;
+        private Texture2D itemSpriteSheet, fireSpriteSheet, arrowSwordSpriteSheet, smokeCloud;
         private static WeaponSpriteFactory instance = new WeaponSpriteFactory();
 
-        public static WeaponSpriteFactory Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static WeaponSpriteFactory Instance => instance;
         private WeaponSpriteFactory()
         {
         }

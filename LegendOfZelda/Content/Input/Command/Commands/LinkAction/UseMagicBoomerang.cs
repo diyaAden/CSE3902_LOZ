@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Items.WeaponCreators;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         public void Execute()
         {
             myGame.link.state.UseItem();
-            WeaponManager boomerang = new WeaponManager(myGame.link.state.position);
-            boomerang.BecomeMagicBoomerang(myGame.link.state.Direction);
+            WeaponManager boomerang = new MagicBoomerangWeapon(myGame.link.state.position, myGame.link.state.Direction);
             myGame.activeWeapons.Add(boomerang);
         }
     }
