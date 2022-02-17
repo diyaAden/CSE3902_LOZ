@@ -9,17 +9,10 @@ namespace LegendOfZelda.Content.Items
 {
     public class ItemSpriteFactory
     {
-        private Texture2D itemSpriteSheet;
-        private Texture2D fireSpriteSheet;
+        private Texture2D itemSpriteSheet, fireSpriteSheet;
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
-        public static ItemSpriteFactory Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static ItemSpriteFactory Instance => instance;
         private ItemSpriteFactory()
         {
         }

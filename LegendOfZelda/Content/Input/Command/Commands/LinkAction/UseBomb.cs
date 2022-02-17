@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Items.WeaponCreators;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         public void Execute()
         {
             myGame.link.state.UseItem();
-            WeaponManager bomb = new WeaponManager(myGame.link.state.position);
-            bomb.BecomeBomb(myGame.link.state.Direction);
+            IWeapon bomb = new BombWeapon(myGame.link.state.position, myGame.link.state.Direction);
             myGame.activeWeapons.Add(bomb);
         }
     }
