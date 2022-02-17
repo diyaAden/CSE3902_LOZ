@@ -13,11 +13,18 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             myGame = game;
         }
+        private static bool containsMagicArrow(IWeapon weapon)
+        {
+            return weapon.GetWeaponType() == IWeapon.WeaponType.Arrow;
+        }
         public void Execute()
         {
-            myGame.link.state.UseItem();
-            WeaponManager arrow = new MagicArrowWeapon(myGame.link.state.position, myGame.link.state.Direction);
-            myGame.activeWeapons.Add(arrow);
+            if (!myGame.activeWeapons.Exists(containsMagicArrow))
+            {
+                myGame.link.state.UseItem();
+                WeaponManager arrow = new MagicArrowWeapon(myGame.link.state.position, myGame.link.state.Direction);
+                myGame.activeWeapons.Add(arrow);
+            }
         }
     }
 }
