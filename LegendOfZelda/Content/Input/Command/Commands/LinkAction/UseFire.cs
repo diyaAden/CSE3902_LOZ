@@ -13,11 +13,18 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             myGame = game;
         }
+        private static bool containsFire(IWeapon weapon)
+        {
+            return weapon.GetWeaponType() == IWeapon.WeaponType.Fire;
+        }
         public void Execute()
         {
-            myGame.link.state.UseItem();
-            IWeapon fire = new FireWeapon(myGame.link.state.position, myGame.link.state.Direction);
-            myGame.activeWeapons.Add(fire);
+            if (!myGame.activeWeapons.Exists(containsFire))
+            {
+                myGame.link.state.UseItem();
+                IWeapon fire = new FireWeapon(myGame.link.state.position, myGame.link.state.Direction);
+                myGame.activeWeapons.Add(fire);
+            }
         }
     }
 }
