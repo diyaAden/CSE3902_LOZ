@@ -8,14 +8,8 @@ namespace LegendOfZelda.Content.Blocks
     {
         private Texture2D blockSpriteSheet, fireSpriteSheet;
         private static BlockSpriteFactory instance = new BlockSpriteFactory();
+        public static BlockSpriteFactory Instance => instance;
 
-        public static BlockSpriteFactory Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
         private BlockSpriteFactory()
         {
         }

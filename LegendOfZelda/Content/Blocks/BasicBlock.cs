@@ -8,17 +8,7 @@ namespace LegendOfZelda.Content.Blocks
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 100);
-        public Vector2 position
-        {
-            get
-            {
-                return pos;
-            }
-            set
-            {
-                pos = value;
-            }
-        }
+        public Vector2 position { get { return pos; } set { pos = value; } }
 
         public abstract void Update();
 

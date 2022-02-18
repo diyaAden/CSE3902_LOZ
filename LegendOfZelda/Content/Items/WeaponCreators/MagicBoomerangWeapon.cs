@@ -1,7 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static LegendOfZelda.Content.Items.IWeapon;
 
 namespace LegendOfZelda.Content.Items.WeaponCreators

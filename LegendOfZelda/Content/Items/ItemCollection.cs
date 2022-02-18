@@ -34,10 +34,7 @@ namespace LegendOfZelda.Content.Items
 
         public void Previous()
         {
-            if (--currentObject < 0)
-            {
-                currentObject = itemCollection.Count - 1;
-            }
+            if (--currentObject < 0) { currentObject = itemCollection.Count - 1; }
         }
 
         public void Update()

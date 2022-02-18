@@ -31,10 +31,7 @@ namespace LegendOfZelda.Content.Blocks
 
         public void Previous()
         {
-            if (--currentObject < 0)
-            {
-                currentObject = blockCollection.Count - 1;
-            }
+            if (--currentObject < 0) { currentObject = blockCollection.Count - 1; }
         }
 
         public void Update()

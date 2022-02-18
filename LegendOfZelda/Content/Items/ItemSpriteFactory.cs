@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda.Content.Items;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using LegendOfZelda.Content.Items.ItemSprites;
 
 namespace LegendOfZelda.Content.Items

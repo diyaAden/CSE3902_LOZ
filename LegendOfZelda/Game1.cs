@@ -29,7 +29,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-
 namespace LegendOfZelda
 {
     public class Game1 : Game
@@ -63,7 +62,7 @@ namespace LegendOfZelda
         public IWallMaster wallMaster;
         public Vector2 position11 = new Vector2(400, 400);
 
-        internal List<IWeapon> activeWeapons;
+        internal List<IWeapon> activeWeapons = new List<IWeapon>();
         internal ICollection BlockCollection { get; private set; }
         internal ICollection ItemCollection { get; private set; }
 
@@ -114,7 +113,6 @@ namespace LegendOfZelda
             KeyboardController control = new KeyboardController();
             RegisterCommands(control);
             controllerList = new List<IController>() { control };
-            activeWeapons = new List<IWeapon>();
             base.Initialize();
         }
         public void ResetGame()
