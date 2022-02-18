@@ -12,7 +12,7 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 7, 8));
-            animationFrames.Add(new Rectangle(0, 8, 7, 8));
+            animationFrames.Add(new Rectangle(0, 9, 7, 8));
         }
 
         public override void Update()

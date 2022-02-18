@@ -11,8 +11,8 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public TriforcePieceSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(275, 3, 10, 10));
-            animationFrames.Add(new Rectangle(275, 19, 10, 10));
+            animationFrames.Add(new Rectangle(0, 0, 10, 10));
+            animationFrames.Add(new Rectangle(11, 0, 10, 10));
         }
 
         public override void Update()

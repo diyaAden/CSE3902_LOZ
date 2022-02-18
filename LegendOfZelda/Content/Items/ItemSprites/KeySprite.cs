@@ -10,7 +10,7 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public KeySprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(240, 0, 8, 16));
+            animationFrames.Add(new Rectangle(21, 0, 8, 16));
         }
 
         public override void Update()

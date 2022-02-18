@@ -11,8 +11,8 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public RupeeSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(72, 0, 8, 16));
-            animationFrames.Add(new Rectangle(72, 16, 8, 16));
+            animationFrames.Add(new Rectangle(0, 0, 8, 16));
+            animationFrames.Add(new Rectangle(9, 0, 8, 16));
         }
 
         public override void Update()

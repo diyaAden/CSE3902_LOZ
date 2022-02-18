@@ -48,8 +48,8 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public FairySprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(40, 0, 8, 16));
-            animationFrames.Add(new Rectangle(48, 0, 8, 16));
+            animationFrames.Add(new Rectangle(0, 0, 8, 16));
+            animationFrames.Add(new Rectangle(9, 0, 8, 16));
             SetMoveDirection();
 
         }

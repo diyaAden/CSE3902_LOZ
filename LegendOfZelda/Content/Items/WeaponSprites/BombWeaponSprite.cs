@@ -8,7 +8,7 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
         public BombWeaponSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(136, 0, 8, 14));
+            animationFrames.Add(new Rectangle(39, 0, 8, 14));
             timerLimit = 90;
         }
 

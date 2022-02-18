@@ -10,7 +10,7 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public MagicArrowItemSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(154, 16, 5, 16));
+            animationFrames.Add(new Rectangle(52, 16, 5, 16));
         }
 
         public override void Update()
