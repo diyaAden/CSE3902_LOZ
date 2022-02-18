@@ -3,52 +3,51 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Items
 {
-    class ItemCollection
+    class ItemCollection : ICollection
     {
-        private List<IItem> items = new List<IItem>();
-        private int currentItem = 0;
+        private List<IItem> itemCollection = new List<IItem>();
+        private int currentObject = 0;
 
         public ItemCollection()
         {
-            items.Add(ItemSpriteFactory.Instance.CreateCompassSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateMapSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateKeySprite());
-            items.Add(ItemSpriteFactory.Instance.CreateHeartContainerSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateTriforcePieceSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateWoodBoomerangItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateMagicBoomerangItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateBowSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateHeartSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateRupeeSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateArrowItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateMagicArrowItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateBlueRupeeSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateClockSprite());
-            items.Add(ItemSpriteFactory.Instance.CreateFairySprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateCompassSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateMapSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateKeySprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateHeartContainerSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateTriforcePieceSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateWoodBoomerangItemSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateMagicBoomerangItemSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateBowSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateHeartSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateRupeeSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateArrowItemSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateMagicArrowItemSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateBlueRupeeSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateClockSprite());
+            itemCollection.Add(ItemSpriteFactory.Instance.CreateFairySprite());
+        }
+        public void Next()
+        {
+            currentObject = ++currentObject % itemCollection.Count;
         }
 
-        public void NextItem()
+        public void Previous()
         {
-            currentItem = ++currentItem % items.Count;
-        }
-
-        public void PreviousItem()
-        {
-            if (--currentItem < 0)
+            if (--currentObject < 0)
             {
-                currentItem = items.Count - 1;
+                currentObject = itemCollection.Count - 1;
             }
         }
 
         public void Update()
         {
-            items[currentItem].Update();
+            itemCollection[currentObject].Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            items[currentItem].Draw(spriteBatch);
+            itemCollection[currentObject].Draw(spriteBatch);
         }
     }
 }
