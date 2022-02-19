@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Links
     {
         public ILinkState state{ get; set; }
         private ISprite sprite;
-        private int attackCooldown, cooldownLimit = 20;
+        private int attackCooldown, cooldownLimit = 30;
 
         public Link(Game1 game, Vector2 position)
         {
@@ -24,6 +24,10 @@ namespace LegendOfZelda.Content.Links
         }
 
         //Motions that link will have, and change the state.
+        public void ToIdle()
+        {
+            if (attackCooldown == 0) state.ToIdle();
+        }
         public void MoveUp()
         {
             if (attackCooldown == 0) state.MoveUp();
