@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         private static bool containsBoomerang(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.Boomerang;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.BOOMERANG;
         }
         public void Execute()
         {

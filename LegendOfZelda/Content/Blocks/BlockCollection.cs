@@ -4,47 +4,44 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Blocks
 {
-    class BlockCollection
+    class BlockCollection : ICollection
     {
-        private List<IBlock> blocks;
-        private int currentBlock = 0;
+        private List<IBlock> blockCollection = new List<IBlock>();
+        private int currentObject = 0;
 
         public BlockCollection()
         {
-            blocks = new List<IBlock>();
-            blocks.Add(BlockSpriteFactory.Instance.CreateBlueFloorSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateBlueSandSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreatePushBlockSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateStatueLeftSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateStatueRightSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateStairsSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateLadderSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateSquareBlockSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateWhiteBrickSprite());
-            blocks.Add(BlockSpriteFactory.Instance.CreateBlueGapSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueFloorSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueSandSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreatePushBlockSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateStatueLeftSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateStatueRightSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateStairsSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateLadderSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateSquareBlockSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateWhiteBrickSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueGapSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateFireBlockSprite());
         }
 
-        public void NextBlock()
+        public void Next()
         {
-            currentBlock = ++currentBlock % blocks.Count;
+            currentObject = ++currentObject % blockCollection.Count;
         }
 
-        public void PreviousBlock()
+        public void Previous()
         {
-            if (--currentBlock < 0)
-            {
-                currentBlock = blocks.Count - 1;
-            }
+            if (--currentObject < 0) { currentObject = blockCollection.Count - 1; }
         }
 
         public void Update()
         {
-            blocks[currentBlock].Update();
+            blockCollection[currentObject].Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            blocks[currentBlock].Draw(spriteBatch);
+            blockCollection[currentObject].Draw(spriteBatch);
         }
     }
 }

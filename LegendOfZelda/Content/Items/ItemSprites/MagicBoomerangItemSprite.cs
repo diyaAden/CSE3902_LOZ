@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Items.ItemSprites
 {
@@ -10,7 +9,7 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public MagicBoomerangItemSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(129, 19, 5, 8));
+            animationFrames.Add(new Rectangle(80, 0, 5, 8));
         }
 
         public override void Update()

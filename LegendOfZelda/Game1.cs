@@ -9,7 +9,6 @@ using LegendOfZelda.Content.Enemy.Aquamentus.Sprite;
 using LegendOfZelda.Content.Enemy.Aquamentus;
 using LegendOfZelda.Content.Enemy.Cloud;
 using LegendOfZelda.Content.Enemy.Cloud.Sprite;
-using LegendOfZelda.Content.Input.Command;
 using LegendOfZelda.Content.Input.Command.Commands;
 using LegendOfZelda.Content.Items;
 using LegendOfZelda.Content.Links;
@@ -26,11 +25,9 @@ using LegendOfZelda.Content.Enemy.Goriya;
 using LegendOfZelda.Content.Enemy.Goriya.Sprite;
 using LegendOfZelda.Content.Enemy.WallMaster;
 using LegendOfZelda.Content.Enemy.WallMaster.Sprite;
-using LegendOfZelda.Content.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 
 namespace LegendOfZelda
 {
@@ -39,48 +36,35 @@ namespace LegendOfZelda
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        List<IController> controllerList;
+        private List<IController> controllerList;
+        private List<ICollection> objectCollections;
+        public Vector2 position = new Vector2(400, 300);
         public ILink link;
-
         // ENEMY TESTING
-
         public IStalfos stalfos;
         public Vector2 position2 = new Vector2(400, 100);
-
         public IKeese keese;
         public Vector2 position3 = new Vector2(200, 200);
-
         public ITrap trap;
         public Vector2 position4 = new Vector2(200, 100);
-
         public IGel gel;
         public Vector2 position5 = new Vector2(300, 200);
-
         public IAquamentus aquamentus;
         public Vector2 position6 = new Vector2(500, 300);
-
         public ICloud cloud;
         public Vector2 position7 = new Vector2(100, 100);
-
         public IExplosion explosion;
         public Vector2 position8 = new Vector2(100, 200);
-
         public IFireball fireball;
         public Vector2 position9 = new Vector2(50, 50);
-
         public IGoriya goriya;
         public Vector2 position10 = new Vector2(250, 250);
-
         public IWallMaster wallMaster;
         public Vector2 position11 = new Vector2(400, 400);
 
-        private BlockCollection blockCollection;
-        private ItemCollection itemCollection;
-        public Vector2 position = new Vector2(400, 300);
-        internal List<IWeapon> activeWeapons;
-
-        internal BlockCollection BlockCollection { get => blockCollection; set => blockCollection = value; }
-        internal ItemCollection ItemCollection { get => itemCollection; set => itemCollection = value; }
+        internal List<IWeapon> activeWeapons = new List<IWeapon>();
+        internal ICollection BlockCollection { get; private set; }
+        internal ICollection ItemCollection { get; private set; }
 
         public Game1()
         {
@@ -124,15 +108,11 @@ namespace LegendOfZelda
             control.RegisterCommand(Keys.U, new PreviousItem(this));
             control.RegisterCommand(Keys.I, new NextItem(this));
         }
-
         protected override void Initialize()
         {
-            controllerList = new List<IController>();
             KeyboardController control = new KeyboardController();
             RegisterCommands(control);
-            controllerList.Add(control);
-            activeWeapons = new List<IWeapon>();
-            
+            controllerList = new List<IController>() { control };
             base.Initialize();
         }
         public void ResetGame()
@@ -143,10 +123,8 @@ namespace LegendOfZelda
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             ItemCollection = new ItemCollection();
-
             //ENEMY TESTING
             LoadStalfos.LoadTexture(Content);
             stalfos = new Stalfos(this, position2);
@@ -169,21 +147,17 @@ namespace LegendOfZelda
             LoadWallMaster.LoadTexture(Content);
             wallMaster = new WallMaster(this, position11);
             // ENEMY TESTING
-
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             BlockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
             link = new Link(this, position);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
+            objectCollections = new List<ICollection>() { BlockCollection, ItemCollection };
         }
 
         protected override void Update(GameTime gameTime)
         {
-            foreach (IController controller in controllerList)
-            {
-                controller.Update();
-            }
-            
+            foreach (IController controller in controllerList) { controller.Update(); }
             // ENEMY TESTING
             stalfos.Update();
             keese.Update();
@@ -198,18 +172,11 @@ namespace LegendOfZelda
             // ENEMY TESTING
             for (int i = 0; i < activeWeapons.Count; i++)
             {
-                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.None)
-                {
-                    activeWeapons.RemoveAt(i);
-                }
+                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.NONE) { activeWeapons.RemoveAt(i); }
             }
-            foreach (WeaponManager weapon in activeWeapons)
-            {
-                weapon.Update(link.state.position);
-            }
+            foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.state.position); }
             link.Update();
-            ItemCollection.Update();
-            BlockCollection.Update();
+            foreach (ICollection collection in objectCollections) { collection.Update(); }
 
             base.Update(gameTime);
         }
@@ -218,7 +185,6 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
-
             // ENEMY TESTING
             stalfos.Draw(_spriteBatch);
             keese.Draw(_spriteBatch);
@@ -231,19 +197,12 @@ namespace LegendOfZelda
             goriya.Draw(_spriteBatch);
             wallMaster.Draw(_spriteBatch);
             // ENEMY TESTING
-
-
-            BlockCollection.Draw(_spriteBatch);
-            ItemCollection.Draw(_spriteBatch);
-            foreach (WeaponManager weapon in activeWeapons)
+            foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
+            foreach (IWeapon weapon in activeWeapons)
             {
-                if (weapon.GetWeaponType() != IWeapon.WeaponType.None)
-                {
-                    weapon.Draw(_spriteBatch);
-                }
+                if (weapon.GetWeaponType() != IWeapon.WeaponType.NONE) { weapon.Draw(_spriteBatch); }
             }
             link.Draw(_spriteBatch);
-
             _spriteBatch.End();
             base.Draw(gameTime);
         }

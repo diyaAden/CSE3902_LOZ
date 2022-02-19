@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
 namespace LegendOfZelda.Content.Items.ItemSprites
 {
@@ -10,7 +9,7 @@ namespace LegendOfZelda.Content.Items.ItemSprites
         public CompassSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(258, 1, 11, 12));
+            animationFrames.Add(new Rectangle(62, 0, 11, 12));
         }
 
         public override void Update()

@@ -15,7 +15,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         private static bool containsBomb(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.Bomb;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.BOMB;
         }
         public void Execute()
         {

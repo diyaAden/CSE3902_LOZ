@@ -1,7 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static LegendOfZelda.Content.Items.IWeapon;
 
 namespace LegendOfZelda.Content.Items.WeaponCreators
@@ -11,7 +8,7 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
         public FireWeapon(Vector2 pos, int facing)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateFireWeaponSprite(facing);
-            weaponType = WeaponType.Fire;
+            weaponType = WeaponType.FIRE;
             position = pos;
             Weapon.position = position;
         }

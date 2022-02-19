@@ -12,17 +12,7 @@ namespace LegendOfZelda.Content.Items
         protected Vector2 pos = new Vector2(400, 200);
         protected int timerLimit = -1;
         public int timeLimit => timerLimit;
-        public Vector2 position
-        {
-            get
-            {
-                return pos;
-            }
-            set
-            {
-                pos = value;
-            }
-        }
+        public Vector2 position { get { return pos; } set { pos = value; } }
 
         public virtual void Update() { }
 

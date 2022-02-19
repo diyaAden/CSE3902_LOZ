@@ -1,15 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda.Content.Items;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using LegendOfZelda.Content.Items.ItemSprites;
 
 namespace LegendOfZelda.Content.Items
 {
     public class ItemSpriteFactory
     {
-        private Texture2D itemSpriteSheet, fireSpriteSheet;
+        private Texture2D itemSpriteSheet, fairySpriteSheet, heartSpriteSheet, rupeeSpriteSheet, triforcePieceSpriteSheet, arrowSwordSpriteSheet;
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance => instance;
@@ -19,7 +16,11 @@ namespace LegendOfZelda.Content.Items
         public void LoadAllTextures(ContentManager content)
         {
             itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ItemSpriteSheet");
-            fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
+            fairySpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FairySpriteSheet");
+            heartSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/HeartSpriteSheet");
+            rupeeSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/RupeeSpriteSheet");
+            triforcePieceSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/TriforcePieceSpriteSheet");
+            arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet");
         }
         public IItem CreateCompassSprite()
         {
@@ -39,7 +40,7 @@ namespace LegendOfZelda.Content.Items
         }
         public IItem CreateTriforcePieceSprite()
         {
-            return new TriforcePieceSprite(itemSpriteSheet);
+            return new TriforcePieceSprite(triforcePieceSpriteSheet);
         }
         public IItem CreateWoodBoomerangItemSprite()
         {
@@ -55,19 +56,19 @@ namespace LegendOfZelda.Content.Items
         }
         public IItem CreateHeartSprite()
         {
-            return new HeartSprite(itemSpriteSheet);
+            return new HeartSprite(heartSpriteSheet);
         }
         public IItem CreateRupeeSprite()
         {
-            return new RupeeSprite(itemSpriteSheet);
+            return new RupeeSprite(rupeeSpriteSheet);
         }
         public IItem CreateArrowItemSprite()
         {
-            return new ArrowItemSprite(itemSpriteSheet);
+            return new ArrowItemSprite(arrowSwordSpriteSheet);
         }
         public IItem CreateMagicArrowItemSprite()
         {
-            return new MagicArrowItemSprite(itemSpriteSheet);
+            return new MagicArrowItemSprite(arrowSwordSpriteSheet);
         }
         public IItem CreateBombItemSprite()
         {
@@ -75,15 +76,11 @@ namespace LegendOfZelda.Content.Items
         }
         public IItem CreateFairySprite()
         {
-            return new FairySprite(itemSpriteSheet);
-        }
-        public IItem CreateFireItemSprite()
-        {
-            return new FireItemSprite(fireSpriteSheet);
+            return new FairySprite(fairySpriteSheet);
         }
         public IItem CreateBlueRupeeSprite()
         {
-            return new BlueRupeeSprite(itemSpriteSheet);
+            return new BlueRupeeSprite(rupeeSpriteSheet);
         }
         public IItem CreateClockSprite()
         {

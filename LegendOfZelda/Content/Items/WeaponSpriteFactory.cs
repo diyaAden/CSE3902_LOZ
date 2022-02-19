@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Content.Items.WeaponSprites;
-using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Content.Items
 {
@@ -52,6 +51,10 @@ namespace LegendOfZelda.Content.Items
         public IItem CreateFireWeaponSprite(int facingDirection)
         {
             return new FireWeaponSprite(fireSpriteSheet, facingDirection);
+        }
+        public IItem CreateSwordWeaponSprite(int facingDirection)
+        {
+            return new SwordWeaponSprite(arrowSwordSpriteSheet, facingDirection);
         }
     }
 }

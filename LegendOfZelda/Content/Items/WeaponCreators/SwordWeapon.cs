@@ -3,12 +3,12 @@ using static LegendOfZelda.Content.Items.IWeapon;
 
 namespace LegendOfZelda.Content.Items.WeaponCreators
 {
-    class BombWeapon : WeaponManager
+    class SwordWeapon : WeaponManager
     {
-        public BombWeapon(Vector2 linkPosition, int facing)
+        public SwordWeapon(Vector2 linkPosition, int facing)
         {
-            Weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
-            weaponType = WeaponType.BOMB;
+            Weapon = WeaponSpriteFactory.Instance.CreateSwordWeaponSprite(facing);
+            weaponType = WeaponType.SWORD;
             switch (facing)
             {
                 case 0:
