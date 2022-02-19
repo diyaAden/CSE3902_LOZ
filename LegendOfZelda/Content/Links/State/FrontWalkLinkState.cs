@@ -18,5 +18,10 @@ namespace LegendOfZelda.Content.Links.State
             this.sprite = new FrontWalkLinkSprite(LoadLink.linkFrontMove, position, isDamaged);
         }
 
+        public override void MoveDown()
+        {
+            //do nothing
+        }
+
     }
 }

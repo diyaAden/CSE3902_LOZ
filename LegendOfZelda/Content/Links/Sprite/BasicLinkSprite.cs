@@ -21,6 +21,8 @@ namespace LegendOfZelda.Content.Links.Sprite
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
 
+        protected virtual int timer { get; set; }
+
         //set to false by default, change to true when "e" key is pressed. 
 
 

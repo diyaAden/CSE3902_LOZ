@@ -20,8 +20,11 @@ namespace LegendOfZelda.Content.Controller
         public void Update()
         {
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
-            
-            controllerMappings[Keys.F].Execute();
+
+            if (keys.Length == 0)
+            {
+                controllerMappings[Keys.F].Execute();
+            }
             foreach (Keys key in keys)
             {
                 if(controllerMappings.ContainsKey(key))

@@ -18,5 +18,9 @@ namespace LegendOfZelda.Content.Links.State
             this.sprite = new BackWalkLinkSprite(LoadLink.linkBackMove, position, isDamaged);
         }
 
+        public override void MoveUp()
+        {
+           //do nothing;
+        }
     }
 }
