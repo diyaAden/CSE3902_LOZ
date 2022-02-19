@@ -72,46 +72,11 @@ namespace LegendOfZelda
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-        private void RegisterCommands(KeyboardController control)
-        {
-            //Game Controls
-            control.RegisterCommand(Keys.Q, new QuitGame(this));
-            control.RegisterCommand(Keys.R, new ResetGame(this));
-            //KeyboardControls for Link
-            control.RegisterCommand(Keys.A, new SetLinkLeft(this));
-            control.RegisterCommand(Keys.D, new SetLinkRight(this));
-            control.RegisterCommand(Keys.Left, new SetLinkLeft(this));
-            control.RegisterCommand(Keys.Right, new SetLinkRight(this));
-            control.RegisterCommand(Keys.W, new SetLinkUp(this));
-            control.RegisterCommand(Keys.S, new SetLinkDown(this));
-            control.RegisterCommand(Keys.Up, new SetLinkUp(this));
-            control.RegisterCommand(Keys.Down, new SetLinkDown(this));
-            control.RegisterCommand(Keys.X, new UseItem(this));
-            control.RegisterCommand(Keys.M, new UseItem(this));
-            control.RegisterCommand(Keys.E, new SetLinkDamaged(this));
-            control.RegisterCommand(Keys.F, new SetLinkIdle(this));
-            control.RegisterCommand(Keys.D1, new UseBomb(this));
-            control.RegisterCommand(Keys.NumPad1, new UseBomb(this));
-            control.RegisterCommand(Keys.D2, new UseArrow(this));
-            control.RegisterCommand(Keys.NumPad2, new UseArrow(this));
-            control.RegisterCommand(Keys.D3, new UseMagicArrow(this));
-            control.RegisterCommand(Keys.NumPad3, new UseMagicArrow(this));
-            control.RegisterCommand(Keys.D4, new UseFire(this));
-            control.RegisterCommand(Keys.NumPad4, new UseFire(this));
-            control.RegisterCommand(Keys.D5, new UseBoomerang(this));
-            control.RegisterCommand(Keys.NumPad5, new UseBoomerang(this));
-            control.RegisterCommand(Keys.D6, new UseMagicBoomerang(this));
-            control.RegisterCommand(Keys.NumPad6, new UseMagicBoomerang(this));
-            //Block and item controls
-            control.RegisterCommand(Keys.T, new PreviousBlock(this));
-            control.RegisterCommand(Keys.Y, new NextBlock(this));
-            control.RegisterCommand(Keys.U, new PreviousItem(this));
-            control.RegisterCommand(Keys.I, new NextItem(this));
-        }
         protected override void Initialize()
         {
             KeyboardController control = new KeyboardController();
-            RegisterCommands(control);
+            InitializeController con = new InitializeController(this);
+            con.RegisterCommands(control);
             controllerList = new List<IController>() { control };
             base.Initialize();
         }
