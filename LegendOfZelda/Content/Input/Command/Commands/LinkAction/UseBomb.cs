@@ -21,7 +21,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             if (!myGame.activeWeapons.Exists(containsBomb))
             {
-                myGame.link.state.UseItem();
+                myGame.link.UseItem();
                 IWeapon bomb = new BombWeapon(myGame.link.state.position, myGame.link.state.Direction);
                 myGame.activeWeapons.Add(bomb);
             }

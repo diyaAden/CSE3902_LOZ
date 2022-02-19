@@ -19,7 +19,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands.LinkAction
         }
         public void Execute()
         {
-            myGame.link.state.Attack();
+            myGame.link.Attack();
             /* Must fix link attacking
             if (!myGame.activeWeapons.Exists(containsSword))
             {

@@ -21,7 +21,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             if (!myGame.activeWeapons.Exists(containsBoomerang))
             {
-                myGame.link.state.UseItem();
+                myGame.link.UseItem();
                 IWeapon boomerang = new BoomerangWeapon(myGame.link.state.position, myGame.link.state.Direction);
                 myGame.activeWeapons.Add(boomerang);
             }

@@ -21,7 +21,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             if (!myGame.activeWeapons.Exists(containsArrow))
             {
-                myGame.link.state.UseItem();
+                myGame.link.UseItem();
                 IWeapon arrow = new ArrowWeapon(myGame.link.state.position, myGame.link.state.Direction);
                 myGame.activeWeapons.Add(arrow);
             }
