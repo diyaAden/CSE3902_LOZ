@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LegendOfZelda.Content.Input.Command;
 using LegendOfZelda.Content.Input.Command.Commands;
+using LegendOfZelda.Content.Input.Command.Commands.LinkAction;
 using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda.Content.Controller
@@ -30,6 +31,8 @@ namespace LegendOfZelda.Content.Controller
             control.RegisterCommand(Keys.Down, new SetLinkDown(myGame));
             control.RegisterCommand(Keys.X, new UseItem(myGame));
             control.RegisterCommand(Keys.M, new UseItem(myGame));
+            control.RegisterCommand(Keys.Z, new Attack(myGame));
+            control.RegisterCommand(Keys.N, new Attack(myGame));
             control.RegisterCommand(Keys.E, new SetLinkDamaged(myGame));
             control.RegisterCommand(Keys.F, new SetLinkIdle(myGame));
             control.RegisterCommand(Keys.D1, new UseBomb(myGame));
