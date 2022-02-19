@@ -17,11 +17,17 @@ namespace LegendOfZelda.Content.Links.Sprite
             Texture = texture;
             Pos = Position;
             checkDamageState = damageState;
+            timer = 20;
         }
         public override void Update()
         {
+            timer--;
             Pos = new Vector2(Pos.X, Pos.Y + 3);
-            CurrentFrame = (CurrentFrame + 1) % TotalFrames;
+            if (timer == 0)
+            {
+                CurrentFrame = (CurrentFrame + 1) % TotalFrames;
+                timer = 20;
+            }
         }
     }
 }
