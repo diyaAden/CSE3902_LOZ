@@ -10,11 +10,12 @@ namespace LegendOfZelda.Content.Links.State
 {
     class LeftWalkLinkState : BasicLinkState
     {
-        public LeftWalkLinkState(ILink link, Vector2 position, ISprite sprite)
+        public LeftWalkLinkState(ILink link, Vector2 position, ISprite sprite, bool isDamaged)
         {
             direction = 2;
             this.link = link;
             this.position = position;
+            this.isDamaged = isDamaged;
             this.sprite = new LeftWalkLinkSprite(LoadLink.linkLeftMove, position, isDamaged);
         }
 

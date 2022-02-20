@@ -15,11 +15,12 @@ namespace LegendOfZelda.Content.Links
     {
         public ILinkState state{ get; set; }
         private ISprite sprite;
+        bool isDamaged;
         private int attackCooldown, cooldownLimit = 30;
 
         public Link(Game1 game, Vector2 position)
         {
-            this.state = new RightIdleLinkState(this, position, sprite);
+            this.state = new RightIdleLinkState(this, position, sprite, isDamaged);
             attackCooldown = 0;
         }
 

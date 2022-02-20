@@ -10,10 +10,11 @@ namespace LegendOfZelda.Content.Links.State
 {
     class RightUseItemLinkState : BasicLinkState
     {
-        public RightUseItemLinkState(ILink link, Vector2 position, ISprite sprite)
+        public RightUseItemLinkState(ILink link, Vector2 position, ISprite sprite, bool isDamaged)
         {
             this.link = link;
             this.position = position;
+            this.isDamaged = isDamaged;
             this.sprite = new RightUseItemLinkSprite(LoadLink.linkRightItem, position, isDamaged);
         }
 

@@ -10,11 +10,12 @@ namespace LegendOfZelda.Content.Links.State
 {
     class RightAttackLinkState : BasicLinkState
     {
-        public RightAttackLinkState(ILink link, Vector2 position, ISprite sprite)
+        public RightAttackLinkState(ILink link, Vector2 position, ISprite sprite, bool isDamaged)
         {
             direction = 3;
             this.link = link;
             this.position = position;
+            this.isDamaged = isDamaged;
             this.sprite = new RightAttackLinkSprite(LoadLink.linkRightAttack, position, isDamaged);
         }
 
