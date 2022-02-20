@@ -109,7 +109,22 @@ namespace LegendOfZelda.Content.Links.State
         public virtual void Attack()
         {
             // Must apply the other 3 directions
-            link.state = new FrontAttackLinkState(link, position, sprite);
+            if (direction == 0)
+            {
+                link.state = new FrontAttackLinkState(link, position, sprite);
+            }
+            else if (direction == 1)
+            {
+                link.state = new BackAttackLinkState(link, position, sprite);
+            }
+            else if (direction == 2)
+            {
+                link.state = new LeftAttackLinkState(link, position, sprite);
+            }
+            else if (direction == 3)
+            {
+                link.state = new RightAttackLinkState(link, position, sprite);
+            }
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
