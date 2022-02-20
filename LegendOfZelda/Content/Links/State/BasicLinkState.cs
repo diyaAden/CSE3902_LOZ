@@ -47,7 +47,16 @@ namespace LegendOfZelda.Content.Links.State
         
         public virtual void toDamaged()
         {
-            isDamaged = true;
+            if (!isDamaged)
+            {
+                isDamaged = true;
+            }
+            else
+            {
+                isDamaged = false;
+            }
+
+            
         }
         public virtual void ToIdle()
         {
