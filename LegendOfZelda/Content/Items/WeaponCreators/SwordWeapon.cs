@@ -12,16 +12,16 @@ namespace LegendOfZelda.Content.Items.WeaponCreators
             switch (facing)
             {
                 case 0:
-                    position = new Vector2(linkPosition.X, linkPosition.Y + 16);
+                    position = new Vector2(linkPosition.X + 6, linkPosition.Y + 16);
                     break;
                 case 1:
-                    position = new Vector2(linkPosition.X, linkPosition.Y - 16);
+                    position = new Vector2(linkPosition.X + 4, linkPosition.Y - 16);
                     break;
                 case 2:
-                    position = new Vector2(linkPosition.X - 16, linkPosition.Y);
+                    position = new Vector2(linkPosition.X - 16, linkPosition.Y + 6);
                     break;
                 default:
-                    position = new Vector2(linkPosition.X + 16, linkPosition.Y);
+                    position = new Vector2(linkPosition.X + 16, linkPosition.Y + 6);
                     break;
             }
             Weapon.position = position;

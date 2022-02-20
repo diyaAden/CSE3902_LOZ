@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Content.Items.WeaponSprites;
+using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Content.Items
 {
     public class WeaponSpriteFactory
     {
-        private Texture2D itemSpriteSheet, fireSpriteSheet, arrowSwordSpriteSheet, smokeCloud;
+        private Texture2D itemSpriteSheet, fireSpriteSheet, arrowSwordSpriteSheet, smokeCloudSpriteSheet, swordShardsSpriteSheet;
         private static WeaponSpriteFactory instance = new WeaponSpriteFactory();
 
         public static WeaponSpriteFactory Instance => instance;
@@ -18,15 +19,24 @@ namespace LegendOfZelda.Content.Items
             itemSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ItemSpriteSheet");
             fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
             arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet");
-            smokeCloud = content.Load<Texture2D>("SpriteSheets/Items/WeaponParticlesSpriteSheet");
+            smokeCloudSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/WeaponParticlesSpriteSheet");
+            swordShardsSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/SwordShardsSpriteSheet");
         }
         public IItem CreateExplosionSprite()
         {
-            return new ExplosionSprite(smokeCloud);
+            return new ExplosionSprite(smokeCloudSpriteSheet);
         }
         public IItem CreateArrowNickSprite()
         {
-            return new ArrowNickSprite(smokeCloud);
+            return new ArrowNickSprite(smokeCloudSpriteSheet);
+        }
+        public IItem CreateSwordShardWeaponSprite(int row)
+        {
+            return new SwordShardWeaponSprite(swordShardsSpriteSheet, row);
+        }
+        public IItem CreateSwordShardSetWeaponSprite(Vector2 position)
+        {
+            return new ShardSetWeaponSprite(position);
         }
         public IItem CreateWoodBoomerangWeaponSprite(int facing)
         {

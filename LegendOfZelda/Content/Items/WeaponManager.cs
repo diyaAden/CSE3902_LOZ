@@ -13,20 +13,22 @@ namespace LegendOfZelda.Content.Items
 
         private void DestroyWeapon()
         {
+            position = Weapon.position;
             switch (weaponType)
             {
-                case WeaponType.NONE:
-                    break;
                 case WeaponType.BOMB:
                     Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
                     Weapon.position = position;
                     weaponType = WeaponType.EXPLOSION;
                     break;
                 case WeaponType.ARROW:
-                    position = Weapon.position;
                     Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
                     Weapon.position = position;
                     weaponType = WeaponType.NICK;
+                    break;
+                case WeaponType.SWORD:
+                    Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
+                    weaponType = WeaponType.SWORDSHARDS;
                     break;
                 default:
                     Weapon = null;

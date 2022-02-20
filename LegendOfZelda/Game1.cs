@@ -83,6 +83,7 @@ namespace LegendOfZelda
         public void ResetGame()
         {
             //GraphicsDevice.Reset();
+            LoadContent();
         }
 
         protected override void LoadContent()
