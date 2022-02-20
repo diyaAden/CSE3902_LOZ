@@ -23,7 +23,7 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
 
         public override void Update()
         {
-            if (++animationTimer > 3)
+            if (++animationTimer > 1)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
