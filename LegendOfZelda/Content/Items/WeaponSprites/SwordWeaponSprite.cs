@@ -5,15 +5,13 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
 {
     public class SwordWeaponSprite : BasicItem
     {
-        private int direction;
-        private int speed = 2;
-        private int animationTimer = 0;
+        private int direction, currentSpeed = 0, animationTimer = 0;
+        private readonly int swordSpeed = 2;
+        private bool swordOut = false;
 
-        public SwordWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
+        private void SpawnSword()
         {
-            spriteSheet = itemSpriteSheet;
-            direction = movingDirection;
-            timerLimit = 45;
+            animationFrames.Clear();
             switch (direction)
             {
                 case 0:
@@ -33,29 +31,41 @@ namespace LegendOfZelda.Content.Items.WeaponSprites
                     animationFrames.Add(new Rectangle(14, 11, 16, 7));
                     break;
             }
+            swordOut = true;
+            currentSpeed = swordSpeed;
         }
-        public override void Update()
+        private void MoveSword()
         {
-            if (++animationTimer > 1)
-            {
-                animationTimer = 0;
-                currentFrame = ++currentFrame % animationFrames.Count;
-            }
             switch (direction)
             {
                 case 1:
-                    pos.Y -= speed;
+                    pos.Y -= currentSpeed;
                     break;
                 case 3:
-                    pos.X += speed;
+                    pos.X += currentSpeed;
                     break;
                 case 0:
-                    pos.Y += speed;
+                    pos.Y += currentSpeed;
                     break;
                 default:
-                    pos.X -= speed;
+                    pos.X -= currentSpeed;
                     break;
             }
+        }
+        public SwordWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
+        {
+            spriteSheet = itemSpriteSheet;
+            direction = movingDirection;
+            timerLimit = 75;
+            animationFrames.Add(new Rectangle());
+        }
+        public override void Update()
+        {
+            if (swordOut) MoveSword();
+
+            if (++animationTimer % 3 == 2) currentFrame = ++currentFrame % animationFrames.Count;
+
+            if (animationTimer == 30 && !swordOut) SpawnSword();
         }
     }
 }
