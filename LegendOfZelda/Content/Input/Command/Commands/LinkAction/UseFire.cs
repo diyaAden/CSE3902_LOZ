@@ -21,7 +21,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         {
             if (!myGame.activeWeapons.Exists(containsFire))
             {
-                myGame.link.state.UseItem();
+                myGame.link.UseItem();
                 IWeapon fire = new FireWeapon(myGame.link.state.position, myGame.link.state.Direction);
                 myGame.activeWeapons.Add(fire);
             }

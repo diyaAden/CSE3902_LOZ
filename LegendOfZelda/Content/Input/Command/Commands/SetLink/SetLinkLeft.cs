@@ -13,7 +13,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         public void Execute()
         {
-            myGame.link.state.MoveLeft();
+            myGame.link.MoveLeft();
         }
     }
 }

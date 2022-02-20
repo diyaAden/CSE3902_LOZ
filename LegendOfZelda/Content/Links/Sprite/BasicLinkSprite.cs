@@ -33,7 +33,7 @@ namespace LegendOfZelda.Content.Links.Sprite
         {
 
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;

@@ -27,7 +27,6 @@ namespace LegendOfZelda.Content.Links.State
         protected static int direction = 3;
         public int Direction { get { return direction; } }
         protected int timer = 20;
-
         public bool isDamaged = false;
 
         
@@ -41,7 +40,7 @@ namespace LegendOfZelda.Content.Links.State
                 position = sprite.Position;
                 timer = 20; //make sure change that when change timer at the beginning
 
-            
+
         }
         
         public virtual void toDamaged()
@@ -89,29 +88,43 @@ namespace LegendOfZelda.Content.Links.State
 
         public virtual void UseItem()
         {
-           
-            if (direction == 0)
-            {
-                link.state = new FrontUseItemLinkState(link, position, sprite);
-            }
-            else if(direction == 1)
-            {
-                link.state = new BackUseItemLinkState(link, position, sprite);
-            }
-            else if (direction == 2)
-            {
-                link.state = new LeftUseItemLinkState(link, position, sprite);
-            }
-            else if (direction == 3)
-            {
-                link.state = new RightUseItemLinkState(link, position, sprite);
-            }
-           
+                if (direction == 0)
+                {
+                    link.state = new FrontUseItemLinkState(link, position, sprite);
+                }
+                else if (direction == 1)
+                {
+                    link.state = new BackUseItemLinkState(link, position, sprite);
+                }
+                else if (direction == 2)
+                {
+                    link.state = new LeftUseItemLinkState(link, position, sprite);
+                }
+                else if (direction == 3)
+                {
+                    link.state = new RightUseItemLinkState(link, position, sprite);
+                }
         }
 
         public virtual void Attack()
         {
-            
+            // Must apply the other 3 directions
+            if (direction == 0)
+            {
+                link.state = new FrontAttackLinkState(link, position, sprite);
+            }
+            else if (direction == 1)
+            {
+                link.state = new BackAttackLinkState(link, position, sprite);
+            }
+            else if (direction == 2)
+            {
+                link.state = new LeftAttackLinkState(link, position, sprite);
+            }
+            else if (direction == 3)
+            {
+                link.state = new RightAttackLinkState(link, position, sprite);
+            }
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {

@@ -11,7 +11,13 @@ namespace LegendOfZelda.Content.Links
     public interface ILink
     {
         ILinkState state { get; set; }
-
+        public void ToIdle();
+        public void MoveUp();
+        public void MoveDown();
+        public void MoveRight();
+        public void MoveLeft();
+        public void UseItem();
+        public void Attack();
         void Update();
         void Draw(SpriteBatch spriteBatch);
     }

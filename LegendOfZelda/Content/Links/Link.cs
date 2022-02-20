@@ -15,48 +15,61 @@ namespace LegendOfZelda.Content.Links
     {
         public ILinkState state{ get; set; }
         private ISprite sprite;
+        private int attackCooldown, cooldownLimit = 30;
 
         public Link(Game1 game, Vector2 position)
         {
             this.state = new RightIdleLinkState(this, position, sprite);
+            attackCooldown = 0;
         }
 
         //Motions that link will have, and change the state.
+        public void ToIdle()
+        {
+            if (attackCooldown == 0) state.ToIdle();
+        }
         public void MoveUp()
         {
-            state.MoveUp();
+            if (attackCooldown == 0) state.MoveUp();
         }
         public void MoveDown()
         {
-            state.MoveDown();
+            if (attackCooldown == 0) state.MoveDown();
         }
         public void MoveRight()
         {
-            state.MoveRight();
+            if (attackCooldown == 0) state.MoveRight();
         }
         public void MoveLeft()
         {
-            state.MoveLeft();
+            if (attackCooldown == 0) state.MoveLeft();
         }
         public void UseItem()
         {
-            state.UseItem();
+            if (attackCooldown == 0)
+            {
+                attackCooldown = cooldownLimit;
+                state.UseItem();
+            }
         }
         public void Attack()
         {
-            state.Attack();
+            if (attackCooldown == 0)
+            {
+                attackCooldown = cooldownLimit;
+                state.Attack();
+            }
         }
 
         //Update and draw
         public void Update()
         {
+            if (attackCooldown != 0) attackCooldown--;
             state.Update();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             state.Draw(spriteBatch);
         }
-
-        
     }
 }
