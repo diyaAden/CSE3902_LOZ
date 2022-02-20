@@ -23,9 +23,9 @@ namespace LegendOfZelda.Content.Links.Sprite
 
         protected virtual int timer { get; set; }
 
+        protected int linkMoveSpeed = 2;
+
         //set to false by default, change to true when "e" key is pressed. 
-
-
         public bool checkDamageState = true; //{ get; set; }
         public Color spriteColor { get; set; }
 
