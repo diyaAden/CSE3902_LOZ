@@ -15,18 +15,16 @@ namespace LegendOfZelda.Content.Input.Command.Commands.LinkAction
         }
         private static bool containsSword(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.SWORD;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.SWORD || weapon.GetWeaponType() == IWeapon.WeaponType.SWORDSHARDS;
         }
         public void Execute()
         {
             myGame.link.Attack();
-            /* Must fix link attacking
             if (!myGame.activeWeapons.Exists(containsSword))
             {
                 IWeapon sword = new SwordWeapon(myGame.link.state.position, myGame.link.state.Direction);
                 myGame.activeWeapons.Add(sword);
             }
-            */
         }
     }
 }
