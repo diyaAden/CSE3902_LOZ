@@ -10,13 +10,13 @@ namespace LegendOfZelda.Content.Links.State
 {
     class BackWalkLinkState : BasicLinkState
     {
-        public BackWalkLinkState(ILink link, Vector2 position, ISprite sprite, bool isDamaged)
+        public BackWalkLinkState(ILink link, Vector2 position, bool isDamaged)
         {
             direction = 1;
-            this.link = link;
-            this.position = position;
+            this.Link = link;
+            this.Position = position;
             this.isDamaged = isDamaged;
-            this.sprite = new BackWalkLinkSprite(LoadLink.linkBackMove, position, isDamaged);
+            this.Sprite = new BackWalkLinkSprite(LoadLink.linkBackMove, position, isDamaged);
         }
 
         public override void MoveUp()

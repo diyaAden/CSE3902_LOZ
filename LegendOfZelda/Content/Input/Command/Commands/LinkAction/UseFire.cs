@@ -22,7 +22,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
             if (!myGame.activeWeapons.Exists(containsFire))
             {
                 myGame.link.UseItem();
-                IWeapon fire = new FireWeapon(myGame.link.state.position, myGame.link.state.Direction);
+                IWeapon fire = new FireWeapon(myGame.link.State.Position, myGame.link.State.Direction);
                 myGame.activeWeapons.Add(fire);
             }
         }

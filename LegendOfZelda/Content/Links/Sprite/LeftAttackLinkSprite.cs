@@ -20,14 +20,14 @@ namespace LegendOfZelda.Content.Links.Sprite
             Position.X -= 11;
             spritePosition = Position;
             checkDamageState = damageState;
-            timer = 2;
+            Timer = 2;
         }
         public override void Update()
         {
-            if (--timer == 0 && CurrentFrame != TotalFrames - 1)
+            if (--Timer == 0 && CurrentFrame != TotalFrames - 1)
             {
                 ++CurrentFrame;
-                timer = 2;
+                Timer = 2;
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -39,18 +39,18 @@ namespace LegendOfZelda.Content.Links.Sprite
 
             if (checkDamageState == true)
             {
-                spriteColor = Color.Red;
+                SpriteColor = Color.Red;
             }
             else
             {
-                spriteColor = Color.White;
+                SpriteColor = Color.White;
             }
 
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)spritePosition.X, (int)spritePosition.Y, width, height);
 
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, spriteColor);
+            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, SpriteColor);
 
         }
     }

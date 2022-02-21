@@ -140,7 +140,7 @@ namespace LegendOfZelda
             {
                 while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.NONE) { activeWeapons.RemoveAt(i); }
             }
-            foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.state.position); }
+            foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
             foreach (ICollection collection in objectCollections) { collection.Update(); }
 

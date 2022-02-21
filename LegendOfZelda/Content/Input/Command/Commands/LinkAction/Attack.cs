@@ -22,7 +22,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands.LinkAction
             myGame.link.Attack();
             if (!myGame.activeWeapons.Exists(containsSword))
             {
-                IWeapon sword = new SwordWeapon(myGame.link.state.position, myGame.link.state.Direction);
+                IWeapon sword = new SwordWeapon(myGame.link.State.Position, myGame.link.State.Direction);
                 myGame.activeWeapons.Add(sword);
             }
         }
