@@ -22,7 +22,7 @@ Enemy/NPC (other character) Controls
 characters should move, animate, fire projectiles, etc. as they do in the final game, but should not interact with any other objects
 
 Other Controls
-Use 'q' to quit and 'r' to reset the program back to its initial state.
+- Use 'q' to quit and 'r' to reset the program back to its initial state.
 
 
 Updates Log:
