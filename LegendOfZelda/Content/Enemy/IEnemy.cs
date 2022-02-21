@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Content.Enemy
 {
-    class IEnemy
+    public interface IEnemy
     {
         public Vector2 position { get; set; }
 

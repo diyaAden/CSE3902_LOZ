@@ -8,19 +8,35 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Enemy
 {
-    class Enemy : IEnemy
+    public abstract class Enemy : IEnemy
     {
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
-        protected Vector2 pos = new Vector2(400, 100);
+        protected Vector2 pos = new Vector2(400, 400);
         public Vector2 position { get { return pos; } set { pos = value; } }
 
-        public void Update();
+        public virtual Texture2D Texture { get; set; }
+
+        protected virtual int Rows { get; set; }
+        protected virtual int Columns { get; set; }
+        protected virtual int CurrentFrame { get; set; }
+        protected virtual int TotalFrames { get; set; }
+
+
+        public abstract void Update();
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width, sourceRect.Height);
-            spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White);
+            int width = Texture.Width / Columns;
+            int height = Texture.Height / Rows;
+            int row = CurrentFrame / Columns;
+            int column = CurrentFrame % Columns;
+
+            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
+
+            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+
         }
     }
 }
