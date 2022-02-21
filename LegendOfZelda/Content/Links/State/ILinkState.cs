@@ -12,7 +12,7 @@ namespace LegendOfZelda.Content.Links
         Vector2 Position { get; set; }
         int Direction { get; }
         void ToIdle();
-        void toDamaged();
+        void ToDamaged();
         void MoveUp();
         void MoveDown();
         void MoveRight();

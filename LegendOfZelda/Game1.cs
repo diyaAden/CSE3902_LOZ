@@ -116,7 +116,7 @@ namespace LegendOfZelda
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             BlockCollection = new BlockCollection();
             LoadLink.LoadTexture(Content);
-            link = new Link(this, position);
+            link = new Link(position);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection };
         }

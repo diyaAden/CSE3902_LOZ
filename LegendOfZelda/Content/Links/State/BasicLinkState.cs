@@ -40,7 +40,7 @@ namespace LegendOfZelda.Content.Links.State
 
         }
         
-        public virtual void toDamaged()
+        public virtual void ToDamaged()
         {
             if (!isDamaged)
             {

@@ -18,7 +18,7 @@ namespace LegendOfZelda.Content.Links
         bool isDamaged;
         private int attackCooldown, cooldownLimit = 30;
 
-        public Link(Game1 game, Vector2 position)
+        public Link(Vector2 position)
         {
             this.state = new RightIdleLinkState(this, position, isDamaged);
             attackCooldown = 0;

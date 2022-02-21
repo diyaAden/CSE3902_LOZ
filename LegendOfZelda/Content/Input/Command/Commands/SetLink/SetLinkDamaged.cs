@@ -13,7 +13,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
         }
         public void Execute()
         {
-            myGame.link.State.toDamaged();
+            myGame.link.State.ToDamaged();
         }
     }
 }
