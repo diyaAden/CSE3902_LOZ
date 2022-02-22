@@ -57,9 +57,9 @@ namespace LegendOfZelda.Content.Enemy
         {
             return new BasicExplosionSprite(explosionSpriteSheet);
         }
-        public IEnemy CreateFireballSprite()
+        public IEnemy CreateFireballSprite(int direction)
         {
-            return new BasicFireballSprite(fireballSpriteSheet);
+            return new BasicFireballSprite(fireballSpriteSheet, direction);
         }
         public IEnemy CreateGelSprite()
         {

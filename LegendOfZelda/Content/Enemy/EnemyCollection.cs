@@ -14,7 +14,7 @@ namespace LegendOfZelda.Content.Enemy
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateAquamentusSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateCloudSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateExplosionSprite());
-            enemyCollection.Add(EnemySpriteFactory.Instance.CreateFireballSprite());
+            //enemyCollection.Add(EnemySpriteFactory.Instance.CreateFireballSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateGelSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateGoriyaSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateKeeseSprite());

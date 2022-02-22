@@ -22,6 +22,7 @@ namespace LegendOfZelda.Content.Enemy
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
 
+        public virtual void Attack() { }
 
         public abstract void Update();
 

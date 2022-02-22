@@ -10,6 +10,8 @@ namespace LegendOfZelda.Content.Enemy
     {
         public Vector2 position { get; set; }
 
+        public void Attack();
+
         public void Update();
 
         public void Draw(SpriteBatch spriteBatch);

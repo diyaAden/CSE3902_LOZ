@@ -9,17 +9,17 @@ namespace LegendOfZelda.Content.Enemy.Fireball.Sprite
      class BasicFireballSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0;
+        private int animationTimer = 0, currentFrame = 0, moveSpeed = 1, moveDirection;
         private List<Rectangle> animationFrames = new List<Rectangle>();
 
-        public BasicFireballSprite(Texture2D itemSpriteSheet)
+        public BasicFireballSprite(Texture2D itemSpriteSheet, int direction)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 8, 10));
             animationFrames.Add(new Rectangle(8, 0, 8, 10));
             animationFrames.Add(new Rectangle(16, 0, 8, 10));
             animationFrames.Add(new Rectangle(24, 0, 8, 10));
-
+            moveDirection = direction;
         }
 
         public override void Update()
