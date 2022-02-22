@@ -15,13 +15,13 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
         public BasicGoriyaSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(2, 0, 13, 16));
-            animationFrames.Add(new Rectangle(17, 0, 13, 16));
+            animationFrames.Add(new Rectangle(0, 0, 16, 16));
+            animationFrames.Add(new Rectangle(16, 0, 16, 16));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > 2)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;

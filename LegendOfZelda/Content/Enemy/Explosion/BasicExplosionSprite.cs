@@ -17,8 +17,8 @@ namespace LegendOfZelda.Content.Enemy.Explosion.Sprite
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 15, 16));
             animationFrames.Add(new Rectangle(16, 0, 15, 16));
-            animationFrames.Add(new Rectangle(35, 3, 9, 10));
-            animationFrames.Add(new Rectangle(51, 3, 9, 10));
+            animationFrames.Add(new Rectangle(32, 0, 15, 16));
+            animationFrames.Add(new Rectangle(48, 0, 15, 16));
 
         }
 

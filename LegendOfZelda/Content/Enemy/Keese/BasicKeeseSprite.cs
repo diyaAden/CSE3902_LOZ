@@ -15,13 +15,13 @@ namespace LegendOfZelda.Content.Enemy.Keese.Sprite
         public BasicKeeseSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 4, 15, 11));
-            animationFrames.Add(new Rectangle(19, 4, 10, 10));
+            animationFrames.Add(new Rectangle(0, 0, 16, 8));
+            animationFrames.Add(new Rectangle(16, 0, 16, 8));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > 2)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;

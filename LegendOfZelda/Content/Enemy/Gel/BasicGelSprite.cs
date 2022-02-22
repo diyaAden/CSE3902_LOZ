@@ -16,12 +16,12 @@ namespace LegendOfZelda.Content.Enemy.Gel.Sprite
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 8, 9));
-            animationFrames.Add(new Rectangle(9, 0, 6, 9));
+            animationFrames.Add(new Rectangle(8, 0, 8, 9));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > 2)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;

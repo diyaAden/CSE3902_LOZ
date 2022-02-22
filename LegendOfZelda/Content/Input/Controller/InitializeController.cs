@@ -52,6 +52,9 @@ namespace LegendOfZelda.Content.Controller
             control.RegisterCommand(Keys.Y, new NextBlock(myGame));
             control.RegisterCommand(Keys.U, new PreviousItem(myGame));
             control.RegisterCommand(Keys.I, new NextItem(myGame));
+            //Scroll Thru Enemies
+            control.RegisterCommand(Keys.P, new NextEnemy(myGame));
+
         }
     }
 }

@@ -20,7 +20,7 @@ namespace LegendOfZelda.Content.Enemy.Trap.Sprite
 
         public override void Update()
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > 1)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
