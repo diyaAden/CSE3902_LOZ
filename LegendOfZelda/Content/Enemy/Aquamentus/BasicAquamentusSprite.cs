@@ -27,7 +27,7 @@ namespace LegendOfZelda.Content.Enemy.Aquamentus.Sprite
             fireballs = new List<IEnemy>();
             for (int i = -1; i < 2; i++)
             {
-                fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i));
+                fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, pos));
             }
         }
 

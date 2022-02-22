@@ -12,7 +12,7 @@ namespace LegendOfZelda.Content.Enemy.Fireball.Sprite
         private int animationTimer = 0, currentFrame = 0, moveSpeed = 1, moveDirection;
         private List<Rectangle> animationFrames = new List<Rectangle>();
 
-        public BasicFireballSprite(Texture2D itemSpriteSheet, int direction)
+        public BasicFireballSprite(Texture2D itemSpriteSheet, int direction, Vector2 position)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 8, 10));
@@ -20,6 +20,7 @@ namespace LegendOfZelda.Content.Enemy.Fireball.Sprite
             animationFrames.Add(new Rectangle(16, 0, 8, 10));
             animationFrames.Add(new Rectangle(24, 0, 8, 10));
             moveDirection = direction;
+            pos = position;
         }
 
         public override void Update()
