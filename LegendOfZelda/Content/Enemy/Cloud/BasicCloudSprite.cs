@@ -29,6 +29,7 @@ namespace LegendOfZelda.Content.Enemy.Cloud.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)

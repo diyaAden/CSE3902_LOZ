@@ -29,6 +29,8 @@ namespace LegendOfZelda.Content.Enemy.Fireball.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+            position = new Vector2(position.X + 2, position.Y +2);
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)

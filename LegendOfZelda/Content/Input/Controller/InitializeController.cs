@@ -52,7 +52,9 @@ namespace LegendOfZelda.Content.Controller
             control.RegisterCommand(Keys.Y, new NextBlock(myGame));
             control.RegisterCommand(Keys.U, new PreviousItem(myGame));
             control.RegisterCommand(Keys.I, new NextItem(myGame));
-            control.RegisterCommand(Keys.O, new NextEnemy(myGame));
+            control.RegisterCommand(Keys.O, new PreviousNPC(myGame));
+            control.RegisterCommand(Keys.P, new NextNPC(myGame));
+
             
         }
     }

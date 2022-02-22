@@ -21,12 +21,14 @@ namespace LegendOfZelda.Content.Enemy.Keese.Sprite
 
         public override void Update()
         {
+            var rand = new Random();
             if (++animationTimer > 2)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-        }
+            position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y - (rand.Next(-2, 2)));
+         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {

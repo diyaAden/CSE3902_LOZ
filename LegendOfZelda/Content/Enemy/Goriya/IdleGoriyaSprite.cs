@@ -6,28 +6,25 @@ using System.Text;
 
 namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
 {
-     class BasicGoriyaSprite : Enemy
+     class IdleGoriyaSprite : Enemy
     {
 
         private int animationTimer = 0, currentFrame = 0;
         private List<Rectangle> animationFrames = new List<Rectangle>();
 
-        public BasicGoriyaSprite(Texture2D itemSpriteSheet)
+        public IdleGoriyaSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(16, 0, 16, 16));
         }
 
         public override void Update()
         {
-            var rand = new Random();
             if (++animationTimer > 2)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y + (rand.Next(-2, 2)));
 
         }
 

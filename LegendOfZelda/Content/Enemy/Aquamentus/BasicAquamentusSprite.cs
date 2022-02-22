@@ -11,6 +11,8 @@ namespace LegendOfZelda.Content.Enemy.Aquamentus.Sprite
 
         private int animationTimer = 0, currentFrame = 0;
         private List<Rectangle> animationFrames = new List<Rectangle>();
+        protected int moveSpeed = 2;
+
 
         public BasicAquamentusSprite(Texture2D itemSpriteSheet)
         {
@@ -23,11 +25,14 @@ namespace LegendOfZelda.Content.Enemy.Aquamentus.Sprite
 
         public override void Update()
         {
+            var rand = new Random();
             if (++animationTimer > 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+            position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y - (rand.Next(-2, 2)));
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
