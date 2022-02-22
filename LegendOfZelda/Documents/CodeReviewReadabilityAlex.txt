@@ -1,0 +1,13 @@
+﻿Author of Code Review: Alex Quedens
+Date: 2/21/22
+Sprint 2
+BlockSpriteFactory.cs (Author: Sean Burns)
+Time Spent: 10min
+Comments:
+	- I think overall, this file is very readable.
+	- Author does a good job of defining variables at the top.
+	- Really my only recommendations are adding comments to describe certain sections of code.
+	- To build on the point above, maybe separate all IBlock type constuctors into an area outlined with commments.
+	- Maybe give a brief description of what the file is doing overall, or justify the pattern of code we see.
+
+There isn't a whole lot going on in the file since most of it is just basic constructors, but I think Sean did a good job of keeping organzied and maintaining readablility.
