@@ -38,7 +38,7 @@ namespace LegendOfZelda.Content.Enemy.Aquamentus.Sprite
             if (++animationTimer % 4 == 0)
             {
                 currentFrame = ++currentFrame % animationFrames.Count;
-                if (animationTimer == 200)
+                if (animationTimer == 160)
                 {
                     animationTimer = 0;
                     Attack();
