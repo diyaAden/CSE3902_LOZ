@@ -1,0 +1,8 @@
+Review Author: Sean Burns
+Review Date: 2-19-22
+Sprint: 2
+
+File Name: KeyboardController.cs
+File Author: Ben Roth
+Review Length: 8 minutes
+Comments: Due to the short length of the class, it is very easy to follow along with what it is doing. The RegisterCommand method is perfectly clear in its functionality since it maps the given key to the given command for later use. The only hiccup I had while reading through the class was at the first if statement in the Update method. Since the command paired with a specific key was told to execute when no keys were pressed, I had to quickly search around to find out what command was paired with this key. Other than that, all of the field and parameter names were self-explanatory and the file used whitespace appropriately in order to make it easy to read through and follow.
