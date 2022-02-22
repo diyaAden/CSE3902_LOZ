@@ -13,9 +13,7 @@ using LegendOfZelda.Content.Enemy.Keese.Sprite;
 using LegendOfZelda.Content.Enemy.Stalfos.Sprite;
 using LegendOfZelda.Content.Enemy.Trap.Sprite;
 using LegendOfZelda.Content.Enemy.WallMaster.Sprite;
-
-
-
+using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Content.Enemy
 {
@@ -57,9 +55,9 @@ namespace LegendOfZelda.Content.Enemy
         {
             return new BasicExplosionSprite(explosionSpriteSheet);
         }
-        public IEnemy CreateFireballSprite(int direction)
+        public IEnemy CreateFireballSprite(int direction, Vector2 position)
         {
-            return new BasicFireballSprite(fireballSpriteSheet, direction);
+            return new BasicFireballSprite(fireballSpriteSheet, direction, position);
         }
         public IEnemy CreateGelSprite()
         {
