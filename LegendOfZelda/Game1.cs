@@ -39,7 +39,6 @@ namespace LegendOfZelda
 
         private List<IController> controllerList;
         private List<ICollection> objectCollections;
-        private List<ICollection> enemyCollections;
 
         public Vector2 position = new Vector2(400, 300);
         public ILink link;
@@ -88,8 +87,7 @@ namespace LegendOfZelda
             link = new Link(this, position);
 
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
-            objectCollections = new List<ICollection>() { BlockCollection, ItemCollection };
-            enemyCollections = new List<ICollection>() { EnemyCollection };
+            objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
         }
 
         protected override void Update(GameTime gameTime)
@@ -104,8 +102,6 @@ namespace LegendOfZelda
             link.Update();
             foreach (ICollection collection in objectCollections) { collection.Update(); }
 
-            foreach (ICollection collection in enemyCollections) { collection.Update(); }
-
 
             base.Update(gameTime);
         }
@@ -116,8 +112,6 @@ namespace LegendOfZelda
             _spriteBatch.Begin();
             
             foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
-
-            foreach (ICollection collection in enemyCollections) { collection.Draw(_spriteBatch); }
 
             foreach (IWeapon weapon in activeWeapons)
             {

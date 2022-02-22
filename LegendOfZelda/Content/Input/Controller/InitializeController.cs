@@ -47,14 +47,11 @@ namespace LegendOfZelda.Content.Controller
             control.RegisterCommand(Keys.NumPad5, new UseBoomerang(myGame));
             control.RegisterCommand(Keys.D6, new UseMagicBoomerang(myGame));
             control.RegisterCommand(Keys.NumPad6, new UseMagicBoomerang(myGame));
-            //Block and item controls
+            //Block, enemy, and item controls
             control.RegisterCommand(Keys.T, new PreviousBlock(myGame));
             control.RegisterCommand(Keys.Y, new NextBlock(myGame));
             control.RegisterCommand(Keys.U, new PreviousItem(myGame));
             control.RegisterCommand(Keys.I, new NextItem(myGame));
-            //Scroll Thru Enemies
-            control.RegisterCommand(Keys.P, new NextEnemy(myGame));
-
         }
     }
 }
