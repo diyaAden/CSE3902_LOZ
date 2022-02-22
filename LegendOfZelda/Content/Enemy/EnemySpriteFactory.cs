@@ -19,7 +19,8 @@ namespace LegendOfZelda.Content.Enemy
 {
     class EnemySpriteFactory
     {
-        private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, goriyaSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
+        private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet;
+        private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
 
@@ -33,15 +34,14 @@ namespace LegendOfZelda.Content.Enemy
             explosionSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Explosion");
             fireballSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Fireball");
             gelSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Gel");
-            goriyaSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/GoriyaDownward");
+            goriyaDownSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/GoriyaDownward");
+            goriyaRightSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/GoriyaRight");
+            goriyaLeftSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/GoriyaLeft");
+            goriyaUpSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/GoriyaUpward");
             keeseSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Keese");
             stalfosSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Stalfos");
             trapSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Trap");
             wallMasterSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/WallMaster");
-
-
-
-
         }
         public IEnemy CreateAquamentusSprite()
         {
@@ -65,7 +65,23 @@ namespace LegendOfZelda.Content.Enemy
         }
         public IEnemy CreateGoriyaSprite()
         {
-            return new BasicGoriyaSprite(goriyaSpriteSheet);
+            return new BasicGoriyaSprite();
+        }
+        public IEnemy CreateGoriyaDownSprite()
+        {
+            return new MoveDownGoriyaSprite(goriyaDownSpriteSheet);
+        }
+        public IEnemy CreateGoriyaUpSprite()
+        {
+            return new MoveUpGoriyaSprite(goriyaUpSpriteSheet);
+        }
+        public IEnemy CreateGoriyaLeftSprite()
+        {
+            return new MoveLeftGoriyaSprite(goriyaLeftSpriteSheet);
+        }
+        public IEnemy CreateGoriyaRightSprite()
+        {
+            return new MoveRightGoriyaSprite(goriyaRightSpriteSheet);
         }
         public IEnemy CreateKeeseSprite()
         {

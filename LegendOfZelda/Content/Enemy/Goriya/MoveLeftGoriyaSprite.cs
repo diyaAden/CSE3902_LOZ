@@ -21,13 +21,12 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
 
         public override void Update()
         {
-            var rand = new Random();
-            if (++animationTimer > 2)
+            if (++animationTimer > 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X + (rand.Next(-2, 0)), position.Y);
+            position = new Vector2(position.X - 1, position.Y);
 
         }
 

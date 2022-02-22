@@ -13,43 +13,61 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
         private int animationTimer = 0, currentFrame = 0;
         private List<Rectangle> animationFrames = new List<Rectangle>();
         private List<IItem> boomerangs = new List<IItem>();
+        private IEnemy sprite;
+        private bool attacking = false;
 
 
-        public BasicGoriyaSprite(Texture2D itemSpriteSheet)
+        public BasicGoriyaSprite()
         {
-            spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(16, 0, 16, 16));
+            sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
+
         }
 
         public override void Attack()
         {
-
+            attacking = true;
             boomerangs.Add(WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(1));
         }
         public override void Update()
         {
-            var rand = new Random();
-            if (++animationTimer > 4)
+            sprite.Update();
+            pos = sprite.position;
+            if (++animationTimer == 150)
             {
-                currentFrame = ++currentFrame % animationFrames.Count;
-                if (animationTimer == 160)
-                {
-                    animationTimer = 0;
-                    Attack();
-                }
+                animationTimer = 0;
+                Attack();
+            }
+            else if (animationTimer % 30 == 0) {
+                if (attacking) attacking = false;
+                else NewDirection(); 
             }
             foreach (IItem item in boomerangs) {
                 item.Update();
             }
-            //position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y + (rand.Next(-2, 2)));
-
         }
-
+        private void NewDirection()
+        {
+            var rand = new Random();
+            switch (rand.Next(4))
+            {
+                case 0:
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
+                    break;
+                case 1:
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaUpSprite();
+                    break;
+                case 2:
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaLeftSprite();
+                    break;
+                default:
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaRightSprite();
+                    break;
+            }
+            sprite.position = pos;
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
+            sprite.Draw(spriteBatch);
         }
     }
 }
