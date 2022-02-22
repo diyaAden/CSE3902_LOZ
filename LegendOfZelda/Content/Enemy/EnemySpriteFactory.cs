@@ -21,7 +21,7 @@ namespace LegendOfZelda.Content.Enemy
 {
     class EnemySpriteFactory
     {
-        private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, goriyaSpriteSheet;
+        private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, goriyaSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
 
@@ -36,6 +36,11 @@ namespace LegendOfZelda.Content.Enemy
             fireballSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Fireball");
             gelSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Gel");
             goriyaSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/GoriyaDownward");
+            keeseSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Keese");
+            stalfosSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Stalfos");
+            trapSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Trap");
+            wallMasterSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/WallMaster");
+
 
 
 
@@ -66,19 +71,19 @@ namespace LegendOfZelda.Content.Enemy
         }
         public IEnemy CreateKeeseSprite()
         {
-            return new BasicKeeseSprite();
+            return new BasicKeeseSprite(keeseSpriteSheet);
         }
         public IEnemy CreateStalfosSprite()
         {
-            return new BasicStalfosSprite();
+            return new BasicStalfosSprite(stalfosSpriteSheet);
         }
         public IEnemy CreateTrapSprite()
         {
-            return new BasicTrapSprite();
+            return new BasicTrapSprite(trapSpriteSheet);
         }
         public IEnemy CreateWallMasterSprite()
         {
-            return new BasicWallMasterSprite();
+            return new BasicWallMasterSprite(wallMasterSpriteSheet);
         }
         
     }

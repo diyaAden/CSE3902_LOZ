@@ -15,8 +15,8 @@ namespace LegendOfZelda.Content.Enemy.Keese.Sprite
         public BasicKeeseSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(17, 0, 16, 16));
+            animationFrames.Add(new Rectangle(0, 4, 15, 11));
+            animationFrames.Add(new Rectangle(19, 4, 10, 10));
         }
 
         public override void Update()

@@ -16,7 +16,7 @@ namespace LegendOfZelda.Content.Enemy.Stalfos.Sprite
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(17, 0, 16, 16));
+            animationFrames.Add(new Rectangle(16, 0, 16, 16));
         }
 
         public override void Update()

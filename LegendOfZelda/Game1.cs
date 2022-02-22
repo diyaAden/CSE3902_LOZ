@@ -89,6 +89,7 @@ namespace LegendOfZelda
 
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection };
+            enemyCollections = new List<ICollection>() { EnemyCollection };
         }
 
         protected override void Update(GameTime gameTime)

@@ -16,7 +16,6 @@ namespace LegendOfZelda.Content.Enemy.Trap.Sprite
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(17, 0, 16, 16));
         }
 
         public override void Update()
