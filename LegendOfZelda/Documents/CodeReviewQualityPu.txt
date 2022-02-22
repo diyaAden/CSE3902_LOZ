@@ -1,0 +1,11 @@
+For a code quality review
+Name: Jiayi Pu
+Date: 2/21/22
+Sprint 2
+ItemSpriteFactory.cs (Author: Sean Burns)
+Comments: 
+-	High code quality
+-	Could use a static class to load the textures.
+-	Could change some read only data.
+
+Hypothetical change: if add more items in the future, the current implementation could easily support that change.
