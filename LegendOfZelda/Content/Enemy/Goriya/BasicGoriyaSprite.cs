@@ -45,7 +45,7 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
                     NewDirection();
                 }
             }
-            if (boomerang != null) boomerang.Update(pos);
+            if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) boomerang.Update(pos);
             else attacking = false;
         }
         private void NewDirection()
