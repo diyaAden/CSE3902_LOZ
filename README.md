@@ -29,4 +29,5 @@ Updates Log:
 Sprint 2 Completion 2/21/22
 
 Potential Bugs:
-- Switching Link to "damage" state might take a couple of presses to go into effect
+- Switching Link to "damage" state might take a couple of presses to go into effect due to how fast the damage state is toggled
+- Current NPC movement is very fast and largely based on randomness, a more controlled system must be utilized
