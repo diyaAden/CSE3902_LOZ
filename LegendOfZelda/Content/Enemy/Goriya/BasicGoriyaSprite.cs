@@ -4,15 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using LegendOfZelda.Content.Items;
+using LegendOfZelda.Content.Items.WeaponCreators;
 
 namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
 {
      class BasicGoriyaSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0;
+        private int animationTimer = 0, currentFrame = 0, direction;
         private List<Rectangle> animationFrames = new List<Rectangle>();
-        private List<IItem> boomerangs = new List<IItem>();
+        private IWeapon boomerang;
         private IEnemy sprite;
         private bool attacking = false;
 
@@ -20,30 +21,32 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
         public BasicGoriyaSprite()
         {
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
-
+            direction = 0;
         }
 
         public override void Attack()
         {
             attacking = true;
-            boomerangs.Add(WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(1));
+            boomerang = new BoomerangWeapon(pos, direction);
         }
         public override void Update()
         {
-            sprite.Update();
-            pos = sprite.position;
-            if (++animationTimer == 150)
+            if (!attacking)
             {
-                animationTimer = 0;
-                Attack();
+                sprite.Update();
+                pos = sprite.position;
+                if (++animationTimer == 150)
+                {
+                    animationTimer = 0;
+                    Attack();
+                }
+                else if (animationTimer % 30 == 0)
+                {
+                    NewDirection();
+                }
             }
-            else if (animationTimer % 30 == 0) {
-                if (attacking) attacking = false;
-                else NewDirection(); 
-            }
-            foreach (IItem item in boomerangs) {
-                item.Update();
-            }
+            if (boomerang != null) boomerang.Update(pos);
+            else attacking = false;
         }
         private void NewDirection()
         {
@@ -52,15 +55,19 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
             {
                 case 0:
                     sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
+                    direction = 0;
                     break;
                 case 1:
                     sprite = EnemySpriteFactory.Instance.CreateGoriyaUpSprite();
+                    direction = 1;
                     break;
                 case 2:
                     sprite = EnemySpriteFactory.Instance.CreateGoriyaLeftSprite();
+                    direction = 2;
                     break;
                 default:
                     sprite = EnemySpriteFactory.Instance.CreateGoriyaRightSprite();
+                    direction = 3;
                     break;
             }
             sprite.position = pos;
@@ -68,6 +75,10 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
         public override void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);
+            if (boomerang != null)
+            {
+                boomerang.Draw(spriteBatch);
+            }
         }
     }
 }
