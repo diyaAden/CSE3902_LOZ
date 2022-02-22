@@ -1,0 +1,12 @@
+﻿Author of Code Review: Alex Quedens
+Date: 2/21/22
+Sprint 2
+BlueFloorSprite.cs (Author: Sean Burns)
+Time Spent: 10min
+Comments:
+	- I think overall, this file is very readable.
+	- Author does a good job of defining variables in the constuctor.
+	- Really my only recommendations are adding comments to describe what the constructor does.
+	- Maybe set the integers to variables to make it easier to change, but in this case honestly it would just add more work, while only slightly increasing readabbility.
+
+There isn't a whole lot going on in the file since most of it is just a basic constructor, but I think Sean did a good job of keeping organzied and maintaining readablility.
