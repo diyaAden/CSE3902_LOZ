@@ -1,0 +1,9 @@
+﻿Author of the code review: Diya Adengada
+Date of the code review: 2/21/22
+Sprint number: 2
+Name of the .cs file being reviewed: BasicFireballSprite.cs
+Author of the .cs file being reviewed: Alex Q. 
+Specific comments on code quality:
+* The quality of this class is also very clean. The amount of code falls under 50 lines, which suggests that the code is well compartmentalized and there isn’t much extraneous code. The code also seems to follow a very similar format to the player sprite class which makes the code more understandable as well, since the coding style is more consistent. The variable names make their purpose easy to understand, without being too long. 
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+* A hypothetical change might be including something similar to the damage feature of the Link Sprite/State classes, where the sprite changes to indicate it has been damaged. This might not be present in the original game, but if someone wanted to add a similar feature, the current implementation would easily support this change.
