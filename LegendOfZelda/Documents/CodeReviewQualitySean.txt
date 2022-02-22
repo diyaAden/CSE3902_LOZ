@@ -1,0 +1,7 @@
+Review Author: Sean Burns
+Review Date: 2-19-22
+Sprint: 2
+
+File Name: InitializeController.cs
+File Author: Ben Roth
+Comments: Since the only purpose of this class is to create the commands for the controller, there isn't much to discuss. The RegisterCommands method is a bit long, but all it is doing is pairing every command to a key. Maybe splitting that method up into different helper methods, such as RegisterLinkMovementCommands or RegisterGameControlCommands, would decrease the length of RegisterCommands and remove the big block of repetitive calls. This class seems easy to maintain since it is only doing one thing, so the only real things that could be maintained is adding more commands or chaning the controls around. Right now, it is not very reusable since the RegisterCommands method only takes in a KeyboardController as the controller. If we decided in the future that we wanted to support a gamepad or some other controller, the InitializeController class would need to be changed since it currently only supports a KeyboardController. Possible changes would likely be limited to only creating another method that can appropriately deal with the new controller since the current method has hard-coded keyboard keys within it.

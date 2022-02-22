@@ -11,9 +11,9 @@ namespace LegendOfZelda.Content.Links.State
 {
     class BasicLinkState : ILinkState
     {
-        public virtual ILink link { get; set; }
-        public virtual Vector2 position { get; set; }
-        public virtual ISprite sprite { get; set; }
+        public virtual ILink Link { get; set; }
+        public virtual Vector2 Position { get; set; }
+        public virtual ISprite Sprite { get; set; }
 
         public bool isDamaged;
         /*
@@ -29,23 +29,18 @@ namespace LegendOfZelda.Content.Links.State
         protected static int direction = 3;
         public int Direction { get { return direction; } }
         protected int timer = 20;
-       
 
-        
+
+
 
         public virtual void Update()
         {
-            
-            
-            
-                sprite.Update();
-                position = sprite.Position;
-                timer = 20; //make sure change that when change timer at the beginning
-
+            Sprite.Update();
+            Position = Sprite.Position;
 
         }
         
-        public virtual void toDamaged()
+        public virtual void ToDamaged()
         {
             if (!isDamaged)
             {
@@ -62,58 +57,58 @@ namespace LegendOfZelda.Content.Links.State
         {
             if (direction == 0)
             {
-                link.state = new FrontIdleLinkState(link, position, sprite, isDamaged);
+                Link.State = new FrontIdleLinkState(Link, Position, isDamaged);
             }
             else if (direction == 1)
             {
-                link.state = new BackIdleLinkState(link, position, sprite, isDamaged);
+                Link.State = new BackIdleLinkState(Link, Position, isDamaged);
             }
             else if (direction == 2)
             {
-                link.state = new LeftIdleLinkState(link, position, sprite, isDamaged);
+                Link.State = new LeftIdleLinkState(Link, Position, isDamaged);
             }
             else if (direction == 3)
             {
-                link.state = new RightIdleLinkState(link, position, sprite, isDamaged);
+                Link.State = new RightIdleLinkState(Link, Position, isDamaged);
             }
 
         }
         public virtual void MoveUp()
         {
-            link.state = new BackWalkLinkState(link, position, sprite, isDamaged);
+            Link.State = new BackWalkLinkState(Link, Position, isDamaged);
         }
 
         public virtual void MoveDown()
         {
-            link.state = new FrontWalkLinkState(link, position, sprite, isDamaged);
+            Link.State = new FrontWalkLinkState(Link, Position, isDamaged);
         }
         public virtual void MoveLeft()
         {
-            link.state = new LeftWalkLinkState(link, position, sprite, isDamaged);
+            Link.State = new LeftWalkLinkState(Link, Position, isDamaged);
             
         }
         public virtual void MoveRight()
         {
-            link.state = new RightWalkLinkState(link, position, sprite, isDamaged);
+            Link.State = new RightWalkLinkState(Link, Position, isDamaged);
         }
 
         public virtual void UseItem()
         {
                 if (direction == 0)
                 {
-                    link.state = new FrontUseItemLinkState(link, position, sprite, isDamaged);
+                    Link.State = new FrontUseItemLinkState(Link, Position, isDamaged);
                 }
                 else if (direction == 1)
                 {
-                    link.state = new BackUseItemLinkState(link, position, sprite, isDamaged);
+                    Link.State = new BackUseItemLinkState(Link, Position, isDamaged);
                 }
                 else if (direction == 2)
                 {
-                    link.state = new LeftUseItemLinkState(link, position, sprite, isDamaged);
+                    Link.State = new LeftUseItemLinkState(Link, Position, isDamaged);
                 }
                 else if (direction == 3)
                 {
-                    link.state = new RightUseItemLinkState(link, position, sprite, isDamaged);
+                    Link.State = new RightUseItemLinkState(Link, Position, isDamaged);
                 }
         }
 
@@ -122,24 +117,24 @@ namespace LegendOfZelda.Content.Links.State
             // Must apply the other 3 directions
             if (direction == 0)
             {
-                link.state = new FrontAttackLinkState(link, position, sprite, isDamaged);
+                Link.State = new FrontAttackLinkState(Link, Position, isDamaged);
             }
             else if (direction == 1)
             {
-                link.state = new BackAttackLinkState(link, position, sprite, isDamaged);
+                Link.State = new BackAttackLinkState(Link, Position, isDamaged);
             }
             else if (direction == 2)
             {
-                link.state = new LeftAttackLinkState(link, position, sprite, isDamaged);
+                Link.State = new LeftAttackLinkState(Link, Position, isDamaged);
             }
             else if (direction == 3)
             {
-                link.state = new RightAttackLinkState(link, position, sprite, isDamaged);
+                Link.State = new RightAttackLinkState(Link, Position, isDamaged);
             }
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            this.sprite.Draw(spriteBatch);
+            this.Sprite.Draw(spriteBatch);
         }
     }
 }

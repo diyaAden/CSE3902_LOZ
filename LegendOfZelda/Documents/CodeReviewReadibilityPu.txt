@@ -1,0 +1,7 @@
+For readability review
+Name: Jiayi Pu
+Date: 2/21/22
+Sprint 2
+BasicItem.cs (Author: Sean Burns)
+Time: 5min
+Comments: All things are easy to read. The abstract class is no more than 30 lines and the names are easy to understand.

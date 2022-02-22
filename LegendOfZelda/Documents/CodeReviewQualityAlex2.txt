@@ -1,0 +1,12 @@
+﻿Author of Code Review: Alex Quedens
+Date: 2/21/22
+Sprint 2
+BlockCollection.cs (Author: Sean)
+
+Comments:
+	- The class is fairly short, so it is pretty easy to follow along with.
+	- I can see that we create a list and then initialize each type of block into the list using the public BlockCollection method, which seems to work very well and is probably the most efficient way to generate the list.
+	- Next, Previous, Update, and Draw are all very straight forward and only contain 1 line of code each.
+	- Really my only recommendation would be adding comments to help explain which each method truly does instead of just letting the name infer it. Not a huge issue though.
+
+I think the code quality in the file meets the standard of what high quality code is. It's easy to follow along with and consice and efficient.

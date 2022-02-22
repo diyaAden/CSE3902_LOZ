@@ -9,10 +9,10 @@ namespace LegendOfZelda.Content.Links
 {
     public interface ILinkState
     {
-        Vector2 position { get; set; }
+        Vector2 Position { get; set; }
         int Direction { get; }
         void ToIdle();
-        void toDamaged();
+        void ToDamaged();
         void MoveUp();
         void MoveDown();
         void MoveRight();

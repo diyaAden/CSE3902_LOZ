@@ -17,14 +17,14 @@ namespace LegendOfZelda.Content.Links.Sprite
             Texture = texture;
             Pos = Position;
             checkDamageState = damageState;
-            timer = 2;
+            Timer = 2;
         }
         public override void Update()
         {
-            if (--timer == 0 && CurrentFrame != TotalFrames - 1)
+            if (--Timer == 0 && CurrentFrame != TotalFrames - 1)
             {
                 ++CurrentFrame;
-                timer = 2;
+                Timer = 2;
             }
         }
     }

@@ -21,13 +21,13 @@ namespace LegendOfZelda.Content.Links.Sprite
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
 
-        protected virtual int timer { get; set; }
+        protected virtual int Timer { get; set; }
 
         protected int linkMoveSpeed = 2;
 
         //set to false by default, change to true when "e" key is pressed. 
         public bool checkDamageState = true; //{ get; set; }
-        public Color spriteColor { get; set; }
+        public Color SpriteColor { get; set; }
 
         public virtual void Update()
         {
@@ -42,18 +42,18 @@ namespace LegendOfZelda.Content.Links.Sprite
 
             if (checkDamageState == true)
             {
-                spriteColor = Color.Red;
+                SpriteColor = Color.Red;
             }
             else
             {
-                spriteColor = Color.White;
+                SpriteColor = Color.White;
             }
 
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)Pos.X, (int)Pos.Y, width, height);
 
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, spriteColor);
+            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, SpriteColor);
 
         }
     }

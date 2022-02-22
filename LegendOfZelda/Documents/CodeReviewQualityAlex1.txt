@@ -1,0 +1,12 @@
+﻿Author of Code Review: Alex Quedens
+Date: 2/15/22
+Sprint 2
+BasicBlock.cs (Author: Sean)
+
+Comments:
+	- The class is fairly short, so it is pretty easy to follow along with.
+	- I can quickly see that we create some basic variables at the top which is good.
+	- The abstract update method is present.
+	- The draw method is the same as what we've done in class and is easily recognizable.
+
+I think the code quality in the file meets the standard of what high quality code is. It's easy to follow along with and consice and efficient.

@@ -1,0 +1,44 @@
+Name - Ben Roth
+Date - 2/21/22
+Reviewing the Link interfaces and classes
+
+/*
+ *  Overall Review
+*/
+- Overall I really like the abstraction and the design of the Link stuff. 
+    - It allows for additions to the link classes and easy changes between sprites.
+
+- The general format for chagning the link character is:
+1. Input from the user.
+2. Command to act upon the link state. 
+3. A new state is made upon the basic link state.
+4. Then the sprite is drawn to the screen from the sprite classes.
+
+Most of the code is similar so I will look into a few specific files to add more feedback.
+
+Authors: Diya and Jiayi
+
+10 minutes
+/*
+ *  Readability
+*/
+BasicLinkState.cs 
+1. This has good readability with clear variable names.
+2. I could understand where each method was to change link and how they changed what sprite. 
+3. One thing you could change is change the direction to an enum.
+
+10 minutes
+/*
+ * Maintaibaility
+*/
+FrontAttackLinkState.cs
+1. This class is maintainable and could have more things to change such as changing links color. 
+2. Link will have a lot more of these sprite changes so having them all in a folder is good. 
+3. Adding another folder for speical link states might be beneficial for the future as we add those.
+
+/*
+ *  General Comments
+*/
+
+- The Link class will need a lot more moving forward in terms of handling health, items, and more.
+- Will that be handled in the link class or the basic link class? Or a whole different class?

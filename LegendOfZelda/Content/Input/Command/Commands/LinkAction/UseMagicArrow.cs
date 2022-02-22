@@ -22,7 +22,7 @@ namespace LegendOfZelda.Content.Input.Command.Commands
             if (!myGame.activeWeapons.Exists(containsMagicArrow))
             {
                 myGame.link.UseItem();
-                WeaponManager arrow = new MagicArrowWeapon(myGame.link.state.position, myGame.link.state.Direction);
+                WeaponManager arrow = new MagicArrowWeapon(myGame.link.State.Position, myGame.link.State.Direction);
                 myGame.activeWeapons.Add(arrow);
             }
         }
