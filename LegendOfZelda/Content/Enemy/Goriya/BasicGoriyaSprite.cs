@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LegendOfZelda.Content.Items;
 
 namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
 {
@@ -11,6 +12,8 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
 
         private int animationTimer = 0, currentFrame = 0;
         private List<Rectangle> animationFrames = new List<Rectangle>();
+        private List<IItem> boomerangs = new List<IItem>();
+
 
         public BasicGoriyaSprite(Texture2D itemSpriteSheet)
         {
@@ -19,15 +22,27 @@ namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
         }
 
+        public override void Attack()
+        {
+
+            boomerangs.Add(WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(1));
+        }
         public override void Update()
         {
             var rand = new Random();
-            if (++animationTimer > 2)
+            if (++animationTimer > 4)
             {
-                animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
+                if (animationTimer == 160)
+                {
+                    animationTimer = 0;
+                    Attack();
+                }
             }
-            position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y + (rand.Next(-2, 2)));
+            foreach (IItem item in boomerangs) {
+                item.Update();
+            }
+            //position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y + (rand.Next(-2, 2)));
 
         }
 
