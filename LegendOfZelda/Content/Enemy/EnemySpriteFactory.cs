@@ -19,7 +19,7 @@ namespace LegendOfZelda.Content.Enemy
 {
     class EnemySpriteFactory
     {
-        private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet;
+        private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet, oldmanSpriteSheet;
         private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
@@ -42,6 +42,11 @@ namespace LegendOfZelda.Content.Enemy
             stalfosSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Stalfos");
             trapSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Trap");
             wallMasterSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/WallMaster");
+            oldmanSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/OldMan");
+        }
+        public IEnemy CreateOldManSprite()
+        {
+            return new BasicOldManSprite(oldmanSpriteSheet);
         }
         public IEnemy CreateAquamentusSprite()
         {
