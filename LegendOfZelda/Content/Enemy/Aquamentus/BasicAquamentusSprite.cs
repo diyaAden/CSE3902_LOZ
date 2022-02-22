@@ -44,15 +44,12 @@ namespace LegendOfZelda.Content.Enemy.Aquamentus.Sprite
                     Attack();
                 }
             }
-            foreach(IEnemy fireball in fireballs)
+            foreach (IEnemy fireball in fireballs)
             {
                 fireball.Update();
-            var rand = new Random();
-            if (++animationTimer > 4)
-            {
-                animationTimer = 0;
-                currentFrame = ++currentFrame % animationFrames.Count;
             }
+            var rand = new Random();
+            
             position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y - (rand.Next(-2, 2)));
 
         }
