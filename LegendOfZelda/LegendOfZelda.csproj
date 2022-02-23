@@ -10,13 +10,18 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Content\Commands\**" />
+    <EmbeddedResource Remove="Content\Commands\**" />
+    <None Remove="Content\Commands\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
-    <None Remove="Content\Input\Command\Commands\SetLink\" />
-    <None Remove="Content\Input\Command\Commands\SetItem\" />
-    <None Remove="Content\Input\Command\Commands\SetBlock\" />
-    <None Remove="Content\Input\Command\Commands\SetNPC\" />
-    <None Remove="Content\Input\Command\Commands\GameControl\" />
+    <None Remove="Scripts\Input\Command\Commands\SetLink\" />
+    <None Remove="Scripts\Input\Command\Commands\SetItem\" />
+    <None Remove="Scripts\Input\Command\Commands\SetBlock\" />
+    <None Remove="Scripts\Input\Command\Commands\SetNPC\" />
+    <None Remove="Scripts\Input\Command\Commands\GameControl\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
@@ -31,13 +36,5 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Commands\" />
-    <Folder Include="Content\Input\Command\Commands\SetLink\" />
-    <Folder Include="Content\Input\Command\Commands\SetItem\" />
-    <Folder Include="Content\Input\Command\Commands\SetBlock\" />
-    <Folder Include="Content\Input\Command\Commands\SetNPC\" />
-    <Folder Include="Content\Input\Command\Commands\GameControl\" />
   </ItemGroup>
 </Project>

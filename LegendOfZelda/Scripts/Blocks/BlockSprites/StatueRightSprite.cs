@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Blocks.BlockSprites
+namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
     class StatueRightSprite : BasicBlock
     {

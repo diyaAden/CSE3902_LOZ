@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using static LegendOfZelda.Content.Items.IWeapon;
+using static LegendOfZelda.Scripts.Items.IWeapon;
 
-namespace LegendOfZelda.Content.Items.WeaponCreators
+namespace LegendOfZelda.Scripts.Items.WeaponCreators
 {
     class BombWeapon : WeaponManager
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda.Content.Items.WeaponSprites;
+using LegendOfZelda.Scripts.Items.WeaponSprites;
 using Microsoft.Xna.Framework;
 
-namespace LegendOfZelda.Content.Items
+namespace LegendOfZelda.Scripts.Items
 {
     public class WeaponSpriteFactory
     {

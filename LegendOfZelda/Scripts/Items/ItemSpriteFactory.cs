@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda.Content.Items.ItemSprites;
+using LegendOfZelda.Scripts.Items.ItemSprites;
 
-namespace LegendOfZelda.Content.Items
+namespace LegendOfZelda.Scripts.Items
 {
     public class ItemSpriteFactory
     {

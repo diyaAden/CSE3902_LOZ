@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using static LegendOfZelda.Content.Items.IWeapon;
+using static LegendOfZelda.Scripts.Items.IWeapon;
 
-namespace LegendOfZelda.Content.Items
+namespace LegendOfZelda.Scripts.Items
 {
     public abstract class WeaponManager : IWeapon
     {

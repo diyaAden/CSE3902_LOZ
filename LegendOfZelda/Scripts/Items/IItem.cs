@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Items
+namespace LegendOfZelda.Scripts.Items
 {
     public interface IItem
     {

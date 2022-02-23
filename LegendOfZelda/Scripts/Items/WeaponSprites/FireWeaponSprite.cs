@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Items.WeaponSprites
+namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class FireWeaponSprite : BasicItem
     {

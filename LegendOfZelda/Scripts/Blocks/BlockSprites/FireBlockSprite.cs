@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Blocks.BlockSprites
+namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
     public class FireBlockSprite : BasicBlock
     {
