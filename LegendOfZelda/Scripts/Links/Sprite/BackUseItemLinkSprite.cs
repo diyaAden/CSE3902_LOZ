@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Links.Sprite
+namespace LegendOfZelda.Scripts.Links.Sprite
 {
     class BackUseItemLinkSprite: BasicLinkSprite
     {    

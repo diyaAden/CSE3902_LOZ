@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Links
+namespace LegendOfZelda.Scripts.Links
 {
     public interface ILinkState
     {

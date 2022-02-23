@@ -1,12 +1,12 @@
-﻿using LegendOfZelda.Content.Links.State;
+﻿using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static LegendOfZelda.Content.Items.WeaponManager;
+using static LegendOfZelda.Scripts.Items.WeaponManager;
 
-namespace LegendOfZelda.Content.Links
+namespace LegendOfZelda.Scripts.Links
 {
     public interface ILink
     {

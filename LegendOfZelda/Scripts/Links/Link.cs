@@ -1,15 +1,15 @@
-﻿using LegendOfZelda.Content.Links.Sprite;
-using LegendOfZelda.Content.Links.State;
+﻿using LegendOfZelda.Scripts.Links.Sprite;
+using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static LegendOfZelda.Content.Items.WeaponManager;
-using static LegendOfZelda.Content.Links.ILink;
+using static LegendOfZelda.Scripts.Items.WeaponManager;
+using static LegendOfZelda.Scripts.Links.ILink;
 
-namespace LegendOfZelda.Content.Links
+namespace LegendOfZelda.Scripts.Links
 {
     public class Link: ILink
     {
