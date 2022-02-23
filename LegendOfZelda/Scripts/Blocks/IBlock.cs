@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Blocks
+namespace LegendOfZelda.Scripts.Blocks
 {
     public interface IBlock
     {

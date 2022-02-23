@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Items
+namespace LegendOfZelda.Scripts.Items
 {
     class ItemCollection : ICollection
     {

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace LegendOfZelda.Content.Items.WeaponSprites
+namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public abstract class BasicBoomerangWeapon : BasicItem
     {

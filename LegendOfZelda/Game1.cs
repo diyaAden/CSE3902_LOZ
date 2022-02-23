@@ -1,34 +1,12 @@
 ﻿using System.Collections.Generic;
-using LegendOfZelda.Content.Blocks;
+using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Content.Controller;
-using LegendOfZelda.Content.Enemy.Stalfos;
-using LegendOfZelda.Content.Enemy.Stalfos.Sprite;
-using LegendOfZelda.Content.Enemy.Keese;
-using LegendOfZelda.Content.Enemy.Keese.Sprite;
-using LegendOfZelda.Content.Enemy.Aquamentus.Sprite;
-using LegendOfZelda.Content.Enemy.Aquamentus;
-using LegendOfZelda.Content.Enemy.Cloud;
-using LegendOfZelda.Content.Enemy.Cloud.Sprite;
-using LegendOfZelda.Content.Input.Command.Commands;
-using LegendOfZelda.Content.Items;
+using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Content.Links;
 using LegendOfZelda.Content.Links.Sprite;
-using LegendOfZelda.Content.Enemy.Trap;
-using LegendOfZelda.Content.Enemy.Trap.Sprite;
-using LegendOfZelda.Content.Enemy.Explosion.Sprite;
-using LegendOfZelda.Content.Enemy.Explosion;
-using LegendOfZelda.Content.Enemy.Fireball;
-using LegendOfZelda.Content.Enemy.Fireball.Sprite;
-using LegendOfZelda.Content.Enemy.Gel;
-using LegendOfZelda.Content.Enemy.Gel.Sprite;
-using LegendOfZelda.Content.Enemy.Goriya;
-using LegendOfZelda.Content.Enemy.Goriya.Sprite;
-using LegendOfZelda.Content.Enemy.WallMaster;
-using LegendOfZelda.Content.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Content.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda
 {

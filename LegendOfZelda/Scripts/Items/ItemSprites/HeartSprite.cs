@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Items.ItemSprites
+namespace LegendOfZelda.Scripts.Items.ItemSprites
 {
     public class HeartSprite : BasicItem
     {

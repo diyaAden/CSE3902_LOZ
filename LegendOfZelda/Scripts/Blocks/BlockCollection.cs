@@ -1,8 +1,8 @@
-﻿using LegendOfZelda.Content.Items;
+﻿using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Blocks
+namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockCollection : ICollection
     {

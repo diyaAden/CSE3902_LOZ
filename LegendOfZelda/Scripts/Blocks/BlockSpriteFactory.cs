@@ -1,8 +1,8 @@
-﻿using LegendOfZelda.Content.Blocks.BlockSprites;
+﻿using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Blocks
+namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockSpriteFactory
     {

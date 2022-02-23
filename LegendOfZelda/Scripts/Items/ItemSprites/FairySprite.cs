@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace LegendOfZelda.Content.Items.ItemSprites
+namespace LegendOfZelda.Scripts.Items.ItemSprites
 {
     public class FairySprite : BasicItem
     {
