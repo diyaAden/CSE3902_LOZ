@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Input.Command
+namespace LegendOfZelda.Scripts.Input.Command
 {
     public interface ICommand
     {

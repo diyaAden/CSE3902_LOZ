@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Input.Command.Commands.LinkAction
+namespace LegendOfZelda.Scripts.Input.Command.Commands.LinkAction
 {
     public class Attack : ICommand
     {

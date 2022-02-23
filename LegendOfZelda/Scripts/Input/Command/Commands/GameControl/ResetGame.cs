@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace LegendOfZelda.Content.Input.Command.Commands
+namespace LegendOfZelda.Scripts.Input.Command.Commands
 {
     public class ResetGame : ICommand
     {
