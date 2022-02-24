@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Aquamentus.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
 {
     class BasicAquamentusSprite : Enemy
     {

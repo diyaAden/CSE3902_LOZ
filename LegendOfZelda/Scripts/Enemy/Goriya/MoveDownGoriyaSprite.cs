@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Goriya.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
      class MoveDownGoriyaSprite : Enemy
     {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Fireball.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
 {
      class BasicFireballSprite : Enemy
     {
