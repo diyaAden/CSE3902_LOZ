@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="LegendOfZelda.Scripts.LevelManager.Room">
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<LocationX>0</LocationX>
+		<LocationY>0</LocationY>
+	</Asset>
+</XnaContent>
