@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LegendOfZelda.Content.Input.Command;
-using LegendOfZelda.Content.Input.Command.Commands;
-using LegendOfZelda.Content.Input.Command.Commands.LinkAction;
+using LegendOfZelda.Scripts.Input.Command;
+using LegendOfZelda.Scripts.Input.Command.Commands;
+using LegendOfZelda.Scripts.Input.Command.Commands.LinkAction;
 using Microsoft.Xna.Framework.Input;
 
-namespace LegendOfZelda.Content.Controller
+namespace LegendOfZelda.Scripts.Input.Controller
 {
     public class InitializeController
     {

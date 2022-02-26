@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LegendOfZelda.Content.Input.Command;
+using LegendOfZelda.Scripts.Input.Command;
 using Microsoft.Xna.Framework.Input;
 
-namespace LegendOfZelda.Content.Controller
+namespace LegendOfZelda.Scripts.Input.Controller
 {
     public class KeyboardController : IController
     {
