@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Gel.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
 {
      class BasicGelSprite : Enemy
     {

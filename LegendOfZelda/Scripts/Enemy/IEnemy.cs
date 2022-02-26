@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Content.Enemy
+namespace LegendOfZelda.Scripts.Enemy
 {
     public interface IEnemy
     {

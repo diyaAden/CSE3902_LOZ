@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Explosion.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
 {
      class BasicExplosionSprite : Enemy
     {

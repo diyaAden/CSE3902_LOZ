@@ -3,19 +3,19 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LegendOfZelda.Content.Enemy.Aquamentus.Sprite;
-using LegendOfZelda.Content.Enemy.Cloud.Sprite;
-using LegendOfZelda.Content.Enemy.Explosion.Sprite;
-using LegendOfZelda.Content.Enemy.Fireball.Sprite;
-using LegendOfZelda.Content.Enemy.Gel.Sprite;
-using LegendOfZelda.Content.Enemy.Goriya.Sprite;
-using LegendOfZelda.Content.Enemy.Keese.Sprite;
-using LegendOfZelda.Content.Enemy.Stalfos.Sprite;
-using LegendOfZelda.Content.Enemy.Trap.Sprite;
-using LegendOfZelda.Content.Enemy.WallMaster.Sprite;
+using LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite;
+using LegendOfZelda.Scripts.Enemy.Cloud.Sprite;
+using LegendOfZelda.Scripts.Enemy.Explosion.Sprite;
+using LegendOfZelda.Scripts.Enemy.Fireball.Sprite;
+using LegendOfZelda.Scripts.Enemy.Gel.Sprite;
+using LegendOfZelda.Scripts.Enemy.Goriya.Sprite;
+using LegendOfZelda.Scripts.Enemy.Keese.Sprite;
+using LegendOfZelda.Scripts.Enemy.Stalfos.Sprite;
+using LegendOfZelda.Scripts.Enemy.Trap.Sprite;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using Microsoft.Xna.Framework;
 
-namespace LegendOfZelda.Content.Enemy
+namespace LegendOfZelda.Scripts.Enemy
 {
     class EnemySpriteFactory
     {

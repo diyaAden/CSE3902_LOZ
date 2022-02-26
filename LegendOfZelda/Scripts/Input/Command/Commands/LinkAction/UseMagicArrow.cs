@@ -1,5 +1,5 @@
-﻿using LegendOfZelda.Content.Items;
-using LegendOfZelda.Content.Items.WeaponCreators;
+﻿using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Items.WeaponCreators;
 using System;
 using System.Collections.Generic;
 using System.Text;

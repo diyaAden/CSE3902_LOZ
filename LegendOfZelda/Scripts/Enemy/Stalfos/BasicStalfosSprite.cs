@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Stalfos.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
 {
      class BasicStalfosSprite : Enemy
     {

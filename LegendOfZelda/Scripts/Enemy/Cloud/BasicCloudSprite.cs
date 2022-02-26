@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LegendOfZelda.Content.Enemy.Cloud.Sprite
+namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
 {
      class BasicCloudSprite : Enemy
     {

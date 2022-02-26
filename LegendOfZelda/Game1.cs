@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using LegendOfZelda.Scripts.Blocks;
-using LegendOfZelda.Content.Controller;
+using LegendOfZelda.Scripts.Input.Controller;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using LegendOfZelda.Scripts.Links.Sprite;
-using LegendOfZelda.Content.Enemy;
+using LegendOfZelda.Scripts.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

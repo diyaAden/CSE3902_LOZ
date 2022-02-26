@@ -1,8 +1,8 @@
-﻿using LegendOfZelda.Content.Items;
+﻿using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Content.Enemy
+namespace LegendOfZelda.Scripts.Enemy
 {
     class EnemyCollection : ICollection
     {

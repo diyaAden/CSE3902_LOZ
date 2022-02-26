@@ -11,8 +11,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Content\Commands\**" />
+    <Compile Remove="Content\XmlFiles\**" />
     <EmbeddedResource Remove="Content\Commands\**" />
+    <EmbeddedResource Remove="Content\XmlFiles\**" />
     <None Remove="Content\Commands\**" />
+    <None Remove="Content\XmlFiles\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
