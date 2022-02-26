@@ -469,8 +469,3 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/MarioSheet.png
 
-#begin XmlFiles/Room1.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:XmlFiles/Room1.xml
-
