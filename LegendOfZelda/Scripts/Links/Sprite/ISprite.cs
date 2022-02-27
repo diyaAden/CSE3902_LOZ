@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
     {
         Vector2 Position { get; set; }
         void Update();
+        Rectangle LinkBox();
         void Draw(SpriteBatch spriteBatch);
     }
 }

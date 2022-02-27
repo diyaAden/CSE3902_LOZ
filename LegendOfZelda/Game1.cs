@@ -7,6 +7,10 @@ using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using LegendOfZelda.Scripts.Collision.CollisionHandler;
+using LegendOfZelda.Scripts.Collision.CollisionDetector;
+using LegendOfZelda.Scripts.Collision;
+using System.Diagnostics;
 
 namespace LegendOfZelda
 {
@@ -17,6 +21,9 @@ namespace LegendOfZelda
 
         private List<IController> controllerList;
         private List<ICollection> objectCollections;
+
+        private List<ICollisionDetector> collisionDetectors;
+        private List<ICollisionHandler> collisionHandlers;
 
         public Vector2 position = new Vector2(400, 300);
         public ILink link;
@@ -40,6 +47,12 @@ namespace LegendOfZelda
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             controllerList = new List<IController>() { control };
+
+            CollisionPlayerBlockDetector collisionPlayerBlockDetector = new CollisionPlayerBlockDetector();
+            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector };
+
+            PlayerBlockCollisionHandler playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler };
             base.Initialize();
         }
         public void ResetGame()
@@ -79,7 +92,31 @@ namespace LegendOfZelda
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
             foreach (ICollection collection in objectCollections) { collection.Update(); }
+            
+            foreach (ICollisionDetector collisionDetector in collisionDetectors)
+            {
+                
+                //maybe could be in the collisiondetector cs
+                IGameObject gameObject = objectCollections[0].GameObject();
+                
+                List<ICollision> sides = collisionDetector.BoxTest(link, gameObject);//will have foreach when create xml
 
+                foreach (ICollision side in sides)
+                {
+                    Debug.WriteLine(side);
+                    collisionHandlers[0].HandleCollision(link, gameObject, side);
+                }
+                Debug.WriteLine("well");
+            }
+            
+
+            /*
+             * when do all the handler
+            foreach (ICollection collection in objectCollections) //maybe here is a wrong
+            {
+                //ICollisionHandler.HandleCollision(link, collection, side);
+            }
+            */
 
             base.Update(gameTime);
         }

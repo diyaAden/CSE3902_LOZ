@@ -1,4 +1,8 @@
-﻿using LegendOfZelda.Scripts.Links.Sprite;
+﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Collision.CollisionType;
+using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -59,6 +63,29 @@ namespace LegendOfZelda.Scripts.Links
             {
                 attackCooldown = cooldownLimit;
                 state.Attack();
+            }
+        }
+        public void HandleBlockCollision(IGameObject block, ICollision side)
+        {
+            if(side is SideTop)
+            {
+                state.MoveDown();
+            }
+            else if (side is SideBottom)
+            {
+                state.MoveUp();
+            }
+            else if (side is SideLeft)
+            {
+                state.MoveRight();
+            }
+            else if (side is SideRight)
+            {
+                state.MoveLeft();
+            }
+            else if(side is SideNone)
+            {
+                //do nothing
             }
         }
 
