@@ -7,6 +7,7 @@ using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using LegendOfZelda.Scripts.LevelManager;
 
 namespace LegendOfZelda
 {
@@ -20,7 +21,8 @@ namespace LegendOfZelda
 
         public Vector2 position = new Vector2(400, 300);
         public ILink link;
-        
+
+        RoomSet r;
 
         internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
@@ -40,6 +42,9 @@ namespace LegendOfZelda
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             controllerList = new List<IController>() { control };
+
+            r = new RoomSet();
+
             base.Initialize();
         }
         public void ResetGame()
@@ -66,6 +71,8 @@ namespace LegendOfZelda
             
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
+
+            r.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
