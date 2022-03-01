@@ -1,4 +1,4 @@
-﻿using CustomDataTypes.RoomDataClasses;
+﻿using LegendOfZelda.Scripts.LevelManager.RoomDataClasses;
 using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;

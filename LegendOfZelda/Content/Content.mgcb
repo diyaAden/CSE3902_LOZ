@@ -10,7 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\CustomDataTypes\bin\Debug\netcoreapp3.1\CustomDataTypes.dll
+/reference:..\bin\Debug\netcoreapp3.1\LegendOfZelda.dll
 
 #---------------------------------- Content ---------------------------------#
 
