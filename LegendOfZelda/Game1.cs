@@ -22,7 +22,7 @@ namespace LegendOfZelda
         public Vector2 position = new Vector2(400, 300);
         public ILink link;
 
-        RoomSet r;
+        RoomManager r;
 
         internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
@@ -43,7 +43,7 @@ namespace LegendOfZelda
             con.RegisterCommands(control);
             controllerList = new List<IController>() { control };
 
-            r = new RoomSet();
+            r = new RoomManager(); // here for testing
 
             base.Initialize();
         }
@@ -72,7 +72,7 @@ namespace LegendOfZelda
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
 
-            r.LoadContent();
+            r.LoadContent(Content); // here for testing
         }
 
         protected override void Update(GameTime gameTime)

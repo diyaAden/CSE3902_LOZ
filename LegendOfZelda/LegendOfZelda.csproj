@@ -41,6 +41,9 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomDataTypes\CustomDataTypes.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Content\XML\Room1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
