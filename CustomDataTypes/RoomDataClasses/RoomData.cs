@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CustomDataTypes
+namespace CustomDataTypes.RoomDataClasses
 {
     public class RoomData
     {
