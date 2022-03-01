@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.Items
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet, fairySpriteSheet, heartSpriteSheet, rupeeSpriteSheet, triforcePieceSpriteSheet, arrowSwordSpriteSheet;
-        private static ItemSpriteFactory instance = new ItemSpriteFactory();
+        private static readonly ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance => instance;
         private ItemSpriteFactory()
@@ -22,45 +22,28 @@ namespace LegendOfZelda.Scripts.Items
             triforcePieceSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/TriforcePieceSpriteSheet");
             arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet");
         }
-        public IItem CreateItem(string itemName)
+        public IItem CreateItemFromString(string itemName)
         {
-            switch (itemName)
+            return itemName switch
             {
-                case "Compass":
-                    return CreateCompassSprite();
-                case "Map":
-                    return CreateMapSprite();
-                case "Key":
-                    return CreateKeySprite();
-                case "HeartContainer":
-                    return CreateHeartContainerSprite();
-                case "TriforcePiece":
-                    return CreateTriforcePieceSprite();
-                case "Boomerang":
-                    return CreateWoodBoomerangItemSprite();
-                case "MagicBoomerang":
-                    return CreateMagicBoomerangItemSprite();
-                case "Bow":
-                    return CreateBowSprite();
-                case "Heart":
-                    return CreateHeartSprite();
-                case "Rupee":
-                    return CreateRupeeSprite();
-                case "Arrow":
-                    return CreateArrowItemSprite();
-                case "MagicArrow":
-                    return CreateMagicArrowItemSprite();
-                case "Bomb":
-                    return CreateBombItemSprite();
-                case "BlueRupee":
-                    return CreateBlueRupeeSprite();
-                case "Clock":
-                    return CreateClockSprite();
-                case "Fairy":
-                    return CreateFairySprite();
-                default:
-                    return null;
-            }
+                "Compass" => CreateCompassSprite(),
+                "Map" => CreateMapSprite(),
+                "Key" => CreateKeySprite(),
+                "HeartContainer" => CreateHeartContainerSprite(),
+                "TriforcePiece" => CreateTriforcePieceSprite(),
+                "Boomerang" => CreateWoodBoomerangItemSprite(),
+                "MagicBoomerang" => CreateMagicBoomerangItemSprite(),
+                "Bow" => CreateBowSprite(),
+                "Heart" => CreateHeartSprite(),
+                "Rupee" => CreateRupeeSprite(),
+                "Arrow" => CreateArrowItemSprite(),
+                "MagicArrow" => CreateMagicArrowItemSprite(),
+                "Bomb" => CreateBombItemSprite(),
+                "BlueRupee" => CreateBlueRupeeSprite(),
+                "Clock" => CreateClockSprite(),
+                "Fairy" => CreateFairySprite(),
+                _ => null,
+            };
         }
         public IItem CreateCompassSprite()
         {

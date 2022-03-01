@@ -7,30 +7,20 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class RoomManager
     {
-        private List<RoomData> roomData;
-        private RoomCreator roomCreator;
-        private int currentRoom;
+        private readonly RoomCreator roomCreator;
         public List<Room> Rooms { get; private set; }
-        public int CurrentRoom { 
-            get { 
-                return currentRoom; 
-            } 
-            set {
-                currentRoom = value - 1;
-            } 
-        }
+        public int CurrentRoom { get; set; }
         public RoomManager() 
         {
             Rooms = new List<Room>();
-            roomData = new List<RoomData>();
             roomCreator = new RoomCreator();
-            currentRoom = 0;
+            CurrentRoom = 0;
         }
         public void LoadContent(ContentManager content)
         {
-            for (int i = 1; i <= 1; i++) {
+            /* Room 0 is the dev room */
+            for (int i = 0; i <= 1; i++) {
                 RoomData currentRoomData = content.Load<RoomData>("XML/Room" + i);
-                roomData.Add(currentRoomData);
                 Room room = new Room();
                 roomCreator.InsertRoomObjects(currentRoomData, room);
                 Rooms.Add(room);
@@ -38,11 +28,11 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void Update()
         {
-            Rooms[currentRoom].Update();
+            Rooms[CurrentRoom].Update();
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rooms[currentRoom].Draw(spriteBatch);
+            Rooms[CurrentRoom].Draw(spriteBatch);
         }
     }
 }

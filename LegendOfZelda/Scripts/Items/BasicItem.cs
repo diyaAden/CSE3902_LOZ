@@ -20,7 +20,7 @@ namespace LegendOfZelda.Scripts.Items
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width*3, 3*animationFrames[currentFrame].Height);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }

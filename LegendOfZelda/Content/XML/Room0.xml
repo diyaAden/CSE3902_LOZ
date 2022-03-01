@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Asset Type="CustomDataTypes.RoomDataClasses.RoomData">
+		<items>
+			<Item>
+				<ObjectName>TriforcePiece</ObjectName>
+				<PositionX>0</PositionX>
+				<PositionY>0</PositionY>
+			</Item>
+		</items>
+		<blocks>
+			
+		</blocks>
+		<enemies>
+			
+		</enemies>
+	</Asset>
+</XnaContent>

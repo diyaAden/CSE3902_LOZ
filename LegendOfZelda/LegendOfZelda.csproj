@@ -44,6 +44,9 @@
     <ProjectReference Include="..\CustomDataTypes\CustomDataTypes.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Content\XML\Room0.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\XML\Room1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
