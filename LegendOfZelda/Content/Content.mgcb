@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\CustomDataTypes\bin\Debug\netcoreapp3.1\CustomDataTypes.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -468,4 +469,14 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/MarioSheet.png
+
+#begin XML/Room0.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:XML/Room0.xml
+
+#begin XML/Room1.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:XML/Room1.xml
 
