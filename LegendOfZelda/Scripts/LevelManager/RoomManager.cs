@@ -15,13 +15,13 @@ namespace LegendOfZelda.Scripts.LevelManager
             Rooms = new List<Room>();
             CurrentRoom = 1;
         }
-        public void LoadContent(ContentManager content)
+        public void LoadContent()
         {
             /* Room 0 is the dev room */
             for (int i = 0; i <= 1; i++) {
                 xml = XmlReader.Create("Content\\XML\\Room" + i + ".xml");
-                string objectType = "", objectName = "";
-                int posX = -1, posY = -1;
+                string objectType, objectName;
+                int posX, posY;
                 Room room = new Room();
                 xml.MoveToContent();
                 xml.Read();
