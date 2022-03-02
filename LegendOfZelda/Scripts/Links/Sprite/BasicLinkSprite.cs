@@ -23,6 +23,12 @@ namespace LegendOfZelda.Scripts.Links.Sprite
 
         protected virtual int Timer { get; set; }
 
+        public int LinkMoveSpeed
+        {
+            get { return linkMoveSpeed; }
+            set { linkMoveSpeed = value; }
+        }
+
         protected int linkMoveSpeed = 2;
 
         //set to false by default, change to true when "e" key is pressed. 
