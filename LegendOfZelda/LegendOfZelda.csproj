@@ -16,6 +16,7 @@
     <EmbeddedResource Remove="Content\XmlFiles\**" />
     <None Remove="Content\Commands\**" />
     <None Remove="Content\XmlFiles\**" />
+    <None Remove="Scripts\LevelManager\RoomSprites\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -47,5 +48,8 @@
     <None Update="Content\XML\Room1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\LevelManager\RoomSprites\" />
   </ItemGroup>
 </Project>

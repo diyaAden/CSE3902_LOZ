@@ -23,7 +23,6 @@ namespace LegendOfZelda
         public ILink link;
 
         private RoomManager roomManager;
-
         internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
         internal ICollection EnemyCollection { get; private set; }
@@ -66,6 +65,8 @@ namespace LegendOfZelda
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             BlockCollection = new BlockCollection();
 
+            RoomBackgroundFactory.Instance.LoadAllTextures(Content);
+
             LoadLink.LoadTexture(Content);
             link = new Link(position);
             
@@ -99,7 +100,7 @@ namespace LegendOfZelda
 
             roomManager.Draw(_spriteBatch); // here for testing
 
-            foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
+            //foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
 
             foreach (IWeapon weapon in activeWeapons)
             {
