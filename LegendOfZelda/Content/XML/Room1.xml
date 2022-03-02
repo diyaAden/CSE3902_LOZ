@@ -1,21 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-	<Asset Type="LegendOfZelda.Scripts.LevelManager.RoomDataClasses.RoomData">
-		<Item>
-			<ObjectName>Clock</ObjectName>
-			<PositionX>0</PositionX>
-			<PositionY>0</PositionY>
-		</Item>
-		<Item>
-			<ObjectName>Rupee</ObjectName>
-			<PositionX>100</PositionX>
-			<PositionY>50</PositionY>
-		</Item>
-		<blocks>
-			
-		</blocks>
-		<enemies>
-			
-		</enemies>
-	</Asset>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Clock</ObjectName>
+		<PositionX>0</PositionX>
+		<PositionY>0</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Rupee</ObjectName>
+		<PositionX>100</PositionX>
+		<PositionY>50</PositionY>
+	</Item>
 </XnaContent>
