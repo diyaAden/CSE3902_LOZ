@@ -4,8 +4,12 @@ using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision
 {
-    public interface ICollision
+    public enum ICollision
     {
-
+        SideBottom,
+        SideTop,
+        SideLeft,
+        SideRight,
+        SideNone
     }
 }

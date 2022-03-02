@@ -1,4 +1,4 @@
-﻿using LegendOfZelda.Scripts.Collision.CollisionType;
+﻿
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
             Rectangle CheckSide = Rectangle.Intersect(linkBox, gameObject.ObjectBox());
             if (CheckSide.IsEmpty)
             {
-                sides.Add(new SideNone());
+                sides.Add(ICollision.SideNone);
             }
             else
             {
@@ -26,18 +26,18 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
                 
                 if (LeftRightCheck < 0)
                 {
-                    sides.Add(new SideLeft()); //maybe wrong
+                    sides.Add(ICollision.SideLeft); //maybe wrong
                 }else if(LeftRightCheck > 0)
                 {
-                    sides.Add(new SideRight());
+                    sides.Add(ICollision.SideRight);
                 }
                 if(TopBottomCheck > 0)
                 {
-                    sides.Add(new SideBottom());
+                    sides.Add(ICollision.SideBottom);
                 }
                 else if (TopBottomCheck < 0)
                 {
-                    sides.Add(new SideTop());
+                    sides.Add(ICollision.SideTop);
                 }
             }
             return sides;

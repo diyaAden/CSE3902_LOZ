@@ -1,6 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Collision;
-using LegendOfZelda.Scripts.Collision.CollisionType;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
@@ -67,23 +66,23 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void HandleBlockCollision(IGameObject block, ICollision side)
         {
-            if(side is SideTop)
+            if(side is ICollision.SideTop)
             {
                 state.MoveDown();
             }
-            else if (side is SideBottom)
+            else if (side is ICollision.SideBottom)
             {
                 state.MoveUp();
             }
-            else if (side is SideLeft)
+            else if (side is ICollision.SideLeft)
             {
                 state.MoveRight();
             }
-            else if (side is SideRight)
+            else if (side is ICollision.SideRight)
             {
                 state.MoveLeft();
             }
-            else if(side is SideNone)
+            else if(side is ICollision.SideNone)
             {
                 //do nothing
             }
