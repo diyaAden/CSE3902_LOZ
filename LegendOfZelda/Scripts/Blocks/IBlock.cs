@@ -9,7 +9,6 @@ namespace LegendOfZelda.Scripts.Blocks
         public Vector2 position { get; set; }
 
         public void Update();
-        public Rectangle ObjectBox();
 
         public void Draw(SpriteBatch spriteBatch);
     }

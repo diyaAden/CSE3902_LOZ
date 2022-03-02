@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Links
     {
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
-        bool isDamaged;
+        bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
 
         public Link(Vector2 position)
