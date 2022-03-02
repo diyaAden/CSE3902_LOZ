@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
-	<Asset Type="LegendOfZelda.Scripts.LevelManager.RoomDataClasses.RoomData">
 		<Item>
 			<ObjectType>Item</ObjectType>
 			<ObjectName>TriforcePiece</ObjectName>
@@ -13,5 +12,4 @@
 		<enemies>
 			
 		</enemies>
-	</Asset>
 </XnaContent>

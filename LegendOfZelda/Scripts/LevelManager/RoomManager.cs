@@ -25,9 +25,20 @@ namespace LegendOfZelda.Scripts.LevelManager
                 xml = XmlReader.Create("Content\\XML\\Room0.xml");
 
                 xml.MoveToContent();
-                string data = xml.ReadElementContentAsString();
+                while (xml.Name != "ObjectType") xml.Read();
+                var data1 = xml.ReadElementContentAsString();
+                while (xml.Name != "ObjectName") xml.Read();
+                var data2 = xml.ReadElementContentAsString();
+                while (xml.Name != "PositionX") xml.Read();
+                var data3 = xml.ReadElementContentAsInt();
+                while (xml.Name != "PositionY") xml.Read();
+                var data4 = xml.ReadElementContentAsInt();
 
-                System.Console.WriteLine(data);
+
+                System.Console.WriteLine(data1); 
+                System.Console.WriteLine(data2); 
+                System.Console.WriteLine(data3); 
+                System.Console.WriteLine(data4);
 
                 Room room = new Room();
                 //roomCreator.InsertRoomObjects(currentRoomData, room);
