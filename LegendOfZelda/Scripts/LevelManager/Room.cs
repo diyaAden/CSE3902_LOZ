@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room
-    {
+    { 
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
