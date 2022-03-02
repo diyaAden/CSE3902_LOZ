@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.Blocks
     class BlockSpriteFactory
     {
         private Texture2D blockSpriteSheet, fireSpriteSheet;
-        private static readonly BlockSpriteFactory instance = new BlockSpriteFactory();
+        private static readonly BlockSpriteFactory instance = new BlockSpriteFactory(); 
         public static BlockSpriteFactory Instance => instance;
 
         private BlockSpriteFactory()
