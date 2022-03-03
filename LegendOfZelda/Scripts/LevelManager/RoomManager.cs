@@ -13,16 +13,16 @@ namespace LegendOfZelda.Scripts.LevelManager
         public RoomManager() 
         {
             Rooms = new List<Room>();
-            CurrentRoom = 1;
+            CurrentRoom = 0;
         }
-        public void LoadContent(ContentManager content)
+        public void LoadContent()
         {
             
             /* Room 0 is the dev room */
             for (int i = 0; i <= 1; i++) {
-                xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + 11 + ".xml");
-                string objectType = "", objectName = "";
-                int posX = -1, posY = -1;
+                xml = XmlReader.Create("Content/XML/Room" + i + ".xml");
+                string objectType, objectName;
+                int posX, posY;
                 Room room = new Room();
                 xml.MoveToContent();
                 xml.Read();
@@ -40,7 +40,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                     xml.Read();
                     room.AddObject(objectType, objectName, posX, posY);
                 }
-                room.AddRoomBackground(11);
+                room.AddRoomBackground(i);
                 Rooms.Add(room);
             }
         }

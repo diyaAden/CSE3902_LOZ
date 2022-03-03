@@ -17,7 +17,6 @@
     <None Remove="Content\Commands\**" />
     <None Remove="Content\XmlFiles\**" />
     <None Remove="Scripts\LevelManager\RoomSprites\" />
-    <None Remove="Scripts\LevelManager\XMLFiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -49,9 +48,5 @@
     <None Update="Content\XML\Room1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\LevelManager\RoomSprites\" />
-    <Folder Include="Scripts\LevelManager\XMLFiles\" />
   </ItemGroup>
 </Project>
