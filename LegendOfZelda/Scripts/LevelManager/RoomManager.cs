@@ -11,14 +11,17 @@ namespace LegendOfZelda.Scripts.LevelManager
         public int CurrentRoom { get; set; }
         public RoomManager() 
         {
-            CurrentRoom = 3;
+
+            Rooms = new List<Room>();
+            CurrentRoom = 12;
         }
         public void LoadContent()
         {
             Rooms = new List<Room>();
             /* Room 0 is the dev room */
-            for (int i = 0; i <= 4; i++) {
-                xml = XmlReader.Create("Content/XML/Room" + i + ".xml");
+
+            for (int i = 10; i <= 15; i++) {
+                xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + i + ".xml");
                 string objectType, objectName;
                 int posX, posY;
                 Room room = new Room();
