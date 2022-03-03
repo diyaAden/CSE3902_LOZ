@@ -54,35 +54,35 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public IRoomBackground CreateRoomTwo()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room2Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomThree()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room3Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomFour()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room4Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomFive()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room5Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomSix()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room6Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomSeven()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room7Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomEight()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room8Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomNine()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room9Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomTen()
         {

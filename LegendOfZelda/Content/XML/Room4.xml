@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Clock</ObjectName>
+		<PositionX>0</PositionX>
+		<PositionY>0</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Rupee</ObjectName>
+		<PositionX>100</PositionX>
+		<PositionY>50</PositionY>
+	</Item>
+</XnaContent>
