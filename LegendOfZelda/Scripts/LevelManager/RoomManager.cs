@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -12,14 +11,13 @@ namespace LegendOfZelda.Scripts.LevelManager
         public int CurrentRoom { get; set; }
         public RoomManager() 
         {
-            Rooms = new List<Room>();
-            CurrentRoom = 0;
+            CurrentRoom = 3;
         }
         public void LoadContent()
         {
-            
+            Rooms = new List<Room>();
             /* Room 0 is the dev room */
-            for (int i = 0; i <= 1; i++) {
+            for (int i = 0; i <= 4; i++) {
                 xml = XmlReader.Create("Content/XML/Room" + i + ".xml");
                 string objectType, objectName;
                 int posX, posY;

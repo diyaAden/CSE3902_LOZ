@@ -9,14 +9,13 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room
     {
-        public List<IRoomBackground> roomBackgrounds { get; private set; }
+        public IRoomBackground RoomBackground { get; private set; }
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
 
         public Room() 
         {
-            roomBackgrounds = new List<IRoomBackground>(); 
             Items = new List<IItem>();
             Enemies = new List<IEnemy>();
             Blocks = new List<IBlock>();
@@ -45,7 +44,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void AddRoomBackground(int roomNumber)
         {
-            roomBackgrounds.Add(RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber));
+            RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
         }
 
         public void Update()
@@ -57,7 +56,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (IRoomBackground roomBackground in roomBackgrounds) roomBackground.Draw(spriteBatch);
+            RoomBackground.Draw(spriteBatch);
             foreach (IItem item in Items) item.Draw(spriteBatch);
             foreach (IBlock block in Blocks) block.Draw(spriteBatch);
             foreach (IEnemy enemy in Enemies) enemy.Draw(spriteBatch);
