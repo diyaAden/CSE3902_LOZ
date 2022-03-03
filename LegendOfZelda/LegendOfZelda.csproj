@@ -45,6 +45,15 @@
     <None Update="Content\XML\Room0.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Content\XML\Room2.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\XML\Room3.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\XML\Room4.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\XML\Room1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
