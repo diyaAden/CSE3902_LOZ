@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, 400, 231);
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, 255, 176);
             spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White);
         }
     }

@@ -17,6 +17,7 @@
     <None Remove="Content\Commands\**" />
     <None Remove="Content\XmlFiles\**" />
     <None Remove="Scripts\LevelManager\RoomSprites\" />
+    <None Remove="Scripts\LevelManager\XMLFiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -51,5 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\LevelManager\RoomSprites\" />
+    <Folder Include="Scripts\LevelManager\XMLFiles\" />
   </ItemGroup>
 </Project>

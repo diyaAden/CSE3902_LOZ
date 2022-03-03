@@ -20,7 +20,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             
             /* Room 0 is the dev room */
             for (int i = 0; i <= 1; i++) {
-                xml = XmlReader.Create("Content/XML/Room" + i + ".xml");
+                xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + 11 + ".xml");
                 string objectType = "", objectName = "";
                 int posX = -1, posY = -1;
                 Room room = new Room();
@@ -40,7 +40,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                     xml.Read();
                     room.AddObject(objectType, objectName, posX, posY);
                 }
-                room.AddRoomBackground(10);
+                room.AddRoomBackground(11);
                 Rooms.Add(room);
             }
         }
