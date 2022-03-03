@@ -3,43 +3,43 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>247</PositionX>
-		<PositionY>165</PositionY>
+		<PositionX>47</PositionX>
+		<PositionY>65</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>247</PositionX>
-		<PositionY>197</PositionY>
+		<PositionX>47</PositionX>
+		<PositionY>97</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>359</PositionX>
-		<PositionY>165</PositionY>
+		<PositionX>159</PositionX>
+		<PositionY>65</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>359</PositionX>
-		<PositionY>197</PositionY>
+		<PositionX>159</PositionX>
+		<PositionY>97</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Goriya</ObjectName>
-		<PositionX>375</PositionX>
-		<PositionY>263</PositionY>
+		<PositionX>63</PositionX>
+		<PositionY>97</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Goriya</ObjectName>
-		<PositionX>247</PositionX>
-		<PositionY>133</PositionY>
+		<PositionX>159</PositionX>
+		<PositionY>47</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Goriya</ObjectName>
-		<PositionX>391</PositionX>
-		<PositionY>133</PositionY>
+		<PositionX>159</PositionX>
+		<PositionY>149</PositionY>
 	</Item>
 </XnaContent>

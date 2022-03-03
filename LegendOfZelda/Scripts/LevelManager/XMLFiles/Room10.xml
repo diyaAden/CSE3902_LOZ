@@ -3,98 +3,98 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>247</PositionX>
-		<PositionY>149</PositionY>
+		<PositionX>47</PositionX>
+		<PositionY>49</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>263</PositionX>
-		<PositionY>149</PositionY>
+		<PositionX>63</PositionX>
+		<PositionY>49</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>247</PositionX>
-		<PositionY>213</PositionY>
+		<PositionX>47</PositionX>
+		<PositionY>113</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>263</PositionX>
-		<PositionY>213</PositionY>
+		<PositionX>63</PositionX>
+		<PositionY>113</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>311</PositionX>
-		<PositionY>181</PositionY>
+		<PositionX>111</PositionX>
+		<PositionY>81</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>327</PositionX>
-		<PositionY>181</PositionY>
+		<PositionX>127</PositionX>
+		<PositionY>81</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>375</PositionX>
-		<PositionY>149</PositionY>
+		<PositionX>175</PositionX>
+		<PositionY>49</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>391</PositionX>
-		<PositionY>149</PositionY>
+		<PositionX>191</PositionX>
+		<PositionY>49</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>375</PositionX>
-		<PositionY>213</PositionY>
+		<PositionX>175</PositionX>
+		<PositionY>113</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>391</PositionX>
-		<PositionY>213</PositionY>
+		<PositionX>191</PositionX>
+		<PositionY>113</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Item</ObjectType>
 		<ObjectName>Map</ObjectName>
-		<PositionX>391</PositionX>
-		<PositionY>181</PositionY>
+		<PositionX>191</PositionX>
+		<PositionY>81</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Gel</ObjectName>
-		<PositionX>295</PositionX>
-		<PositionY>181</PositionY>
+		<PositionX>175</PositionX>
+		<PositionY>97</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Gel</ObjectName>
-		<PositionX>375</PositionX>
-		<PositionY>181</PositionY>
+		<PositionX>95</PositionX>
+		<PositionY>97</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Gel</ObjectName>
-		<PositionX>311</PositionX>
-		<PositionY>149</PositionY>
+		<PositionX>111</PositionX>
+		<PositionY>49</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Gel</ObjectName>
-		<PositionX>359</PositionX>
-		<PositionY>149</PositionY>
+		<PositionX>175</PositionX>
+		<PositionY>33</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Gel</ObjectName>
-		<PositionX>391</PositionX>
-		<PositionY>133</PositionY>
+		<PositionX>159</PositionX>
+		<PositionY>49</PositionY>
 	</Item>
 	
 </XnaContent>
