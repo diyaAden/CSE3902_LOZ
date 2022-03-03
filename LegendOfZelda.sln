@@ -3,64 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegendOfZelda", "LegendOfZelda\LegendOfZelda.csproj", "{EE4213AE-BAFE-47A7-BC2C-340C84F80447}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDataTypes", "CustomDataTypes\CustomDataTypes.csproj", "{4D6417CD-5750-48D4-B861-933C835C328D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegendOfZelda", "LegendOfZelda\LegendOfZelda.csproj", "{EE4213AE-BAFE-47A7-BC2C-340C84F80447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|ARM = Debug|ARM
-		Debug|ARM64 = Debug|ARM64
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|ARM = Release|ARM
-		Release|ARM64 = Release|ARM64
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|ARM.Build.0 = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|x64.Build.0 = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Debug|x86.Build.0 = Debug|Any CPU
 		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|ARM.ActiveCfg = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|ARM.Build.0 = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|ARM64.Build.0 = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|x64.ActiveCfg = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|x64.Build.0 = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|x86.ActiveCfg = Release|Any CPU
-		{EE4213AE-BAFE-47A7-BC2C-340C84F80447}.Release|x86.Build.0 = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|ARM.Build.0 = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|x64.Build.0 = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Debug|x86.Build.0 = Debug|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|ARM.ActiveCfg = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|ARM.Build.0 = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|ARM64.Build.0 = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|x64.ActiveCfg = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|x64.Build.0 = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|x86.ActiveCfg = Release|Any CPU
-		{4D6417CD-5750-48D4-B861-933C835C328D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

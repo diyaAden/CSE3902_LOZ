@@ -7,13 +7,12 @@ using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda.Scripts.LevelManager;
 
 namespace LegendOfZelda
 {
     public class Game1 : Game
     {
-        private readonly GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
         private List<IController> controllerList;
@@ -21,8 +20,7 @@ namespace LegendOfZelda
 
         public Vector2 position = new Vector2(400, 300);
         public ILink link;
-
-        private RoomManager roomManager;
+        
 
         internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
@@ -42,9 +40,6 @@ namespace LegendOfZelda
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             controllerList = new List<IController>() { control };
-
-            roomManager = new RoomManager(); // here for testing
-
             base.Initialize();
         }
         public void ResetGame()
@@ -71,8 +66,6 @@ namespace LegendOfZelda
             
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
-
-            roomManager.LoadContent(Content); // here for testing
         }
 
         protected override void Update(GameTime gameTime)
@@ -87,7 +80,6 @@ namespace LegendOfZelda
             link.Update();
             foreach (ICollection collection in objectCollections) { collection.Update(); }
 
-            roomManager.Update(); // here for testing
 
             base.Update(gameTime);
         }
@@ -95,10 +87,8 @@ namespace LegendOfZelda
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-
-            roomManager.Draw(_spriteBatch); // here for testing
-
+            _spriteBatch.Begin();
+            
             foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
 
             foreach (IWeapon weapon in activeWeapons)

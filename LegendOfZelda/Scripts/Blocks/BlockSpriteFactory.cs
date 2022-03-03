@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.Blocks
     class BlockSpriteFactory
     {
         private Texture2D blockSpriteSheet, fireSpriteSheet;
-        private static readonly BlockSpriteFactory instance = new BlockSpriteFactory();
+        private static BlockSpriteFactory instance = new BlockSpriteFactory();
         public static BlockSpriteFactory Instance => instance;
 
         private BlockSpriteFactory()
@@ -17,24 +17,6 @@ namespace LegendOfZelda.Scripts.Blocks
         {
             blockSpriteSheet = content.Load<Texture2D>("SpriteSheets/Blocks/TileSpriteSheet");
             fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
-        }
-        public IBlock CreateBlockFromString(string blockName)
-        {
-            return blockName switch
-            {
-                "Fire" => CreateFireBlockSprite(),
-                "BlueFloor" => CreateBlueFloorSprite(),
-                "BlueSand" => CreateBlueSandSprite(),
-                "StatueLeft" => CreateStatueLeftSprite(),
-                "StatueRight" => CreateStatueRightSprite(),
-                "Stairs" => CreateStairsSprite(),
-                "Ladder" => CreateLadderSprite(),
-                "SquareBlock" => CreateSquareBlockSprite(),
-                "PushBlock" => CreatePushBlockSprite(),
-                "WhiteBrick" => CreateWhiteBrickSprite(),
-                "BlueGap" => CreateBlueGapSprite(),
-                _ => null,
-            };
         }
         public IBlock CreateFireBlockSprite()
         {
