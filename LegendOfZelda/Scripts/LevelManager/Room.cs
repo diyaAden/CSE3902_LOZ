@@ -43,9 +43,9 @@ namespace LegendOfZelda.Scripts.LevelManager
             //Enemies.Add(EnemySpriteFactory.Instance.CreateEnemyFromString(name));
             //Enemies[^1].position = new Vector2(xPos, yPos);
         }
-        public void AddRoomBackground()
+        public void AddRoomBackground(int roomNumber)
         {
-            roomBackgrounds.Add(RoomBackgroundFactory.Instance.CreateDevRoom());
+            roomBackgrounds.Add(RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber));
         }
 
         public void Update()

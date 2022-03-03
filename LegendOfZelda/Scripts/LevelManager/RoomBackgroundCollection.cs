@@ -11,37 +11,44 @@ namespace LegendOfZelda.Scripts.LevelManager
 
         public RoomBackgroundCollection()
         {
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueFloorSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueSandSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreatePushBlockSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateStatueLeftSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateStatueRightSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateStairsSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateLadderSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateSquareBlockSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateWhiteBrickSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueGapSprite());
-            //blockCollection.Add(BlockSpriteFactory.Instance.CreateFireBlockSprite());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateDevRoom());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomOne());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomTwo());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomThree());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomFour());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomFive());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomSix());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomSeven());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomEight());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomNine());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomTen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomEleven());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomTwelve());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomThirteen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomFourteen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomFifteen());
         }
 
         public void Next()
         {
-            //currentObject = ++currentObject % blockCollection.Count;
+            currentObject = ++currentObject % RoomCollection.Count;
         }
 
         public void Previous()
         {
-            //if (--currentObject < 0) { currentObject = blockCollection.Count - 1; }
+            if (--currentObject < 0) { currentObject = RoomCollection.Count - 1; }
         }
 
         public void Update()
         {
-            //blockCollection[currentObject].Update();
+            RoomCollection[currentObject].Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //blockCollection[currentObject].Draw(spriteBatch);
+            RoomCollection[currentObject].Draw(spriteBatch);
         }
+       
+
     }
 }

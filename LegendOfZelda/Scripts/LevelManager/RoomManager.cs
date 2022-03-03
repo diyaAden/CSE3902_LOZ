@@ -40,7 +40,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                     xml.Read();
                     room.AddObject(objectType, objectName, posX, posY);
                 }
-                room.AddRoomBackground();
+                room.AddRoomBackground(10);
                 Rooms.Add(room);
             }
         }

@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.LevelManager
 {
-    public class Room0Sprite : BasicRoomBackground
+    public class Room14Sprite : BasicRoomBackground
     {
-        public Room0Sprite(Texture2D DungeonMap)
+        public Room14Sprite(Texture2D DungeonMap)
         {
             spriteSheet = DungeonMap;
-            sourceRect = new Rectangle(258, 888, 255, 176);
+            sourceRect = new Rectangle(1030, 178, 255, 176);
         }
         public override void Update() { }
     }
