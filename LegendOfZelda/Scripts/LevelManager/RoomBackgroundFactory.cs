@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         private Texture2D DungeonTiles;
         private static readonly RoomBackgroundFactory instance = new RoomBackgroundFactory();
         public static RoomBackgroundFactory Instance => instance;
-        internal ICollection roomCollection { get; private set; }
+        internal ICollection RoomCollection { get; private set; }
 
         private RoomBackgroundFactory()
         {
@@ -50,7 +50,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public IRoomBackground CreateRoomOne()
         {
-            return new Room0Sprite(DungeonTiles);
+            return new Room1Sprite(DungeonTiles);
         }
         public IRoomBackground CreateRoomTwo()
         {
