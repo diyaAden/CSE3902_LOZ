@@ -18,4 +18,10 @@
 		<PositionX>50</PositionX>
 		<PositionY>100</PositionY>
 	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Aquamentus</ObjectName>
+		<PositionX>200</PositionX>
+		<PositionY>100</PositionY>
+	</Item>
 </XnaContent>
