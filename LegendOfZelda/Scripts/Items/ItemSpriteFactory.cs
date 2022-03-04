@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.Items
     public class ItemSpriteFactory
     {
         private Texture2D itemSpriteSheet, fairySpriteSheet, heartSpriteSheet, rupeeSpriteSheet, triforcePieceSpriteSheet, arrowSwordSpriteSheet;
-        private static readonly ItemSpriteFactory instance = new ItemSpriteFactory();
+        private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance => instance;
         private ItemSpriteFactory()

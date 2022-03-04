@@ -1,4 +1,4 @@
-﻿using LegendOfZelda.Scripts.Blocks.BlockSprites;
+using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 

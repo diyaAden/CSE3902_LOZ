@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Input.Controller;
 using LegendOfZelda.Scripts.Items;
@@ -22,7 +22,7 @@ namespace LegendOfZelda
         public Vector2 position = new Vector2(400, 300);
         public ILink link;
 
-        private RoomManager roomManager;
+        public RoomManager roomManager;
         internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
         internal ICollection EnemyCollection { get; private set; }
@@ -38,8 +38,10 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             KeyboardController control = new KeyboardController();
+            MouseController mouse = new MouseController();
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
+            con.RegisterCommands(mouse);
             controllerList = new List<IController>() { control };
 
             roomManager = new RoomManager(); // here for testing
