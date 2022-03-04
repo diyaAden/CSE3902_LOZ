@@ -54,12 +54,14 @@ namespace LegendOfZelda.Scripts.Input.Controller
             control.RegisterCommand(Keys.I, new NextItem(myGame));
             control.RegisterCommand(Keys.O, new PreviousNPC(myGame));
             control.RegisterCommand(Keys.P, new NextNPC(myGame));
+            control.RegisterCommand(Keys.K, new PreviousRoom(myGame));
+            control.RegisterCommand(Keys.L, new NextRoom(myGame));
         }
         public void RegisterCommands(MouseController mouse)
         {
             //Game Controls
-            mouse.RegisterCommand(Keys.O, new PreviousRoom(myGame));
-            mouse.RegisterCommand(Keys.P, new NextRoom(myGame));
+            mouse.RegisterCommand(Keys.K, new PreviousRoom(myGame));
+            mouse.RegisterCommand(Keys.L, new NextRoom(myGame));
         }
     }
 }

@@ -24,11 +24,11 @@ namespace LegendOfZelda.Scripts.Input.Controller
         public void Update()
         {
             MouseState mouse = Mouse.GetState();
-            if(frame == 3)
+            if (frame == 3)
             {
                 frame = 0;
             }
-            if(mouse.RightButton == ButtonState.Pressed && frame == 2)
+            if (mouse.RightButton == ButtonState.Pressed && frame == 2)
             {
                 controllerMappings[Keys.F11].Execute();
             }
