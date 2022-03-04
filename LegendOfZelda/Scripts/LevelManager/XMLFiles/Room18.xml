@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	
+    <Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Goriya</ObjectName>
+		<PositionX>24</PositionX>
+		<PositionY>24</PositionY>
+	</Item>
+    <Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Goriya</ObjectName>
+		<PositionX>240</PositionX>
+		<PositionY>24</PositionY>
+	</Item>
+    <Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Goriya</ObjectName>
+		<PositionX>240</PositionX>
+		<PositionY>180</PositionY>
+	</Item>
+</XnaContent>
