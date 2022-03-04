@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Input.Controller;
 using LegendOfZelda.Scripts.Items;

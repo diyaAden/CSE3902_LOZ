@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         private XmlReader xml;
         private List<ILevel> Rooms { get; set; }
         public int CurrentRoom { get; set; }
-        public RoomManager() 
+        public RoomManager()
         {
             CurrentRoom = 0;
         }
@@ -33,7 +33,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                     posX = xml.ReadElementContentAsInt();
                     while (xml.Name != "PositionY") xml.Read();
                     posY = xml.ReadElementContentAsInt();
-                    while(xml.Name != "Item") xml.Read();
+                    while (xml.Name != "Item") xml.Read();
                     xml.Read();
                     xml.Read();
                     room.AddObject(objectType, objectName, posX, posY);
