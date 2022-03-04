@@ -20,7 +20,7 @@
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
-		<ObjectName>Keese</ObjectName>
+		<ObjectName>Goriya</ObjectName>
 		<PositionX>200</PositionX>
 		<PositionY>100</PositionY>
 	</Item>

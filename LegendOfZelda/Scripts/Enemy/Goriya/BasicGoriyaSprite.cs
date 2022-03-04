@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
 
@@ -11,13 +9,20 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
      class BasicGoriyaSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0, direction;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
+        private int animationTimer = 0, direction;
         private IWeapon boomerang;
         private IEnemy sprite;
         private bool attacking = false;
 
-
+        public override Vector2 position { 
+            get { 
+                return pos; 
+            } 
+            set { 
+                pos = value;
+                sprite.position = value;
+            } 
+        }
         public BasicGoriyaSprite()
         {
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
