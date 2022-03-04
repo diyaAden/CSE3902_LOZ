@@ -16,7 +16,6 @@
     <EmbeddedResource Remove="Content\XmlFiles\**" />
     <None Remove="Content\Commands\**" />
     <None Remove="Content\XmlFiles\**" />
-    <None Remove="Scripts\LevelManager\RoomSprites\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
