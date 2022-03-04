@@ -54,4 +54,10 @@
 		<PositionX>400</PositionX>
 		<PositionY>400</PositionY>
 	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>WallMaster</ObjectName>
+		<PositionX>500</PositionX>
+		<PositionY>400</PositionY>
+	</Item>
 </XnaContent>
