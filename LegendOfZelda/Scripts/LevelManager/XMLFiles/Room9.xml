@@ -15,8 +15,8 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>50</PositionX>
-		<PositionY>100</PositionY>
+		<PositionX>112</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
