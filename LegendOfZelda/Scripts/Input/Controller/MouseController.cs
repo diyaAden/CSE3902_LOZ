@@ -11,6 +11,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
         private Dictionary<Keys, ICommand> controllerMappings;
         private int frame = 0;
         private Keys lastKey;
+        private MouseState oldState;
         
         private Queue<Keys> previousKeys = new Queue<Keys>();
         public MouseController()
@@ -23,24 +24,20 @@ namespace LegendOfZelda.Scripts.Input.Controller
         }
         public void Update()
         {
-            MouseState mouse = Mouse.GetState();
-            if (frame == 3)
+            MouseState newState = Mouse.GetState();
+            if (newState.RightButton == ButtonState.Pressed && oldState.RightButton == ButtonState.Released)
             {
-                frame = 0;
+                controllerMappings[Keys.K].Execute();
             }
-            if (mouse.RightButton == ButtonState.Pressed && frame == 2)
+            else if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
-                controllerMappings[Keys.F11].Execute();
-            }
-            else if (mouse.LeftButton == ButtonState.Pressed && frame == 1)
-            {
-                controllerMappings[Keys.F12].Execute();
+                controllerMappings[Keys.L].Execute();
             }
             else
             {
-                frame++;
+               // Mouse.SetPosition(400, 500);
             }
-
+            oldState = newState;
         }
     }
 }
