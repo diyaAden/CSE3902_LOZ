@@ -10,8 +10,6 @@ namespace LegendOfZelda.Scripts.Items
 
         public void Update();
 
-        public IGameObject GameObject(); //MAYBE a list when xml files store
-
         public void Draw(SpriteBatch spriteBatch);
     }
 }

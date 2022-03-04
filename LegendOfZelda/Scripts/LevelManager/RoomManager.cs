@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.LevelManager
     public class RoomManager
     {
         private XmlReader xml;
-        private List<ILevel> Rooms { get; set; }
+        public List<ILevel> Rooms { get; set; }
         public int CurrentRoom { get; set; }
         public RoomManager()
         {
