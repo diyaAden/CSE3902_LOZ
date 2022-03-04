@@ -2,35 +2,55 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
 {
      class BasicGelSprite : Enemy
     {
-
-        private int animationTimer = 0, currentFrame = 0;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
+        private bool attacking = false;
+        private int movementTimer = 0, currentFrame = 0, moveDist = 0, direction, timeUntilMove = 0;
+        private readonly int moveSpeed = 1, moveDistLimit = 16;
+        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
+        private readonly Random rnd = new Random();
 
         public BasicGelSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 8, 9));
             animationFrames.Add(new Rectangle(8, 0, 8, 9));
+            direction = rnd.Next(0, 4);
         }
-
+        private Vector2 Move(int direction)
+        {
+            return direction switch
+            {
+                0 => new Vector2(position.X, position.Y + moveSpeed),
+                1 => new Vector2(position.X, position.Y - moveSpeed),
+                2 => new Vector2(position.X - moveSpeed, position.Y),
+                _ => new Vector2(position.X + moveSpeed, position.Y),
+            };
+        }
         public override void Update()
         {
-            var rand = new Random();
-            if (++animationTimer > 2)
+            if (attacking)
             {
-                animationTimer = 0;
+                position = Move(direction);
+                moveDist += moveSpeed;
+            } else if (++movementTimer >= timeUntilMove)
+            {
+                movementTimer = 0;
+                timeUntilMove = rnd.Next(30, 121);
+                attacking = true;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y - (rand.Next(-2, 2)));
-
+            if (moveDist >= moveDistLimit)
+            {
+                attacking = false;
+                moveDist = 0;
+                direction = rnd.Next(0, 4);
+                currentFrame = ++currentFrame % animationFrames.Count;
+            }
         }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
@@ -38,4 +58,3 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
         }
     }
 }
-
