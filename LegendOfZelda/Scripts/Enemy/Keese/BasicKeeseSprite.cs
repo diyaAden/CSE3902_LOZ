@@ -2,33 +2,54 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
 {
      class BasicKeeseSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
+        private int animationTimer = 0, currentFrame = 0, direction, timeUntilDirectionChange, movementTimer = 0;
+        private readonly int moveSpeed = 1;
+        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
+        private readonly Random rnd = new Random();
 
         public BasicKeeseSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 8));
             animationFrames.Add(new Rectangle(16, 0, 16, 8));
+            direction = rnd.Next(0, 8);
+            timeUntilDirectionChange = rnd.Next(30, 61);
         }
-
+        private Vector2 Move(int direction)
+        {
+            return direction switch
+            {
+                0 => new Vector2(position.X, position.Y + moveSpeed),
+                1 => new Vector2(position.X, position.Y - moveSpeed),
+                2 => new Vector2(position.X - moveSpeed, position.Y),
+                3 => new Vector2(position.X + moveSpeed, position.Y),
+                4 => new Vector2(position.X + moveSpeed, position.Y + moveSpeed),
+                5 => new Vector2(position.X + moveSpeed, position.Y - moveSpeed),
+                6 => new Vector2(position.X - moveSpeed, position.Y + moveSpeed),
+                _ => new Vector2(position.X - moveSpeed, position.Y - moveSpeed),
+            };
+        }
         public override void Update()
         {
-            var rand = new Random();
-            if (++animationTimer > 2)
+            position = Move(direction);
+            if (++movementTimer >= timeUntilDirectionChange)
+            {
+                movementTimer = 0;
+                direction = rnd.Next(0, 8);
+                timeUntilDirectionChange = rnd.Next(30, 61);
+            }
+            if (++animationTimer == 7)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X + (rand.Next(-2, 2)), position.Y - (rand.Next(-2, 2)));
-         }
+        }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
