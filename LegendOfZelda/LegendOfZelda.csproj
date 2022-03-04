@@ -16,8 +16,6 @@
     <EmbeddedResource Remove="Content\XmlFiles\**" />
     <None Remove="Content\Commands\**" />
     <None Remove="Content\XmlFiles\**" />
-    <None Remove="Scripts\LevelManager\RoomSprites\" />
-    <None Remove="Scripts\Input\Command\Commands\SetRoom\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -115,32 +113,5 @@
     <None Update="Scripts\LevelManager\XMLFiles\Room17.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room10.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room11.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room12.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room13.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room14.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room15.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room16.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room17.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\Input\Command\Commands\SetRoom\" />
   </ItemGroup>
 </Project>
