@@ -46,7 +46,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             if (CurrentRoom  < 0)
                 CurrentRoom += 17;
-            CurrentRoom = CurrentRoom % 17; 
+            CurrentRoom %= 17;
             Rooms[CurrentRoom].Update();
         }
         public void Draw(SpriteBatch spriteBatch)
