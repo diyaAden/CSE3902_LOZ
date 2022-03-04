@@ -7,14 +7,14 @@ using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.LevelManager
 {
-    public class Room
+    public class Room : ILevel
     {
         public IRoomBackground roomBackground;
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
 
-        public Room() 
+        public Room()
         {
             Items = new List<IItem>();
             Enemies = new List<IEnemy>();
@@ -44,7 +44,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void AddRoomBackground(int roomNumber)
 
-        { 
+        {
             roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
         }
 
