@@ -48,4 +48,10 @@
 		<PositionX>400</PositionX>
 		<PositionY>300</PositionY>
 	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<PositionX>400</PositionX>
+		<PositionY>400</PositionY>
+	</Item>
 </XnaContent>
