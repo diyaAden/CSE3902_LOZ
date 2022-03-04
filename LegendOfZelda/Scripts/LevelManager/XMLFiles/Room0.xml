@@ -30,4 +30,10 @@
 		<PositionX>300</PositionX>
 		<PositionY>100</PositionY>
 	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Gel</ObjectName>
+		<PositionX>400</PositionX>
+		<PositionY>100</PositionY>
+	</Item>
 </XnaContent>
