@@ -12,7 +12,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
         private readonly List<Rectangle> animationFrames = new List<Rectangle>();
         protected int moveSpeed = 1, animationSpeed = 4;
         private List<IEnemy> fireballs = new List<IEnemy>();
-        private Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
 
         public BasicAquamentusSprite(Texture2D itemSpriteSheet)
