@@ -20,7 +20,30 @@ namespace LegendOfZelda.Scripts.Items
             heartSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/HeartSpriteSheet");
             rupeeSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/RupeeSpriteSheet");
             triforcePieceSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/TriforcePieceSpriteSheet");
-            arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet");
+            arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet"); 
+        }
+        public IItem CreateItemFromString(string itemName)
+        {
+            return itemName switch
+            {
+                "Compass" => CreateCompassSprite(),
+                "Map" => CreateMapSprite(),
+                "Key" => CreateKeySprite(),
+                "HeartContainer" => CreateHeartContainerSprite(),
+                "TriforcePiece" => CreateTriforcePieceSprite(),
+                "Boomerang" => CreateWoodBoomerangItemSprite(),
+                "MagicBoomerang" => CreateMagicBoomerangItemSprite(),
+                "Bow" => CreateBowSprite(),
+                "Heart" => CreateHeartSprite(),
+                "Rupee" => CreateRupeeSprite(),
+                "Arrow" => CreateArrowItemSprite(),
+                "MagicArrow" => CreateMagicArrowItemSprite(),
+                "Bomb" => CreateBombItemSprite(),
+                "BlueRupee" => CreateBlueRupeeSprite(),
+                "Clock" => CreateClockSprite(),
+                "Fairy" => CreateFairySprite(),
+                _ => null,
+            };
         }
         public IItem CreateCompassSprite()
         {
