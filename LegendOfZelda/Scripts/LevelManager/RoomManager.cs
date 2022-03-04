@@ -17,16 +17,14 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
-            for (int i = 0; i <= 17; i++)
-            {
+            for (int i = 0; i <= 17; i++) {
                 xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + i + ".xml");
                 string objectType, objectName;
                 int posX, posY;
                 ILevel room = new Room();
                 xml.MoveToContent();
                 xml.Read();
-                while (xml.IsStartElement())
-                {
+                while (xml.IsStartElement()) {
                     while (xml.Name != "ObjectType") xml.Read();
                     objectType = xml.ReadElementContentAsString();
                     while (xml.Name != "ObjectName") xml.Read();
