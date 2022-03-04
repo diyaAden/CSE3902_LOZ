@@ -42,7 +42,7 @@ namespace LegendOfZelda
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             con.RegisterCommands(mouse);
-            controllerList = new List<IController>() { control };
+            controllerList = new List<IController>() { control, mouse };
 
             roomManager = new RoomManager(); // here for testing
 
