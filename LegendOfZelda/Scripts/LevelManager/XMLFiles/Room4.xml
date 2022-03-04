@@ -1,15 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
 	<Item>
-		<ObjectType>Item</ObjectType>
-		<ObjectName>Clock</ObjectName>
-		<PositionX>0</PositionX>
-		<PositionY>0</PositionY>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>64</PositionY>
 	</Item>
 	<Item>
-		<ObjectType>Item</ObjectType>
-		<ObjectName>Rupee</ObjectName>
-		<PositionX>100</PositionX>
-		<PositionY>50</PositionY>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>128</PositionX>
+		<PositionY>64</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>80</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>128</PositionX>
+		<PositionY>80</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>128</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<PositionX>80</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<PositionX>80</PositionX>
+		<PositionY>48</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Stalfos</ObjectName>
+		<PositionX>48</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 </XnaContent>
