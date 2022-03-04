@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace LegendOfZelda.Scripts.Links.State
@@ -35,6 +36,7 @@ namespace LegendOfZelda.Scripts.Links.State
 
         public virtual void Update()
         {
+            Debug.WriteLine(Sprite);
             Sprite.Update();
             Position = Sprite.Position;
 
@@ -75,20 +77,24 @@ namespace LegendOfZelda.Scripts.Links.State
         }
         public virtual void MoveUp()
         {
+            Position = new Vector2(Position.X, Position.Y - Sprite.LinkMoveSpeed);
             Link.State = new BackWalkLinkState(Link, Position, isDamaged);
         }
 
         public virtual void MoveDown()
         {
+            Position = new Vector2(Position.X, Position.Y + Sprite.LinkMoveSpeed);
             Link.State = new FrontWalkLinkState(Link, Position, isDamaged);
         }
         public virtual void MoveLeft()
         {
+            Position = new Vector2(Position.X - Sprite.LinkMoveSpeed, Position.Y);
             Link.State = new LeftWalkLinkState(Link, Position, isDamaged);
             
         }
         public virtual void MoveRight()
         {
+            Position = new Vector2(Position.X + Sprite.LinkMoveSpeed, Position.Y);
             Link.State = new RightWalkLinkState(Link, Position, isDamaged);
         }
 
@@ -132,9 +138,14 @@ namespace LegendOfZelda.Scripts.Links.State
                 Link.State = new RightAttackLinkState(Link, Position, isDamaged);
             }
         }
+
+        public virtual Rectangle LinkBox()
+        {
+            return Sprite.LinkBox();
+        }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            this.Sprite.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch);
         }
     }
 }
