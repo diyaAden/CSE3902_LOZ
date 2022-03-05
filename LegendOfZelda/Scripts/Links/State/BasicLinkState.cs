@@ -36,7 +36,6 @@ namespace LegendOfZelda.Scripts.Links.State
 
         public virtual void Update()
         {
-            Debug.WriteLine(Sprite);
             Sprite.Update();
             Position = Sprite.Position;
 

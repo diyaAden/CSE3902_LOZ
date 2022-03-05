@@ -102,7 +102,9 @@ namespace LegendOfZelda
             }
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
-            foreach (ICollection collection in objectCollections) { collection.Update(); }
+            Debug.WriteLine(link.State);
+            Debug.WriteLine(link.State.Position);
+            
             foreach (ICollisionDetector collisionDetector in collisionDetectors)
             {
 
@@ -124,7 +126,8 @@ namespace LegendOfZelda
 
                
             }
-            roomManager.Update(); // here for testing
+           
+           roomManager.Update(); // here for testing
 
             base.Update(gameTime);
         }
