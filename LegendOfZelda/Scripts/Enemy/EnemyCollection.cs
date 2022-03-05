@@ -38,12 +38,6 @@ namespace LegendOfZelda.Scripts.Enemy
             enemyCollection[currentObject].Update();
         }
 
-        public IGameObject GameObject()
-        {
-            //return enemyCollection[currentObject];
-            return null;
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             enemyCollection[currentObject].Draw(spriteBatch);

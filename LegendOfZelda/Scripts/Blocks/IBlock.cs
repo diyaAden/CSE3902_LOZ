@@ -1,10 +1,9 @@
-﻿using LegendOfZelda.Scripts.Items;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Blocks
 {
-    public interface IBlock: IGameObject
+    public interface IBlock
     {
         public Vector2 position { get; set; }
 
