@@ -37,7 +37,7 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public abstract void Update();
 
-        public virtual Rectangle ObjectBox() { return new Rectangle((int)pos.X, (int)pos.Y, 1, 1);} //not actually, just try
+        public abstract Rectangle ObjectBox();
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             /*
