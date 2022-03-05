@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
@@ -8,11 +7,10 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
     class BasicAquamentusSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0, movingRight = 1, attackTimer = 0, attackTimerLimit;
+        private int animationTimer = 0, currentFrame = 0, movingRight = 1;
         private readonly List<Rectangle> animationFrames = new List<Rectangle>();
-        protected int moveSpeed = 1, animationSpeed = 4;
+        protected int moveSpeed = 1;
         private List<IEnemy> fireballs = new List<IEnemy>();
-        private readonly Random rnd = new Random();
 
 
         public BasicAquamentusSprite(Texture2D itemSpriteSheet)
@@ -22,7 +20,6 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             animationFrames.Add(new Rectangle(24, 0, 24, 32));
             animationFrames.Add(new Rectangle(48, 0, 24, 32)); 
             animationFrames.Add(new Rectangle(72, 0, 24, 32));
-            attackTimerLimit = rnd.Next(120, 181);
         }
 
         public override void Attack()
@@ -34,18 +31,14 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
 
         public override void Update()
         {
-            if (++animationTimer % animationSpeed == 0)
+            if (++animationTimer % 4 == 0)
                 currentFrame = ++currentFrame % animationFrames.Count;
-            if (animationTimer == animationSpeed * 16)
-            {
+            if (animationTimer % 64 == 0)
                 movingRight *= -1;
-                animationTimer = 0;
-            }
-            if (++attackTimer == attackTimerLimit)
+            if (animationTimer == 192)
             {
-                attackTimer = 0;
+                animationTimer = 0;
                 Attack();
-                attackTimerLimit = rnd.Next(120, 181);
             }
             foreach (IEnemy fireball in fireballs)
                 fireball.Update();
@@ -61,3 +54,4 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
         }
     }
 }
+

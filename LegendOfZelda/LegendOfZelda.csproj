@@ -59,9 +59,6 @@
     <None Update="Scripts\LevelManager\XMLFiles\Room15.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room16.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Scripts\LevelManager\XMLFiles\Room9.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -110,10 +107,10 @@
     <None Update="Scripts\LevelManager\XMLFiles\Room15.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room17.xml">
+    <None Update="Scripts\LevelManager\XMLFiles\Room16.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Scripts\LevelManager\XMLFiles\Room18.xml">
+    <None Update="Scripts\LevelManager\XMLFiles\Room17.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
