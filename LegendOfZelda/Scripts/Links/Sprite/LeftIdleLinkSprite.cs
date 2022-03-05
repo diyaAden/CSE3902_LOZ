@@ -12,7 +12,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
         {
             Rows = 1;
             Columns = 2;
-            CurrentFrame = 0;
+            CurrentFrame = 1;
             TotalFrames = Rows * Columns;
             Texture = texture;
             Pos = Position;

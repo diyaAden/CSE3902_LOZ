@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.LevelManager
     public class RoomManager
     {
         private XmlReader xml;
-        private List<ILevel> Rooms { get; set; }
+        public List<ILevel> Rooms { get; set; }
         public int CurrentRoom { get; set; }
         public RoomManager()
         {
@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
-            for (int i = 0; i <= 17; i++) {
+            for (int i = 0; i <= 18; i++) {
                 xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + i + ".xml");
                 string objectType, objectName;
                 int posX, posY;
@@ -45,8 +45,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void Update()
         {
             if (CurrentRoom  < 0)
-                CurrentRoom += 17;
-            CurrentRoom %= 17;
+                CurrentRoom += Rooms.Count;
+            CurrentRoom %= Rooms.Count;
             Rooms[CurrentRoom].Update();
         }
         public void Draw(SpriteBatch spriteBatch)

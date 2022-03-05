@@ -42,6 +42,13 @@ namespace LegendOfZelda.Scripts.Items
             itemCollection[currentObject].Update();
         }
 
+        
+        public IGameObject GameObject()
+        {
+            //return itemCollection[currentObject];
+            return null;
+        }
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             itemCollection[currentObject].Draw(spriteBatch);

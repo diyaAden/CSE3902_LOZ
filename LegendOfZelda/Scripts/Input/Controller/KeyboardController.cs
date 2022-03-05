@@ -28,9 +28,10 @@ namespace LegendOfZelda.Scripts.Input.Controller
                 controllerMappings[Keys.F].Execute();
             }
             
+           
             foreach (Keys key in keys)
             {
-                if (frame == 10)
+                if (frame == 3)
                 {
                     previousKeys.Dequeue();
                     frame = 0;
@@ -42,6 +43,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
                 }
                 frame++;
             }
+            
             
         }
     }
