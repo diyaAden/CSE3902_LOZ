@@ -12,10 +12,6 @@ namespace LegendOfZelda.Scripts.Blocks
 
         public abstract void Update();
 
-        public Rectangle ObjectBox()
-        {
-            return new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width, sourceRect.Height);
-        }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width, sourceRect.Height);
