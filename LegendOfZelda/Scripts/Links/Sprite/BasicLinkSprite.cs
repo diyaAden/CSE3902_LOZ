@@ -23,43 +23,22 @@ namespace LegendOfZelda.Scripts.Links.Sprite
 
         protected virtual int Timer { get; set; }
 
-        public int LinkMoveSpeed
-        {
-            get { return linkMoveSpeed; }
-            set { linkMoveSpeed = value; }
-        }
-
         protected int linkMoveSpeed = 2;
 
         //set to false by default, change to true when "e" key is pressed. 
         public bool checkDamageState = true; //{ get; set; }
         public Color SpriteColor { get; set; }
 
-        protected int width;
-        protected int height;
-        protected int row;
-        protected int column;
-
         public virtual void Update()
         {
 
         }
-
-        private void GetBoxSize()
-        {
-            width = Texture.Width / Columns;
-            height = Texture.Height / Rows;
-            row = CurrentFrame / Columns;
-            column = CurrentFrame % Columns;
-        }
-        public virtual Rectangle LinkBox()
-        {
-            GetBoxSize();
-            return new Rectangle((int)Pos.X, (int)Pos.Y, width, height);
-        }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            GetBoxSize();
+            int width = Texture.Width / Columns;
+            int height = Texture.Height / Rows;
+            int row = CurrentFrame / Columns;
+            int column = CurrentFrame % Columns;
 
             if (checkDamageState == true)
             {
@@ -70,8 +49,9 @@ namespace LegendOfZelda.Scripts.Links.Sprite
                 SpriteColor = Color.White;
             }
 
+
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = LinkBox();
+            Rectangle destinationRectangle = new Rectangle((int)Pos.X, (int)Pos.Y, width, height);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, SpriteColor);
 
