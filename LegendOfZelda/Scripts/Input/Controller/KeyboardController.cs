@@ -9,9 +9,6 @@ namespace LegendOfZelda.Scripts.Input.Controller
     public class KeyboardController : IController
     {
         private Dictionary<Keys, ICommand> controllerMappings;
-        private int frame = 0;
-        private Keys lastKey;
-        private Queue<Keys> previousKeys = new Queue<Keys>();
         public KeyboardController()
         {
             controllerMappings = new Dictionary<Keys, ICommand>();
@@ -23,26 +20,16 @@ namespace LegendOfZelda.Scripts.Input.Controller
         public void Update()
         {
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
+
             if (keys.Length == 0)
             {
                 controllerMappings[Keys.F].Execute();
             }
-            
             foreach (Keys key in keys)
             {
-                if (frame == 10)
-                {
-                    previousKeys.Dequeue();
-                    frame = 0;
-                }
-                if (controllerMappings.ContainsKey(key) && !previousKeys.Contains(key))
-                {
-                    controllerMappings[key].Execute();
-                    previousKeys.Enqueue(key);
-                }
-                frame++;
+                if(controllerMappings.ContainsKey(key))
+                controllerMappings[key].Execute();
             }
-            
         }
     }
 }

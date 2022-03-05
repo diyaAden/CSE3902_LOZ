@@ -13,7 +13,7 @@ namespace LegendOfZelda.Scripts.Enemy
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 400);
-        public virtual Vector2 position { get { return pos; } set { pos = value; } }
+        public Vector2 position { get { return pos; } set { pos = value; } }
 
         public virtual Texture2D Texture { get; set; }
 
