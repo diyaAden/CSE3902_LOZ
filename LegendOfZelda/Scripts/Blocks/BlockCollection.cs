@@ -6,9 +6,9 @@ namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockCollection : ICollection
     {
-      
         private List<IBlock> blockCollection = new List<IBlock>();
         private int currentObject = 0;
+
         public BlockCollection()
         {
             blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueFloorSprite());
@@ -39,10 +39,6 @@ namespace LegendOfZelda.Scripts.Blocks
             blockCollection[currentObject].Update();
         }
 
-        public IGameObject GameObject()
-        {
-            return blockCollection[currentObject];
-        }
         public void Draw(SpriteBatch spriteBatch)
         {
             blockCollection[currentObject].Draw(spriteBatch);

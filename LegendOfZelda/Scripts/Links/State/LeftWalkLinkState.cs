@@ -21,8 +21,6 @@ namespace LegendOfZelda.Scripts.Links.State
 
         public override void MoveLeft()
         {
-            Position = new Vector2(Position.X - Sprite.LinkMoveSpeed, Position.Y);
-            Sprite.Position = Position;
             //do nothing
 
         }
