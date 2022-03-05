@@ -1,9 +1,12 @@
-﻿using LegendOfZelda.Scripts.Enemy;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace LegendOfZelda.Scripts.Enemy
@@ -24,10 +27,20 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public virtual void Attack() { }
 
+        public void HandleItemCollision(IGameObject item, ICollision side)
+        {
+            if (!(side is ICollision.SideNone))
+            {
+                Debug.WriteLine("Boom! Enemy is damaged!");
+            }
+        }
+
         public abstract void Update();
 
+        public virtual Rectangle ObjectBox() { return new Rectangle((int)pos.X, (int)pos.Y, 1, 1);} //not actually, just try
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            /*
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
             int row = CurrentFrame / Columns;
@@ -37,6 +50,7 @@ namespace LegendOfZelda.Scripts.Enemy
             Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            */
 
         }
     }

@@ -12,6 +12,7 @@ using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Collision;
 using System.Diagnostics;
+using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda
 {
@@ -55,10 +56,12 @@ namespace LegendOfZelda
             roomManager = new RoomManager(); // here for testing
 
             CollisionPlayerBlockDetector collisionPlayerBlockDetector = new CollisionPlayerBlockDetector();
-            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector };
+            CollisionEnemyItemDetector collisionEnemyItemDetector = new CollisionEnemyItemDetector();
+            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector };
 
             PlayerBlockCollisionHandler playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler };
+            EnemyItemCollisionHandler enemyItemCollisionHandler = new EnemyItemCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler };
 
             base.Initialize();
         }
@@ -102,31 +105,48 @@ namespace LegendOfZelda
             }
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
-            Debug.WriteLine(link.State);
-            Debug.WriteLine(link.State.Position);
-            
-            foreach (ICollisionDetector collisionDetector in collisionDetectors)
+
+            //foreach (ICollisionDetector collisionDetector in collisionDetectors)
+
+            ICollisionDetector collisionDetector = collisionDetectors[0];
+            //will refactor this part next time...
+            ILevel room = roomManager.Rooms[roomManager.CurrentRoom];
+            List<IBlock> blocks = room.Blocks;
+            List<IEnemy> enemys = room.Enemies;
+            foreach (IBlock block in blocks)
             {
+                IGameObject gameObject = (IGameObject)block;
 
-                //maybe could be in the collisiondetector cs
-                List<IBlock> blocks = roomManager.Rooms[roomManager.CurrentRoom].Blocks;
-                foreach (IBlock block in blocks)
+                List<ICollision> sides = collisionDetector.BoxTest(link, gameObject);
+
+                foreach (ICollision side in sides)
                 {
-                    IGameObject gameObject = (IGameObject)block;
-
-                    List<ICollision> sides = collisionDetector.BoxTest(link, gameObject);
-
-                    foreach (ICollision side in sides)
+                    collisionHandlers[0].HandleCollision(link, gameObject, side);
+                }
+            }
+            collisionDetector = collisionDetectors[1];
+            foreach (IEnemy enemy in enemys)
+            {
+                foreach (IWeapon weapon in activeWeapons)
+                    
+                {
+                    if (!weapon.IsNull())
                     {
-                        Debug.WriteLine(side);
-                        collisionHandlers[0].HandleCollision(link, gameObject, side);
+                        IGameObject gameObject = (IGameObject)weapon;
+
+
+                        List<ICollision> sides = collisionDetector.BoxTest(enemy, gameObject);
+
+                        foreach (ICollision side in sides)
+                        {
+                            collisionHandlers[1].HandleCollision(enemy, gameObject, side);
+
+                        }
                     }
-                    Debug.WriteLine("well");
                 }
 
-               
             }
-           
+
            roomManager.Update(); // here for testing
 
             base.Update(gameTime);

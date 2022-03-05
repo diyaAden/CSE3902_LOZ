@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Items
 {
-    public interface IItem
+    public interface IItem: IGameObject
     {
         public int timeLimit { get; }
         public Vector2 position { get; set; }
@@ -11,6 +11,7 @@ namespace LegendOfZelda.Scripts.Items
         public void Update();
 
         public void Update(Vector2 linkPosition);
+
 
         public void Draw(SpriteBatch spriteBatch);
     }

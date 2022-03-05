@@ -51,7 +51,10 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
                 fireball.Update();
             position = new Vector2(position.X - (moveSpeed * movingRight), position.Y);
         }
-
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             foreach (IEnemy fireball in fireballs)

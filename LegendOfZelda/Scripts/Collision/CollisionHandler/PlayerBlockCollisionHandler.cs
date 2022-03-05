@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
@@ -16,6 +17,10 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         public void HandleCollision(ILink link, IGameObject block, ICollision side)
         {
             link.HandleBlockCollision(block, side);
+        }
+        public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)
+        {
+
         }
     }
 }
