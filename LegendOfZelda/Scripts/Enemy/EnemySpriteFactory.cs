@@ -18,7 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy
     {
         private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet, oldmanSpriteSheet;
         private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
-        private static EnemySpriteFactory instance = new EnemySpriteFactory();
+        private static readonly EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
 
         private EnemySpriteFactory()
@@ -52,6 +52,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 "Stalfos" => CreateStalfosSprite(),
                 "Trap" => CreateTrapSprite(),
                 "WallMaster" => CreateWallMasterSprite(),
+                "OldMan" => CreateOldManSprite(),
                 _ => null,
             };
         }

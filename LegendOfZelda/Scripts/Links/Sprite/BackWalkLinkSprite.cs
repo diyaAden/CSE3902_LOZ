@@ -22,7 +22,6 @@ namespace LegendOfZelda.Scripts.Links.Sprite
         public override void Update()
         {
             Timer++;
-            Pos = new Vector2(Pos.X, Pos.Y - linkMoveSpeed);
             if (Timer == 10)
             {
                 CurrentFrame = (CurrentFrame + 1) % TotalFrames;
