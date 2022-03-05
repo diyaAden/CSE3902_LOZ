@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite;
 using LegendOfZelda.Scripts.Enemy.Cloud.Sprite;
 using LegendOfZelda.Scripts.Enemy.Explosion.Sprite;
@@ -21,7 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy
     {
         private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet, oldmanSpriteSheet;
         private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
-        private static EnemySpriteFactory instance = new EnemySpriteFactory();
+        private static readonly EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
 
         private EnemySpriteFactory()
@@ -43,6 +40,21 @@ namespace LegendOfZelda.Scripts.Enemy
             trapSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Trap");
             wallMasterSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/WallMaster");
             oldmanSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/OldMan");
+        }
+        public IEnemy CreateEnemyFromString(string enemyName)
+        {
+            return enemyName switch
+            {
+                "Aquamentus" => CreateAquamentusSprite(),
+                "Gel" => CreateGelSprite(),
+                "Goriya" => CreateGoriyaSprite(),
+                "Keese" => CreateKeeseSprite(),
+                "Stalfos" => CreateStalfosSprite(),
+                "Trap" => CreateTrapSprite(),
+                "WallMaster" => CreateWallMasterSprite(),
+                "OldMan" => CreateOldManSprite(),
+                _ => null,
+            };
         }
         public IEnemy CreateOldManSprite()
         {
@@ -104,6 +116,5 @@ namespace LegendOfZelda.Scripts.Enemy
         {
             return new BasicWallMasterSprite(wallMasterSpriteSheet);
         }
-        
     }
 }

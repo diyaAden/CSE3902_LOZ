@@ -2,7 +2,7 @@
 
 namespace LegendOfZelda.Scripts.Items
 {
-    interface ICollection
+    public interface ICollection
     {
         public void Next();
 

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>144</PositionX>
+		<PositionY>48</PositionY>
+	</Item>
+</XnaContent>

@@ -10,23 +10,21 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
     {
 
         private int animationTimer = 0, currentFrame = 0;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
+        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
 
         public BasicOldManSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(16, 0, 16, 16));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > 10)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
