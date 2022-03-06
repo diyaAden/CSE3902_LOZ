@@ -113,15 +113,23 @@ namespace LegendOfZelda
             ILevel room = roomManager.Rooms[roomManager.CurrentRoom];
             List<IBlock> blocks = room.Blocks;
             List<IEnemy> enemys = room.Enemies;
+            List<IItem> items = room.Items;
             foreach (IBlock block in blocks)
             {
-                IGameObject gameObject = (IGameObject)block;
-
-                List<ICollision> sides = collisionDetector.BoxTest(link, gameObject);
+                List<ICollision> sides = collisionDetector.BoxTest(link, block);
 
                 foreach (ICollision side in sides)
                 {
-                    collisionHandlers[0].HandleCollision(link, gameObject, side);
+                    collisionHandlers[0].HandleCollision(link, block, side);
+                }
+            }
+            foreach (IItem item in items)
+            {
+                List<ICollision> sides = collisionDetector.BoxTest(link, item);
+
+                foreach (ICollision side in sides)
+                {
+                    collisionHandlers[0].HandleCollision(link, item, side);
                 }
             }
             collisionDetector = collisionDetectors[1];

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using static LegendOfZelda.Scripts.Items.WeaponManager;
 using static LegendOfZelda.Scripts.Links.ILink;
@@ -64,9 +65,10 @@ namespace LegendOfZelda.Scripts.Links
                 state.Attack();
             }
         }
-        public void HandleBlockCollision(IGameObject block, ICollision side)
+        public void HandleBlockCollision(IGameObject gameObject, ICollision side)
         {
-            if(side is ICollision.SideTop)
+
+            if (side is ICollision.SideTop)
             {
                 state.MoveDown();
             }
@@ -82,14 +84,21 @@ namespace LegendOfZelda.Scripts.Links
             {
                 state.MoveLeft();
             }
-            else if(side is ICollision.SideNone)
+            else if (side is ICollision.SideNone)
             {
                 //do nothing
             }
-        }
 
-        //Update and draw
-        public void Update()
+        }
+        public void HandleItemCollision(IGameObject gameObject, ICollision side)
+        {
+            if (!(side is ICollision.SideNone))
+            {
+                Debug.WriteLine("Pick up item!!!!");
+            }
+        }
+            //Update and draw
+            public void Update()
         {
             if (attackCooldown != 0) attackCooldown--;
             state.Update();

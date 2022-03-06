@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.Links
         public void UseItem();
         public void Attack();
         public void HandleBlockCollision(IGameObject block, ICollision side);
+        public void HandleItemCollision(IGameObject item, ICollision side);
         void Update();
         void Draw(SpriteBatch spriteBatch);
     }

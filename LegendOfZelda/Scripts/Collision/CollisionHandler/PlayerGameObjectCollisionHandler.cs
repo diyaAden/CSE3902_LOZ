@@ -16,7 +16,15 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         }
         public void HandleCollision(ILink link, IGameObject gameObject, ICollision side)
         {
-            link.HandleBlockCollision(gameObject, side);
+            switch (gameObject)
+            {
+                case IBlock block:
+                    link.HandleBlockCollision(gameObject, side);
+                    break;
+                case IItem item:
+                    link.HandleItemCollision(gameObject, side);
+                    break;
+            }
         }
         public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)
         {
