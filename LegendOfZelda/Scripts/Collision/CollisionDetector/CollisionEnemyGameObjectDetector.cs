@@ -9,7 +9,7 @@ using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
-    class CollisionEnemyItemDetector: ICollisionDetector
+    class CollisionEnemyGameObjectDetector: ICollisionDetector
     {
         public List<ICollision> BoxTest(ILink link, IGameObject gameObject)
         {

@@ -8,9 +8,9 @@ using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
-    class EnemyItemCollisionHandler: ICollisionHandler
+    class EnemyGameObjectCollisionHandler: ICollisionHandler
     {
-        public EnemyItemCollisionHandler()
+        public EnemyGameObjectCollisionHandler()
         {
         }
         public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)
