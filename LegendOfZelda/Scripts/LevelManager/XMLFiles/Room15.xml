@@ -164,7 +164,7 @@
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>StatueRight</ObjectName>
+		<ObjectName>StatueLeft</ObjectName>
 		<PositionX>160</PositionX>
 		<PositionY>80</PositionY>
 	</Item>

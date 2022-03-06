@@ -3,79 +3,79 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>144</PositionX>
+		<PositionX>112</PositionX>
+		<PositionY>64</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>128</PositionX>
 		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>128</PositionX>
+		<PositionX>144</PositionX>
 		<PositionY>64</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>160</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
 		<PositionX>112</PositionX>
-		<PositionY>80</PositionY>
+		<PositionY>96</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
 		<PositionX>128</PositionX>
-		<PositionY>96</PositionY>
-	</Item>
-	<Item>
-		<ObjectType>Block</ObjectType>
-		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>144</PositionX>
 		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>160</PositionX>
+		<PositionX>144</PositionX>
 		<PositionY>96</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>176</PositionX>
+		<ObjectName>PushBlock</ObjectName>
+		<PositionX>96</PositionX>
 		<PositionY>80</PositionY>
-	</Item>
-	<Item>
-		<ObjectType>Block</ObjectType>
-		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>160</PositionX>
-		<PositionY>64</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>Stairs</ObjectName>
-		<PositionX>144</PositionX>
+		<PositionX>128</PositionX>
 		<PositionY>80</PositionY>
 	</Item>
     <Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Trap</ObjectName>
-		<PositionX>24</PositionX>
-		<PositionY>24</PositionY>
+		<PositionX>32</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
     <Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Trap</ObjectName>
-		<PositionX>240</PositionX>
-		<PositionY>24</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
     <Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Trap</ObjectName>
-		<PositionX>240</PositionX>
-		<PositionY>180</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
     <Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Trap</ObjectName>
-		<PositionX>24</PositionX>
-		<PositionY>180</PositionY>
+		<PositionX>32</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
 </XnaContent>

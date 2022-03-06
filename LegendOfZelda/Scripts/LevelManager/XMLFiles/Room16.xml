@@ -1,9 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
 	<Item>
-		<ObjectType>Block</ObjectType>
-		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>144</PositionX>
-		<PositionY>48</PositionY>
+		<ObjectType>Item</ObjectType>
+		<ObjectName>Bow</ObjectName>
+		<PositionX>136</PositionX>
+		<PositionY>64</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Keese</ObjectName>
+		<PositionX>32</PositionX>
+		<PositionY>95</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Keese</ObjectName>
+		<PositionX>197</PositionX>
+		<PositionY>31</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Keese</ObjectName>
+		<PositionX>130</PositionX>
+		<PositionY>31</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Keese</ObjectName>
+		<PositionX>192</PositionX>
+		<PositionY>95</PositionY>
 	</Item>
 </XnaContent>
