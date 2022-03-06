@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     class RoomBackgroundCollection : ICollection
     {
-        private List<IRoomBackground> RoomCollection = new List<IRoomBackground>();
+        private readonly List<IRoomBackground> RoomCollection = new List<IRoomBackground>();
         private int currentObject = 0;
 
         public RoomBackgroundCollection()

@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.LevelManager
     {
         public Room6Sprite(Texture2D DungeonMap)
         {
-            spriteSheet = DungeonMap;
+            SpriteSheet = DungeonMap;
             sourceRect = new Rectangle(515, 532, 256, 176);
         }
         public override void Update() { }
