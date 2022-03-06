@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Items
     public class WeaponSpriteFactory
     {
         private Texture2D itemSpriteSheet, fireSpriteSheet, arrowSwordSpriteSheet, smokeCloudSpriteSheet, swordShardsSpriteSheet;
-        private static WeaponSpriteFactory instance = new WeaponSpriteFactory();
+        private static readonly WeaponSpriteFactory instance = new WeaponSpriteFactory();
 
         public static WeaponSpriteFactory Instance => instance;
         private WeaponSpriteFactory()

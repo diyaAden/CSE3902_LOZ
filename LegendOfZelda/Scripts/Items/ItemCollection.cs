@@ -5,7 +5,7 @@ namespace LegendOfZelda.Scripts.Items
 {
     class ItemCollection : ICollection
     {
-        private List<IItem> itemCollection = new List<IItem>();
+        private readonly List<IItem> itemCollection = new List<IItem>();
         private int currentObject = 0;
 
         public ItemCollection()

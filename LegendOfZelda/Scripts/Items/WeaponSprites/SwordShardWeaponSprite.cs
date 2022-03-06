@@ -5,8 +5,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class SwordShardWeaponSprite : BasicItem
     {
-        private readonly int directionX = 1, directionY = 1;
-        private int speed = 1;
+        private readonly int directionX = 1, directionY = 1, speed = 1;
         private int animationTimer = 0;
 
         public SwordShardWeaponSprite(Texture2D shardSpriteSheet, int row)

@@ -10,7 +10,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             Weapon = WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(facing);
             weaponType = WeaponType.BOOMERANG;
             position = pos;
-            Weapon.position = position;
+            Weapon.Position = position;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             Weapon = WeaponSpriteFactory.Instance.CreateFireWeaponSprite(facing);
             weaponType = WeaponType.FIRE;
             position = pos;
-            Weapon.position = position;
+            Weapon.Position = position;
         }
     }
 }

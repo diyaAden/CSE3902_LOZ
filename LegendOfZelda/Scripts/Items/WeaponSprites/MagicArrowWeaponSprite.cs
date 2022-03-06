@@ -5,9 +5,21 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class MagicArrowWeaponSprite : BasicItem
     {
-        private int direction;
-        private int speed = 6;
+        private readonly int direction;
+        private readonly int speed = 6;
 
+        public override Vector2 Position
+        {
+            get
+            {
+                return pos;
+            }
+            set
+            {
+                pos.X = value.X + 5;
+                pos.Y = value.Y + 5;
+            }
+        }
         public MagicArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {
             spriteSheet = itemSpriteSheet;

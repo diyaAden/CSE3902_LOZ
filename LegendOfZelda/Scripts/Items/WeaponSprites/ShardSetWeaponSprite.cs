@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class ShardSetWeaponSprite : BasicItem
     {
-        private List<IItem> shards;
+        private readonly List<IItem> shards;
         
         public ShardSetWeaponSprite(Vector2 position)
         {
@@ -16,7 +16,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
             for (int i = 0; i < 4; i++)
             {
                 shards.Add(WeaponSpriteFactory.Instance.CreateSwordShardWeaponSprite(i));
-                shards[i].position = pos;
+                shards[i].Position = pos;
             }
         }
 
