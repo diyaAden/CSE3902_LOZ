@@ -9,14 +9,14 @@ using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
-    public class PlayerBlockCollisionHandler: ICollisionHandler
+    public class PlayerGameObjectCollisionHandler: ICollisionHandler
     {
-        public PlayerBlockCollisionHandler()
+        public PlayerGameObjectCollisionHandler()
         {
         }
-        public void HandleCollision(ILink link, IGameObject block, ICollision side)
+        public void HandleCollision(ILink link, IGameObject gameObject, ICollision side)
         {
-            link.HandleBlockCollision(block, side);
+            link.HandleBlockCollision(gameObject, side);
         }
         public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)
         {

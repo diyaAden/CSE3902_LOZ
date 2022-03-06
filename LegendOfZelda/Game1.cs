@@ -55,11 +55,11 @@ namespace LegendOfZelda
 
             roomManager = new RoomManager(); // here for testing
 
-            CollisionPlayerBlockDetector collisionPlayerBlockDetector = new CollisionPlayerBlockDetector();
+            CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
             CollisionEnemyItemDetector collisionEnemyItemDetector = new CollisionEnemyItemDetector();
             collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector };
 
-            PlayerBlockCollisionHandler playerBlockCollisionHandler = new PlayerBlockCollisionHandler();
+            PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
             EnemyItemCollisionHandler enemyItemCollisionHandler = new EnemyItemCollisionHandler();
             collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler };
 
