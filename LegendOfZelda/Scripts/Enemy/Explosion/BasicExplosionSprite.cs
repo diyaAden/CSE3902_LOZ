@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
 
         private int animationTimer = 0, currentFrame = 0;
         private List<Rectangle> animationFrames = new List<Rectangle>();
-
+        private int moveSpeed = 1;
         public BasicExplosionSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
             animationFrames.Add(new Rectangle(16, 0, 15, 16));
             animationFrames.Add(new Rectangle(32, 0, 15, 16));
             animationFrames.Add(new Rectangle(48, 0, 15, 16));
-
+            MoveSpeed = moveSpeed;
         }
 
         public override void Update()

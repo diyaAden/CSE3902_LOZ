@@ -1,4 +1,5 @@
-﻿using LegendOfZelda.Scripts.Enemy;
+﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using System;
@@ -12,9 +13,19 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         public EnemyItemCollisionHandler()
         {
         }
-        public void HandleCollision(IEnemy enemy, IGameObject item, ICollision side)
+        public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)
         {
-            enemy.HandleItemCollision(item, side);
+            switch (gameObject)
+            {
+                case IBlock block:
+                    enemy.HandleBlockCollision(gameObject, side);
+                    break;
+                case IWeapon weapon:
+                    enemy.HandleWeaponCollision(gameObject, side);
+                    break;
+                default:
+                    break;
+            }
         }
         public void HandleCollision(ILink link, IGameObject gameObject, ICollision side)
         {

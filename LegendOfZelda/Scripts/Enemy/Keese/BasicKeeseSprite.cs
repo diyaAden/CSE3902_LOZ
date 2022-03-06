@@ -20,6 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 8));
             direction = rnd.Next(0, 8);
             timeUntilDirectionChange = rnd.Next(30, 61);
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {

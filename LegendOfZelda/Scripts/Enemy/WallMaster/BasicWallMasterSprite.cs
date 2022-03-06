@@ -18,6 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {

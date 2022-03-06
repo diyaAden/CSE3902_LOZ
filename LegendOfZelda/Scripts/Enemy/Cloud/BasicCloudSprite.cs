@@ -11,6 +11,7 @@ namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
 
         private int animationTimer = 0, currentFrame = 0;
         private List<Rectangle> animationFrames = new List<Rectangle>();
+        private int moveSpeed = 1;
 
         public BasicCloudSprite(Texture2D itemSpriteSheet)
         {
@@ -19,7 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
             animationFrames.Add(new Rectangle(32, 0, 16, 16));
             animationFrames.Add(new Rectangle(48, 0, 16, 16));
-
+            MoveSpeed = moveSpeed;
         }
 
         public override void Update()

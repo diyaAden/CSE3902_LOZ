@@ -13,7 +13,8 @@ namespace LegendOfZelda.Scripts.Enemy
         public Vector2 position { get; set; }
 
         public void Attack();
-        void HandleItemCollision(IGameObject item, ICollision side);
+        void HandleBlockCollision(IGameObject block, ICollision side);
+        void HandleWeaponCollision(IGameObject weapon, ICollision side);
 
         public void Update();
 

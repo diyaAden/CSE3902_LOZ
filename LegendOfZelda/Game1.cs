@@ -106,14 +106,16 @@ namespace LegendOfZelda
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
 
-            //foreach (ICollisionDetector collisionDetector in collisionDetectors)
-
-            ICollisionDetector collisionDetector = collisionDetectors[0];
-            //will refactor this part next time...
             ILevel room = roomManager.Rooms[roomManager.CurrentRoom];
             List<IBlock> blocks = room.Blocks;
             List<IEnemy> enemys = room.Enemies;
             List<IItem> items = room.Items;
+            
+            //foreach (ICollisionDetector collisionDetector in collisionDetectors)
+
+            ICollisionDetector collisionDetector = collisionDetectors[0];
+            //will refactor this part next time...
+            
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetector.BoxTest(link, block);
@@ -136,21 +138,28 @@ namespace LegendOfZelda
             foreach (IEnemy enemy in enemys)
             {
                 foreach (IWeapon weapon in activeWeapons)
-                    
                 {
                     if (!weapon.IsNull())
                     {
-                        IGameObject gameObject = (IGameObject)weapon;
-
-
-                        List<ICollision> sides = collisionDetector.BoxTest(enemy, gameObject);
+                        List<ICollision> sides = collisionDetector.BoxTest(enemy, weapon);
 
                         foreach (ICollision side in sides)
                         {
-                            collisionHandlers[1].HandleCollision(enemy, gameObject, side);
+                            collisionHandlers[1].HandleCollision(enemy, weapon, side);
 
                         }
                     }
+                }
+
+                foreach (IBlock block in blocks)
+                {
+                    List<ICollision> sides = collisionDetector.BoxTest(enemy, block);
+
+                    foreach (ICollision side in sides)
+                    {
+                        collisionHandlers[1].HandleCollision(enemy, block, side);
+                    }
+                  
                 }
 
             }

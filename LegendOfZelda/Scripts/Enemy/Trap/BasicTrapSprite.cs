@@ -36,6 +36,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             direction = rnd.Next(0, 4);
             waitTimeLimit = rnd.Next(120, 181);
+            MoveSpeed = retreatSpeed;
         }
         private Vector2 Advance(int direction)
         {

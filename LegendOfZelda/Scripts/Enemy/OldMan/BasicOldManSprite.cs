@@ -16,6 +16,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
+            MoveSpeed = 0;
         }
 
         public override void Update()

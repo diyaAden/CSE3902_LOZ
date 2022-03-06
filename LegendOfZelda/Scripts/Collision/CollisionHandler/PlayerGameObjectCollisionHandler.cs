@@ -24,6 +24,8 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 case IItem item:
                     link.HandleItemCollision(gameObject, side);
                     break;
+                default:
+                    break;
             }
         }
         public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)

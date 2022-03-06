@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             animationFrames.Add(new Rectangle(24, 0, 24, 32));
             animationFrames.Add(new Rectangle(48, 0, 24, 32)); 
             animationFrames.Add(new Rectangle(72, 0, 24, 32));
+            MoveSpeed = moveSpeed;
             attackTimerLimit = rnd.Next(120, 181);
         }
 

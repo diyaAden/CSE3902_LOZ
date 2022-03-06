@@ -20,6 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             animationFrames.Add(new Rectangle(16, 0, 8, 10));
             animationFrames.Add(new Rectangle(24, 0, 8, 10));
             moveDirection = direction;
+            MoveSpeed = moveSpeed;
             pos = position;
         }
 

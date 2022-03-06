@@ -19,6 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
             animationFrames.Add(new Rectangle(0, 0, 8, 9));
             animationFrames.Add(new Rectangle(8, 0, 8, 9));
             direction = rnd.Next(0, 4);
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {

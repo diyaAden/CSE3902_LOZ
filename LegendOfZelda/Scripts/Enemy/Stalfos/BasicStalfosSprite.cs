@@ -20,6 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
             direction = rnd.Next(0, 4);
             timeUntilDirectionChange = rnd.Next(45, 76);
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {

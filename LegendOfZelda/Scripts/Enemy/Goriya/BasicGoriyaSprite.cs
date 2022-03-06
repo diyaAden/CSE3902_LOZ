@@ -26,7 +26,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public BasicGoriyaSprite()
         {
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
-            
+            MoveSpeed = 0;
             direction = 0;
         }
 
