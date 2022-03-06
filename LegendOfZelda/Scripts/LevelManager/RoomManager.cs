@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public int CurrentRoom { get; set; }
         public RoomManager()
         {
-            CurrentRoom = 17;
+            CurrentRoom = 18;
         }
         public void LoadContent()
         {
