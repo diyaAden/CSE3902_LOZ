@@ -119,7 +119,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             return new Room17Sprite(DungeonTiles);
         }
-        public IRoomBackground CreateRoomEightteen()
+        public IRoomBackground CreateRoomEighteen()
         {
             return new Room18Sprite(DungeonTiles);
         }
