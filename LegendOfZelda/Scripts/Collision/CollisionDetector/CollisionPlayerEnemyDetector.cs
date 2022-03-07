@@ -7,9 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
-    class CollisionPlayerGameObjectDetector: ICollisionDetector
+    class CollisionPlayerEnemyDetector: ICollisionDetector
     {
         public List<ICollision> BoxTest(IEnemy link, IGameObject gameObject)
         {
@@ -17,9 +18,14 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
         }
         public List<ICollision> BoxTest(ILink link, IGameObject gameObject)
         {
+            return null;
+        }
+
+        public List<ICollision> BoxTest(ILink link, IEnemy enemy)
+        {
             List<ICollision> sides = new List<ICollision>();
             Rectangle linkBox = link.State.LinkBox();
-            Rectangle CheckSide = Rectangle.Intersect(linkBox, gameObject.ObjectBox());
+            Rectangle CheckSide = Rectangle.Intersect(linkBox, enemy.ObjectBox());
             if (CheckSide.IsEmpty)
             {
                 sides.Add(ICollision.SideNone);
@@ -28,15 +34,16 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
             {
                 float LeftRightCheck = CheckSide.Center.X - linkBox.Center.X;
                 float TopBottomCheck = CheckSide.Center.Y - linkBox.Center.Y;
-                
+
                 if (LeftRightCheck < 0)
                 {
                     sides.Add(ICollision.SideLeft); //maybe wrong
-                }else if(LeftRightCheck > 0)
+                }
+                else if (LeftRightCheck > 0)
                 {
                     sides.Add(ICollision.SideRight);
                 }
-                if(TopBottomCheck > 0)
+                if (TopBottomCheck > 0)
                 {
                     sides.Add(ICollision.SideBottom);
                 }
@@ -46,11 +53,6 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
                 }
             }
             return sides;
-        }
-
-        public List<ICollision> BoxTest(ILink link, IEnemy enemy)
-        {
-            return null;
         }
     }
 }

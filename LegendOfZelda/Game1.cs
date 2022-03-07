@@ -57,11 +57,13 @@ namespace LegendOfZelda
 
             CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
             CollisionEnemyGameObjectDetector collisionEnemyItemDetector = new CollisionEnemyGameObjectDetector();
-            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector };
+            CollisionPlayerEnemyDetector collisionPlayerEnemyDetector = new CollisionPlayerEnemyDetector();
+            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector, collisionPlayerEnemyDetector };
 
             PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler };
+            PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler };
 
             base.Initialize();
         }
@@ -134,9 +136,16 @@ namespace LegendOfZelda
                     collisionHandlers[0].HandleCollision(link, item, side);
                 }
             }
+          
             collisionDetector = collisionDetectors[1];
             foreach (IEnemy enemy in enemys)
             {
+                List<ICollision> sides2 = collisionDetectors[2].BoxTest(link, enemy);
+
+                foreach (ICollision side in sides2)
+                {
+                    collisionHandlers[2].HandleCollision(link, enemy, side);
+                }
                 foreach (IWeapon weapon in activeWeapons)
                 {
                     if (!weapon.IsNull())
@@ -161,6 +170,8 @@ namespace LegendOfZelda
                     }
                   
                 }
+
+               
 
             }
 

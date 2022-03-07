@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
@@ -87,6 +88,16 @@ namespace LegendOfZelda.Scripts.Links
             else if (side is ICollision.SideNone)
             {
                 //do nothing
+            }
+
+        }
+
+        public void HandleEnemyCollision(IEnemy enemy, ICollision side)
+        {
+            if (!(side is ICollision.SideNone))
+            {
+                Debug.WriteLine("enemy collision registered");
+                isDamaged = true;
             }
 
         }
