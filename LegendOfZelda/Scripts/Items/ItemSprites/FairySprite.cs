@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         private int animationTimer = 0, randomNum;
         private readonly float straightMoveSpeed = 1.0f, diagonalMoveSpeed;
         private Vector2 moveSpeed;
-        Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
         private void ComputeMoveDirection()
         {

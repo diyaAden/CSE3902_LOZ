@@ -13,17 +13,17 @@ namespace LegendOfZelda.Scripts.Items
 
         private void DestroyWeapon()
         {
-            position = Weapon.position;
+            position = Weapon.Position;
             switch (weaponType)
             {
                 case WeaponType.BOMB:
                     Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
-                    Weapon.position = position;
+                    Weapon.Position = position;
                     weaponType = WeaponType.EXPLOSION;
                     break;
                 case WeaponType.ARROW:
                     Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
-                    Weapon.position = position;
+                    Weapon.Position = position;
                     weaponType = WeaponType.NICK;
                     break;
                 case WeaponType.SWORD:
@@ -50,12 +50,12 @@ namespace LegendOfZelda.Scripts.Items
             if (weaponType == WeaponType.BOOMERANG)
             {
                 Weapon.Update(linkPosition);
-                if (timer == Weapon.timeLimit) { DestroyWeapon(); }
+                if (timer == Weapon.TimeLimit) { DestroyWeapon(); }
             }
             else if (Weapon != null)
             {
                 Weapon.Update();
-                if (++timer == Weapon.timeLimit) { DestroyWeapon(); }
+                if (++timer == Weapon.TimeLimit) { DestroyWeapon(); }
             }
         }
         public void Draw(SpriteBatch spriteBatch)

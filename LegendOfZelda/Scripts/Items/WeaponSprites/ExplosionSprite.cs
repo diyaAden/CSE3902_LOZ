@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class ExplosionSprite : BasicItem
     {
         private int animationTimer = 0;
-        private int explosionTimePerFrame = 8;
+        private readonly int explosionTimePerFrame = 8;
 
         public ExplosionSprite(Texture2D particleSpriteSheet)
         {

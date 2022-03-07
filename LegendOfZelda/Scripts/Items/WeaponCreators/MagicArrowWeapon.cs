@@ -10,7 +10,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             Weapon = WeaponSpriteFactory.Instance.CreateMagicArrowWeaponSprite(facing);
             weaponType = WeaponType.ARROW;
             position = pos;
-            Weapon.position = position;
+            Weapon.Position = position;
         }
     }
 }

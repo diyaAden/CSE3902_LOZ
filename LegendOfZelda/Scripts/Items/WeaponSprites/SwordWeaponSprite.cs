@@ -5,8 +5,8 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class SwordWeaponSprite : BasicItem
     {
-        private int direction, currentSpeed = 0, animationTimer = 0;
-        private readonly int swordSpeed = 2;
+        private int currentSpeed = 0, animationTimer = 0;
+        private readonly int swordSpeed = 2, direction;
         private bool swordOut = false;
 
         private void SpawnSword()
