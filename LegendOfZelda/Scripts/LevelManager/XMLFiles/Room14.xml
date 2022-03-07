@@ -126,6 +126,6 @@
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Aquamentus</ObjectName>
 		<PositionX>175</PositionX>
-		<PositionY>91</PositionY>
+		<PositionY>70</PositionY>
 	</Item>
 </XnaContent>

@@ -5,8 +5,8 @@ namespace LegendOfZelda.Scripts.Items
 {
     public interface IItem
     {
-        public int timeLimit { get; }
-        public Vector2 position { get; set; }
+        public int TimeLimit { get; }
+        public Vector2 Position { get; set; }
 
         public void Update();
 

@@ -6,8 +6,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class FireWeaponSprite : BasicItem
     {
         private int animationTimer = 1;
-        private int speed = 1;
-        private int direction;
+        private readonly int speed = 1, direction;
 
         public FireWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {

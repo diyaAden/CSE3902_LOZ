@@ -30,7 +30,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         private void AddItem(string name, int xPos, int yPos)
         {
             Items.Add(ItemSpriteFactory.Instance.CreateItemFromString(name));
-            Items[^1].position = new Vector2(xPos, yPos);
+            Items[^1].Position = new Vector2(xPos, yPos);
         }
         private void AddBlock(string name, int xPos, int yPos)
         {

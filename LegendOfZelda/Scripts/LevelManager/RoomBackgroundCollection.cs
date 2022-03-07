@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     class RoomBackgroundCollection : ICollection
     {
-        private List<IRoomBackground> RoomCollection = new List<IRoomBackground>();
+        private readonly List<IRoomBackground> RoomCollection = new List<IRoomBackground>();
         private int currentObject = 0;
 
         public RoomBackgroundCollection()
@@ -27,6 +27,9 @@ namespace LegendOfZelda.Scripts.LevelManager
             RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomThirteen());
             RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomFourteen());
             RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomFifteen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomSixteen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomSeventeen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomEighteen());
         }
 
         public void Next()

@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public interface IRoomBackground
     {
-        public Vector2 position { get; set; }
+        public Vector2 Position { get; set; }
 
         public void Update();
 

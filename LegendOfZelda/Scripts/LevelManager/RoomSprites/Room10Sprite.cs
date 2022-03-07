@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.LevelManager
@@ -8,8 +7,8 @@ namespace LegendOfZelda.Scripts.LevelManager
     {
         public Room10Sprite(Texture2D DungeonMap)
         {
-            spriteSheet = DungeonMap;
-            sourceRect = new Rectangle(516, 354, 255, 176);
+            SpriteSheet = DungeonMap;
+            sourceRect = new Rectangle(515, 355, 256, 176);
         }
         public override void Update() { }
     }

@@ -41,7 +41,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                 15 => CreateRoomFifteen(),
                 16 => CreateRoomSixteen(),
                 17 => CreateRoomSeventeen(),
-                18 => CreateRoomEightteen(),
+                18 => CreateRoomEighteen(),
                 _ => null,
             };
         }
@@ -119,7 +119,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             return new Room17Sprite(DungeonTiles);
         }
-        public IRoomBackground CreateRoomEightteen()
+        public IRoomBackground CreateRoomEighteen()
         {
             return new Room18Sprite(DungeonTiles);
         }
