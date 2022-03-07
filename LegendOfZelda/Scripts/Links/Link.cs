@@ -98,6 +98,7 @@ namespace LegendOfZelda.Scripts.Links
             {
                 Debug.WriteLine("enemy collision registered");
                 isDamaged = true;
+                state.ToDamaged();
             }
 
         }
