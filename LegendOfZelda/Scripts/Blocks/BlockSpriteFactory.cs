@@ -33,6 +33,10 @@ namespace LegendOfZelda.Scripts.Blocks
                 "PushBlock" => CreatePushBlockSprite(),
                 "WhiteBrick" => CreateWhiteBrickSprite(),
                 "BlueGap" => CreateBlueGapSprite(),
+                "EmptyWallLen" => CreateEmptyWallFullLenSprite(),
+                "EmptyWallWidth" => CreateEmptyWallFullWidthSprite(),
+                "HalfWallWidth" => CreateEmptyWallHalfWidthSprite(),
+                "HalfWallLen" => CreateEmptyWallHalfLenSprite(),
                 _ => null,
             };
         }
@@ -79,6 +83,26 @@ namespace LegendOfZelda.Scripts.Blocks
         public IBlock CreateBlueGapSprite()
         {
             return new BlueGapSprite(blockSpriteSheet);
+        }
+
+        public IBlock CreateEmptyWallFullLenSprite()
+        {
+            return new EmptyWallFullLenSprite(blockSpriteSheet);
+        }
+
+        public IBlock CreateEmptyWallFullWidthSprite()
+        {
+            return new EmptyWallFullWidthSprite(blockSpriteSheet);
+        }
+
+        public IBlock CreateEmptyWallHalfWidthSprite()
+        {
+            return new EmptyWallHalfWidthSprite(blockSpriteSheet);
+        }
+
+        public IBlock CreateEmptyWallHalfLenSprite()
+        {
+            return new EmptyWallHalfLenSprite(blockSpriteSheet);
         }
     }
 }
