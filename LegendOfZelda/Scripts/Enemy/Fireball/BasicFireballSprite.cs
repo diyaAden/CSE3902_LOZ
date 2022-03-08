@@ -20,6 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             animationFrames.Add(new Rectangle(16, 0, 8, 10));
             animationFrames.Add(new Rectangle(24, 0, 8, 10));
             moveDirection = direction;
+            MoveSpeed = moveSpeed;
             pos = position;
         }
 
@@ -33,7 +34,10 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             position = new Vector2(position.X - moveSpeed, position.Y + moveSpeed * moveDirection);
 
         }
-
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);

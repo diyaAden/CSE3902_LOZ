@@ -19,6 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
             animationFrames.Add(new Rectangle(0, 0, 8, 9));
             animationFrames.Add(new Rectangle(8, 0, 8, 9));
             direction = rnd.Next(0, 4);
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {
@@ -50,6 +51,11 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
                 direction = rnd.Next(0, 4);
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+        }
+
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

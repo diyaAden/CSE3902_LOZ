@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework.Content;
@@ -22,6 +23,9 @@ namespace LegendOfZelda.Scripts.Links
         public void UseItem();
         public void Attack();
         public void HandleBlockCollision(IGameObject block, ICollision side);
+        public void HandleItemCollision(IGameObject item, ICollision side);
+
+        public void HandleEnemyCollision(IEnemy enemy, ICollision side);
         void Update();
         void Draw(SpriteBatch spriteBatch);
     }

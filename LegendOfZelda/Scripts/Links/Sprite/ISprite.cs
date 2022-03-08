@@ -9,6 +9,8 @@ namespace LegendOfZelda.Scripts.Links.Sprite
     public interface ISprite
     {
         Vector2 Position { get; set; }
+
+       // public bool checkDamageState { get; set; }
         int LinkMoveSpeed { get; set; }
         void Update();
         Rectangle LinkBox();

@@ -18,6 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {
@@ -43,6 +44,10 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+        }
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

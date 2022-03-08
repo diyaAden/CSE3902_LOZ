@@ -26,6 +26,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public BasicGoriyaSprite()
         {
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
+            MoveSpeed = 0;
             direction = 0;
         }
 
@@ -77,6 +78,8 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             }
             sprite.position = pos;
         }
+
+        public override Rectangle ObjectBox() { return sprite.ObjectBox(); }
         public override void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);

@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             animationFrames.Add(new Rectangle(24, 0, 24, 32));
             animationFrames.Add(new Rectangle(48, 0, 24, 32)); 
             animationFrames.Add(new Rectangle(72, 0, 24, 32));
+            MoveSpeed = moveSpeed;
             attackTimerLimit = rnd.Next(120, 181);
         }
 
@@ -51,7 +52,10 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
                 fireball.Update();
             position = new Vector2(position.X - (moveSpeed * movingRight), position.Y);
         }
-
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             foreach (IEnemy fireball in fireballs)

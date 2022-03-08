@@ -16,6 +16,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
+            MoveSpeed = 0;
         }
 
         public override void Update()
@@ -26,7 +27,10 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
         }
-
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);

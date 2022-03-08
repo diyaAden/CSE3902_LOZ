@@ -58,6 +58,15 @@ namespace LegendOfZelda.Scripts.Items
                 if (++timer == Weapon.TimeLimit) { DestroyWeapon(); }
             }
         }
+
+        public virtual bool IsNull()
+        {
+            return Weapon == null;
+        }
+        public virtual Rectangle ObjectBox()
+        {
+            return Weapon.ObjectBox();
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (Weapon != null) { Weapon.Draw(spriteBatch); }

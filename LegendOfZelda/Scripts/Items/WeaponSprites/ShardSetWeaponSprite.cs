@@ -27,6 +27,10 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
                 shard.Update();
             }
         }
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle();
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             foreach (IItem shard in shards)

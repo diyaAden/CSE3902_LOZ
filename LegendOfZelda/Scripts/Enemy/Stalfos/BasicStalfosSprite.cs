@@ -20,6 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
             direction = rnd.Next(0, 4);
             timeUntilDirectionChange = rnd.Next(45, 76);
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {
@@ -45,6 +46,10 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+        }
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

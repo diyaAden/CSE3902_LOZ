@@ -20,6 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 8));
             direction = rnd.Next(0, 8);
             timeUntilDirectionChange = rnd.Next(30, 61);
+            MoveSpeed = moveSpeed;
         }
         private Vector2 Move(int direction)
         {
@@ -50,7 +51,10 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
         }
-
+        public override Rectangle ObjectBox()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);

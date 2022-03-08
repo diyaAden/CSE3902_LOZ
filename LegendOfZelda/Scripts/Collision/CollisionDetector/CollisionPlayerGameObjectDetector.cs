@@ -1,4 +1,5 @@
 ﻿
+using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
@@ -8,8 +9,12 @@ using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
-    class CollisionPlayerBlockDetector: ICollisionDetector
+    class CollisionPlayerGameObjectDetector: ICollisionDetector
     {
+        public List<ICollision> BoxTest(IEnemy link, IGameObject gameObject)
+        {
+            return null;
+        }
         public List<ICollision> BoxTest(ILink link, IGameObject gameObject)
         {
             List<ICollision> sides = new List<ICollision>();
@@ -41,6 +46,11 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
                 }
             }
             return sides;
+        }
+
+        public List<ICollision> BoxTest(ILink link, IEnemy enemy)
+        {
+            return null;
         }
     }
 }

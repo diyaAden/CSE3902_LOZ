@@ -22,6 +22,11 @@ namespace LegendOfZelda.Scripts.Blocks
             blockCollection.Add(BlockSpriteFactory.Instance.CreateWhiteBrickSprite());
             blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueGapSprite());
             blockCollection.Add(BlockSpriteFactory.Instance.CreateFireBlockSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateEmptyWallFullLenSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateEmptyWallFullWidthSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateEmptyWallHalfWidthSprite());
+            blockCollection.Add(BlockSpriteFactory.Instance.CreateEmptyWallHalfLenSprite());
+
         }
 
         public void Next()
