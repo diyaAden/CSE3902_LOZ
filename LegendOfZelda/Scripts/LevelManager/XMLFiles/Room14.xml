@@ -4,123 +4,123 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>207</PositionX>
-		<PositionY>33</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>207</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>207</PositionX>
-		<PositionY>65</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>64</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>33</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>65</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>64</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>175</PositionX>
-		<PositionY>33</PositionY>
+		<PositionX>176</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>175</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>176</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>159</PositionX>
-		<PositionY>33</PositionY>
+		<PositionX>160</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>143</PositionX>
-		<PositionY>33</PositionY>
+		<PositionX>144</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<!--Bottom Corner block-->
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>207</PositionX>
-		<PositionY>129</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>207</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>207</PositionX>
-		<PositionY>97</PositionY>
+		<PositionX>208</PositionX>
+		<PositionY>96</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>129</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>97</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>96</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>175</PositionX>
-		<PositionY>129</PositionY>
+		<PositionX>176</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>175</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>176</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>159</PositionX>
-		<PositionY>129</PositionY>
+		<PositionX>160</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>143</PositionX>
-		<PositionY>129</PositionY>
+		<PositionX>144</PositionX>
+		<PositionY>128</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
