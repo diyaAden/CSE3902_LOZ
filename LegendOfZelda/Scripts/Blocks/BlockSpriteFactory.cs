@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockSpriteFactory
     {
-        private Texture2D blockSpriteSheet, fireSpriteSheet, wallSpriteSheet;
+        private Texture2D blockSpriteSheet, fireSpriteSheet, wallSpriteSheet, doorSpriteSheet;
         private static readonly BlockSpriteFactory instance = new BlockSpriteFactory(); 
         public static BlockSpriteFactory Instance => instance;
 
@@ -17,12 +17,14 @@ namespace LegendOfZelda.Scripts.Blocks
         {
             blockSpriteSheet = content.Load<Texture2D>("SpriteSheets/Blocks/TileSpriteSheet");
             fireSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/FireSpriteSheet");
+            doorSpriteSheet = content.Load<Texture2D>("SpriteSheets/General/DungeonTileSet");
             
         }
         public IBlock CreateBlockFromString(string blockName)
         {
             return blockName switch
             {
+                //Blocks
                 "Fire" => CreateFireBlockSprite(),
                 "BlueFloor" => CreateBlueFloorSprite(),
                 "BlueSand" => CreateBlueSandSprite(),
@@ -34,10 +36,28 @@ namespace LegendOfZelda.Scripts.Blocks
                 "PushBlock" => CreatePushBlockSprite(),
                 "WhiteBrick" => CreateWhiteBrickSprite(),
                 "BlueGap" => CreateBlueGapSprite(),
+                //Walls
                 "EmptyWallLen" => CreateEmptyWallFullLenSprite(),
                 "EmptyWallWidth" => CreateEmptyWallFullWidthSprite(),
                 "HalfWallWidth" => CreateEmptyWallHalfWidthSprite(),
                 "HalfWallLen" => CreateEmptyWallHalfLenSprite(),
+                //Doors
+                "BombedDoorUp" => CreateBombedDoorSpriteUp(),
+                "BombedDoorDown" => CreateBombedDoorSpriteDown(),
+                "BombedDoorLeft" => CreateBombedDoorSpriteLeft(),
+                "BombedDoorRight" => CreateBombedDoorSpriteRight(),
+                "LockedDoorUp" => CreateLockedDoorSpriteUp(),
+                "LockedDoorDown" => CreateLockedDoorSpriteDown(),
+                "LockedDoorLeft" => CreateLockedDoorSpriteLeft(),
+                "LockedDoorRight" => CreateLockedDoorSpriteRight(),
+                "OpenDoorUp" => CreateOpenDoorSpriteUp(),
+                "OpenDoorDown" => CreateOpenDoorSpriteDown(),
+                "OpenDoorLeft" => CreateOpenDoorSpriteLeft(),
+                "OpenDoorRight" => CreateOpenDoorSpriteRight(),
+                "CrackedDoorUp" => CreateCrackedDoorSpriteUp(),
+                "CrackedDoorDown" => CreateCrackedDoorSpriteDown(),
+                "CrackedDoorLeft" => CreateCrackedDoorSpriteLeft(),
+                "CrackedDoorRight" => CreateCrackedDoorSpriteRight(),
                 _ => null,
             };
         }
@@ -104,6 +124,69 @@ namespace LegendOfZelda.Scripts.Blocks
         public IBlock CreateEmptyWallHalfLenSprite()
         {
             return new EmptyWallHalfLenSprite(blockSpriteSheet);
+        }
+        public IBlock CreateBombedDoorSpriteUp() {
+            return new BombedDoorSpriteUp(doorSpriteSheet);
+        }
+        public IBlock CreateBombedDoorSpriteDown()
+        {
+            return new BombedDoorSpriteDown(doorSpriteSheet);
+        }
+        public IBlock CreateBombedDoorSpriteLeft()
+        {
+            return new BombedDoorSpriteLeft(doorSpriteSheet);
+        }
+        public IBlock CreateBombedDoorSpriteRight()
+        {
+            return new BombedDoorSpriteRight(doorSpriteSheet);
+        }
+        public IBlock CreateOpenDoorSpriteUp()
+        {
+            return new OpenDoorSpriteUp(doorSpriteSheet);
+        }
+        public IBlock CreateOpenDoorSpriteDown()
+        {
+            return new OpenDoorSpriteDown(doorSpriteSheet);
+        }
+        public IBlock CreateOpenDoorSpriteLeft()
+        {
+            return new OpenDoorSpriteLeft(doorSpriteSheet);
+        }
+        public IBlock CreateOpenDoorSpriteRight()
+        {
+            return new OpenDoorSpriteRight(doorSpriteSheet);
+        }
+        public IBlock CreateLockedDoorSpriteUp()
+        {
+            return new LockedDoorSpriteUp(doorSpriteSheet);
+        }
+        public IBlock CreateLockedDoorSpriteDown()
+        {
+            return new LockedDoorSpriteDown(doorSpriteSheet);
+        }
+        public IBlock CreateLockedDoorSpriteLeft()
+        {
+            return new LockedDoorSpriteLeft(doorSpriteSheet);
+        }
+        public IBlock CreateLockedDoorSpriteRight()
+        {
+            return new LockedDoorSpriteRight(doorSpriteSheet);
+        }
+        public IBlock CreateCrackedDoorSpriteUp()
+        {
+            return new CrackedDoorSpriteUp(doorSpriteSheet);
+        }
+        public IBlock CreateCrackedDoorSpriteDown()
+        {
+            return new CrackedDoorSpriteDown(doorSpriteSheet);
+        }
+        public IBlock CreateCrackedDoorSpriteLeft()
+        {
+            return new CrackedDoorSpriteLeft(doorSpriteSheet);
+        }
+        public IBlock CreateCrackedDoorSpriteRight()
+        {
+            return new CrackedDoorSpriteRight(doorSpriteSheet);
         }
     }
 }
