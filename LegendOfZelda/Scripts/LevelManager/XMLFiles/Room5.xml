@@ -2,6 +2,18 @@
 <XnaContent>
 	<Item>
 		<ObjectType>Block</ObjectType>
+		<ObjectName>CrackedDoorLeft</ObjectName>
+		<PositionX>224</PositionX>
+		<PositionY>72</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>LockedDoorDown</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>0</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>64</PositionY>

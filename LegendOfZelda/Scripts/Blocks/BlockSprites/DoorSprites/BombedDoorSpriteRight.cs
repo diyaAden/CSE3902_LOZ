@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
         public BombedDoorSpriteRight(Texture2D blockSpriteSheet)
         {
             spriteSheet = blockSpriteSheet;
-            sourceRect = new Rectangle(947, 77, 32, 32);
+            sourceRect = new Rectangle(947, 44, 32, 32);
             transparency = 1f;
         }
 

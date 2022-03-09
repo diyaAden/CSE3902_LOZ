@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
 	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>OpenDoorLeft</ObjectName>
+		<PositionX>224</PositionX>
+		<PositionY>72</PositionY>
+	</Item>
+	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>Keese</ObjectName>
 		<PositionX>48</PositionX>

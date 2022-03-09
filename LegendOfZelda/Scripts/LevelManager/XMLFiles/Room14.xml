@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <XnaContent>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>OpenDoorUp</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>144</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>LockedDoorRight</ObjectName>
+		<PositionX>0</PositionX>
+		<PositionY>72</PositionY>
+	</Item>
 	<!--Right Corner block-->
 	<Item>
 		<ObjectType>Block</ObjectType>

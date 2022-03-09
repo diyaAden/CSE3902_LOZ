@@ -4,6 +4,7 @@ using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LegendOfZelda.Scripts.LevelManager
 {
@@ -35,6 +36,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         private void AddBlock(string name, int xPos, int yPos)
         {
             Blocks.Add(BlockSpriteFactory.Instance.CreateBlockFromString(name));
+            Debug.WriteLine(Blocks[^1]);
             Blocks[^1].position = new Vector2(xPos, yPos);
         }
         private void AddEnemy(string name, int xPos, int yPos)

@@ -2,6 +2,12 @@
 <XnaContent>
 	<Item>
 		<ObjectType>Block</ObjectType>
+		<ObjectName>BombedDoorLeft</ObjectName>
+		<PositionX>224</PositionX>
+		<PositionY>72</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallLen</ObjectName>
 		<PositionX>10</PositionX>
 		<PositionY>10</PositionY>
