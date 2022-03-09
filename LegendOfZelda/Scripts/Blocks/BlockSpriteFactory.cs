@@ -36,6 +36,7 @@ namespace LegendOfZelda.Scripts.Blocks
                 "PushBlock" => CreatePushBlockSprite(),
                 "WhiteBrick" => CreateWhiteBrickSprite(),
                 "BlueGap" => CreateBlueGapSprite(),
+                "BlackBackground" => CreateBlackBackgroundSprite(),
                 //Walls
                 "EmptyWallLen" => CreateEmptyWallFullLenSprite(),
                 "EmptyWallWidth" => CreateEmptyWallFullWidthSprite(),
@@ -64,6 +65,10 @@ namespace LegendOfZelda.Scripts.Blocks
         public IBlock CreateFireBlockSprite()
         {
             return new FireBlockSprite(fireSpriteSheet);
+        }
+        public IBlock CreateBlackBackgroundSprite()
+        {
+            return new BlackBackgroundSprite(blockSpriteSheet);
         }
         public IBlock CreateBlueFloorSprite()
         {
