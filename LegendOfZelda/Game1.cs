@@ -11,8 +11,6 @@ using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Collision;
-using System.Diagnostics;
-using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda
 {
@@ -53,7 +51,7 @@ namespace LegendOfZelda
             con.RegisterCommands(mouse);
             controllerList = new List<IController>() { control, mouse };
 
-            roomManager = new RoomManager(); // here for testing
+            roomManager = new RoomManager();
 
             CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
             CollisionEnemyGameObjectDetector collisionEnemyItemDetector = new CollisionEnemyGameObjectDetector();
@@ -78,7 +76,6 @@ namespace LegendOfZelda
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             ItemCollection = new ItemCollection();
-            
 
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             EnemyCollection = new EnemyCollection();
@@ -94,7 +91,7 @@ namespace LegendOfZelda
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
 
-            roomManager.LoadContent(); // here for testing
+            roomManager.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
@@ -175,7 +172,7 @@ namespace LegendOfZelda
 
             }
 
-           roomManager.Update(); // here for testing
+            roomManager.Update();
 
             base.Update(gameTime);
         }
@@ -185,13 +182,13 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
-            roomManager.Draw(_spriteBatch); // here for testing
+            roomManager.Draw(_spriteBatch);
 
             //foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
 
             foreach (IWeapon weapon in activeWeapons)
             {
-                if (weapon.GetWeaponType() != IWeapon.WeaponType.NONE) { weapon.Draw(_spriteBatch); }
+                weapon.Draw(_spriteBatch);
             }
             link.Draw(_spriteBatch);
             _spriteBatch.End();

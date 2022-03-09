@@ -11,10 +11,10 @@ namespace LegendOfZelda.Scripts.LevelManager
         public int CurrentRoom { get; set; }
         public RoomManager()
         {
-            CurrentRoom = 0;
         }
         public void LoadContent()
         {
+            CurrentRoom = 0;
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
             for (int i = 0; i <= 18; i++) {
@@ -41,6 +41,15 @@ namespace LegendOfZelda.Scripts.LevelManager
                 room.AddRoomBackground(i);
                 Rooms.Add(room);
             }
+        }
+        public void NextRoom()
+        {
+            CurrentRoom = ++CurrentRoom % Rooms.Count;
+        }
+        public void PreviousRoom()
+        {
+            CurrentRoom--;
+            CurrentRoom = (CurrentRoom + Rooms.Count) % Rooms.Count;
         }
         public void Update()
         {
