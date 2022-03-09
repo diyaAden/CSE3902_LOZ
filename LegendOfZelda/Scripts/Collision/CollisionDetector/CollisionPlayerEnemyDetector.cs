@@ -1,11 +1,8 @@
-﻿
-using LegendOfZelda.Scripts.Enemy;
+﻿using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace LegendOfZelda.Scripts.Collision.CollisionDetector
@@ -25,7 +22,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
         {
             List<ICollision> sides = new List<ICollision>();
             Rectangle linkBox = link.State.LinkBox(scale);
-            Rectangle CheckSide = Rectangle.Intersect(linkBox, enemy.ObjectBox());
+            Rectangle CheckSide = Rectangle.Intersect(linkBox, enemy.ObjectBox(scale));
             if (CheckSide.IsEmpty)
             {
                 sides.Add(ICollision.SideNone);

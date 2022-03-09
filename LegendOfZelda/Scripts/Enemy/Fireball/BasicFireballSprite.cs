@@ -30,10 +30,6 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             position = new Vector2(position.X - moveSpeed, position.Y + moveSpeed * moveDirection);
 
         }
-        public override Rectangle ObjectBox()
-        {
-            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
     }
 }
 

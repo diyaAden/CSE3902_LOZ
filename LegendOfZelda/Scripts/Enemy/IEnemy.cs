@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public void Update();
 
-        public Rectangle ObjectBox();
+        public Rectangle ObjectBox(int scale);
 
         public void Draw(SpriteBatch spriteBatch, int scale);
     }

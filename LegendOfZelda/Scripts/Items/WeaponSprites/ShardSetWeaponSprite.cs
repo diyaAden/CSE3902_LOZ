@@ -27,7 +27,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
                 shard.Update();
             }
         }
-        public override Rectangle ObjectBox()
+        public override Rectangle ObjectBox(int scale)
         {
             return new Rectangle();
         }

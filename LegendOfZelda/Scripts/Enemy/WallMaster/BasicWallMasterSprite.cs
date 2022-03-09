@@ -43,10 +43,6 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
         }
-        public override Rectangle ObjectBox()
-        {
-            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
     }
 }
 

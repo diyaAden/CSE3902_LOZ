@@ -18,9 +18,9 @@ namespace LegendOfZelda.Scripts.Items
 
         public virtual void Update(Vector2 linkPosition) { }
 
-        public virtual Rectangle ObjectBox()
+        public virtual Rectangle ObjectBox(int scale)
         {
-            return new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+            return new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
         }
         public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {

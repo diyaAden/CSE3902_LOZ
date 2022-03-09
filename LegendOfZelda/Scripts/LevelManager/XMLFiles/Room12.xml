@@ -15,110 +15,110 @@
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>47</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>48</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>79</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>80</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>47</PositionX>
-		<PositionY>81</PositionY>
+		<PositionX>48</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>79</PositionX>
-		<PositionY>81</PositionY>
+		<PositionX>80</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>47</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>48</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>79</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>80</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>111</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>112</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>127</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>128</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>111</PositionX>
-		<PositionY>81</PositionY>
+		<PositionX>112</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>127</PositionX>
-		<PositionY>81</PositionY>
+		<PositionX>128</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>111</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>112</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>127</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>128</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>159</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>160</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>49</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>48</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>159</PositionX>
-		<PositionY>81</PositionY>
+		<PositionX>160</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>81</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>80</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>159</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>160</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
-		<PositionX>191</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>192</PositionX>
+		<PositionY>112</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
