@@ -14,6 +14,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             animationFrames.Add(new Rectangle(17, 0, 16, 16));
+            transparency = 1f;
         }
 
         public override void Update()

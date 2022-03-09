@@ -6,10 +6,11 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
     class EmptyWallFullLenSprite: BasicBlock
     {
-        public EmptyWallFullLenSprite(Texture2D blockSpriteSheet)
+        public EmptyWallFullLenSprite(Texture2D wallSpriteSheet)
         {
-            spriteSheet = blockSpriteSheet;
+            spriteSheet = wallSpriteSheet;
             sourceRect = new Rectangle(1, 11, 200, 16);
+            transparency = 0.1f;
         }
 
         public override void Update()

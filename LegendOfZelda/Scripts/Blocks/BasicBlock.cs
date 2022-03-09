@@ -8,6 +8,8 @@ namespace LegendOfZelda.Scripts.Blocks
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 100);
+
+        protected float transparency;
         public Vector2 position { get { return pos; } set { pos = value; } }
 
         public abstract void Update();
@@ -19,7 +21,7 @@ namespace LegendOfZelda.Scripts.Blocks
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width, sourceRect.Height);
-            spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White);
+            spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White * transparency);
         }
     }
 }

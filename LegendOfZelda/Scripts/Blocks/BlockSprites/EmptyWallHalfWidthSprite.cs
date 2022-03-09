@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
         {
             spriteSheet = blockSpriteSheet;
             sourceRect = new Rectangle(1, 11, 16, 64);
+            transparency = 0.1f;
         }
 
         public override void Update()
