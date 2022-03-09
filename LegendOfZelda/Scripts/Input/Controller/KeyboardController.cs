@@ -10,7 +10,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
     {
         private Dictionary<Keys, ICommand> controllerMappings;
         private KeyboardState oldKeyState;
-        private List<Keys> movementKeys = new List<Keys> { Keys.A, Keys.W, Keys.D, Keys.S };
+        private List<Keys> movementKeys = new List<Keys> { Keys.A, Keys.W, Keys.D, Keys.S, Keys.Up, Keys.Down, Keys.Left, Keys.Right };
         public KeyboardController()
         {
             controllerMappings = new Dictionary<Keys, ICommand>();
