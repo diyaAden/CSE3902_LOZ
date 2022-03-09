@@ -47,11 +47,9 @@ namespace LegendOfZelda.Scripts.LevelManager
             RoomCollection[currentObject].Update();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            RoomCollection[currentObject].Draw(spriteBatch);
+            RoomCollection[currentObject].Draw(spriteBatch, scale);
         }
-       
-
     }
 }

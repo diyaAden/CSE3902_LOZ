@@ -48,9 +48,9 @@ namespace LegendOfZelda.Scripts.Blocks
         {
             return blockCollection[currentObject];
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            blockCollection[currentObject].Draw(spriteBatch);
+            blockCollection[currentObject].Draw(spriteBatch, scale);
         }
     }
 }

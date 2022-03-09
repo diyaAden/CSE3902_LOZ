@@ -115,9 +115,9 @@ namespace LegendOfZelda.Scripts.Links
             if (attackCooldown != 0) attackCooldown--;
             state.Update();
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            state.Draw(spriteBatch);
+            state.Draw(spriteBatch, scale);
         }
     }
 }

@@ -11,15 +11,15 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
     class CollisionEnemyGameObjectDetector: ICollisionDetector
     {
-        public List<ICollision> BoxTest(ILink link, IEnemy enemy)
+        public List<ICollision> BoxTest(ILink link, IEnemy enemy, int scale)
         {
             return null;
         }
-        public List<ICollision> BoxTest(ILink link, IGameObject gameObject)
+        public List<ICollision> BoxTest(ILink link, IGameObject gameObject, int scale)
         {
             return null;
         }
-        public List<ICollision> BoxTest(IEnemy enemy, IGameObject gameObject)
+        public List<ICollision> BoxTest(IEnemy enemy, IGameObject gameObject, int scale)
         {
             List<ICollision> sides = new List<ICollision>();
             Rectangle enemyBox = enemy.ObjectBox();

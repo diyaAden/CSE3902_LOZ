@@ -11,10 +11,10 @@ namespace LegendOfZelda.Scripts.LevelManager
         public int CurrentRoom { get; set; }
         public RoomManager()
         {
-            CurrentRoom = 0;
         }
-        public void LoadContent()
+        public void LoadContent(int scale)
         {
+            CurrentRoom = 0;
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
             for (int i = 0; i <= 18; i++) {
@@ -30,9 +30,9 @@ namespace LegendOfZelda.Scripts.LevelManager
                     while (xml.Name != "ObjectName") xml.Read();
                     objectName = xml.ReadElementContentAsString();
                     while (xml.Name != "PositionX") xml.Read();
-                    posX = xml.ReadElementContentAsInt();
+                    posX = xml.ReadElementContentAsInt() * scale;
                     while (xml.Name != "PositionY") xml.Read();
-                    posY = xml.ReadElementContentAsInt();
+                    posY = xml.ReadElementContentAsInt() * scale;
                     while (xml.Name != "Item") xml.Read();
                     xml.Read();
                     xml.Read();
@@ -42,6 +42,15 @@ namespace LegendOfZelda.Scripts.LevelManager
                 Rooms.Add(room);
             }
         }
+        public void NextRoom()
+        {
+            CurrentRoom = ++CurrentRoom % Rooms.Count;
+        }
+        public void PreviousRoom()
+        {
+            CurrentRoom--;
+            CurrentRoom = (CurrentRoom + Rooms.Count) % Rooms.Count;
+        }
         public void Update()
         {
             if (CurrentRoom  < 0)
@@ -49,9 +58,9 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom %= Rooms.Count;
             Rooms[CurrentRoom].Update();
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            Rooms[CurrentRoom].Draw(spriteBatch);
+            Rooms[CurrentRoom].Draw(spriteBatch, scale);
         }
     }
 }

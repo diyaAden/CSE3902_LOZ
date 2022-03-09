@@ -31,11 +31,11 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
         {
             return new Rectangle();
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, int scale)
         {
             foreach (IItem shard in shards)
             {
-                shard.Draw(spriteBatch);
+                shard.Draw(spriteBatch, scale);
             }
         }
     }

@@ -31,7 +31,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
            
             foreach (Keys key in keys)
             {
-                if (frame == 3)
+                if (frame == 3 && previousKeys.Count > 0)
                 {
                     previousKeys.Dequeue();
                     frame = 0;

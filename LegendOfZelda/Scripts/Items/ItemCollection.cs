@@ -49,9 +49,9 @@ namespace LegendOfZelda.Scripts.Items
             return null;
         }
         
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            itemCollection[currentObject].Draw(spriteBatch);
+            itemCollection[currentObject].Draw(spriteBatch, scale);
         }
     }
 }

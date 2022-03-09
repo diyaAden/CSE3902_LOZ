@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
 {
@@ -10,8 +9,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
         private int direction, attackingTimer = 0, waitTimeLimit, waitingTimer = 0;
         private bool attacking = false, retreating = false, originSet = false;
         private Vector2 originalPosition;
-        private readonly int currentFrame = 0, attackSpeed = 2, retreatSpeed = 1, attackingTimeLimit = 45;
-        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
+        private readonly int attackSpeed = 2, retreatSpeed = 1, attackingTimeLimit = 45;
         private readonly Random rnd = new Random();
 
         public override Vector2 position
@@ -92,11 +90,6 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
         public override Rectangle ObjectBox()
         {
             return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }
 }

@@ -27,6 +27,6 @@ namespace LegendOfZelda.Scripts.Links
 
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
         void Update();
-        void Draw(SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch, int scale);
     }
 }

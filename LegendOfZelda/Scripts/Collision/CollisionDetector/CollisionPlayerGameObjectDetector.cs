@@ -11,14 +11,14 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
     class CollisionPlayerGameObjectDetector: ICollisionDetector
     {
-        public List<ICollision> BoxTest(IEnemy link, IGameObject gameObject)
+        public List<ICollision> BoxTest(IEnemy link, IGameObject gameObject, int scale)
         {
             return null;
         }
-        public List<ICollision> BoxTest(ILink link, IGameObject gameObject)
+        public List<ICollision> BoxTest(ILink link, IGameObject gameObject, int scale)
         {
             List<ICollision> sides = new List<ICollision>();
-            Rectangle linkBox = link.State.LinkBox();
+            Rectangle linkBox = link.State.LinkBox(scale);
             Rectangle CheckSide = Rectangle.Intersect(linkBox, gameObject.ObjectBox());
             if (CheckSide.IsEmpty)
             {
@@ -48,7 +48,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
             return sides;
         }
 
-        public List<ICollision> BoxTest(ILink link, IEnemy enemy)
+        public List<ICollision> BoxTest(ILink link, IEnemy enemy, int scale)
         {
             return null;
         }

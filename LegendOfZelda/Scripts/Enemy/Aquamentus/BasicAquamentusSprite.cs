@@ -8,8 +8,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
     class BasicAquamentusSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0, movingRight = 1, attackTimer = 0, attackTimerLimit;
-        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
+        private int animationTimer = 0, movingRight = 1, attackTimer = 0, attackTimerLimit;
         protected int moveSpeed = 1, animationSpeed = 4;
         private List<IEnemy> fireballs = new List<IEnemy>();
         private readonly Random rnd = new Random();
@@ -56,12 +55,11 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
         {
             return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, int scale)
         {
             foreach (IEnemy fireball in fireballs)
-                fireball.Draw(spriteBatch);
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
+                fireball.Draw(spriteBatch, scale);
+            base.Draw(spriteBatch, scale);
         }
     }
 }

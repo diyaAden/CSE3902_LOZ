@@ -22,9 +22,9 @@ namespace LegendOfZelda.Scripts.Items
         {
             return new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
         }
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }

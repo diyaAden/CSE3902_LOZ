@@ -67,9 +67,9 @@ namespace LegendOfZelda.Scripts.Items
         {
             return Weapon.ObjectBox();
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            if (Weapon != null) { Weapon.Draw(spriteBatch); }
+            if (Weapon != null) { Weapon.Draw(spriteBatch, scale); }
         }
     }
 }

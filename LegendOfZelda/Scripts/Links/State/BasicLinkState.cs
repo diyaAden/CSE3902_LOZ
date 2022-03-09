@@ -138,13 +138,13 @@ namespace LegendOfZelda.Scripts.Links.State
             }
         }
 
-        public virtual Rectangle LinkBox()
+        public virtual Rectangle LinkBox(int scale)
         {
-            return Sprite.LinkBox();
+            return Sprite.LinkBox(scale);
         }
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
-            Sprite.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch, scale);
         }
     }
 }

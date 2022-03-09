@@ -1,16 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
 {
-     class BasicFireballSprite : Enemy
+    class BasicFireballSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0, moveSpeed = 1, moveDirection;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
+        private int animationTimer = 0, moveSpeed = 1, moveDirection;
 
         public BasicFireballSprite(Texture2D itemSpriteSheet, int direction, Vector2 position)
         {
@@ -37,11 +33,6 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
         public override Rectangle ObjectBox()
         {
             return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }
 }

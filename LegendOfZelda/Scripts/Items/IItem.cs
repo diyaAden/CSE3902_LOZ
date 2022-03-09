@@ -13,6 +13,6 @@ namespace LegendOfZelda.Scripts.Items
         public void Update(Vector2 linkPosition);
 
 
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, int scale);
     }
 }
