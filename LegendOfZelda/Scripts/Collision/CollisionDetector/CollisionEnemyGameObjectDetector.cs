@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
         public List<ICollision> BoxTest(IEnemy enemy, IGameObject gameObject, int scale)
         {
             List<ICollision> sides = new List<ICollision>();
-            Rectangle enemyBox = enemy.ObjectBox();
+            Rectangle enemyBox = enemy.ObjectBox(scale);
             Rectangle itemBox = gameObject.ObjectBox();
             Rectangle CheckSide = Rectangle.Intersect(enemyBox, itemBox);
             if (CheckSide.IsEmpty)

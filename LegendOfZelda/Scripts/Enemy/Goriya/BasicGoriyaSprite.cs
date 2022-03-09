@@ -79,7 +79,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             sprite.position = pos;
         }
 
-        public override Rectangle ObjectBox() { return sprite.ObjectBox(); }
+        public override Rectangle ObjectBox(int scale) { return sprite.ObjectBox(scale); }
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {
             sprite.Draw(spriteBatch, scale);

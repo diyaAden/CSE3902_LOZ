@@ -26,10 +26,6 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             position = new Vector2(position.X + moveSpeed, position.Y);
 
         }
-        public override Rectangle ObjectBox()
-        {
-            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
     }
 }
 

@@ -25,7 +25,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
         {
             List<ICollision> sides = new List<ICollision>();
             Rectangle linkBox = link.State.LinkBox(scale);
-            Rectangle CheckSide = Rectangle.Intersect(linkBox, enemy.ObjectBox());
+            Rectangle CheckSide = Rectangle.Intersect(linkBox, enemy.ObjectBox(scale));
             if (CheckSide.IsEmpty)
             {
                 sides.Add(ICollision.SideNone);

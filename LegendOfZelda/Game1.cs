@@ -20,7 +20,6 @@ namespace LegendOfZelda
         private SpriteBatch _spriteBatch;
 
         private List<IController> controllerList;
-        private List<ICollection> objectCollections;
 
         private List<ICollisionDetector> collisionDetectors;
         private List<ICollisionHandler> collisionHandlers;
@@ -31,10 +30,6 @@ namespace LegendOfZelda
 
         public RoomManager roomManager;
         internal List<IWeapon> activeWeapons = new List<IWeapon>();
-
-        internal ICollection EnemyCollection { get; private set; }
-        internal ICollection BlockCollection { get; private set; }
-        internal ICollection ItemCollection { get; private set; }
 
         public Game1()
         {
@@ -75,23 +70,13 @@ namespace LegendOfZelda
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
-            ItemCollection = new ItemCollection();
-
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
-            EnemyCollection = new EnemyCollection();
-
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
-            BlockCollection = new BlockCollection();
-
             RoomBackgroundFactory.Instance.LoadAllTextures(Content);
-
+            WeaponSpriteFactory.Instance.LoadAllTextures(Content);
+            roomManager.LoadContent(gameScale);
             LoadLink.LoadTexture(Content);
             link = new Link(position);
-            
-            WeaponSpriteFactory.Instance.LoadAllTextures(Content);
-            objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
-
-            roomManager.LoadContent(gameScale);
         }
 
         protected override void Update(GameTime gameTime)
@@ -118,7 +103,6 @@ namespace LegendOfZelda
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetector.BoxTest(link, block, gameScale);
-
                 foreach (ICollision side in sides)
                 {
                     collisionHandlers[0].HandleCollision(link, block, side);
@@ -127,18 +111,15 @@ namespace LegendOfZelda
             foreach (IItem item in items)
             {
                 List<ICollision> sides = collisionDetector.BoxTest(link, item, gameScale);
-
                 foreach (ICollision side in sides)
                 {
                     collisionHandlers[0].HandleCollision(link, item, side);
                 }
             }
-          
             collisionDetector = collisionDetectors[1];
             foreach (IEnemy enemy in enemys)
             {
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(link, enemy, gameScale);
-
                 foreach (ICollision side in sides2)
                 {
                     collisionHandlers[2].HandleCollision(link, enemy, side);
@@ -148,15 +129,12 @@ namespace LegendOfZelda
                     if (!weapon.IsNull())
                     {
                         List<ICollision> sides = collisionDetector.BoxTest(enemy, weapon, gameScale);
-
                         foreach (ICollision side in sides)
                         {
                             collisionHandlers[1].HandleCollision(enemy, weapon, side);
-
                         }
                     }
                 }
-
                 foreach (IBlock block in blocks)
                 {
                     List<ICollision> sides = collisionDetector.BoxTest(enemy, block, gameScale);
@@ -165,13 +143,8 @@ namespace LegendOfZelda
                     {
                         collisionHandlers[1].HandleCollision(enemy, block, side);
                     }
-                  
                 }
-
-               
-
             }
-
             roomManager.Update();
 
             base.Update(gameTime);
@@ -181,11 +154,7 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-
             roomManager.Draw(_spriteBatch, gameScale);
-
-            //foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
-
             foreach (IWeapon weapon in activeWeapons)
             {
                 weapon.Draw(_spriteBatch, gameScale);

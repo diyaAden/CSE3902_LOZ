@@ -48,7 +48,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 //do nothing
             }
         }
-            public void HandleWeaponCollision(IGameObject weapon, ICollision side)
+        public void HandleWeaponCollision(IGameObject weapon, ICollision side)
         {
             if (!(side is ICollision.SideNone))
             {
@@ -58,7 +58,10 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public abstract void Update();
 
-        public abstract Rectangle ObjectBox();
+        public virtual Rectangle ObjectBox(int scale)
+        {
+            return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
+        }
         public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
