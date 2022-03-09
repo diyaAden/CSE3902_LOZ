@@ -63,9 +63,9 @@ namespace LegendOfZelda.Scripts.Items
         {
             return Weapon == null;
         }
-        public virtual Rectangle ObjectBox()
+        public virtual Rectangle ObjectBox(int scale)
         {
-            return Weapon.ObjectBox();
+            return Weapon.ObjectBox(scale);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

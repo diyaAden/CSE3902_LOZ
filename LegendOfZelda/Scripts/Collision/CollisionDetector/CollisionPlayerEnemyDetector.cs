@@ -1,11 +1,8 @@
-﻿
-using LegendOfZelda.Scripts.Enemy;
+﻿using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace LegendOfZelda.Scripts.Collision.CollisionDetector
