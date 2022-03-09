@@ -25,7 +25,7 @@ namespace LegendOfZelda
         private List<ICollisionDetector> collisionDetectors;
         private List<ICollisionHandler> collisionHandlers;
 
-
+        private readonly int gameScale = 2;
         public Vector2 position = new Vector2(20, 40);
         public ILink link;
 
@@ -91,7 +91,7 @@ namespace LegendOfZelda
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             objectCollections = new List<ICollection>() { BlockCollection, ItemCollection, EnemyCollection };
 
-            roomManager.LoadContent();
+            roomManager.LoadContent(gameScale);
         }
 
         protected override void Update(GameTime gameTime)
@@ -117,7 +117,7 @@ namespace LegendOfZelda
             
             foreach (IBlock block in blocks)
             {
-                List<ICollision> sides = collisionDetector.BoxTest(link, block);
+                List<ICollision> sides = collisionDetector.BoxTest(link, block, gameScale);
 
                 foreach (ICollision side in sides)
                 {
@@ -126,7 +126,7 @@ namespace LegendOfZelda
             }
             foreach (IItem item in items)
             {
-                List<ICollision> sides = collisionDetector.BoxTest(link, item);
+                List<ICollision> sides = collisionDetector.BoxTest(link, item, gameScale);
 
                 foreach (ICollision side in sides)
                 {
@@ -137,7 +137,7 @@ namespace LegendOfZelda
             collisionDetector = collisionDetectors[1];
             foreach (IEnemy enemy in enemys)
             {
-                List<ICollision> sides2 = collisionDetectors[2].BoxTest(link, enemy);
+                List<ICollision> sides2 = collisionDetectors[2].BoxTest(link, enemy, gameScale);
 
                 foreach (ICollision side in sides2)
                 {
@@ -147,7 +147,7 @@ namespace LegendOfZelda
                 {
                     if (!weapon.IsNull())
                     {
-                        List<ICollision> sides = collisionDetector.BoxTest(enemy, weapon);
+                        List<ICollision> sides = collisionDetector.BoxTest(enemy, weapon, gameScale);
 
                         foreach (ICollision side in sides)
                         {
@@ -159,7 +159,7 @@ namespace LegendOfZelda
 
                 foreach (IBlock block in blocks)
                 {
-                    List<ICollision> sides = collisionDetector.BoxTest(enemy, block);
+                    List<ICollision> sides = collisionDetector.BoxTest(enemy, block, gameScale);
 
                     foreach (ICollision side in sides)
                     {
@@ -182,15 +182,15 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
-            roomManager.Draw(_spriteBatch);
+            roomManager.Draw(_spriteBatch, gameScale);
 
             //foreach (ICollection collection in objectCollections) { collection.Draw(_spriteBatch); }
 
             foreach (IWeapon weapon in activeWeapons)
             {
-                weapon.Draw(_spriteBatch);
+                weapon.Draw(_spriteBatch, gameScale);
             }
-            link.Draw(_spriteBatch);
+            link.Draw(_spriteBatch, gameScale);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

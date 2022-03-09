@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
      class BasicGoriyaSprite : Enemy
     {
-
+        private readonly int moveSpeed = 1;
         private int animationTimer = 0, direction;
         private IWeapon boomerang;
         private IEnemy sprite;
@@ -25,7 +25,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         }
         public BasicGoriyaSprite()
         {
-            sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
+            sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite(moveSpeed);
             MoveSpeed = 0;
             direction = 0;
         }
@@ -60,19 +60,19 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             switch (rand.Next(4))
             {
                 case 0:
-                    sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite();
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite(moveSpeed);
                     direction = 0;
                     break;
                 case 1:
-                    sprite = EnemySpriteFactory.Instance.CreateGoriyaUpSprite();
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaUpSprite(moveSpeed);
                     direction = 1;
                     break;
                 case 2:
-                    sprite = EnemySpriteFactory.Instance.CreateGoriyaLeftSprite();
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaLeftSprite(moveSpeed);
                     direction = 2;
                     break;
                 default:
-                    sprite = EnemySpriteFactory.Instance.CreateGoriyaRightSprite();
+                    sprite = EnemySpriteFactory.Instance.CreateGoriyaRightSprite(moveSpeed);
                     direction = 3;
                     break;
             }
@@ -80,12 +80,12 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         }
 
         public override Rectangle ObjectBox() { return sprite.ObjectBox(); }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, int scale)
         {
-            sprite.Draw(spriteBatch);
+            sprite.Draw(spriteBatch, scale);
             if (boomerang != null)
             {
-                boomerang.Draw(spriteBatch);
+                boomerang.Draw(spriteBatch, scale);
             }
         }
     }

@@ -12,7 +12,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public RoomManager()
         {
         }
-        public void LoadContent()
+        public void LoadContent(int scale)
         {
             CurrentRoom = 0;
             Rooms = new List<ILevel>();
@@ -30,9 +30,9 @@ namespace LegendOfZelda.Scripts.LevelManager
                     while (xml.Name != "ObjectName") xml.Read();
                     objectName = xml.ReadElementContentAsString();
                     while (xml.Name != "PositionX") xml.Read();
-                    posX = xml.ReadElementContentAsInt();
+                    posX = xml.ReadElementContentAsInt() * scale;
                     while (xml.Name != "PositionY") xml.Read();
-                    posY = xml.ReadElementContentAsInt();
+                    posY = xml.ReadElementContentAsInt() * scale;
                     while (xml.Name != "Item") xml.Read();
                     xml.Read();
                     xml.Read();
@@ -58,9 +58,9 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom %= Rooms.Count;
             Rooms[CurrentRoom].Update();
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            Rooms[CurrentRoom].Draw(spriteBatch);
+            Rooms[CurrentRoom].Draw(spriteBatch, scale);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
        // public bool checkDamageState { get; set; }
         int LinkMoveSpeed { get; set; }
         void Update();
-        Rectangle LinkBox();
-        void Draw(SpriteBatch spriteBatch);
+        Rectangle LinkBox(int scale);
+        void Draw(SpriteBatch spriteBatch, int scale);
     }
 }

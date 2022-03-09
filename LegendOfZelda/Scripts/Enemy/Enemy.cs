@@ -1,13 +1,9 @@
 ﻿using LegendOfZelda.Scripts.Collision;
-using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Enemy
 {
@@ -16,6 +12,8 @@ namespace LegendOfZelda.Scripts.Enemy
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 400);
+        protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
+        protected int currentFrame = 0;
         public virtual Vector2 position { get { return pos; } set { pos = value; } }
 
         public virtual Texture2D Texture { get; set; }
@@ -61,20 +59,10 @@ namespace LegendOfZelda.Scripts.Enemy
         public abstract void Update();
 
         public abstract Rectangle ObjectBox();
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
-            /*
-            int width = Texture.Width / Columns;
-            int height = Texture.Height / Rows;
-            int row = CurrentFrame / Columns;
-            int column = CurrentFrame % Columns;
-
-            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
-
-            spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-            */
-
+            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
+            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }
 }

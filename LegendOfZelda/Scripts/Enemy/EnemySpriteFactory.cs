@@ -84,21 +84,21 @@ namespace LegendOfZelda.Scripts.Enemy
         {
             return new BasicGoriyaSprite();
         }
-        public IEnemy CreateGoriyaDownSprite()
+        public IEnemy CreateGoriyaDownSprite(int moveSpeed)
         {
-            return new MoveDownGoriyaSprite(goriyaDownSpriteSheet);
+            return new MoveDownGoriyaSprite(goriyaDownSpriteSheet, moveSpeed);
         }
-        public IEnemy CreateGoriyaUpSprite()
+        public IEnemy CreateGoriyaUpSprite(int moveSpeed)
         {
-            return new MoveUpGoriyaSprite(goriyaUpSpriteSheet);
+            return new MoveUpGoriyaSprite(goriyaUpSpriteSheet, moveSpeed);
         }
-        public IEnemy CreateGoriyaLeftSprite()
+        public IEnemy CreateGoriyaLeftSprite(int moveSpeed)
         {
-            return new MoveLeftGoriyaSprite(goriyaLeftSpriteSheet);
+            return new MoveLeftGoriyaSprite(goriyaLeftSpriteSheet, moveSpeed);
         }
-        public IEnemy CreateGoriyaRightSprite()
+        public IEnemy CreateGoriyaRightSprite(int moveSpeed)
         {
-            return new MoveRightGoriyaSprite(goriyaRightSpriteSheet);
+            return new MoveRightGoriyaSprite(goriyaRightSpriteSheet, moveSpeed);
         }
         public IEnemy CreateKeeseSprite()
         {

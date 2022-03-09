@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using LegendOfZelda.Scripts.Blocks.BlockSprites;
-using LegendOfZelda.Scripts.Items;
+﻿using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 

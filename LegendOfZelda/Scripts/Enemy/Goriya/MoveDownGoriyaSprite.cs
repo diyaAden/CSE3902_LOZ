@@ -1,19 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
-     class MoveDownGoriyaSprite : Enemy
+    class MoveDownGoriyaSprite : Enemy
     {
+        private readonly int moveSpeed;
+        private int animationTimer = 0;
 
-        private int animationTimer = 0, currentFrame = 0;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
-
-        public MoveDownGoriyaSprite(Texture2D itemSpriteSheet)
+        public MoveDownGoriyaSprite(Texture2D itemSpriteSheet, int moveSpeed)
         {
+            this.moveSpeed = moveSpeed;
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
@@ -26,17 +23,12 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X, position.Y + 1);
+            position = new Vector2(position.X, position.Y + moveSpeed);
 
         }
         public override Rectangle ObjectBox()
         {
             return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }
 }

@@ -1,16 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
 {
     class BasicWallMasterSprite : Enemy
     {
 
-        private int animationTimer = 0, currentFrame = 0, direction, timeUntilDirectionChange, movementTimer = 0;
+        private int animationTimer = 0, direction, timeUntilDirectionChange, movementTimer = 0;
         private readonly float moveSpeed = 0.5f;
-        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
         private readonly Random rnd = new Random();
 
         public BasicWallMasterSprite(Texture2D itemSpriteSheet)
@@ -48,11 +46,6 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
         public override Rectangle ObjectBox()
         {
             return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width, animationFrames[currentFrame].Height);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }
 }

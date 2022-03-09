@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Links.Sprite
 {
@@ -52,12 +49,12 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             row = CurrentFrame / Columns;
             column = CurrentFrame % Columns;
         }
-        public virtual Rectangle LinkBox()
+        public virtual Rectangle LinkBox(int scale)
         {
             GetBoxSize();
-            return new Rectangle((int)Pos.X, (int)Pos.Y, width, height);
+            return new Rectangle((int)Pos.X, (int)Pos.Y, width * scale, height * scale);
         }
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
             GetBoxSize();
 
@@ -71,7 +68,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             }
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = LinkBox();
+            Rectangle destinationRectangle = LinkBox(scale);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, SpriteColor);
 

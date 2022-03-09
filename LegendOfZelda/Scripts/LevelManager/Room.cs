@@ -54,12 +54,12 @@ namespace LegendOfZelda.Scripts.LevelManager
             foreach (IEnemy enemy in Enemies) enemy.Update();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            roomBackground.Draw(spriteBatch);
-            foreach (IItem item in Items) item.Draw(spriteBatch);
-            foreach (IBlock block in Blocks) block.Draw(spriteBatch);
-            foreach (IEnemy enemy in Enemies) enemy.Draw(spriteBatch);
+            roomBackground.Draw(spriteBatch, scale);
+            foreach (IItem item in Items) item.Draw(spriteBatch, scale);
+            foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
+            foreach (IEnemy enemy in Enemies) enemy.Draw(spriteBatch, scale);
         }
     }
 }

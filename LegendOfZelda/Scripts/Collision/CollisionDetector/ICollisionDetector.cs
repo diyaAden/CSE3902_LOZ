@@ -11,8 +11,8 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
     public interface ICollisionDetector
     {
-        List<ICollision> BoxTest(ILink link, IGameObject gameObject); //will let these functions together
-        List<ICollision> BoxTest(IEnemy link, IGameObject gameObject);
-        List<ICollision> BoxTest(ILink link, IEnemy enemy);
+        List<ICollision> BoxTest(ILink link, IGameObject gameObject, int scale); //will let these functions together
+        List<ICollision> BoxTest(IEnemy link, IGameObject gameObject, int scale);
+        List<ICollision> BoxTest(ILink link, IEnemy enemy, int scale);
     }
 }

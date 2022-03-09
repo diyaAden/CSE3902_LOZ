@@ -10,6 +10,6 @@ namespace LegendOfZelda.Scripts.Items
 
         public void Update();
 
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, int scale);
     }
 }

@@ -16,6 +16,6 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void AddObject(string type, string name, int xPos, int yPos);
         public void AddRoomBackground(int roomNumber);
         public void Update();
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, int scale);
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using LegendOfZelda.Scripts.Collision;
+﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +17,6 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public Rectangle ObjectBox();
 
-        public void Draw(SpriteBatch spriteBatch);
+        public void Draw(SpriteBatch spriteBatch, int scale);
     }
 }

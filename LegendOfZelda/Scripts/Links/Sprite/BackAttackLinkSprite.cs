@@ -30,7 +30,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
                 Timer = 2;
             }
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, int scale)
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
@@ -48,7 +48,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
 
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle((int)spritePosition.X, (int)spritePosition.Y, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)spritePosition.X, (int)spritePosition.Y, width * scale, height * scale);
 
             spriteBatch.Draw(Texture, destinationRectangle, sourceRectangle, SpriteColor);
 

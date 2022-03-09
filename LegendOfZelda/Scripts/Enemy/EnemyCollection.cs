@@ -44,9 +44,9 @@ namespace LegendOfZelda.Scripts.Enemy
             return null;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            enemyCollection[currentObject].Draw(spriteBatch);
+            enemyCollection[currentObject].Draw(spriteBatch, scale);
         }
     }
 }

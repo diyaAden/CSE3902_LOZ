@@ -19,8 +19,8 @@ namespace LegendOfZelda.Scripts.Links
         void MoveLeft();
         void UseItem();
         void Attack();
-        Rectangle LinkBox();
+        Rectangle LinkBox(int scale);
         void Update();
-        void Draw(SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch, int scale);
     }
 }
