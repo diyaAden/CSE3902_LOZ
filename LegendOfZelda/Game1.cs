@@ -25,7 +25,7 @@ namespace LegendOfZelda
         private List<ICollisionHandler> collisionHandlers;
 
         public readonly int gameScale = 2;
-        public Vector2 position = new Vector2(20, 40);
+        public Vector2 position = new Vector2(120, 80);
         public ILink link;
 
         public RoomManager roomManager;
