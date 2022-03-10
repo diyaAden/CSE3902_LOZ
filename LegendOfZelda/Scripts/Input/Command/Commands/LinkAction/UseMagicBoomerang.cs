@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
             if (!myGame.activeWeapons.Exists(containsBoomerang))
             {
                 myGame.link.UseItem();
-                WeaponManager boomerang = new MagicBoomerangWeapon(myGame.link.State.Position, myGame.link.State.Direction);
+                IWeapon boomerang = new MagicBoomerangWeapon(myGame.link.State.Position, myGame.link.State.Direction);
                 myGame.activeWeapons.Add(boomerang);
             }
         }
