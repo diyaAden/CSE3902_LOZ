@@ -5,14 +5,14 @@
 		<ObjectName>OpenDoorUp</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>144</PositionY>
-		<roomNumber>0</roomNumber>
+		<roomNumber>12</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>LockedDoorRight</ObjectName>
 		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
-		<roomNumber>0</roomNumber>
+		<roomNumber>15</roomNumber>
 	</Item>
   <Item>
     <ObjectType>Block</ObjectType>

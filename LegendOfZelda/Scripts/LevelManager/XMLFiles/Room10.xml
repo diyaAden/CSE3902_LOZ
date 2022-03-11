@@ -5,21 +5,21 @@
 		<ObjectName>OpenDoorLeft</ObjectName>
 		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>
-		<roomNumber>0</roomNumber>
+		<roomNumber>11</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorDown</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>0</PositionY>
-		<roomNumber>0</roomNumber>
+		<roomNumber>13</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorRight</ObjectName>
 		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
-		<roomNumber>0</roomNumber>
+		<roomNumber>9</roomNumber>
 	</Item>
   <Item>
     <ObjectType>Block</ObjectType>
