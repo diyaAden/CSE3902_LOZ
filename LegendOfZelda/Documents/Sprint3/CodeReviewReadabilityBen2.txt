@@ -1,0 +1,12 @@
+﻿Author of Code Review: Ben Roth
+Date: 3/11/22
+Sprint 3
+CollisionPlayerGameObjectDetector.cs (Author: Jiayi)
+Time Spent: 10min
+Comments:
+	- First thing that jumps out is that the handlers are named "PlayerGameObjectCollisionHandler" while the detector is named "CollisionPlayerGameObjectDetector"
+	- Renaming this file to "PlayerGameObjectCollisionDetector" a slight difference but keeps it in the same format.
+	- More overloading of methods is good, however two methods return null with no explanation? 
+	- Some else if statements could be changed to else, but not super necessary.
+
+

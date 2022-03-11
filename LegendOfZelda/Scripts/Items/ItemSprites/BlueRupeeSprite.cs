@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(9, 0, 8, 16));
+            name = "BlueRupee";
         }
 
         public override void Update()

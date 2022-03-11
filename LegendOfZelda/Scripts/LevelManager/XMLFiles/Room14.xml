@@ -9,8 +9,8 @@
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LockedDoorRight</ObjectName>
-		<PositionX>0</PositionX>
+		<ObjectName>LockedDoorLeft</ObjectName>
+		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>
 		<roomNumber>15</roomNumber>
 	</Item>

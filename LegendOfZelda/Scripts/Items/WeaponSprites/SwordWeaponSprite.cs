@@ -5,7 +5,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class SwordWeaponSprite : BasicItem
     {
-        private int currentSpeed = 0, animationTimer = 0;
+        private int currentSpeed = 0;
         private readonly int swordSpeed = 2, direction;
         private bool swordOut = false;
 
@@ -58,6 +58,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
             direction = movingDirection;
             timerLimit = 75;
             animationFrames.Add(new Rectangle());
+            animationTimer = 0;
         }
         public override void Update()
         {

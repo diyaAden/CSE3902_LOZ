@@ -1,6 +1,8 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.LevelManager;
+using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,6 +18,7 @@ namespace LegendOfZelda.Scripts.Links
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
         private List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(32, 80) };
+        public Room CurrentRoom { get; set; }
 
         public Link(Vector2 position)
         {
@@ -60,23 +63,32 @@ namespace LegendOfZelda.Scripts.Links
                 state.Attack();
             }
         }
+
+        public void PickItem(String name)
+        {
+            if (attackCooldown == 0)
+            {
+                attackCooldown = cooldownLimit;
+                state.PickItem(name);
+            }
+        }
         public void HandleBlockCollision(IGameObject gameObject, ICollision side)
         {
             if (side is ICollision.SideTop)
             {
-                state.MoveDown();
+                state.PositionDown();
             }
             else if (side is ICollision.SideBottom)
             {
-                state.MoveUp();
+                state.PositionUp();
             }
             else if (side is ICollision.SideLeft)
             {
-                state.MoveRight();
+                state.PositionRight();
             }
             else if (side is ICollision.SideRight)
             {
-                state.MoveLeft();
+                state.PositionLeft();
             }
             else if (side is ICollision.SideNone)
             {
@@ -98,12 +110,30 @@ namespace LegendOfZelda.Scripts.Links
             }
 
         }
+
+        public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
+        {
+            if (!(side is ICollision.SideNone))
+            {
+                Debug.WriteLine("hurt by urs weapon");
+                isDamaged = true;
+                state.ToDamaged();
+            }
+
+        }
         public void HandleItemCollision(IGameObject gameObject, ICollision side)
         {
             if (!(side is ICollision.SideNone))
             {
+                Debug.WriteLine(((IItem)gameObject).Name);
                 Debug.WriteLine("Pick up item!!!!");
+                PickItem(((IItem)gameObject).Name);
+
             }
+        }
+        public void HandleItemDestroy(int index)
+        {
+            CurrentRoom.RemoveObject("Item", index);
         }
         //Update and draw
         public void Update()

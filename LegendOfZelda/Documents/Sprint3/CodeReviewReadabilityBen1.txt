@@ -1,0 +1,12 @@
+﻿Author of Code Review: Ben Roth
+Date: 3/11/22
+Sprint 3
+PlayerGameObjectCollisionHandler.cs (Author: Jiayi)
+Time Spent: 10min
+Comments:
+	- First impressions are that this file is very readable.
+	- Good use of adding overloaded methods to handle different instances of collision.
+	- Adding comments could help with describing the overloaded methods.
+	- Overall the files is very neat and organized and very readable.
+
+

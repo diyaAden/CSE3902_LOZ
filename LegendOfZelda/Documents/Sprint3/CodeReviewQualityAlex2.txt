@@ -1,0 +1,11 @@
+﻿Author of Code Review: Alex Quedens
+Date: 3/11/22
+Sprint 3
+RoomBackgroundFactory.cs (Author: Ben)
+
+Comments:
+	- The class is fairly short, so it is pretty easy to follow along with.
+	- I see he creates basic variables at the top, and then creates a switch for each room.
+	- We then have a list of methods that creates each room, which is done using encapsulation.
+
+I think the code quality in the file meets the standard of what high quality code is. It's easy to follow along with and consice and efficient.

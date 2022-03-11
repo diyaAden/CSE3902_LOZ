@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,16 +16,20 @@ namespace LegendOfZelda.Scripts.Links
     public interface ILink
     {
         ILinkState State { get; set; }
+        Room CurrentRoom { get; set; }
         public void ToIdle();
         public void MoveUp();
         public void MoveDown();
         public void MoveRight();
         public void MoveLeft();
         public void UseItem();
+        public void PickItem(String name);
         public void Attack();
         public void HandleBlockCollision(IGameObject block, ICollision side);
         public void HandleDoorCollision(int direction, int scale);
         public void HandleItemCollision(IGameObject item, ICollision side);
+        public void HandleWeaponCollision(IGameObject gameObject, ICollision side);
+        public void HandleItemDestroy(int index);
 
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
         void Update();
