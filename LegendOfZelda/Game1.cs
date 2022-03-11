@@ -105,7 +105,7 @@ namespace LegendOfZelda
                 List<ICollision> sides = collisionDetector.BoxTest(link, block, gameScale);
                 foreach (ICollision side in sides)
                 {
-                    collisionHandlers[0].HandleCollision(link, block, side);
+                    collisionHandlers[0].HandleCollision(link, block, side, gameScale);
                 }
             }
             foreach (IItem item in items)
@@ -113,7 +113,7 @@ namespace LegendOfZelda
                 List<ICollision> sides = collisionDetector.BoxTest(link, item, gameScale);
                 foreach (ICollision side in sides)
                 {
-                    collisionHandlers[0].HandleCollision(link, item, side);
+                    collisionHandlers[0].HandleCollision(link, item, side, gameScale);
                 }
             }
             collisionDetector = collisionDetectors[1];

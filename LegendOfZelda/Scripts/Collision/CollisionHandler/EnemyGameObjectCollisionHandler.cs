@@ -32,7 +32,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                     break;
             }
         }
-        public void HandleCollision(ILink link, IGameObject gameObject, ICollision side)
+        public void HandleCollision(ILink link, IGameObject gameObject, ICollision side, int scale)
         {
 
         }
