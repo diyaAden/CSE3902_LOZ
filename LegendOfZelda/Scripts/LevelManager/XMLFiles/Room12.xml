@@ -2,8 +2,8 @@
 <XnaContent>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>OpenDoorLeft</ObjectName>
-		<PositionX>224</PositionX>
+		<ObjectName>OpenDoorRight</ObjectName>
+		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
 		<roomNumber>11</roomNumber>
 	</Item>

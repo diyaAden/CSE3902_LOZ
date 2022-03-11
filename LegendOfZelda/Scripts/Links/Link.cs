@@ -6,6 +6,7 @@ using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -17,7 +18,7 @@ namespace LegendOfZelda.Scripts.Links
         private ILinkState state;
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
-        private List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(32, 80) };
+        private List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80) };
         public Room CurrentRoom { get; set; }
 
         public Link(Vector2 position)
