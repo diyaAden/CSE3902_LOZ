@@ -2,21 +2,66 @@
 <XnaContent>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LockedDoorLeft</ObjectName>
+		<ObjectName>OpenDoorLeft</ObjectName>
 		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>
+		<roomNumber>10</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>OpenDoorDown</ObjectName>
+		<ObjectName>OpenDoorUp</ObjectName>
 		<PositionX>112</PositionX>
-		<PositionY>0</PositionY>
+		<PositionY>144</PositionY>
+		<roomNumber>5</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>OpenDoorRight</ObjectName>
+		<ObjectName>CrackedDoorRight</ObjectName>
 		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
+		<roomNumber>8</roomNumber>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>224</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>224</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>EmptyWallLen</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallLen</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>144</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallLen</ObjectName>
+		<PositionX>144</PositionX>
+		<PositionY>144</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
