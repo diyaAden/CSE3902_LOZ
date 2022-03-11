@@ -28,6 +28,12 @@ namespace LegendOfZelda.Scripts.LevelManager
             else if (type == "Block") AddBlock(name, xPos, yPos);
             else if (type == "Enemy") AddEnemy(name, xPos, yPos);
         }
+        public void RemoveObject(string type, int index)
+        {
+            if (type == "Item") RemoveItem(index);
+            else if (type == "Block") RemoveBlock(index);
+            else if (type == "Enemy") RemoveEnemy(index);
+        }
         private void AddItem(string name, int xPos, int yPos)
         {
             Items.Add(ItemSpriteFactory.Instance.CreateItemFromString(name));
@@ -43,6 +49,20 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Enemies.Add(EnemySpriteFactory.Instance.CreateEnemyFromString(name));
             Enemies[^1].position = new Vector2(xPos, yPos);
+        }
+
+        private void RemoveItem(int index)
+        {
+            Debug.WriteLine("Remove" + index);
+            Items.RemoveAt(index);
+        }
+        private void RemoveBlock(int index)
+        {
+            //Do nothing now
+        }
+        private void RemoveEnemy(int index)
+        {
+            Enemies.RemoveAt(index);
         }
         public void AddRoomBackground(int roomNumber)
         {

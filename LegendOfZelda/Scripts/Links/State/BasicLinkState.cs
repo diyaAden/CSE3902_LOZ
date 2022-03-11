@@ -117,6 +117,10 @@ namespace LegendOfZelda.Scripts.Links.State
                 }
         }
 
+        public virtual void PickItem()
+        {
+            Link.State = new PickItemLinkState(Link, Position, isDamaged);
+        }
         public virtual void Attack()
         {
             // Must apply the other 3 directions

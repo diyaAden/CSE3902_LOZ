@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework;
@@ -22,6 +23,7 @@ namespace LegendOfZelda.Scripts.Links
         private ILinkState state;
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
+        public Room CurrentRoom { get; set; }
 
         public Link(Vector2 position)
         {
@@ -66,6 +68,15 @@ namespace LegendOfZelda.Scripts.Links
                 state.Attack();
             }
         }
+
+        public void PickItem()
+        {
+            if (attackCooldown == 0)
+            {
+                attackCooldown = cooldownLimit;
+                state.PickItem();
+            }
+        }
         public void HandleBlockCollision(IGameObject gameObject, ICollision side)
         {
 
@@ -107,10 +118,17 @@ namespace LegendOfZelda.Scripts.Links
             if (!(side is ICollision.SideNone))
             {
                 Debug.WriteLine("Pick up item!!!!");
+                PickItem();
+                
             }
         }
-            //Update and draw
-            public void Update()
+        public void HandleItemDestroy(int index)
+        {
+            CurrentRoom.RemoveObject("Item", index);//The index might be temporarily if change the item manager or collision refactory
+
+        }
+        //Update and draw
+        public void Update()
         {
             if (attackCooldown != 0) attackCooldown--;
             state.Update();
