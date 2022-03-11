@@ -14,7 +14,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void LoadContent(int scale)
         {
-            CurrentRoom = 0;
+            CurrentRoom = 13;
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
             for (int i = 0; i <= 18; i++) {
@@ -51,12 +51,12 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom--;
             CurrentRoom = (CurrentRoom + Rooms.Count) % Rooms.Count;
         }
-        public void Update()
+        public void Update(int scale)
         {
             if (CurrentRoom  < 0)
                 CurrentRoom += Rooms.Count;
             CurrentRoom %= Rooms.Count;
-            Rooms[CurrentRoom].Update();
+            Rooms[CurrentRoom].Update(scale);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

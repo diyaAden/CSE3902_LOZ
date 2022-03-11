@@ -33,9 +33,9 @@ namespace LegendOfZelda.Scripts.Enemy
             if (--currentObject < 0) { currentObject = enemyCollection.Count - 1; }
         }
 
-        public void Update()
+        public void Update(int scale)
         {
-            enemyCollection[currentObject].Update();
+            enemyCollection[currentObject].Update(scale);
         }
 
         public IGameObject GameObject()

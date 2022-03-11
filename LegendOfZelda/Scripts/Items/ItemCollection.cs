@@ -37,7 +37,7 @@ namespace LegendOfZelda.Scripts.Items
             if (--currentObject < 0) { currentObject = itemCollection.Count - 1; }
         }
 
-        public void Update()
+        public void Update(int scale)
         {
             itemCollection[currentObject].Update();
         }

@@ -24,8 +24,8 @@ namespace LegendOfZelda
         private List<ICollisionDetector> collisionDetectors;
         private List<ICollisionHandler> collisionHandlers;
 
-        private readonly int gameScale = 2;
-        public Vector2 position = new Vector2(20, 40);
+        public readonly int gameScale = 2;
+        public Vector2 position = new Vector2(120, 80);
         public ILink link;
 
         public RoomManager roomManager;
@@ -131,7 +131,7 @@ namespace LegendOfZelda
                         List<ICollision> sides = collisionDetector.BoxTest(enemy, weapon, gameScale);
                         foreach (ICollision side in sides)
                         {
-                            collisionHandlers[1].HandleCollision(enemy, weapon, side);
+                            collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
                         }
                     }
                 }
@@ -141,11 +141,11 @@ namespace LegendOfZelda
 
                     foreach (ICollision side in sides)
                     {
-                        collisionHandlers[1].HandleCollision(enemy, block, side);
+                        collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
                     }
                 }
             }
-            roomManager.Update();
+            roomManager.Update(gameScale);
 
             base.Update(gameTime);
         }

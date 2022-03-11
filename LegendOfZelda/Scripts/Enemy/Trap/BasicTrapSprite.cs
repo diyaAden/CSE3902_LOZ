@@ -36,31 +36,31 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
             waitTimeLimit = rnd.Next(120, 181);
             MoveSpeed = retreatSpeed;
         }
-        private Vector2 Advance(int direction)
+        private Vector2 Advance(int direction, int scale)
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + attackSpeed),
-                1 => new Vector2(position.X, position.Y - attackSpeed),
-                2 => new Vector2(position.X - attackSpeed, position.Y),
-                _ => new Vector2(position.X + attackSpeed, position.Y),
+                0 => new Vector2(position.X, position.Y + attackSpeed * scale),
+                1 => new Vector2(position.X, position.Y - attackSpeed * scale),
+                2 => new Vector2(position.X - attackSpeed * scale, position.Y),
+                _ => new Vector2(position.X + attackSpeed * scale, position.Y),
             };
         }
-        private Vector2 Retreat(int direction)
+        private Vector2 Retreat(int direction, int scale)
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y - retreatSpeed),
-                1 => new Vector2(position.X, position.Y + retreatSpeed),
-                2 => new Vector2(position.X + retreatSpeed, position.Y),
-                _ => new Vector2(position.X - retreatSpeed, position.Y),
+                0 => new Vector2(position.X, position.Y - retreatSpeed * scale),
+                1 => new Vector2(position.X, position.Y + retreatSpeed * scale),
+                2 => new Vector2(position.X + retreatSpeed * scale, position.Y),
+                _ => new Vector2(position.X - retreatSpeed * scale, position.Y),
             };
         }
-        public override void Update()
+        public override void Update(int scale)
         {
             if (attacking)
             {
-                position = Advance(direction);
+                position = Advance(direction, scale);
                 if (++attackingTimer >= attackingTimeLimit)
                 {
                     attacking = false;
@@ -71,7 +71,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
             }
             else if (retreating)
             {
-                position = Retreat(direction);
+                position = Retreat(direction, scale);
                 if (position.X == originalPosition.X && position.Y == originalPosition.Y)
                 {
                     retreating = false;

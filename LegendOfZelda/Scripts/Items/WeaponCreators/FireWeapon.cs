@@ -3,7 +3,7 @@ using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items.WeaponCreators
 {
-    class FireWeapon : WeaponManager
+    class FireWeapon : BasicWeapon
     {
         public FireWeapon(Vector2 pos, int facing)
         {

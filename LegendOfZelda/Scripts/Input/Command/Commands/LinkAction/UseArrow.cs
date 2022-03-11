@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
             if (!myGame.activeWeapons.Exists(containsArrow))
             {
                 myGame.link.UseItem();
-                IWeapon arrow = new ArrowWeapon(myGame.link.State.Position, myGame.link.State.Direction);
+                IWeapon arrow = new ArrowWeapon(myGame.link.State.Position, myGame.link.State.Direction, myGame.gameScale);
                 myGame.activeWeapons.Add(arrow);
             }
         }
