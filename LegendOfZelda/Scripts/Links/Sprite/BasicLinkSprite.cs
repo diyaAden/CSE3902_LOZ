@@ -26,7 +26,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             set { linkMoveSpeed = value; }
         }
 
-        protected int linkMoveSpeed = 4;
+        protected int linkMoveSpeed = 2;
 
         //set to false by default, change to true when "e" key is pressed. 
         public bool checkDamageState = true; //{ get; set; }

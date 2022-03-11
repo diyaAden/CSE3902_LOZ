@@ -1,4 +1,5 @@
-﻿using LegendOfZelda.Scripts.Items;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

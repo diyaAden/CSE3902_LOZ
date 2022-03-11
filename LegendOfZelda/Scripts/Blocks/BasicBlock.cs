@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Blocks
@@ -10,10 +11,11 @@ namespace LegendOfZelda.Scripts.Blocks
         protected Vector2 pos = new Vector2(400, 100);
 
         protected float transparency;
-        public Vector2 position { get { return pos; } set { pos = value; } }
+        public virtual Vector2 position { get { return pos; } set { pos = value; } }
         public int adjacentRoom { get; set; }
 
         public abstract void Update();
+        public virtual void HandleCollision(ICollision side, int scale) { }
 
         public virtual Rectangle ObjectBox(int scale)
         {
