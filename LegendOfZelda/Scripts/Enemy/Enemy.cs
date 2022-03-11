@@ -25,7 +25,7 @@ namespace LegendOfZelda.Scripts.Enemy
         protected virtual float MoveSpeed { get; set; }
 
         public virtual void Attack() { }
-        public void HandleBlockCollision(IGameObject block, ICollision side, int scale)
+        public virtual void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {
             if (side is ICollision.SideTop)
             {
