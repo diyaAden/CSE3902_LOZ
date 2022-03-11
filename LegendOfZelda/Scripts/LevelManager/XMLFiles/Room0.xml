@@ -5,36 +5,37 @@
 		<ObjectName>OpenDoorDown</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>0</PositionY>
+		<roomNumber>1</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallLen</ObjectName>
-		<PositionX>10</PositionX>
-		<PositionY>10</PositionY>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallLen</ObjectName>
-		<PositionX>136</PositionX>
-		<PositionY>10</PositionY>
+		<PositionX>144</PositionX>
+		<PositionY>16</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallWidth</ObjectName>
 		<PositionX>224</PositionX>
-		<PositionY>15</PositionY>
+		<PositionY>16</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallLen</ObjectName>
-		<PositionX>10</PositionX>
+		<PositionX>16</PositionX>
 		<PositionY>144</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallWidth</ObjectName>
-		<PositionX>10</PositionX>
-		<PositionY>26</PositionY>
+		<PositionX>16</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Item</ObjectType>
@@ -101,5 +102,35 @@
 		<ObjectName>Fairy</ObjectName>
 		<PositionX>128</PositionX>
 		<PositionY>80</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>StatueLeft</ObjectName>
+		<PositionX>128</PositionX>
+		<PositionY>112</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>StatueRight</ObjectName>
+		<PositionX>160</PositionX>
+		<PositionY>112</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>192</PositionX>
+		<PositionY>112</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>WhiteBrick</ObjectName>
+		<PositionX>192</PositionX>
+		<PositionY>80</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>PushBlock</ObjectName>
+		<PositionX>144</PositionX>
+		<PositionY>64</PositionY>
 	</Item>
 </XnaContent>

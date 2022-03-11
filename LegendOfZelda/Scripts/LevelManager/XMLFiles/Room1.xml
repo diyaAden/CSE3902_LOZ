@@ -5,36 +5,36 @@
 		<ObjectName>OpenDoorLeft</ObjectName>
 		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>
+		<roomNumber>2</roomNumber>
 	</Item>
-
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallLen</ObjectName>
-		<PositionX>10</PositionX>
-		<PositionY>10</PositionY>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallWidth</ObjectName>
-		<PositionX>215</PositionX>
-		<PositionY>15</PositionY>
+		<PositionX>224</PositionX>
+		<PositionY>16</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallWidth</ObjectName>
-		<PositionX>215</PositionX>
+		<PositionX>224</PositionX>
 		<PositionY>96</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallWidth</ObjectName>
-		<PositionX>10</PositionX>
-		<PositionY>26</PositionY>
+		<PositionX>16</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallLen</ObjectName>
-		<PositionX>10</PositionX>
+		<PositionX>16</PositionX>
 		<PositionY>144</PositionY>
 	</Item>
 	<Item>

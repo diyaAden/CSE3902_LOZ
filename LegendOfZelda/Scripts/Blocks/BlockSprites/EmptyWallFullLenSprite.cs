@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
         public EmptyWallFullLenSprite(Texture2D wallSpriteSheet)
         {
             spriteSheet = wallSpriteSheet;
-            sourceRect = new Rectangle(1, 11, 200, 16);
+            sourceRect = new Rectangle(1, 11, 224, 16);
             transparency = 0.1f;
         }
 
