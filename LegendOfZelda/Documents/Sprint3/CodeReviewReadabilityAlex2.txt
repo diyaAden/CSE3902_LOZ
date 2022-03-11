@@ -1,0 +1,12 @@
+﻿Author of Code Review: Alex Quedens
+Date: 3/11/22
+Sprint 3
+RoomBackgroundFactory.cs (Author: Ben)
+Time Spent: 10min
+Comments:
+	- I think overall, this file is very readable.
+	- Author does a good job of defining variables in the constuctor.
+	- Really my only recommendations are adding comments to describe the switch statement.
+	- The rest is just defining basic methods but not much you can do to make it more readable, other than maybe adding a comment or two.
+
+There isn't a whole lot going on in the file since most of it is just defining basic methods for drawing rooms, but I think Ben did a good job of keeping organzied and maintaining readablility.
