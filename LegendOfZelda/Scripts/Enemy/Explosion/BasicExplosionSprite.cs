@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
             MoveSpeed = moveSpeed;
         }
 
-        public override void Update()
+        public override void Update(int scale)
         {
             if (++animationTimer > 4)
             {

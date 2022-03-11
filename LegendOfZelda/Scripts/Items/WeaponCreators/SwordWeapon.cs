@@ -3,7 +3,7 @@ using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items.WeaponCreators
 {
-    class SwordWeapon : WeaponManager
+    class SwordWeapon : BasicWeapon
     {
         public SwordWeapon(Vector2 linkPosition, int facing)
         {

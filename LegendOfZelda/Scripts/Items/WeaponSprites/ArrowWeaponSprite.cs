@@ -8,18 +8,6 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
         private readonly int direction;
         private readonly int speed = 2;
 
-        public override Vector2 Position
-        {
-            get
-            {
-                return pos; 
-            }
-            set
-            {
-                pos.X = value.X + 5;
-                pos.Y = value.Y + 5;
-            }
-        }
         public ArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {
             spriteSheet = itemSpriteSheet;
