@@ -30,7 +30,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
             }
             foreach (Keys key in keys)
             {
-                if (movementKeys.Contains(key) && ) {
+                if (movementKeys.Contains(key)) {
                     controllerMappings[key].Execute();
                 }
 

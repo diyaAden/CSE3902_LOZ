@@ -5,37 +5,76 @@
 		<ObjectName>OpenDoorLeft</ObjectName>
 		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>
+		<roomNumber>3</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>LockedDoorDown</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>0</PositionY>
+		<roomNumber>4</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorUp</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>144</PositionY>
+		<roomNumber>0</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorRight</ObjectName>
 		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
-	</Item>
-
-	<Item>
-		<ObjectType>Block</ObjectType>
-		<ObjectName>HalfWallWidth</ObjectName>
-		<PositionX>215</PositionX>
-		<PositionY>15</PositionY>
+		<roomNumber>1</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallWidth</ObjectName>
-		<PositionX>215</PositionX>
+		<PositionX>224</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>224</PositionX>
 		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallWidth</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallLen</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallLen</ObjectName>
+		<PositionX>144</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallLen</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>144</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>HalfWallLen</ObjectName>
+		<PositionX>144</PositionX>
+		<PositionY>144</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>

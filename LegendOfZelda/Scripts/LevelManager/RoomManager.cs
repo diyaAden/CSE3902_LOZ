@@ -14,7 +14,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void LoadContent(int scale)
         {
-            CurrentRoom = 13;
+            CurrentRoom = 9;
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
             for (int i = 0; i <= 18; i++) {
@@ -34,13 +34,12 @@ namespace LegendOfZelda.Scripts.LevelManager
                     posX = xml.ReadElementContentAsInt() * scale;
                     while (xml.Name != "PositionY") xml.Read();
                     posY = xml.ReadElementContentAsInt() * scale;
-                    while (xml.Name != "Item") xml.Read();
-                    bool isDoor = objectName.Contains("door");
-                    if (isDoor)
+                    if (objectName.Contains("Door"))
                     {
-                        while(xml.Name != "roomNumber") xml.Read();
+                        while (xml.Name != "roomNumber") xml.Read();
                         adjacentRoom = xml.ReadElementContentAsInt();
                     }
+                    while (xml.Name != "Item") xml.Read();
                     xml.Read();
                     xml.Read();
                     room.AddObject(objectType, objectName, posX, posY, adjacentRoom);
