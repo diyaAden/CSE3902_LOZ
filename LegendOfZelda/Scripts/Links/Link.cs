@@ -83,19 +83,19 @@ namespace LegendOfZelda.Scripts.Links
 
             if (side is ICollision.SideTop)
             {
-                state.MoveDown();
+                state.PositionDown();
             }
             else if (side is ICollision.SideBottom)
             {
-                state.MoveUp();
+                state.PositionUp();
             }
             else if (side is ICollision.SideLeft)
             {
-                state.MoveRight();
+                state.PositionRight();
             }
             else if (side is ICollision.SideRight)
             {
-                state.MoveLeft();
+                state.PositionLeft();
             }
             else if (side is ICollision.SideNone)
             {

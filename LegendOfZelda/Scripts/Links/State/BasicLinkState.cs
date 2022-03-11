@@ -74,27 +74,46 @@ namespace LegendOfZelda.Scripts.Links.State
             }
 
         }
+
         public virtual void MoveUp()
         {
-            Position = new Vector2(Position.X, Position.Y - Sprite.LinkMoveSpeed);
+            PositionUp();
             Link.State = new BackWalkLinkState(Link, Position, isDamaged);
         }
 
         public virtual void MoveDown()
         {
-            Position = new Vector2(Position.X, Position.Y + Sprite.LinkMoveSpeed);
+            PositionDown();
             Link.State = new FrontWalkLinkState(Link, Position, isDamaged);
         }
         public virtual void MoveLeft()
         {
-            Position = new Vector2(Position.X - Sprite.LinkMoveSpeed, Position.Y);
+            PositionLeft();
             Link.State = new LeftWalkLinkState(Link, Position, isDamaged);
-            
+
         }
         public virtual void MoveRight()
         {
-            Position = new Vector2(Position.X + Sprite.LinkMoveSpeed, Position.Y);
+            PositionRight();
             Link.State = new RightWalkLinkState(Link, Position, isDamaged);
+        }
+        public virtual void PositionUp()
+        {
+            Position = new Vector2(Position.X, Position.Y - Sprite.LinkMoveSpeed);
+        }
+
+        public virtual void PositionDown()
+        {
+            Position = new Vector2(Position.X, Position.Y + Sprite.LinkMoveSpeed);
+        }
+        public virtual void PositionLeft()
+        {
+            Position = new Vector2(Position.X - Sprite.LinkMoveSpeed, Position.Y);
+            
+        }
+        public virtual void PositionRight()
+        {
+            Position = new Vector2(Position.X + Sprite.LinkMoveSpeed, Position.Y);
         }
 
         public virtual void UseItem()
