@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
     public interface ICollisionHandler
     {
         void HandleCollision(ILink link, IGameObject gameObject, ICollision side);
-        void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side);
+        void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side, int scale);
 
         void HandleCollision(ILink link, IEnemy enemy, ICollision side);
 

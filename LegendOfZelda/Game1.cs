@@ -131,7 +131,7 @@ namespace LegendOfZelda
                         List<ICollision> sides = collisionDetector.BoxTest(enemy, weapon, gameScale);
                         foreach (ICollision side in sides)
                         {
-                            collisionHandlers[1].HandleCollision(enemy, weapon, side);
+                            collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
                         }
                     }
                 }
@@ -141,7 +141,7 @@ namespace LegendOfZelda
 
                     foreach (ICollision side in sides)
                     {
-                        collisionHandlers[1].HandleCollision(enemy, block, side);
+                        collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
                     }
                 }
             }
