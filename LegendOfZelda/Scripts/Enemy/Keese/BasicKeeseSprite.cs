@@ -20,23 +20,23 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
             timeUntilDirectionChange = rnd.Next(30, 61);
             MoveSpeed = moveSpeed;
         }
-        private Vector2 Move(int direction)
+        private Vector2 Move(int direction, int scale)
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + moveSpeed),
-                1 => new Vector2(position.X, position.Y - moveSpeed),
-                2 => new Vector2(position.X - moveSpeed, position.Y),
-                3 => new Vector2(position.X + moveSpeed, position.Y),
-                4 => new Vector2(position.X + moveSpeed, position.Y + moveSpeed),
-                5 => new Vector2(position.X + moveSpeed, position.Y - moveSpeed),
-                6 => new Vector2(position.X - moveSpeed, position.Y + moveSpeed),
-                _ => new Vector2(position.X - moveSpeed, position.Y - moveSpeed),
+                0 => new Vector2(position.X, position.Y + moveSpeed * scale),
+                1 => new Vector2(position.X, position.Y - moveSpeed * scale),
+                2 => new Vector2(position.X - moveSpeed * scale, position.Y),
+                3 => new Vector2(position.X + moveSpeed * scale, position.Y),
+                4 => new Vector2(position.X + moveSpeed * scale, position.Y + moveSpeed * scale),
+                5 => new Vector2(position.X + moveSpeed * scale, position.Y - moveSpeed * scale),
+                6 => new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * scale),
+                _ => new Vector2(position.X - moveSpeed * scale, position.Y - moveSpeed * scale),
             };
         }
-        public override void Update()
+        public override void Update(int scale)
         {
-            position = Move(direction);
+            position = Move(direction, scale);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;

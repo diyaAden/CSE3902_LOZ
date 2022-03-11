@@ -18,12 +18,12 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
             
         }
-        public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side)
+        public void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side, int scale)
         {
             switch (gameObject)
             {
                 case IBlock block:
-                    enemy.HandleBlockCollision(gameObject, side);
+                    enemy.HandleBlockCollision(gameObject, side, scale);
                     break;
                 case IWeapon weapon:
                     enemy.HandleWeaponCollision(gameObject, side);

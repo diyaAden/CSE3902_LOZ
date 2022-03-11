@@ -3,7 +3,7 @@ using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items.WeaponCreators
 {
-    class MagicBoomerangWeapon : WeaponManager
+    class MagicBoomerangWeapon : BasicWeapon
     {
         public MagicBoomerangWeapon(Vector2 pos, int facing)
         {

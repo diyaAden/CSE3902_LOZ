@@ -42,7 +42,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             if (--currentObject < 0) { currentObject = RoomCollection.Count - 1; }
         }
 
-        public void Update()
+        public void Update(int scale)
         {
             RoomCollection[currentObject].Update();
         }

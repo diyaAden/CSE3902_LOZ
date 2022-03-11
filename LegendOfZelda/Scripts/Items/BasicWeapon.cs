@@ -4,7 +4,7 @@ using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items
 {
-    public abstract class WeaponManager : IWeapon
+    public abstract class BasicWeapon : IWeapon
     {
         private int timer = 0;
         protected WeaponType weaponType;

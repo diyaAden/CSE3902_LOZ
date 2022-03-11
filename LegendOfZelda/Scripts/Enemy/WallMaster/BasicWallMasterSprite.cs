@@ -18,19 +18,19 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
             MoveSpeed = moveSpeed;
         }
-        private Vector2 Move(int direction)
+        private Vector2 Move(int direction, int scale)
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + moveSpeed),
-                1 => new Vector2(position.X, position.Y - moveSpeed),
-                2 => new Vector2(position.X - moveSpeed, position.Y),
-                _ => new Vector2(position.X + moveSpeed, position.Y),
+                0 => new Vector2(position.X, position.Y + moveSpeed * scale),
+                1 => new Vector2(position.X, position.Y - moveSpeed * scale),
+                2 => new Vector2(position.X - moveSpeed * scale, position.Y),
+                _ => new Vector2(position.X + moveSpeed * scale, position.Y),
             };
         }
-        public override void Update()
+        public override void Update(int scale)
         {
-            position = Move(direction);
+            position = Move(direction, scale);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;
