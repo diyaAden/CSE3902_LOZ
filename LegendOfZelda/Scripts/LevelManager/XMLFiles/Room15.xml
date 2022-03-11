@@ -5,6 +5,7 @@
 		<ObjectName>OpenDoorRight</ObjectName>
 		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
+		<roomNumber>0</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>

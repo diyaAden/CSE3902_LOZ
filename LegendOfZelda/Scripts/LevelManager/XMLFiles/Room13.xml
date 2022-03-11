@@ -5,12 +5,14 @@
 		<ObjectName>LockedDoorDown</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>0</PositionY>
+		<roomNumber>0</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorUp</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>144</PositionY>
+		<roomNumber>0</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>

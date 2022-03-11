@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom = 9;
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
-            for (int i = 0; i <= 9; i++) {
+            for (int i = 0; i <= 18; i++) {
                 xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + i + ".xml");
                 string objectType, objectName;
                 int posX, posY, adjacentRoom;
