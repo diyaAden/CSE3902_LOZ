@@ -5,9 +5,9 @@ using LegendOfZelda.Scripts.Links;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
-    public class PlayerGameObjectCollisionHandler: ICollisionHandler
+    public class PlayerDoorCollisionHandler : ICollisionHandler
     {
-        public PlayerGameObjectCollisionHandler()
+        public PlayerDoorCollisionHandler()
         {
         }
 

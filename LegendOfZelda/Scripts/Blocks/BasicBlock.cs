@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.LevelManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
