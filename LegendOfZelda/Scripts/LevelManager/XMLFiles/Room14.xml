@@ -28,7 +28,7 @@
   </Item>
   <Item>
     <ObjectType>Block</ObjectType>
-    <ObjectName>FullWallWidth</ObjectName>
+    <ObjectName>EmptyWallWidth</ObjectName>
     <PositionX>16</PositionX>
     <PositionY>16</PositionY>
   </Item>
