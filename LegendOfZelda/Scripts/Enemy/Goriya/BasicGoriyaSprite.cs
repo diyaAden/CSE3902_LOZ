@@ -35,11 +35,11 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             attacking = true;
             boomerang = new BoomerangWeapon(pos, direction);
         }
-        public override void Update()
+        public override void Update(int scale)
         {
             if (!attacking)
             {
-                sprite.Update();
+                sprite.Update(scale);
                 pos = sprite.position;
                 if (++animationTimer == 150)
                 {
@@ -51,8 +51,10 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                     NewDirection();
                 }
             }
-            if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) boomerang.Update(pos);
-            else attacking = false;
+            if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) 
+                boomerang.Update(pos);
+            else 
+                attacking = false;
         }
         private void NewDirection()
         {

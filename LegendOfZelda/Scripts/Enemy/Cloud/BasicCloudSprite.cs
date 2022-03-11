@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
             MoveSpeed = moveSpeed;
         }
 
-        public override void Update()
+        public override void Update(int scale)
         {
             if (++animationTimer > 4)
             {

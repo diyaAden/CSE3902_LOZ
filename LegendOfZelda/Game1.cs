@@ -145,7 +145,7 @@ namespace LegendOfZelda
                     }
                 }
             }
-            roomManager.Update();
+            roomManager.Update(gameScale);
 
             base.Update(gameTime);
         }

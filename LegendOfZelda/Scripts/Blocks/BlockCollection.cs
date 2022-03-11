@@ -39,7 +39,7 @@ namespace LegendOfZelda.Scripts.Blocks
             if (--currentObject < 0) { currentObject = blockCollection.Count - 1; }
         }
 
-        public void Update()
+        public void Update(int scale)
         {
             blockCollection[currentObject].Update();
         }

@@ -56,7 +56,7 @@ namespace LegendOfZelda.Scripts.Enemy
             }
         }
 
-        public abstract void Update();
+        public abstract void Update(int scale);
 
         public virtual Rectangle ObjectBox(int scale)
         {

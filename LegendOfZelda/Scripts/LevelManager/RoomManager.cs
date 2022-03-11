@@ -51,12 +51,12 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom--;
             CurrentRoom = (CurrentRoom + Rooms.Count) % Rooms.Count;
         }
-        public void Update()
+        public void Update(int scale)
         {
             if (CurrentRoom  < 0)
                 CurrentRoom += Rooms.Count;
             CurrentRoom %= Rooms.Count;
-            Rooms[CurrentRoom].Update();
+            Rooms[CurrentRoom].Update(scale);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

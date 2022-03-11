@@ -20,14 +20,14 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             pos = position;
         }
 
-        public override void Update()
+        public override void Update(int scale)
         {
             if (++animationTimer > 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X - moveSpeed, position.Y + moveSpeed * moveDirection);
+            position = new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * moveDirection * scale);
 
         }
     }

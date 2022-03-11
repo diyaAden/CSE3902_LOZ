@@ -49,11 +49,11 @@ namespace LegendOfZelda.Scripts.LevelManager
             roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
         }
 
-        public void Update()
+        public void Update(int scale)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update();
+            foreach (IEnemy enemy in Enemies) enemy.Update(scale);
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale)

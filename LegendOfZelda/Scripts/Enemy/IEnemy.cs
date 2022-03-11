@@ -13,7 +13,7 @@ namespace LegendOfZelda.Scripts.Enemy
         void HandleBlockCollision(IGameObject block, ICollision side);
         void HandleWeaponCollision(IGameObject weapon, ICollision side);
 
-        public void Update();
+        public void Update(int scale);
 
         public Rectangle ObjectBox(int scale);
 
