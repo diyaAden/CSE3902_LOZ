@@ -25,23 +25,23 @@ namespace LegendOfZelda.Scripts.Enemy
         protected virtual float MoveSpeed { get; set; }
 
         public virtual void Attack() { }
-        public void HandleBlockCollision(IGameObject block, ICollision side)
+        public virtual void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {
             if (side is ICollision.SideTop)
             {
-                position = new Vector2(position.X, position.Y - MoveSpeed);
+                position = new Vector2(position.X, position.Y - MoveSpeed * scale);
             }
             else if (side is ICollision.SideBottom)
             {
-                position = new Vector2(position.X, position.Y + MoveSpeed);
+                position = new Vector2(position.X, position.Y + MoveSpeed * scale);
             }
             else if (side is ICollision.SideLeft)
             {
-                position = new Vector2(position.X - MoveSpeed, position.Y);
+                position = new Vector2(position.X - MoveSpeed * scale, position.Y);
             }
             else if (side is ICollision.SideRight)
             {
-                position = new Vector2(position.X + MoveSpeed, position.Y);
+                position = new Vector2(position.X + MoveSpeed * scale, position.Y);
             }
             else if (side is ICollision.SideNone)
             {
@@ -56,7 +56,7 @@ namespace LegendOfZelda.Scripts.Enemy
             }
         }
 
-        public abstract void Update();
+        public abstract void Update(int scale);
 
         public virtual Rectangle ObjectBox(int scale)
         {

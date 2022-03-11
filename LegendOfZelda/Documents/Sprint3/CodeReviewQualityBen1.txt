@@ -1,0 +1,11 @@
+﻿Author of Code Review: Ben Roth
+Date: 3/11/22
+Sprint 3
+PlayerGameObjectCollisionHandler.cs (Author: Jiayi)
+Time Spent: 10min
+Comments:
+	- Really nice use of the switch statement to handle the collision.
+	- This might not need much more added to it for the end of the game.
+	- Possibly the only thing I could see changing is adding checks to make sure it is handling it correctly.
+
+

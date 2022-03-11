@@ -43,6 +43,8 @@ namespace LegendOfZelda.Scripts.Links.State
         
         public virtual void ToDamaged()
         {
+
+            
             if (!isDamaged)
             {
                 isDamaged = true;
@@ -50,7 +52,7 @@ namespace LegendOfZelda.Scripts.Links.State
             else
             {
                 isDamaged = false;
-            }
+            } 
 
             
         }

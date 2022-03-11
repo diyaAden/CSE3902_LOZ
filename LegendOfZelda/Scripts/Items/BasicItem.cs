@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -27,6 +28,7 @@ namespace LegendOfZelda.Scripts.Items
         public virtual void Update() { }
 
         public virtual void Update(Vector2 linkPosition) { }
+        public virtual void HandleCollision(ICollision side, int scale) { }
 
         public virtual void PickItem(Vector2 linkPosition)
         {

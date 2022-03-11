@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
+using LegendOfZelda.Scripts.Collision;
 
 namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
@@ -26,20 +27,24 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public BasicGoriyaSprite()
         {
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite(moveSpeed);
-            MoveSpeed = 0;
+            MoveSpeed = moveSpeed;
             direction = 0;
         }
-
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale)
+        {
+            sprite.HandleBlockCollision(block, side, scale);
+            pos = sprite.position;
+        }
         public override void Attack()
         {
             attacking = true;
             boomerang = new BoomerangWeapon(pos, direction);
         }
-        public override void Update()
+        public override void Update(int scale)
         {
             if (!attacking)
             {
-                sprite.Update();
+                sprite.Update(scale);
                 pos = sprite.position;
                 if (++animationTimer == 150)
                 {
@@ -51,8 +56,10 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                     NewDirection();
                 }
             }
-            if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) boomerang.Update(pos);
-            else attacking = false;
+            if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) 
+                boomerang.Update(pos);
+            else 
+                attacking = false;
         }
         private void NewDirection()
         {
@@ -90,4 +97,3 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         }
     }
 }
-

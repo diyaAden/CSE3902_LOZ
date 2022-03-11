@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using static LegendOfZelda.Scripts.Items.WeaponManager;
+using static LegendOfZelda.Scripts.Items.BasicWeapon;
 using static LegendOfZelda.Scripts.Links.ILink;
 
 namespace LegendOfZelda.Scripts.Links
@@ -108,7 +108,8 @@ namespace LegendOfZelda.Scripts.Links
             if (!(side is ICollision.SideNone))
             {
                 Debug.WriteLine("enemy collision registered");
-                isDamaged = true;
+                // isDamaged = true;
+               
                 state.ToDamaged();
             }
 

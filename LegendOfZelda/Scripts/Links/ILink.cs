@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static LegendOfZelda.Scripts.Items.WeaponManager;
+using static LegendOfZelda.Scripts.Items.BasicWeapon;
 
 namespace LegendOfZelda.Scripts.Links
 {

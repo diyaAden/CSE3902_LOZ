@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
             if (!myGame.activeWeapons.Exists(containsBomb))
             {
                 myGame.link.UseItem();
-                IWeapon bomb = new BombWeapon(myGame.link.State.Position, myGame.link.State.Direction);
+                IWeapon bomb = new BombWeapon(myGame.link.State.Position, myGame.link.State.Direction, myGame.gameScale);
                 myGame.activeWeapons.Add(bomb);
             }
         }

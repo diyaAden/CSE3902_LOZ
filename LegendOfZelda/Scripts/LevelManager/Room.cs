@@ -22,10 +22,10 @@ namespace LegendOfZelda.Scripts.LevelManager
             Blocks = new List<IBlock>();
         }
 
-        public void AddObject(string type, string name, int xPos, int yPos)
+        public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom)
         {
             if (type == "Item") AddItem(name, xPos, yPos);
-            else if (type == "Block") AddBlock(name, xPos, yPos);
+            else if (type == "Block") AddBlock(name, xPos, yPos, adjacentRoom);
             else if (type == "Enemy") AddEnemy(name, xPos, yPos);
         }
         public void RemoveObject(string type, int index)
@@ -39,11 +39,15 @@ namespace LegendOfZelda.Scripts.LevelManager
             Items.Add(ItemSpriteFactory.Instance.CreateItemFromString(name));
             Items[^1].Position = new Vector2(xPos, yPos);
         }
-        private void AddBlock(string name, int xPos, int yPos)
+        private void AddBlock(string name, int xPos, int yPos, int adjacentRoom)
         {
             Blocks.Add(BlockSpriteFactory.Instance.CreateBlockFromString(name));
             Debug.WriteLine(Blocks[^1]);
             Blocks[^1].position = new Vector2(xPos, yPos);
+            if (name.Contains("Door")) {
+                Blocks[^1].adjacentRoom = adjacentRoom;
+            }
+
         }
         private void AddEnemy(string name, int xPos, int yPos)
         {
@@ -69,19 +73,19 @@ namespace LegendOfZelda.Scripts.LevelManager
             roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
         }
 
-        public void Update()
+        public void Update(int scale)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update();
+            foreach (IEnemy enemy in Enemies) enemy.Update(scale);
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
             roomBackground.Draw(spriteBatch, scale);
-            foreach (IItem item in Items) item.Draw(spriteBatch, scale);
             foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
             foreach (IEnemy enemy in Enemies) enemy.Draw(spriteBatch, scale);
+            foreach (IItem item in Items) item.Draw(spriteBatch, scale);
         }
     }
 }

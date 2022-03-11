@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items
 {
-    public abstract class WeaponManager : IWeapon
+    public abstract class BasicWeapon : IWeapon
     {
         private int timer = 0;
         public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
@@ -68,6 +69,7 @@ namespace LegendOfZelda.Scripts.Items
         {
             return Weapon == null;
         }
+        public virtual void HandleCollision(ICollision side, int scale) { }
         public virtual Rectangle ObjectBox(int scale)
         {
             return Weapon.ObjectBox(scale);
