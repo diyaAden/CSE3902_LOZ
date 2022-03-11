@@ -20,30 +20,9 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
             List<ICollision> sides = new List<ICollision>();
             Rectangle linkBox = link.State.LinkBox(scale);
             Rectangle CheckSide = Rectangle.Intersect(linkBox, gameObject.ObjectBox(scale));
-            if (CheckSide.IsEmpty)
+            if (!CheckSide.IsEmpty)
             {
                 sides.Add(ICollision.SideNone);
-            }
-            else
-            {
-                float LeftRightCheck = CheckSide.Center.X - linkBox.Center.X;
-                float TopBottomCheck = CheckSide.Center.Y - linkBox.Center.Y;
-                
-                if (LeftRightCheck < 0)
-                {
-                    sides.Add(ICollision.SideLeft); //maybe wrong
-                }else if(LeftRightCheck > 0)
-                {
-                    sides.Add(ICollision.SideRight);
-                }
-                if(TopBottomCheck > 0)
-                {
-                    sides.Add(ICollision.SideBottom);
-                }
-                else if (TopBottomCheck < 0)
-                {
-                    sides.Add(ICollision.SideTop);
-                }
             }
             return sides;
         }

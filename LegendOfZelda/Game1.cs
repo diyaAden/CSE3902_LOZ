@@ -56,7 +56,8 @@ namespace LegendOfZelda
             PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
             PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler };
+            PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
 
             base.Initialize();
         }
@@ -100,10 +101,12 @@ namespace LegendOfZelda
             
          
             //will refactor this part next time...
-            
+
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(link, block, gameScale);
+                if (sides[0] != ICollision.SideNone)
+                    collisionHandlers[3].HandleCollision(link, block, roomManager, gameScale);
                 foreach (ICollision side in sides)
                 {
                     collisionHandlers[0].HandleCollision(link, block, side, gameScale);

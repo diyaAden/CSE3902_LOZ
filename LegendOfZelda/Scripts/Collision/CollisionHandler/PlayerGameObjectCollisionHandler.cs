@@ -1,7 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
-using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
@@ -20,11 +20,8 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
             switch (gameObject)
             {
-                case PushBlockSprite _ :
-                    gameObject.HandleCollision(side, scale);
-                    link.HandleBlockCollision(gameObject, side);
-                    break;
                 case IBlock _ :
+                    gameObject.HandleCollision(side, scale);
                     link.HandleBlockCollision(gameObject, side);
                     break;
                 case IItem _ :
@@ -41,5 +38,6 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
 
         }
+        public void HandleCollision(ILink link, IBlock door, RoomManager roomManager, int scale) { }
     }
 }
