@@ -1,18 +1,11 @@
-﻿using LegendOfZelda.Scripts.Blocks;
-using LegendOfZelda.Scripts.Collision;
+﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using static LegendOfZelda.Scripts.Items.BasicWeapon;
-using static LegendOfZelda.Scripts.Links.ILink;
 
 namespace LegendOfZelda.Scripts.Links
 {
@@ -22,6 +15,7 @@ namespace LegendOfZelda.Scripts.Links
         private ILinkState state;
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
+        private List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(32, 80) };
 
         public Link(Vector2 position)
         {
@@ -68,7 +62,6 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void HandleBlockCollision(IGameObject gameObject, ICollision side)
         {
-
             if (side is ICollision.SideTop)
             {
                 state.MoveDown();
@@ -89,9 +82,11 @@ namespace LegendOfZelda.Scripts.Links
             {
                 //do nothing
             }
-
         }
-
+        public void HandleDoorCollision(int direction, int scale)
+        {
+            state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
+        }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side)
         {
             if (!(side is ICollision.SideNone))
@@ -110,8 +105,8 @@ namespace LegendOfZelda.Scripts.Links
                 Debug.WriteLine("Pick up item!!!!");
             }
         }
-            //Update and draw
-            public void Update()
+        //Update and draw
+        public void Update()
         {
             if (attackCooldown != 0) attackCooldown--;
             state.Update();

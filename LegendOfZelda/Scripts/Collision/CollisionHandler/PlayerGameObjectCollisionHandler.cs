@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
@@ -34,5 +35,6 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
 
         }
+        public void HandleCollision(ILink link, IBlock door, RoomManager roomManager, int scale) { }
     }
 }
