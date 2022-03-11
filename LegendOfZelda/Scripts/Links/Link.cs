@@ -97,7 +97,8 @@ namespace LegendOfZelda.Scripts.Links
             if (!(side is ICollision.SideNone))
             {
                 Debug.WriteLine("enemy collision registered");
-                isDamaged = true;
+                // isDamaged = true;
+               
                 state.ToDamaged();
             }
 
