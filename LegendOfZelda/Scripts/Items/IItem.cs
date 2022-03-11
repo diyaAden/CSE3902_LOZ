@@ -6,6 +6,7 @@ namespace LegendOfZelda.Scripts.Items
     public interface IItem : IGameObject
     {
         public int TimeLimit { get; }
+        public int AnimationTimer { get; set; }
         public Vector2 Position { get; set; }
 
         public string Name { get; set; }

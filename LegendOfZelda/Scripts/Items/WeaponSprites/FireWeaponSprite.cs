@@ -5,7 +5,6 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class FireWeaponSprite : BasicItem
     {
-        private int animationTimer = 1;
         private readonly int speed = 1, direction;
 
         public FireWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
@@ -15,6 +14,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             animationFrames.Add(new Rectangle(17, 0, 16, 16));
+            animationTimer = 1;
             timerLimit = 120;
         }
 

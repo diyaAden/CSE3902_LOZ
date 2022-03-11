@@ -13,6 +13,8 @@ namespace LegendOfZelda.Scripts.Items
         protected int timerLimit = -1;
         public int TimeLimit => timerLimit;
         public virtual Vector2 Position { get { return pos; } set { pos = value; } }
+        public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
+        protected int animationTimer = 1;
 
         public string Name
         {

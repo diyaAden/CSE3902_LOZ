@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
 {
     public class FairySprite : BasicItem
     {
-        private int animationTimer = 0, randomNum;
+        private int randomNum;
         private readonly float straightMoveSpeed = 1.0f, diagonalMoveSpeed;
         private Vector2 moveSpeed;
         private readonly Random rnd = new Random();
@@ -39,6 +39,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
             animationFrames.Add(new Rectangle(0, 0, 8, 16));
             animationFrames.Add(new Rectangle(9, 0, 8, 16));
             name ="Fairy";
+            animationTimer = 0;
             ComputeMoveDirection();
         }
 

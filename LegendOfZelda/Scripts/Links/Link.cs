@@ -24,7 +24,6 @@ namespace LegendOfZelda.Scripts.Links
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
         public Room CurrentRoom { get; set; }
-        private int pickItemTimer = 20;
 
         public Link(Vector2 position)
         {
@@ -109,6 +108,17 @@ namespace LegendOfZelda.Scripts.Links
             if (!(side is ICollision.SideNone))
             {
                 Debug.WriteLine("enemy collision registered");
+                isDamaged = true;
+                state.ToDamaged();
+            }
+
+        }
+
+        public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
+        {
+            if (!(side is ICollision.SideNone))
+            {
+                Debug.WriteLine("hurt by urs weapon");
                 isDamaged = true;
                 state.ToDamaged();
             }
