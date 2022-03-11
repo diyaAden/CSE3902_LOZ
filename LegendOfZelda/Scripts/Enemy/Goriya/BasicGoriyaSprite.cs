@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
+using LegendOfZelda.Scripts.Collision;
 
 namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
@@ -26,10 +27,14 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public BasicGoriyaSprite()
         {
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite(moveSpeed);
-            MoveSpeed = 0;
+            MoveSpeed = moveSpeed;
             direction = 0;
         }
-
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale)
+        {
+            sprite.HandleBlockCollision(block, side, scale);
+            pos = sprite.position;
+        }
         public override void Attack()
         {
             attacking = true;
@@ -92,4 +97,3 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         }
     }
 }
-
