@@ -13,7 +13,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public List<IEnemy> Enemies { get; }
         public List<IBlock> Blocks { get; }
 
-        public void AddObject(string type, string name, int xPos, int yPos);
+        public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom);
         public void AddRoomBackground(int roomNumber);
         public void Update(int scale);
         public void Draw(SpriteBatch spriteBatch, int scale);
