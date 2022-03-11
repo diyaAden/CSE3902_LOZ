@@ -1,0 +1,12 @@
+﻿Author of Code Review: Ben Roth
+Date: 3/11/22
+Sprint 3
+CollisionPlayerGameObjectDetector.cs (Author: Jiayi)
+Time Spent: 10min
+Comments:
+	- This is where a lot of the logic is happening behind the scenes so this is a super important class.
+	- I like checking if the side is empty first this helps the game keep going.
+	- The left and right check could be zero so check for that.
+	- Overall this code works really well, just takes a lot of logic to check for collision.
+
+
