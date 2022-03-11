@@ -8,6 +8,8 @@ namespace LegendOfZelda.Scripts.Blocks
     {
         public Vector2 position { get; set; }
 
+        public int adjacentRoom { get; set; }
+
         public void Update();
 
         public void Draw(SpriteBatch spriteBatch, int scale);

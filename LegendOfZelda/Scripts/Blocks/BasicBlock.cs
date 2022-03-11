@@ -11,6 +11,7 @@ namespace LegendOfZelda.Scripts.Blocks
 
         protected float transparency;
         public Vector2 position { get { return pos; } set { pos = value; } }
+        public int adjacentRoom { get; set; }
 
         public abstract void Update();
 

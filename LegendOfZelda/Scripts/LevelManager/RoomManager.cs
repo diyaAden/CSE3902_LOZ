@@ -20,7 +20,8 @@ namespace LegendOfZelda.Scripts.LevelManager
             for (int i = 0; i <= 18; i++) {
                 xml = XmlReader.Create("Scripts/LevelManager/XMLFiles/Room" + i + ".xml");
                 string objectType, objectName;
-                int posX, posY;
+                int posX, posY, adjacentRoom;
+                adjacentRoom = -1;
                 ILevel room = new Room();
                 xml.MoveToContent();
                 xml.Read();
@@ -34,9 +35,15 @@ namespace LegendOfZelda.Scripts.LevelManager
                     while (xml.Name != "PositionY") xml.Read();
                     posY = xml.ReadElementContentAsInt() * scale;
                     while (xml.Name != "Item") xml.Read();
+                    bool isDoor = objectName.Contains("door");
+                    if (isDoor)
+                    {
+                        while(xml.Name != "roomNumber") xml.Read();
+                        adjacentRoom = xml.ReadElementContentAsInt();
+                    }
                     xml.Read();
                     xml.Read();
-                    room.AddObject(objectType, objectName, posX, posY);
+                    room.AddObject(objectType, objectName, posX, posY, adjacentRoom);
                 }
                 room.AddRoomBackground(i);
                 Rooms.Add(room);
