@@ -12,6 +12,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 7, 8));
             animationFrames.Add(new Rectangle(0, 9, 7, 8));
+            name = "Heart";
         }
 
         public override void Update()

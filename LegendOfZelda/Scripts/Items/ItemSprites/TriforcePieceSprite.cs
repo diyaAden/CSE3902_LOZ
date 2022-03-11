@@ -12,6 +12,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 10, 10));
             animationFrames.Add(new Rectangle(11, 0, 10, 10));
+            name = "TriforcePiece";
         }
 
         public override void Update()

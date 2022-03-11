@@ -123,11 +123,12 @@ namespace LegendOfZelda
                 if (!sides.Contains(ICollision.SideNone))
                 {
                     indices.Add(index);
+                    item.PickItem(link.State.Position);
                 }
                 
                 foreach (ICollision side in sides)
                 {
-                    Debug.WriteLine(index);
+                    //Debug.WriteLine(index);
                     collisionHandlers[0].HandleCollision(link, item, side);
                    
                 } 
@@ -135,6 +136,7 @@ namespace LegendOfZelda
             }
 
             int a = 0; //when the object remove, all index behind that will change.
+
             foreach(int ind in indices)
             {
                 int i = ind - a;

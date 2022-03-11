@@ -23,7 +23,7 @@ namespace LegendOfZelda.Scripts.Links
         public void MoveRight();
         public void MoveLeft();
         public void UseItem();
-        public void PickItem();
+        public void PickItem(String name);
         public void Attack();
         public void HandleBlockCollision(IGameObject block, ICollision side);
         public void HandleItemCollision(IGameObject item, ICollision side);

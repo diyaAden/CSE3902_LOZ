@@ -117,9 +117,10 @@ namespace LegendOfZelda.Scripts.Links.State
                 }
         }
 
-        public virtual void PickItem()
+        public virtual void PickItem(string name)
         {
             Link.State = new PickItemLinkState(Link, Position, isDamaged);
+            ((PickItemLinkState) Link.State).CreatePickItem(name, Position);
         }
         public virtual void Attack()
         {

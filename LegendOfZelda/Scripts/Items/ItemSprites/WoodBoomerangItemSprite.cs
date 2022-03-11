@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(74, 0, 5, 8));
+            name = "Boomerang";
         }
 
         public override void Update()
