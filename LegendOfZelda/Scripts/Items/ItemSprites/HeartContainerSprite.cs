@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(48, 0, 13, 13));
+            name = "HeartContainer";
         }
 
         public override void Update()

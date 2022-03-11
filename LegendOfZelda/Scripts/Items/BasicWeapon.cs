@@ -8,6 +8,9 @@ namespace LegendOfZelda.Scripts.Items
     public abstract class BasicWeapon : IWeapon
     {
         private int timer = 0;
+        public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
+        private int animationTimer = 1;
+
         protected WeaponType weaponType;
         protected IItem Weapon;
         protected Vector2 position;
@@ -51,11 +54,13 @@ namespace LegendOfZelda.Scripts.Items
             if (weaponType == WeaponType.BOOMERANG)
             {
                 Weapon.Update(linkPosition);
+                AnimationTimer = Weapon.AnimationTimer;
                 if (timer == Weapon.TimeLimit) { DestroyWeapon(); }
             }
             else if (Weapon != null)
             {
                 Weapon.Update();
+                AnimationTimer = Weapon.AnimationTimer;
                 if (++timer == Weapon.TimeLimit) { DestroyWeapon(); }
             }
         }

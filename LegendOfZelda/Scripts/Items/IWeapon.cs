@@ -8,6 +8,7 @@ namespace LegendOfZelda.Scripts.Items
         public enum WeaponType { ARROW, BOMB, FIRE, BOOMERANG, SWORD, SWORDSHARDS, EXPLOSION, NICK, NONE }
 
         public Vector2 GetPosition();
+        public int AnimationTimer { get; set; }
 
         public WeaponType GetWeaponType();
 

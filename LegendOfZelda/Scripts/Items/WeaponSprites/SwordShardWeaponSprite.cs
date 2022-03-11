@@ -6,7 +6,6 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class SwordShardWeaponSprite : BasicItem
     {
         private readonly int directionX = 1, directionY = 1, speed = 1;
-        private int animationTimer = 0;
 
         public SwordShardWeaponSprite(Texture2D shardSpriteSheet, int row)
         {
@@ -15,6 +14,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
             spriteSheet = shardSpriteSheet;
             animationFrames.Add(new Rectangle(0, 10 * row, 8, 10));
             animationFrames.Add(new Rectangle(8, 10 * row, 8, 10));
+            animationTimer = 0;
 
             if (row <= 1) directionX = -1;
             if (row % 2 == 0) directionY = -1;

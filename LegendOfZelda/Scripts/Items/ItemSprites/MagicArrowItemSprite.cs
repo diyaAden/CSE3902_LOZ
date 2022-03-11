@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(52, 16, 5, 16));
+            name = "MagicArrow";
         }
 
         public override void Update()

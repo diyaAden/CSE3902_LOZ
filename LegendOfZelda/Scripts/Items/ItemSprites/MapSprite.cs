@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(12, 0, 8, 16));
+            name = "Map";
         }
 
         public override void Update()
