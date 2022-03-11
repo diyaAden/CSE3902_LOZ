@@ -14,6 +14,42 @@
 		<PositionY>0</PositionY>
 		<roomNumber>0</roomNumber>
 	</Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>EmptyWallWidth</ObjectName>
+    <PositionX>224</PositionX>
+    <PositionY>16</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>HalfWallWidth</ObjectName>
+    <PositionX>16</PositionX>
+    <PositionY>16</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>HalfWallWidth</ObjectName>
+    <PositionX>16</PositionX>
+    <PositionY>96</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>HalfWallLen</ObjectName>
+    <PositionX>16</PositionX>
+    <PositionY>16</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>HalfWallLen</ObjectName>
+    <PositionX>144</PositionX>
+    <PositionY>16</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>EmptyWallLen</ObjectName>
+    <PositionX>16</PositionX>
+    <PositionY>144</PositionY>
+  </Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>SquareBlock</ObjectName>
