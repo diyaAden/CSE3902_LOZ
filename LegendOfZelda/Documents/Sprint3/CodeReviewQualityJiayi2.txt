@@ -1,0 +1,12 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 3/11/22
+Sprint 3
+Room.cs (Author: Sean Burns)
+Time Spent: 10min
+Comments:
+	- Great lists of enemies/items/blocks created and updated in the script.
+	- I like you collect the three types into one public function.
+	
+All things looks great in this script. It's really easy to add functions like remove items and so on.
+
+

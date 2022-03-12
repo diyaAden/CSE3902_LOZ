@@ -1,0 +1,10 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 3/11/22
+Sprint 3
+RoomManager.cs (Author: Sean Burns)
+Time Spent: 10min
+Comments:
+	- The script is really readable.
+	- I am kind of confused about in the load function at the first time, the double while loop of the xml read, but still easy to understand for what is doing.
+	- Overall is really neat.
+

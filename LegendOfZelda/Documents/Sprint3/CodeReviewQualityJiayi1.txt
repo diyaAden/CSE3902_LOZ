@@ -1,0 +1,13 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 3/11/22
+Sprint 3
+RoomManager.cs (Author: Sean Burns)
+Time Spent: 10min
+Comments:
+	- Really easy to follows the script, and easy to use/change the current room data outside like Game.cs in game.
+	- Great connection with xml files.
+	- Maybe we could remove load functions to a script focus on loading.
+	
+I think the code quality is really good. And it is easy to add more features.
+
+
