@@ -5,7 +5,7 @@
 		<ObjectName>OpenDoorDown</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>0</PositionY>
-		<roomNumber>1</roomNumber>
+		<roomNumber>2</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>

@@ -13,7 +13,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 
         public void LoadContent(int scale)
         {
-            CurrentRoom = 18;
+            CurrentRoom = 14;
             Rooms = new List<ILevel>();
             /* Room 0 is the dev room */
             for (int i = 0; i <= 18; i++) {

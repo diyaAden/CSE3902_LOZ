@@ -14,6 +14,12 @@
 		<PositionY>72</PositionY>
 		<roomNumber>15</roomNumber>
 	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>EmptyWallLen</ObjectName>
+		<PositionX>16</PositionX>
+		<PositionY>16</PositionY>
+	</Item>
   <Item>
     <ObjectType>Block</ObjectType>
     <ObjectName>HalfWallWidth</ObjectName>

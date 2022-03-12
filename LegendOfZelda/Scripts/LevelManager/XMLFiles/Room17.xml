@@ -9,13 +9,6 @@
   </Item>
   <Item>
     <ObjectType>Block</ObjectType>
-    <ObjectName>OpenDoorUp</ObjectName>
-    <PositionX>112</PositionX>
-    <PositionY>144</PositionY>
-    <roomNumber>10</roomNumber>
-  </Item>
-  <Item>
-    <ObjectType>Block</ObjectType>
     <ObjectName>EmptyWallWidth</ObjectName>
     <PositionX>16</PositionX>
     <PositionY>16</PositionY>
