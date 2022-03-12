@@ -1,0 +1,10 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 3/11/22
+Sprint 3
+Room.cs (Author: Sean Burns)
+Time Spent: 10min
+Comments:
+	- The file is very readable, every methods are easy to understand how to use it and what is use for.
+	- Overall the files is very readable.
+
+
