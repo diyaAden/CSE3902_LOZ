@@ -11,7 +11,7 @@ Player Controls
 - Use 'e' to toggle Link's damaged state.
 
 Item Controls
-- Items move and animate, but don't interact with any other objects
+- Items can be collected by touching them
 
 Enemy/NPC (other character) Controls
 - Enemies collide with blocks and players
