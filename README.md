@@ -8,26 +8,28 @@ Player Controls
 - Arrow and "wasd" keys move Link and change his facing direction.
 - The 'z' and 'n' key cause Link to attack using his sword.
 - Number keys (1, 2, 3, etc.) are used to let Link use a different item
-- Use 'e' to cause Link to become damaged.
+- Use 'e' to toggle Link's damaged state.
 
 Item Controls
-- Items move and animate, but don't interact with any other objects
+- Items can be collected by touching them
 
 Enemy/NPC (other character) Controls
 - Enemies collide with blocks and players
 - Colliding with an enemy causes the player to become damaged (turn red)
 
 Other Controls
-- Use 'q' to quit and 'r' to reset the program back to its initial state.
-- Use left mouse click to cycle between rooms
+- Use 'q' to quit 
+- Use 'r' to reset the program back to its initial state
+- Use left mouse click to move to next room room
+- Use right mouse click to move to previous room room
 
 
 Updates Log:
-Sprint 2 Completion 2/21/22
+- Sprint 2 Completion 2/21/22
+- Sprint 3 Completion 3/11/22
 
 Potential Bugs:
-- Switching Link to "damage" state might take a couple of presses to go into effect due to how fast the damage state is toggled
-- Current NPC movement is very fast and largely based on randomness, a more controlled system will be utilized in the future
-
-- Now the link cannot be damaged by the balls from dragon.
-- Enemy damage now use "output" to show it is damaged, will add sprites for damaged enemy in the future.
+- Enemies and the player are able to clip through walls and blocks sometimes if they move in a corner or move too fast
+- Now the link cannot be damaged by the balls from dragon
+- Enemy damage now use "output" to show it is damaged, will add sprites for damaged enemy in the future
+- The bombed doors are already exposed when the game starts, will add functionality to expose them with bombs in the future
