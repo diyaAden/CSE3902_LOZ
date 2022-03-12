@@ -65,7 +65,7 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, block, gameScale);
-                if (sides[0] != ICollision.SideNone)
+                if (sides[0] != ICollision.SideNone && sides.Count > 0)
                 {
                     collisionHandlers[3].HandleCollision(Link, block, roomManager, gameScale);
                 }
@@ -91,13 +91,9 @@ namespace LegendOfZelda.Scripts.Collision
                 else if (weapon.GetWeaponType() is IWeapon.WeaponType.FIRE)
                 {
                     List<ICollision> sides4 = collisionDetectors[0].BoxTest(Link, weapon, gameScale);
-                    if (!sides4.Contains(ICollision.SideNone))
+                    if (!sides4.Contains(ICollision.SideNone) && sides4.Count > 0 && weapon.AnimationTimer > 50)
                     {
-                        //Debug.WriteLine(sides4.Count);//kind of wierd why the first will be zero
-                        if (sides4.Count > 0 && weapon.AnimationTimer > 50)
-                        {
                             collisionHandlers[0].HandleCollision(Link, weapon, sides4[0], gameScale);
-                        }
                     }
                 }
             }
@@ -120,7 +116,6 @@ namespace LegendOfZelda.Scripts.Collision
                 {
                     //Debug.WriteLine(index);
                     collisionHandlers[0].HandleCollision(Link, item, side, gameScale);
-
                 }
                 index++;
             }
