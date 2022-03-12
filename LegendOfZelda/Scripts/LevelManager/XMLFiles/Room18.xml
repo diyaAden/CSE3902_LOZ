@@ -5,14 +5,14 @@
     <ObjectName>OpenDoorRight</ObjectName>
     <PositionX>0</PositionX>
     <PositionY>72</PositionY>
-    <roomNumber>9</roomNumber>
+    <roomNumber>17</roomNumber>
   </Item>
   <Item>
     <ObjectType>Block</ObjectType>
     <ObjectName>OpenDoorUp</ObjectName>
     <PositionX>112</PositionX>
     <PositionY>144</PositionY>
-    <roomNumber>10</roomNumber>
+    <roomNumber>13</roomNumber>
   </Item>
   <Item>
 		<ObjectType>Enemy</ObjectType>

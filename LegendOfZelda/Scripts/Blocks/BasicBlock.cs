@@ -10,22 +10,31 @@ namespace LegendOfZelda.Scripts.Blocks
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 100);
-
+        private bool enabled = true;
         protected float transparency;
         public virtual Vector2 position { get { return pos; } set { pos = value; } }
         public int adjacentRoom { get; set; }
-
+        public void Disable()
+        {
+            enabled = false;
+        }
         public abstract void Update();
         public virtual void HandleCollision(ICollision side, int scale) { }
 
         public virtual Rectangle ObjectBox(int scale)
         {
-            return new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
+            if (enabled)
+                return new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
+            else
+                return new Rectangle();
         }
         public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
-            spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White * transparency);
+            if (enabled)
+            {
+                Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
+                spriteBatch.Draw(spriteSheet, destRect, sourceRect, Color.White * transparency);
+            }
         }
     }
 }

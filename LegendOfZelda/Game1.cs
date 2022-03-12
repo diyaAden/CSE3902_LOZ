@@ -25,7 +25,7 @@ namespace LegendOfZelda
         private List<ICollisionHandler> collisionHandlers;
 
         public readonly int gameScale = 2;
-        public Vector2 position = new Vector2(120, 80);
+        public Vector2 linkStartPosition = new Vector2(123, 122);
         public ILink link;
 
         public RoomManager roomManager;
@@ -46,6 +46,7 @@ namespace LegendOfZelda
             con.RegisterCommands(mouse);
             controllerList = new List<IController>() { control, mouse };
 
+            linkStartPosition = new Vector2(linkStartPosition.X * gameScale, linkStartPosition.Y * gameScale);
             roomManager = new RoomManager();
 
             CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
@@ -77,7 +78,7 @@ namespace LegendOfZelda
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale);
             LoadLink.LoadTexture(Content);
-            link = new Link(position);
+            link = new Link(linkStartPosition);
         }
 
         protected override void Update(GameTime gameTime)
@@ -105,7 +106,7 @@ namespace LegendOfZelda
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(link, block, gameScale);
-                if (sides[0] != ICollision.SideNone)
+                if (sides.Count == 0 || sides[0] != ICollision.SideNone)
                     collisionHandlers[3].HandleCollision(link, block, roomManager, gameScale);
                 foreach (ICollision side in sides)
                 {

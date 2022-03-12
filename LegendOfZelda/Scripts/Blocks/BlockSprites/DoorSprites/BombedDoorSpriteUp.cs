@@ -11,7 +11,10 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
             sourceRect = new Rectangle(947, 11, 32, 32);
             transparency = 1f;
         }
-
+        public override Rectangle ObjectBox(int scale)
+        {
+            return new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height / 2 * scale);
+        }
         public override void Update()
         {
 

@@ -354,4 +354,11 @@
 		<PositionX>112</PositionX>
 		<PositionY>48</PositionY>
 	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>Stairs</ObjectName>
+		<PositionX>48</PositionX>
+		<PositionY>-16</PositionY>
+		<roomNumber>17</roomNumber>
+	</Item>
 </XnaContent>
