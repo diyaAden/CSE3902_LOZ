@@ -28,6 +28,6 @@ Sprint 2 Completion 2/21/22
 Potential Bugs:
 - Switching Link to "damage" state might take a couple of presses to go into effect due to how fast the damage state is toggled
 - Current NPC movement is very fast and largely based on randomness, a more controlled system will be utilized in the future
-(Sprint3)
+
 - Now the link cannot be damaged by the balls from dragon.
 - Enemy damage now use "output" to show it is damaged, will add sprites for damaged enemy in the future.
