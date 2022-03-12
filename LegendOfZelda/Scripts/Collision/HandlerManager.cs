@@ -65,7 +65,7 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, block, gameScale);
-                if (sides[0] != ICollision.SideNone && sides.Count > 0)
+                if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                 {
                     collisionHandlers[3].HandleCollision(Link, block, roomManager, gameScale);
                 }
