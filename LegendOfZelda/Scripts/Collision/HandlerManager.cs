@@ -26,6 +26,16 @@ namespace LegendOfZelda.Scripts.Collision
         private List<IItem> items;
         private List<IEnemy> enemys;
 
+        public HandlerManager(List<ICollisionDetector> CollisionDetectors)
+        {
+            collisionDetectors = CollisionDetectors;
+
+            PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
+            EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
+            PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
+            PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
+        }
         public void AssignRoom()
         {
             blocks = room.Blocks;

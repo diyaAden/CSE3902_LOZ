@@ -21,8 +21,7 @@ namespace LegendOfZelda
 
         private List<IController> controllerList;
 
-        private List<ICollisionDetector> collisionDetectors;
-        private List<ICollisionHandler> collisionHandlers;
+        public DetectorManager detectorManager;
         public HandlerManager handlerManager;
 
         public readonly int gameScale = 2;
@@ -48,21 +47,8 @@ namespace LegendOfZelda
             controllerList = new List<IController>() { control, mouse };
 
             roomManager = new RoomManager();
-
-            CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
-            CollisionEnemyGameObjectDetector collisionEnemyItemDetector = new CollisionEnemyGameObjectDetector();
-            CollisionPlayerEnemyDetector collisionPlayerEnemyDetector = new CollisionPlayerEnemyDetector();
-            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector, collisionPlayerEnemyDetector };
-
-            PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
-            EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
-            PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
-            PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
-
-            handlerManager = new HandlerManager();
-            handlerManager.collisionDetectors = collisionDetectors;
-            handlerManager.collisionHandlers = collisionHandlers;
+            detectorManager = new DetectorManager();
+            handlerManager = new HandlerManager(detectorManager.collisionDetectors);
 
             base.Initialize();
         }
