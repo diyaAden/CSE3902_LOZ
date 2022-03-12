@@ -34,3 +34,4 @@ Potential Bugs:
 - Enemy damage now use "output" to show it is damaged, will add sprites for damaged enemy in the future
 - Handler Manager might be refactored in the future.
 - The bombed doors are already exposed when the game starts, will add functionality to expose them with bombs in the future
+- Wait a sec after the link pick up items, then use items.
