@@ -25,8 +25,8 @@ Other Controls
 
 
 Updates Log:
-Sprint 2 Completion 2/21/22
-SPrint 3 Completion 3/11/22
+- Sprint 2 Completion 2/21/22
+- Sprint 3 Completion 3/11/22
 
 Potential Bugs:
 - Enemies and the player are able to clip through walls and blocks sometimes if they move in a corner or move too fast
