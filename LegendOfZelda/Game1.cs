@@ -21,11 +21,11 @@ namespace LegendOfZelda
 
         private List<IController> controllerList;
 
-        public DetectorManager detectorManager;
-        public HandlerManager handlerManager;
+        private List<ICollisionDetector> collisionDetectors;
+        private List<ICollisionHandler> collisionHandlers;
 
         public readonly int gameScale = 2;
-        public Vector2 position = new Vector2(120, 80);
+        public Vector2 linkStartPosition = new Vector2(123, 122);
         public ILink link;
 
         public RoomManager roomManager;
@@ -46,9 +46,19 @@ namespace LegendOfZelda
             con.RegisterCommands(mouse);
             controllerList = new List<IController>() { control, mouse };
 
+            linkStartPosition = new Vector2(linkStartPosition.X * gameScale, linkStartPosition.Y * gameScale);
             roomManager = new RoomManager();
-            detectorManager = new DetectorManager();
-            handlerManager = new HandlerManager(detectorManager.collisionDetectors);
+
+            CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
+            CollisionEnemyGameObjectDetector collisionEnemyItemDetector = new CollisionEnemyGameObjectDetector();
+            CollisionPlayerEnemyDetector collisionPlayerEnemyDetector = new CollisionPlayerEnemyDetector();
+            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector, collisionPlayerEnemyDetector };
+
+            PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
+            EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
+            PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
+            PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
 
             base.Initialize();
         }
@@ -68,12 +78,16 @@ namespace LegendOfZelda
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale);
             LoadLink.LoadTexture(Content);
-            link = new Link(position);
+            link = new Link(linkStartPosition);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
+            ILevel room = roomManager.Rooms[roomManager.CurrentRoom];
+            List<IBlock> blocks = room.Blocks;
+            List<IEnemy> enemys = room.Enemies;
+            List<IItem> items = room.Items;
+            link.CurrentRoom = (Room)room;
 
             foreach (IController controller in controllerList) { controller.Update(); }
             
@@ -83,7 +97,111 @@ namespace LegendOfZelda
             }
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
-            handlerManager.Update(link, activeWeapons, roomManager, gameScale);
+
+            
+            
+         
+            //will refactor this part next time...
+
+            foreach (IBlock block in blocks)
+            {
+                List<ICollision> sides = collisionDetectors[0].BoxTest(link, block, gameScale);
+                if (sides.Count == 0 || sides[0] != ICollision.SideNone)
+                    collisionHandlers[3].HandleCollision(link, block, roomManager, gameScale);
+                foreach (ICollision side in sides)
+                {
+                    collisionHandlers[0].HandleCollision(link, block, side, gameScale);
+                }
+            }
+            foreach (IItem item in items)
+            {
+                List<ICollision> sides = collisionDetectors[0].BoxTest(link, item, gameScale);
+                foreach (ICollision side in sides)
+                {
+                    collisionHandlers[0].HandleCollision(link, item, side, gameScale);
+                }
+            }
+
+            foreach (IWeapon weapon in activeWeapons)
+            {
+                if (weapon.GetWeaponType() is IWeapon.WeaponType.EXPLOSION)
+                {
+                    List<ICollision> sides3 = collisionDetectors[0].BoxTest(link, weapon, gameScale);
+                    if (!sides3.Contains(ICollision.SideNone))
+                    {
+                        collisionHandlers[0].HandleCollision(link, weapon, sides3[0], gameScale);
+                    }
+                }
+                else if (weapon.GetWeaponType() is IWeapon.WeaponType.FIRE)
+                {
+                    List<ICollision> sides4 = collisionDetectors[0].BoxTest(link, weapon, gameScale);
+                    if (!sides4.Contains(ICollision.SideNone))
+                    {
+                        //Debug.WriteLine(sides4.Count);//kind of wierd why the first will be zero
+                        if (sides4.Count > 0 && weapon.AnimationTimer > 50)
+                        {
+                            collisionHandlers[0].HandleCollision(link, weapon, sides4[0], gameScale);
+                        }
+                    }
+                }
+            }
+
+            int index = 0;
+            List<int> indices = new List<int>(); //I mean, design the object could delete itself is more effectively.
+            foreach (IItem item in items)
+            {
+                List<ICollision> sides = collisionDetectors[0].BoxTest(link, item, gameScale);
+                if (!sides.Contains(ICollision.SideNone))
+                {
+                    indices.Add(index);
+                    item.PickItem(link.State.Position);
+                }
+
+                foreach (ICollision side in sides)
+                {
+                    //Debug.WriteLine(index);
+                    collisionHandlers[0].HandleCollision(link, item, side, gameScale);
+
+                }
+                index++;
+            }
+
+            int a = 0; //when the object remove, all index behind that will change.
+
+            foreach (int ind in indices)
+            {
+                int i = ind - a;
+                link.HandleItemDestroy(i);
+            }
+
+            foreach (IEnemy enemy in enemys)
+            {
+                List<ICollision> sides2 = collisionDetectors[2].BoxTest(link, enemy, gameScale);
+                foreach (ICollision side in sides2)
+                {
+                    collisionHandlers[2].HandleCollision(link, enemy, side);
+                }
+                foreach (IWeapon weapon in activeWeapons)
+                {
+                    if (!weapon.IsNull())
+                    {
+                        List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, weapon, gameScale);
+                        foreach (ICollision side in sides)
+                        {
+                            collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
+                        }
+                    }
+                }
+                foreach (IBlock block in blocks)
+                {
+                    List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, block, gameScale);
+
+                    foreach (ICollision side in sides)
+                    {
+                        collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
+                    }
+                }
+            }
             roomManager.Update(gameScale);
 
             base.Update(gameTime);

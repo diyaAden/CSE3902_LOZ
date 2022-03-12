@@ -2,17 +2,17 @@
 <XnaContent>
 	<Item>
 		<ObjectType>Block</ObjectType>
+		<ObjectName>BombedDoorUp</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>0</PositionY>
+		<roomNumber>11</roomNumber>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorRight</ObjectName>
 		<PositionX>0</PositionX>
 		<PositionY>72</PositionY>
 		<roomNumber>6</roomNumber>
-	</Item>
-	<Item>
-		<ObjectType>Block</ObjectType>
-		<ObjectName>OpenDoorDown</ObjectName>
-		<PositionX>112</PositionX>
-		<PositionY>0</PositionY>
-		<roomNumber>11</roomNumber>
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
