@@ -1,0 +1,13 @@
+Review Author: Sean Burns
+Review Date: 3-11-22
+Sprint: 3
+File Name: CollisionPlayerEnemyDetector.cs
+File Author: Diya
+Time Spent Reviewing: 6 min
+
+Comments: 
+	-The file is very readable since all of the values used have very clear names on what they are.
+	-As stated in my other file, I believe the only possible confusion is the use of the name 'CheckSide' which is the intersection rectangle. I feel this name is not very clear on what it is.
+	-Another possible point of minor confussion is the fact that this file is named 'CollisionPlayerEnemyDetector' while the handler is named 'PlayerEnemyCollisionHandler'. The order of the words is altered, which results in a brief moment of confussion that quickly passes.
+
+Hypothetical Change: If the target object could not be treated as a square, this class would break down since the method of side determination depends on the assumption of the object being a square or rectangle. If there was some shape, such as a triangle, circle, or octagon, over half of the class would need to be rewritten in order to account for these new sides.
