@@ -16,7 +16,6 @@ namespace LegendOfZelda.Scripts.Links
     public interface ILink
     {
         ILinkState State { get; set; }
-        Room CurrentRoom { get; set; }
         public void ToIdle();
         public void MoveUp();
         public void MoveDown();
@@ -29,7 +28,6 @@ namespace LegendOfZelda.Scripts.Links
         public void HandleDoorCollision(int direction, int scale);
         public void HandleItemCollision(IGameObject item, ICollision side);
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side);
-        public void HandleItemDestroy(int index);
 
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
         void Update();
