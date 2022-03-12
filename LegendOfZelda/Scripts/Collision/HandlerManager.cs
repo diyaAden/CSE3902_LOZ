@@ -46,9 +46,10 @@ namespace LegendOfZelda.Scripts.Collision
         public void ForAllUpdate()
         {
             AssignRoom();
-            ForLinkBlocks();
             ForLinkWeapon();
             ForLinkItem();
+            ForLinkBlocks();
+            
             ForEnemy();
         }
 
@@ -106,10 +107,9 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (IItem item in items)
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, item, gameScale);
-                if (!sides.Contains(ICollision.SideNone))
+                if (!sides.Contains(ICollision.SideNone) && sides.Count > 0)
                 {
                     indices.Add(index);
-                    item.PickItem(Link.State.Position);
                 }
 
                 foreach (ICollision side in sides)
@@ -126,6 +126,7 @@ namespace LegendOfZelda.Scripts.Collision
             {
                 int actualDeleteIndex = ind - delete;
                 collisionHandlers[0].HandleItemDestroy((Room)room, actualDeleteIndex);
+                delete++;
             }
         }
 
