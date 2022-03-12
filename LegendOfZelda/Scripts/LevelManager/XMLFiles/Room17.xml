@@ -90,6 +90,7 @@
 		<ObjectName>Stairs</ObjectName>
 		<PositionX>128</PositionX>
 		<PositionY>80</PositionY>
+		<roomNumber>16</roomNumber>
 	</Item>
     <Item>
 		<ObjectType>Enemy</ObjectType>

@@ -11,6 +11,8 @@ namespace LegendOfZelda.Scripts.Blocks
 
         public int adjacentRoom { get; set; }
 
+        public void Disable();
+
         public void Update();
 
         public void Draw(SpriteBatch spriteBatch, int scale);

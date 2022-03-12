@@ -29,6 +29,9 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
             switch (door)
             {
+                case StairsSprite _:
+                    UseStairs(link, door, roomManager, scale);
+                    break;
                 case OpenDoorSpriteDown _:
                 case OpenDoorSpriteUp _:
                 case OpenDoorSpriteLeft _:
@@ -37,23 +40,49 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 case BombedDoorSpriteUp _:
                 case BombedDoorSpriteLeft _:
                 case BombedDoorSpriteRight _:
-                    int currentRoom = roomManager.CurrentRoom;
-                    int newRoom = door.adjacentRoom;
-                    int direction;
-                    if (currentRoom - newRoom > 1)
-                        direction = 0;
-                    else if (newRoom - currentRoom > 1)
-                        direction = 1;
-                    else if (currentRoom - newRoom == 1)
-                        direction = 2;
-                    else
-                        direction = 3;
-                    link.HandleDoorCollision(direction, scale);
-                    roomManager.CurrentRoom = newRoom;
+                    MoveThroughDoor(link, door, roomManager, scale);
+                    break;
+                case CrackedDoorSpriteDown _:
+                case CrackedDoorSpriteUp _:
+                case CrackedDoorSpriteLeft _:
+                case CrackedDoorSpriteRight _:
+                case LockedDoorSpriteDown _:
+                case LockedDoorSpriteUp _:
+                case LockedDoorSpriteLeft _:
+                case LockedDoorSpriteRight _:
+                    door.Disable();
                     break;
                 default:
                     break;
             }
+        }
+        private void UseStairs(ILink link, IBlock stairs, RoomManager roomManager, int scale)
+        {
+            int currentRoom = roomManager.CurrentRoom;
+            int newRoom = stairs.adjacentRoom;
+            int direction;
+            if (currentRoom == 17)
+                direction = 4;
+            else
+                direction = 5;
+            link.HandleDoorCollision(direction, scale);
+            roomManager.CurrentRoom = newRoom;
+        }
+        private void MoveThroughDoor(ILink link, IBlock door, RoomManager roomManager, int scale)
+        {
+            int currentRoom = roomManager.CurrentRoom;
+            int newRoom = door.adjacentRoom;
+            int direction;
+            if (currentRoom - newRoom > 1)
+                direction = 0;
+            else if (newRoom - currentRoom > 1)
+                direction = 1;
+            else if (currentRoom - newRoom == 1)
+                direction = 2;
+            else
+                direction = 3;
+            link.HandleDoorCollision(direction, scale);
+            roomManager.CurrentRoom = newRoom;
         }
     }
 }

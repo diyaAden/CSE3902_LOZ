@@ -9,6 +9,13 @@
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
+		<ObjectName>OpenDoorDown</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>0</PositionY>
+		<roomNumber>14</roomNumber>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
 		<ObjectName>LockedDoorDown</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>0</PositionY>
