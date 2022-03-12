@@ -19,7 +19,6 @@ namespace LegendOfZelda.Scripts.Links
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
         private List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80) };
-        public Room CurrentRoom { get; set; }
 
         public Link(Vector2 position)
         {
@@ -132,10 +131,7 @@ namespace LegendOfZelda.Scripts.Links
 
             }
         }
-        public void HandleItemDestroy(int index)
-        {
-            CurrentRoom.RemoveObject("Item", index);
-        }
+        
         //Update and draw
         public void Update()
         {

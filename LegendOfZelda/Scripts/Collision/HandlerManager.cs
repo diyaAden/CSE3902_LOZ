@@ -16,10 +16,10 @@ namespace LegendOfZelda.Scripts.Collision
         public List<ICollisionDetector> collisionDetectors;
         public List<ICollisionHandler> collisionHandlers;
         public ILevel room;
-        public ILink Link;
-        public List<IWeapon> activeWeapons;
-        public RoomManager roomManager;
-        public int gameScale = 2;
+        private ILink Link;
+        private List<IWeapon> activeWeapons;
+        private RoomManager roomManager;
+        private int gameScale = 2;
 
 
         private List<IBlock> blocks;
@@ -47,10 +47,18 @@ namespace LegendOfZelda.Scripts.Collision
         {
             AssignRoom();
             ForLinkBlocks();
-            ForLinkItem();
             ForLinkWeapon();
-            ForLinkPickItem();
+            ForLinkItem();
             ForEnemy();
+        }
+
+        public void Update(ILink link, List<IWeapon> ActiveWeapons, RoomManager RoomManager, int GameScale)
+        {
+            Link = link;
+            activeWeapons = ActiveWeapons;
+            roomManager = RoomManager;
+            gameScale = GameScale;
+            ForAllUpdate();
         }
         private void ForLinkBlocks()
         {
@@ -58,7 +66,9 @@ namespace LegendOfZelda.Scripts.Collision
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, block, gameScale);
                 if (sides[0] != ICollision.SideNone)
+                {
                     collisionHandlers[3].HandleCollision(Link, block, roomManager, gameScale);
+                }
                 foreach (ICollision side in sides)
                 {
                     collisionHandlers[0].HandleCollision(Link, block, side, gameScale);
@@ -66,26 +76,14 @@ namespace LegendOfZelda.Scripts.Collision
             }
         }
 
-        private void ForLinkItem()
-        {
-            foreach (IItem item in items)
-            {
-                List<ICollision> sides = collisionDetectors[0].BoxTest(Link, item, gameScale);
-                foreach (ICollision side in sides)
-                {
-                    collisionHandlers[0].HandleCollision(Link, item, side, gameScale);
-                }
-            }
-        }
-
-        private void ForLinkWeapon()
+        private void ForLinkWeapon() //Some weapon will hurt the link
         {
             foreach (IWeapon weapon in activeWeapons)
             {
                 if (weapon.GetWeaponType() is IWeapon.WeaponType.EXPLOSION)
                 {
                     List<ICollision> sides3 = collisionDetectors[0].BoxTest(Link, weapon, gameScale);
-                    if (!sides3.Contains(ICollision.SideNone))
+                    if (!sides3.Contains(ICollision.SideNone) && sides3.Count > 0)
                     {
                         collisionHandlers[0].HandleCollision(Link, weapon, sides3[0], gameScale);
                     }
@@ -105,7 +103,7 @@ namespace LegendOfZelda.Scripts.Collision
             }
         }
 
-        public void ForLinkPickItem()
+        public void ForLinkItem()
         {
             int index = 0;
             List<int> indices = new List<int>(); //I mean, design the object could delete itself is more effectively.
@@ -132,7 +130,7 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (int ind in indices)
             {
                 int actualDeleteIndex = ind - delete;
-                Link.HandleItemDestroy(actualDeleteIndex);
+                collisionHandlers[0].HandleItemDestroy((Room)room, actualDeleteIndex);
             }
         }
 

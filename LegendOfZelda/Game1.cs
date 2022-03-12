@@ -74,8 +74,6 @@ namespace LegendOfZelda
         protected override void Update(GameTime gameTime)
         {
             handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
-            
-            link.CurrentRoom = (Room)roomManager.Rooms[roomManager.CurrentRoom];
 
             foreach (IController controller in controllerList) { controller.Update(); }
             
@@ -85,11 +83,7 @@ namespace LegendOfZelda
             }
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
-
-            handlerManager.Link = link;
-            handlerManager.activeWeapons = activeWeapons;
-            handlerManager.roomManager = roomManager;
-            handlerManager.ForAllUpdate();
+            handlerManager.Update(link, activeWeapons, roomManager, gameScale);
             roomManager.Update(gameScale);
 
             base.Update(gameTime);
