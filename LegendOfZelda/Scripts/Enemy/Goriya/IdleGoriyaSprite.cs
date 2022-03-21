@@ -21,7 +21,6 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-
         }
     }
 }
