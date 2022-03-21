@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -34,6 +36,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
                 _ => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y - moveSpeed * scale), scale),
             };
         }
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale)
         {
             position = Move(direction, scale);
