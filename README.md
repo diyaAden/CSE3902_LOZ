@@ -35,3 +35,7 @@ Potential Bugs:
 - Handler Manager might be refactored in the future.
 - The bombed doors are already exposed when the game starts, will add functionality to expose them with bombs in the future
 - Wait a sec after the link pick up items, then use items.
+- Make enemies flash red
+- Make Link go back to normal after a second 
+- Crashing issue
+- Increase firing speed of certain items
