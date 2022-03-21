@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
     {
 
         private int animationTimer = 0, direction, timeUntilDirectionChange, movementTimer = 0;
-        private readonly float moveSpeed = 0.5f;
+        private readonly float moveSpeed = 0.6f;
         private readonly Random rnd = new Random();
 
         public BasicWallMasterSprite(Texture2D itemSpriteSheet)
@@ -22,10 +22,10 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + moveSpeed * scale),
-                1 => new Vector2(position.X, position.Y - moveSpeed * scale),
-                2 => new Vector2(position.X - moveSpeed * scale, position.Y),
-                _ => new Vector2(position.X + moveSpeed * scale, position.Y),
+                0 => MovesPastWallsTest(position, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesPastWallsTest(position, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                _ => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
             };
         }
         public override void Update(int scale)

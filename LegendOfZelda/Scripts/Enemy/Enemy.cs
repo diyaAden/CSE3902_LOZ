@@ -56,13 +56,20 @@ namespace LegendOfZelda.Scripts.Enemy
         }
         protected Vector2 MovesPastWallsTest(Vector2 oldPosition, Vector2 newPosition, int scale)
         {
-            if (newPosition.X < 32 * scale || 
-                newPosition.Y < 32 * scale || 
-                newPosition.X + animationFrames[currentFrame].Width * scale > 223 * scale || 
-                newPosition.Y + animationFrames[currentFrame].Height * scale > 143 * scale)
-                return oldPosition;
-            else
-                return newPosition;
+            Vector2 returnPos = new Vector2(newPosition.X, newPosition.Y);
+            int topBorder = 32 * scale, bottomBorder = 143 * scale, leftBorder = 32 * scale, rightBorder = 223 * scale;
+
+            if (newPosition.X < leftBorder)
+                returnPos.X = leftBorder;
+            else if (newPosition.X + animationFrames[currentFrame].Width * scale > rightBorder)
+                returnPos.X = rightBorder - animationFrames[currentFrame].Width * scale;
+
+            if (newPosition.Y < topBorder)
+                returnPos.Y = topBorder;
+            else if (newPosition.Y + animationFrames[currentFrame].Height * scale > bottomBorder)
+                returnPos.Y = bottomBorder - animationFrames[currentFrame].Height * scale;
+
+            return returnPos;
         }
 
         public abstract void Update(int scale);
