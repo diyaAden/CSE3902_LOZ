@@ -7,15 +7,16 @@ namespace LegendOfZelda.Scripts.Items
 {
     public abstract class BasicItem : IItem
     {
+        private Vector2 itemOffset = new Vector2(5, 2);
         protected Texture2D spriteSheet;
         protected List<Rectangle> animationFrames = new List<Rectangle>();
-        protected int currentFrame = 0;
+        protected int currentFrame = 0, timerLimit = -1, animationTimer = 1;
         protected Vector2 pos = new Vector2(400, 200);
-        protected int timerLimit = -1;
+        protected string name;
+
         public int TimeLimit => timerLimit;
         public virtual Vector2 Position { get { return pos; } set { pos = value; } }
         public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
-        protected int animationTimer = 1;
 
         public string Name
         {
@@ -23,16 +24,15 @@ namespace LegendOfZelda.Scripts.Items
             set { name = value; }
         }
 
-        protected string name;
 
         public virtual void Update() { }
 
         public virtual void Update(Vector2 linkPosition) { }
         public virtual void HandleCollision(ICollision side, int scale) { }
 
-        public virtual void PickItem(Vector2 linkPosition)
+        public virtual void PickItem(Vector2 linkPosition, int scale)
         {
-            pos = new Vector2(linkPosition.X + 10, linkPosition.Y - 50);
+            pos = new Vector2(linkPosition.X + itemOffset.X * scale, linkPosition.Y - (itemOffset.Y + animationFrames[currentFrame].Height) * scale);
         }
         public virtual Rectangle ObjectBox(int scale)
         {

@@ -64,12 +64,12 @@ namespace LegendOfZelda.Scripts.Links
             }
         }
 
-        public void PickItem(String name)
+        public void PickItem(String name, int scale)
         {
             if (attackCooldown == 0)
             {
                 attackCooldown = cooldownLimit;
-                state.PickItem(name);
+                state.PickItem(name, scale);
             }
         }
         public void HandleBlockCollision(IGameObject gameObject, ICollision side)
@@ -121,13 +121,13 @@ namespace LegendOfZelda.Scripts.Links
             }
 
         }
-        public void HandleItemCollision(IGameObject gameObject, ICollision side)
+        public void HandleItemCollision(IGameObject gameObject, ICollision side, int scale)
         {
             if (!(side is ICollision.SideNone))
             {
                 Debug.WriteLine(((IItem)gameObject).Name);
                 Debug.WriteLine("Pick up item!!!!");
-                PickItem(((IItem)gameObject).Name);
+                PickItem(((IItem)gameObject).Name, scale);
 
             }
         }
