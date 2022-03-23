@@ -10,10 +10,11 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
      class BasicGoriyaSprite : Enemy
     {
         private readonly int moveSpeed = 1;
-        private int animationTimer = 0, direction;
+        private int animationTimer = 0, direction, attackTimer = 0, attackTimeLimit;
         private IWeapon boomerang;
         private IEnemy sprite;
         private bool attacking = false;
+        private Random rnd = new Random();
 
         public override Vector2 position { 
             get { 
@@ -29,6 +30,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             sprite = EnemySpriteFactory.Instance.CreateGoriyaDownSprite(moveSpeed);
             MoveSpeed = moveSpeed;
             direction = 0;
+            attackTimeLimit = rnd.Next(100, 181);
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {
@@ -46,14 +48,16 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             {
                 sprite.Update(scale);
                 pos = sprite.position;
-                if (++animationTimer == 150)
+                if (++animationTimer == 30)
                 {
                     animationTimer = 0;
-                    Attack();
-                }
-                else if (animationTimer % 30 == 0)
-                {
                     NewDirection();
+                }
+                if (++attackTimer == attackTimeLimit)
+                {
+                    attackTimer = 0;
+                    attackTimeLimit = rnd.Next(100, 181);
+                    Attack();
                 }
             }
             if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) 
@@ -91,9 +95,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         {
             sprite.Draw(spriteBatch, scale);
             if (boomerang != null)
-            {
                 boomerang.Draw(spriteBatch, scale);
-            }
         }
     }
 }

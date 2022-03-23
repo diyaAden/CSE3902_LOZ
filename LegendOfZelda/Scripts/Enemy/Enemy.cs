@@ -10,7 +10,6 @@ namespace LegendOfZelda.Scripts.Enemy
     public abstract class Enemy : IEnemy
     {
         protected Texture2D spriteSheet;
-        protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 400);
         protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
         protected int currentFrame = 0;
@@ -54,6 +53,23 @@ namespace LegendOfZelda.Scripts.Enemy
             {
                 Debug.WriteLine("Boom! Enemy is damaged!");
             }
+        }
+        protected Vector2 MovesPastWallsTest(Vector2 oldPosition, Vector2 newPosition, int scale)
+        {
+            Vector2 returnPos = new Vector2(newPosition.X, newPosition.Y);
+            int topBorder = 32 * scale, bottomBorder = 143 * scale, leftBorder = 32 * scale, rightBorder = 223 * scale;
+
+            if (newPosition.X < leftBorder)
+                returnPos.X = leftBorder;
+            else if (newPosition.X + animationFrames[currentFrame].Width * scale > rightBorder)
+                returnPos.X = rightBorder - animationFrames[currentFrame].Width * scale;
+
+            if (newPosition.Y < topBorder)
+                returnPos.Y = topBorder;
+            else if (newPosition.Y + animationFrames[currentFrame].Height * scale > bottomBorder)
+                returnPos.Y = bottomBorder - animationFrames[currentFrame].Height * scale;
+
+            return returnPos;
         }
 
         public abstract void Update(int scale);

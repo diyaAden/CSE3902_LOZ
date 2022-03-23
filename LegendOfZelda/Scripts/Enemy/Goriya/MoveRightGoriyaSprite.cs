@@ -22,8 +22,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X + MoveSpeed * scale, position.Y);
-
+            position = MovesPastWallsTest(position, new Vector2(position.X + MoveSpeed * scale, position.Y), scale);
         }
     }
 }

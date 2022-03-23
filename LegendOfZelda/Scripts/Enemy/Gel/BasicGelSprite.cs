@@ -23,10 +23,10 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + moveSpeed * scale),
-                1 => new Vector2(position.X, position.Y - moveSpeed * scale),
-                2 => new Vector2(position.X - moveSpeed * scale, position.Y),
-                _ => new Vector2(position.X + moveSpeed * scale, position.Y),
+                0 => MovesPastWallsTest(position, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesPastWallsTest(position, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                _ => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
             };
         }
         public override void Update(int scale)

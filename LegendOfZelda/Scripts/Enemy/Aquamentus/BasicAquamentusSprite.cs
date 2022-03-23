@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,8 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
     {
 
         private int animationTimer = 0, movingRight = 1, attackTimer = 0, attackTimerLimit;
-        protected int moveSpeed = 1, animationSpeed = 4;
+        private readonly int animationSpeed = 5;
+        private readonly float moveSpeed = 0.5f;
         private List<IEnemy> fireballs = new List<IEnemy>();
         private readonly Random rnd = new Random();
 
@@ -31,7 +34,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             for (int i = -1; i < 2; i++)
                 fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, pos));
         }
-
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale)
         {
             if (++animationTimer % animationSpeed == 0)

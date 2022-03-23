@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -24,16 +26,17 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + moveSpeed * scale),
-                1 => new Vector2(position.X, position.Y - moveSpeed * scale),
-                2 => new Vector2(position.X - moveSpeed * scale, position.Y),
-                3 => new Vector2(position.X + moveSpeed * scale, position.Y),
-                4 => new Vector2(position.X + moveSpeed * scale, position.Y + moveSpeed * scale),
-                5 => new Vector2(position.X + moveSpeed * scale, position.Y - moveSpeed * scale),
-                6 => new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * scale),
-                _ => new Vector2(position.X - moveSpeed * scale, position.Y - moveSpeed * scale),
+                0 => MovesPastWallsTest(position, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesPastWallsTest(position, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                3 => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+                4 => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y + moveSpeed * scale), scale),
+                5 => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y - moveSpeed * scale), scale),
+                6 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * scale), scale),
+                _ => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y - moveSpeed * scale), scale),
             };
         }
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale)
         {
             position = Move(direction, scale);

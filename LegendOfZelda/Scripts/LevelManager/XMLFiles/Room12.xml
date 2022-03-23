@@ -168,19 +168,19 @@
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>WallMaster</ObjectName>
-		<PositionX>24</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>62</PositionX>
+		<PositionY>32</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>WallMaster</ObjectName>
-		<PositionX>205</PositionX>
-		<PositionY>113</PositionY>
+		<PositionX>176</PositionX>
+		<PositionY>96</PositionY>
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
 		<ObjectName>WallMaster</ObjectName>
 		<PositionX>112</PositionX>
-		<PositionY>113</PositionY>
+		<PositionY>96</PositionY>
 	</Item>
 </XnaContent>
