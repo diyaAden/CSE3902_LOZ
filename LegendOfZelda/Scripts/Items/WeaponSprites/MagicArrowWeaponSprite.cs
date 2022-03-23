@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class MagicArrowWeaponSprite : BasicItem
     {
         private readonly int direction;
-        private readonly int speed = 6;
+        private const int speed = 6;
 
         public MagicArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {
