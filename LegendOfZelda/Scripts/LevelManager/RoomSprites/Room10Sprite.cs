@@ -5,10 +5,12 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room10Sprite : BasicRoomBackground
     {
+        private readonly int xPos = 515, yPos = 355, width = 256, height = 176;
+
         public Room10Sprite(Texture2D DungeonMap)
         {
             SpriteSheet = DungeonMap;
-            sourceRect = new Rectangle(515, 355, 256, 176);
+            sourceRect = new Rectangle(xPos, yPos, width, height);
         }
         public override void Update() { }
     }
