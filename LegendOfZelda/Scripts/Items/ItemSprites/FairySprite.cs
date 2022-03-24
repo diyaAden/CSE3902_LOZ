@@ -7,9 +7,13 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
     public class FairySprite : BasicItem
     {
         private int randomNum;
-        private readonly float straightMoveSpeed = 1.0f, diagonalMoveSpeed;
         private Vector2 moveSpeed;
+        private readonly float diagonalMoveSpeed;
+        private readonly int timeUntilDirectionChange;
         private readonly Random rnd = new Random();
+        private const float sqrt2 = 1.4142f, straightMoveSpeed = 1.0f;
+        private const int xPos1 = 0, xPos2 = 9, yPos = 0, width = 8, height = 16, timePerFrame = 8;
+        private const string itemName = "Fairy";
 
         private void ComputeMoveDirection()
         {
@@ -34,21 +38,22 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
         
         public FairySprite(Texture2D itemSpriteSheet)
         {
-            diagonalMoveSpeed = straightMoveSpeed / 1.4142f;
+            diagonalMoveSpeed = straightMoveSpeed / sqrt2;
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 8, 16));
-            animationFrames.Add(new Rectangle(9, 0, 8, 16));
-            name ="Fairy";
+            animationFrames.Add(new Rectangle(xPos1, yPos, width, height));
+            animationFrames.Add(new Rectangle(xPos2, yPos, width, height));
+            name = itemName;
             animationTimer = 0;
             ComputeMoveDirection();
+            timeUntilDirectionChange = timePerFrame * 4;
         }
 
         public override void Update()
         {
-            if (++animationTimer % 8 == 0)
+            if (++animationTimer % timePerFrame == 0)
             {
                 currentFrame = ++currentFrame % animationFrames.Count;
-                if (animationTimer % 32 == 0)
+                if (animationTimer == timeUntilDirectionChange)
                 {
                     animationTimer = 0;
                     ComputeMoveDirection();

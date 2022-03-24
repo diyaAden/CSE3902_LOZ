@@ -6,26 +6,27 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class ArrowWeaponSprite : BasicItem
     {
         private readonly int direction;
-        private readonly int speed = 2;
+        private const int speed = 2, itemTimeLimit = 50, length = 16, width = 5;
+        private const int xPosS = 46, yPosS = 16, xPosN = 52, yPosN = 0, xPosW = 14, yPosW = 6, xPosE = 30, yPosE = 0;
 
         public ArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {
             spriteSheet = itemSpriteSheet;
             direction = movingDirection;
-            timerLimit = 50;
+            timerLimit = itemTimeLimit;
             switch (direction)
             {
                 case 0:
-                    animationFrames.Add(new Rectangle(46, 16, 5, 16));
+                    animationFrames.Add(new Rectangle(xPosS, yPosS, width, length));
                     break;
                 case 1:
-                    animationFrames.Add(new Rectangle(52, 0, 5, 16));
+                    animationFrames.Add(new Rectangle(xPosN, yPosN, width, length));
                     break;
                 case 2:
-                    animationFrames.Add(new Rectangle(14, 6, 16, 5));
+                    animationFrames.Add(new Rectangle(xPosW, yPosW, length, width));
                     break;
                 default:
-                    animationFrames.Add(new Rectangle(30, 0, 16, 5));
+                    animationFrames.Add(new Rectangle(xPosE, yPosE, length, width));
                     break;
             }
         }

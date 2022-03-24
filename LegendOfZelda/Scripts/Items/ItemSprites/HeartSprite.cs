@@ -5,18 +5,21 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
 {
     public class HeartSprite : BasicItem
     {
+        private const int xPos = 0, yPos1 = 0, yPos2 = 9, width = 7, height = 8, timePerFrame = 7;
+        private const string itemName = "Heart";
+
         public HeartSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 7, 8));
-            animationFrames.Add(new Rectangle(0, 9, 7, 8));
-            name = "Heart";
+            animationFrames.Add(new Rectangle(xPos, yPos1, width, height));
+            animationFrames.Add(new Rectangle(xPos, yPos2, width, height));
+            name = itemName;
             animationTimer = 0;
         }
 
         public override void Update()
         {
-            if (++animationTimer > 7)
+            if (++animationTimer > timePerFrame)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
