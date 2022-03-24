@@ -8,8 +8,6 @@ using LegendOfZelda.Scripts.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Scripts.LevelManager;
-using LegendOfZelda.Scripts.Collision.CollisionDetector;
-using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Collision;
 
 namespace LegendOfZelda
@@ -18,18 +16,14 @@ namespace LegendOfZelda
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         private List<IController> controllerList;
-
+        internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
+        public readonly Vector2 linkStartPosition = new Vector2(120, 80);
+        public const int gameScale = 2;
         public DetectorManager detectorManager;
         public HandlerManager handlerManager;
-
-        public readonly int gameScale = 2;
-        public Vector2 position = new Vector2(120, 80);
         public ILink link;
-
         public RoomManager roomManager;
-        internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
         public Game1()
         {
@@ -68,7 +62,7 @@ namespace LegendOfZelda
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale);
             LoadLink.LoadTexture(Content);
-            link = new Link(position);
+            link = new Link(linkStartPosition);
         }
 
         protected override void Update(GameTime gameTime)
