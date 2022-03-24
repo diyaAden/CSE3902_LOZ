@@ -19,7 +19,7 @@ namespace LegendOfZelda
         private List<IController> controllerList;
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
         public readonly Vector2 linkStartPosition = new Vector2(120, 80);
-        public const int gameScale = 2;
+        public readonly int gameScale = 2;
         public DetectorManager detectorManager;
         public HandlerManager handlerManager;
         public ILink link;

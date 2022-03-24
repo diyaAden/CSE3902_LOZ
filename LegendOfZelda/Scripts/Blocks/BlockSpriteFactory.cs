@@ -6,13 +6,12 @@ namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockSpriteFactory
     {
-        private Texture2D blockSpriteSheet, fireSpriteSheet, wallSpriteSheet, doorSpriteSheet;
+        private Texture2D blockSpriteSheet, fireSpriteSheet, doorSpriteSheet;
         private static readonly BlockSpriteFactory instance = new BlockSpriteFactory(); 
         public static BlockSpriteFactory Instance => instance;
 
-        private BlockSpriteFactory()
-        {
-        }
+        private BlockSpriteFactory() { }
+
         public void LoadAllTextures(ContentManager content)
         {
             blockSpriteSheet = content.Load<Texture2D>("SpriteSheets/Blocks/TileSpriteSheet");

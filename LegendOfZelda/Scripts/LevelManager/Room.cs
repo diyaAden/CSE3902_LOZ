@@ -43,9 +43,9 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Blocks.Add(BlockSpriteFactory.Instance.CreateBlockFromString(name));
             Debug.WriteLine(Blocks[^1]);
-            Blocks[^1].position = new Vector2(xPos, yPos);
+            Blocks[^1].Position = new Vector2(xPos, yPos);
             if (name.Contains("Door") || name.Contains("Stairs")) {
-                Blocks[^1].adjacentRoom = adjacentRoom;
+                Blocks[^1].AdjacentRoom = adjacentRoom;
             }
 
         }

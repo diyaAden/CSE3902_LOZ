@@ -6,9 +6,9 @@ namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockCollection : ICollection
     {
-      
-        private List<IBlock> blockCollection = new List<IBlock>();
+        private readonly List<IBlock> blockCollection = new List<IBlock>();
         private int currentObject = 0;
+
         public BlockCollection()
         {
             blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueFloorSprite());
