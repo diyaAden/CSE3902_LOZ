@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.Trap.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -74,11 +75,11 @@ namespace LegendOfZelda.Scripts.LevelManager
             roomBackground.Position = new Vector2((roomBackground.Position.X + screenOffset.X) * scale, (roomBackground.Position.Y + screenOffset.Y) * scale);
         }
 
-        public void Update(int scale, Vector2 screenOffset)
+        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update(scale, screenOffset);
+            foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale)

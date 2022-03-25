@@ -6,23 +6,20 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
 {
     class BasicTrapSprite : Enemy
     {
-        private int direction, attackingTimer = 0, waitTimeLimit, waitingTimer = 0;
-        private bool attacking = false, retreating = false, originSet = false;
+        enum MovingState { READY, ATTACKING, RETREATING }
+        enum Direction { UP, DOWN, LEFT, RIGHT, NONE }
+        private MovingState currentState = MovingState.READY;
+        private Direction direction = Direction.NONE;
+        private bool originSet = false;
         private Vector2 originalPosition;
-        private readonly int attackSpeed = 2, retreatSpeed = 1, attackingTimeLimit = 45;
-        private readonly Random rnd = new Random();
+        private readonly Vector2 permittedMoveDist = new Vector2(84, 44);
+        private const int attackSpeed = 2, retreatSpeed = 1, triggerThreshold = 12;
 
-        public override Vector2 position
-        {
-            get
-            {
-                return pos;
-            }
-            set
-            {
+        public override Vector2 position {
+            get { return pos; }
+            set {
                 pos = value;
-                if (!originSet)
-                {
+                if (!originSet) {
                     originSet = true;
                     originalPosition = value;
                 }
@@ -32,60 +29,65 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            direction = rnd.Next(0, 4);
-            waitTimeLimit = rnd.Next(120, 181);
             MoveSpeed = retreatSpeed;
         }
-        private Vector2 Advance(int direction, int scale)
+        private Vector2 Advance(int scale)
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y + attackSpeed * scale),
-                1 => new Vector2(position.X, position.Y - attackSpeed * scale),
-                2 => new Vector2(position.X - attackSpeed * scale, position.Y),
+                Direction.DOWN => new Vector2(position.X, position.Y + attackSpeed * scale),
+                Direction.UP => new Vector2(position.X, position.Y - attackSpeed * scale),
+                Direction.LEFT => new Vector2(position.X - attackSpeed * scale, position.Y),
                 _ => new Vector2(position.X + attackSpeed * scale, position.Y),
             };
         }
-        private Vector2 Retreat(int direction, int scale)
+        private Vector2 BackTrack(int scale)
         {
             return direction switch
             {
-                0 => new Vector2(position.X, position.Y - retreatSpeed * scale),
-                1 => new Vector2(position.X, position.Y + retreatSpeed * scale),
-                2 => new Vector2(position.X + retreatSpeed * scale, position.Y),
+                Direction.DOWN => new Vector2(position.X, position.Y - retreatSpeed * scale),
+                Direction.UP => new Vector2(position.X, position.Y + retreatSpeed * scale),
+                Direction.LEFT => new Vector2(position.X + retreatSpeed * scale, position.Y),
                 _ => new Vector2(position.X - retreatSpeed * scale, position.Y),
             };
         }
-        public override void Update(int scale, Vector2 screenOffset)
+        private void Attack(int scale)
         {
-            if (attacking)
+            position = Advance(scale);
+            if (Math.Abs(originalPosition.X - pos.X) >= permittedMoveDist.X * scale || Math.Abs(originalPosition.Y - pos.Y) >= permittedMoveDist.Y * scale)
             {
-                position = Advance(direction, scale);
-                if (++attackingTimer >= attackingTimeLimit)
-                {
-                    attacking = false;
-                    retreating = true;
-                    attackingTimer = 0;
-                    waitTimeLimit = rnd.Next(45, 76);
-                }
+                currentState = MovingState.RETREATING;
             }
-            else if (retreating)
+        }
+        private void Retreat(int scale)
+        {
+            position = BackTrack(scale);
+            if (position.X == originalPosition.X && position.Y == originalPosition.Y)
             {
-                position = Retreat(direction, scale);
-                if (position.X == originalPosition.X && position.Y == originalPosition.Y)
-                {
-                    retreating = false;
-                    direction = rnd.Next(0, 4);
-                }
+                currentState = MovingState.READY;
+                direction = Direction.NONE;
             }
-            else
+        }
+        public void DetectDirection(Vector2 linkPosition, int scale)
+        {
+            if (Math.Abs(originalPosition.X - linkPosition.X) < triggerThreshold * scale)
             {
-                if (++waitingTimer >= waitTimeLimit)
-                {
-                    waitingTimer = 0;
-                    attacking = true;
-                }
+                currentState = MovingState.ATTACKING;
+                if (linkPosition.Y > originalPosition.Y) direction = Direction.DOWN;
+                else direction = Direction.UP;
             }
+            else if (Math.Abs(originalPosition.Y - linkPosition.Y) < triggerThreshold * scale)
+            {
+                currentState = MovingState.ATTACKING;
+                if (linkPosition.X > originalPosition.X) direction = Direction.RIGHT;
+                else direction = Direction.LEFT;
+            }
+        }
+        public override void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
+        {
+            if (currentState == MovingState.ATTACKING) Attack(scale);
+            else if (currentState == MovingState.RETREATING) Retreat(scale);
+            else DetectDirection(linkPosition, scale);
         }
     }
 }
