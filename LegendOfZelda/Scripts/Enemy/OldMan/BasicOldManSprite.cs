@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             MoveSpeed = 0;
         }
 
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (++animationTimer > 10)
             {

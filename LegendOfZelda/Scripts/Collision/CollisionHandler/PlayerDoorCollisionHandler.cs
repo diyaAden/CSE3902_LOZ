@@ -60,7 +60,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         private void UseStairs(ILink link, IBlock stairs, RoomManager roomManager, int scale)
         {
             int currentRoom = roomManager.CurrentRoom;
-            int newRoom = stairs.adjacentRoom;
+            int newRoom = stairs.AdjacentRoom;
             int direction;
             if (currentRoom == 17)
                 direction = 4;
@@ -72,7 +72,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         private void MoveThroughDoor(ILink link, IBlock door, RoomManager roomManager, int scale)
         {
             int currentRoom = roomManager.CurrentRoom;
-            int newRoom = door.adjacentRoom;
+            int newRoom = door.AdjacentRoom;
             int direction;
             if (currentRoom - newRoom > 1)
                 direction = 0;

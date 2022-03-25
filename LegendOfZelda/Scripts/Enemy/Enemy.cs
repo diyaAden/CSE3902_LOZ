@@ -9,6 +9,7 @@ namespace LegendOfZelda.Scripts.Enemy
 {
     public abstract class Enemy : IEnemy
     {
+        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
         protected Texture2D spriteSheet;
         protected Vector2 pos = new Vector2(400, 400);
         protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
@@ -54,30 +55,33 @@ namespace LegendOfZelda.Scripts.Enemy
                 Debug.WriteLine("Boom! Enemy is damaged!");
             }
         }
-        protected Vector2 MovesPastWallsTest(Vector2 oldPosition, Vector2 newPosition, int scale)
+        protected Vector2 MovesPastWallsTest(Vector2 screenOffset, Vector2 newPosition, int scale)
         {
             Vector2 returnPos = new Vector2(newPosition.X, newPosition.Y);
-            int topBorder = 32 * scale, bottomBorder = 143 * scale, leftBorder = 32 * scale, rightBorder = 223 * scale;
+            int top = (topBorder + (int)screenOffset.Y) * scale;
+            int bottom = (bottomBorder + (int)screenOffset.Y) * scale;
+            int left = (leftBorder + (int)screenOffset.X) * scale;
+            int right = (rightBorder + (int)screenOffset.X) * scale;
 
-            if (newPosition.X < leftBorder)
-                returnPos.X = leftBorder;
-            else if (newPosition.X + animationFrames[currentFrame].Width * scale > rightBorder)
-                returnPos.X = rightBorder - animationFrames[currentFrame].Width * scale;
+            if (newPosition.X < left)
+                returnPos.X = left;
+            else if (newPosition.X + animationFrames[currentFrame].Width * scale > right)
+                returnPos.X = right - animationFrames[currentFrame].Width * scale;
 
-            if (newPosition.Y < topBorder)
-                returnPos.Y = topBorder;
-            else if (newPosition.Y + animationFrames[currentFrame].Height * scale > bottomBorder)
-                returnPos.Y = bottomBorder - animationFrames[currentFrame].Height * scale;
+            if (newPosition.Y < top)
+                returnPos.Y = top;
+            else if (newPosition.Y + animationFrames[currentFrame].Height * scale > bottom)
+                returnPos.Y = bottom - animationFrames[currentFrame].Height * scale;
 
             return returnPos;
         }
 
-        public virtual void Update(Vector2 linkPosition, int scale)
+        public virtual void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
-            Update(scale);
+            Update(scale, screenOffset);
         }
 
-        public virtual void Update(int scale) { }
+        public virtual void Update(int scale, Vector2 screenOffset) { }
 
         public virtual Rectangle ObjectBox(int scale)
         {

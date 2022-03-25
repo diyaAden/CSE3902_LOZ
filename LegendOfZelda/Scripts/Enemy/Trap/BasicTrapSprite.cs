@@ -83,7 +83,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
                 else direction = Direction.LEFT;
             }
         }
-        public override void Update(Vector2 linkPosition, int scale)
+        public override void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             if (currentState == MovingState.ATTACKING) Attack(scale);
             else if (currentState == MovingState.RETREATING) Retreat(scale);

@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -6,9 +7,9 @@ namespace LegendOfZelda.Scripts.Blocks
 {
     class BlockCollection : ICollection
     {
-      
-        private List<IBlock> blockCollection = new List<IBlock>();
+        private readonly List<IBlock> blockCollection = new List<IBlock>();
         private int currentObject = 0;
+
         public BlockCollection()
         {
             blockCollection.Add(BlockSpriteFactory.Instance.CreateBlueFloorSprite());
@@ -39,7 +40,7 @@ namespace LegendOfZelda.Scripts.Blocks
             if (--currentObject < 0) { currentObject = blockCollection.Count - 1; }
         }
 
-        public void Update(int scale)
+        public void Update(int scale, Vector2 screenOffset)
         {
             blockCollection[currentObject].Update();
         }

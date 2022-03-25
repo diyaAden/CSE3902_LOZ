@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public void Update(Vector2 linkPosition, int scale);
 
-        public void Update(int scale);
+        public void Update(int scale, Vector2 screenOffset);
 
         public Rectangle ObjectBox(int scale);
 

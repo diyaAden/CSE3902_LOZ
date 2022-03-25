@@ -1,5 +1,4 @@
 ﻿using LegendOfZelda.Scripts.Collision;
-using LegendOfZelda.Scripts.LevelManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -11,9 +10,9 @@ namespace LegendOfZelda.Scripts.Blocks
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 100);
         private bool enabled = true;
-        protected float transparency;
-        public virtual Vector2 position { get { return pos; } set { pos = value; } }
-        public int adjacentRoom { get; set; }
+        protected float transparency = 1f;
+        public virtual Vector2 Position { get { return pos; } set { pos = value; } }
+        public int AdjacentRoom { get; set; }
         public void Disable()
         {
             enabled = false;

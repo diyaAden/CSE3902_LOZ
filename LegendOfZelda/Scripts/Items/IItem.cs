@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Items
 
         public void Update(Vector2 linkPosition);
 
-        public void PickItem(Vector2 linkPosition);
+        public void PickItem(Vector2 linkPosition, int scale);
 
         public void Draw(SpriteBatch spriteBatch, int scale);
     }

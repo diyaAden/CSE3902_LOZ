@@ -44,9 +44,9 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Blocks.Add(BlockSpriteFactory.Instance.CreateBlockFromString(name));
             Debug.WriteLine(Blocks[^1]);
-            Blocks[^1].position = new Vector2(xPos, yPos);
+            Blocks[^1].Position = new Vector2(xPos, yPos);
             if (name.Contains("Door") || name.Contains("Stairs")) {
-                Blocks[^1].adjacentRoom = adjacentRoom;
+                Blocks[^1].AdjacentRoom = adjacentRoom;
             }
 
         }
@@ -69,16 +69,17 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Enemies.RemoveAt(index);
         }
-        public void AddRoomBackground(int roomNumber)
+        public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale)
         {
             roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
+            roomBackground.Position = new Vector2((roomBackground.Position.X + screenOffset.X) * scale, (roomBackground.Position.Y + screenOffset.Y) * scale);
         }
 
-        public void Update(Vector2 linkPosition, int scale)
+        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale);
+            foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale)

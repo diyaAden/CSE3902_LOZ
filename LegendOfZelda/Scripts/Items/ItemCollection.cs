@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.Items
@@ -37,7 +38,7 @@ namespace LegendOfZelda.Scripts.Items
             if (--currentObject < 0) { currentObject = itemCollection.Count - 1; }
         }
 
-        public void Update(int scale)
+        public void Update(int scale, Vector2 screenOffset)
         {
             itemCollection[currentObject].Update();
         }

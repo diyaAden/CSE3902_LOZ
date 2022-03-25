@@ -22,24 +22,24 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
             timeUntilDirectionChange = rnd.Next(30, 61);
             MoveSpeed = moveSpeed;
         }
-        private Vector2 Move(int direction, int scale)
+        private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
             return direction switch
             {
-                0 => MovesPastWallsTest(position, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
-                1 => MovesPastWallsTest(position, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
-                2 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
-                3 => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
-                4 => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y + moveSpeed * scale), scale),
-                5 => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y - moveSpeed * scale), scale),
-                6 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * scale), scale),
-                _ => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y - moveSpeed * scale), scale),
+                0 => MovesPastWallsTest(screenOffset, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesPastWallsTest(screenOffset, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesPastWallsTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                3 => MovesPastWallsTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+                4 => MovesPastWallsTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y + moveSpeed * scale), scale),
+                5 => MovesPastWallsTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y - moveSpeed * scale), scale),
+                6 => MovesPastWallsTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * scale), scale),
+                _ => MovesPastWallsTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y - moveSpeed * scale), scale),
             };
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
-            position = Move(direction, scale);
+            position = Move(direction, scale, screenOffset);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;

@@ -6,11 +6,12 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
     class PushBlockSprite : BasicBlock
     {
-        private readonly int pushSpeed = 1;
+        private const int xPos = 18, yPos = 11, width = 16, height = 16, pushSpeed = 1;
+        private readonly Vector2 permittedMovement = new Vector2(16, 16);
         private bool originSet = false;
         private Vector2 originalPos;
 
-        public override Vector2 position { 
+        public override Vector2 Position { 
             get { 
                 return pos;
             } 
@@ -27,24 +28,23 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
         public PushBlockSprite(Texture2D blockSpriteSheet)
         {
             spriteSheet = blockSpriteSheet;
-            sourceRect = new Rectangle(18, 11, 16, 16);
-            transparency = 1f;
+            sourceRect = new Rectangle(xPos, yPos, width, height);
         }
         public override void HandleCollision(ICollision side, int scale)
         {
-            if (side is ICollision.SideTop && originalPos.Y - pos.Y <= 16 * scale)
+            if (side is ICollision.SideTop && originalPos.Y - pos.Y <= permittedMovement.Y * scale)
             {
                 pos.Y -= pushSpeed;
             }
-            else if (side is ICollision.SideBottom && pos.Y - originalPos.Y <= 16 * scale)
+            else if (side is ICollision.SideBottom && pos.Y - originalPos.Y <= permittedMovement.Y * scale)
             {
                 pos.Y += pushSpeed;
             }
-            else if (side is ICollision.SideLeft && originalPos.X - pos.X <= 16 * scale)
+            else if (side is ICollision.SideLeft && originalPos.X - pos.X <= permittedMovement.X * scale)
             {
                 pos.X -= pushSpeed;
             }
-            else if (side is ICollision.SideRight && pos.X - originalPos.X <= 16 * scale)
+            else if (side is ICollision.SideRight && pos.X - originalPos.X <= permittedMovement.X * scale)
             {
                 pos.X += pushSpeed;
             }

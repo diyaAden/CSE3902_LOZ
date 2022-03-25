@@ -6,20 +6,20 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
     public class FireBlockSprite : BasicBlock
     {
+        private const int xPos1 = 0, xPos2 = 17, yPos = 0, width = 16, height = 16, timePerFrame = 4;
+        private readonly List<Rectangle> animationFrames = new List<Rectangle>();
         private int animationTimer = 0, currentFrame = 0;
-        private List<Rectangle> animationFrames = new List<Rectangle>();
         
         public FireBlockSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(0, 0, 16, 16));
-            animationFrames.Add(new Rectangle(17, 0, 16, 16));
-            transparency = 1f;
+            animationFrames.Add(new Rectangle(xPos1, yPos, width, height));
+            animationFrames.Add(new Rectangle(xPos2, yPos, width, height));
         }
 
         public override void Update()
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > timePerFrame)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
@@ -28,7 +28,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {
-            Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
     }
