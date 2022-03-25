@@ -68,16 +68,17 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             Enemies.RemoveAt(index);
         }
-        public void AddRoomBackground(int roomNumber)
+        public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale)
         {
             roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
+            roomBackground.Position = new Vector2((roomBackground.Position.X + screenOffset.X) * scale, (roomBackground.Position.Y + screenOffset.Y) * scale);
         }
 
-        public void Update(int scale)
+        public void Update(int scale, Vector2 screenOffset)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update(scale);
+            foreach (IEnemy enemy in Enemies) enemy.Update(scale, screenOffset);
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale)

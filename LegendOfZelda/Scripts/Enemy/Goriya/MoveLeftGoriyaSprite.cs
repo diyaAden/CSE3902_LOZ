@@ -15,14 +15,14 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             animationFrames.Add(new Rectangle(16, 0, 16, 16));
         }
 
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (++animationTimer > 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = MovesPastWallsTest(position, new Vector2(position.X - MoveSpeed * scale, position.Y), scale);
+            position = MovesPastWallsTest(screenOffset, new Vector2(position.X - MoveSpeed * scale, position.Y), scale);
         }
     }
 }

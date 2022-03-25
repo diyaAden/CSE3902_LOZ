@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -42,7 +43,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             if (--currentObject < 0) { currentObject = RoomCollection.Count - 1; }
         }
 
-        public void Update(int scale)
+        public void Update(int scale, Vector2 screenOffset)
         {
             RoomCollection[currentObject].Update();
         }

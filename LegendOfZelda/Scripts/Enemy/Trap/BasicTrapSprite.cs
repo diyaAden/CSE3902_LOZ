@@ -56,7 +56,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
                 _ => new Vector2(position.X - retreatSpeed * scale, position.Y),
             };
         }
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (attacking)
             {

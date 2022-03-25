@@ -18,12 +18,18 @@ namespace LegendOfZelda.Scripts.Links
         private ILinkState state;
         bool isDamaged =false;
         private int attackCooldown, cooldownLimit = 30;
-        private List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
+        private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
 
-        public Link(Vector2 position)
+        public Link(Vector2 position, Vector2 screenOffset, int scale)
         {
-            this.state = new RightIdleLinkState(this, position, isDamaged);
+            position.X = (position.X + screenOffset.X) * scale;
+            position.Y = (position.Y + screenOffset.Y) * scale;
+            state = new RightIdleLinkState(this, position, isDamaged);
             attackCooldown = 0;
+            for (int i = 0; i < roomSwapPositions.Count; i++)
+            {
+                roomSwapPositions[i] = new Vector2(roomSwapPositions[i].X + screenOffset.X, roomSwapPositions[i].Y + screenOffset.Y);
+            }
         }
 
         //Motions that link will have, and change the state.

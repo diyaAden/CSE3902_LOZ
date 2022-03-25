@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -6,13 +7,13 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class RoomManager
     {
-        private readonly int roomsToLoad = 18;
+        private const int roomsToLoad = 18;
         private XmlReader xml;
         public List<ILevel> Rooms { get; set; }
         public int CurrentRoom { get; set; }
         public RoomManager() { }
 
-        public void LoadContent(int scale)
+        public void LoadContent(int scale, Vector2 screenOffset)
         {
             CurrentRoom = 2;
             Rooms = new List<ILevel>();
@@ -30,9 +31,9 @@ namespace LegendOfZelda.Scripts.LevelManager
                     while (xml.Name != "ObjectName") xml.Read();
                     objectName = xml.ReadElementContentAsString();
                     while (xml.Name != "PositionX") xml.Read();
-                    posX = xml.ReadElementContentAsInt() * scale;
+                    posX = (xml.ReadElementContentAsInt() + (int)screenOffset.X) * scale;
                     while (xml.Name != "PositionY") xml.Read();
-                    posY = xml.ReadElementContentAsInt() * scale;
+                    posY = (xml.ReadElementContentAsInt() + (int)screenOffset.Y) * scale;
                     if (objectName.Contains("Door") || objectName.Contains("Stairs"))
                     {
                         while (xml.Name != "roomNumber") xml.Read();
@@ -43,7 +44,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                     xml.Read();
                     room.AddObject(objectType, objectName, posX, posY, adjacentRoom);
                 }
-                room.AddRoomBackground(i);
+                room.AddRoomBackground(i, screenOffset, scale);
                 Rooms.Add(room);
             }
         }
@@ -56,12 +57,12 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom--;
             CurrentRoom = (CurrentRoom + Rooms.Count) % Rooms.Count;
         }
-        public void Update(int scale)
+        public void Update(int scale, Vector2 screenOffset)
         {
             if (CurrentRoom  < 0)
                 CurrentRoom += Rooms.Count;
             CurrentRoom %= Rooms.Count;
-            Rooms[CurrentRoom].Update(scale);
+            Rooms[CurrentRoom].Update(scale, screenOffset);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

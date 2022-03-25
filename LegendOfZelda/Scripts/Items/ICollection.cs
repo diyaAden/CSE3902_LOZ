@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Items
 {
@@ -8,7 +9,7 @@ namespace LegendOfZelda.Scripts.Items
 
         public void Previous();
 
-        public void Update(int scale);
+        public void Update(int scale, Vector2 screenOffset);
 
         public void Draw(SpriteBatch spriteBatch, int scale);
     }

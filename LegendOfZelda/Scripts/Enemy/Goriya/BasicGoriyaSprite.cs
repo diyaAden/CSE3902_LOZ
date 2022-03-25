@@ -42,11 +42,11 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             attacking = true;
             boomerang = new BoomerangWeapon(pos, direction);
         }
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (!attacking)
             {
-                sprite.Update(scale);
+                sprite.Update(scale, screenOffset);
                 pos = sprite.position;
                 if (++animationTimer == 30)
                 {

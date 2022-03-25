@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
@@ -33,9 +34,9 @@ namespace LegendOfZelda.Scripts.Enemy
             if (--currentObject < 0) { currentObject = enemyCollection.Count - 1; }
         }
 
-        public void Update(int scale)
+        public void Update(int scale, Vector2 screenOffset)
         {
-            enemyCollection[currentObject].Update(scale);
+            enemyCollection[currentObject].Update(scale, screenOffset);
         }
 
         public IGameObject GameObject()
