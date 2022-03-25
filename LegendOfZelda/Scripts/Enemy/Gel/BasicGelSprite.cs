@@ -19,21 +19,21 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
             direction = rnd.Next(0, 4);
             MoveSpeed = moveSpeed;
         }
-        private Vector2 Move(int direction, int scale)
+        private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
             return direction switch
             {
-                0 => MovesPastWallsTest(position, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
-                1 => MovesPastWallsTest(position, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
-                2 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
-                _ => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+                0 => MovesPastWallsTest(screenOffset, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesPastWallsTest(screenOffset, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesPastWallsTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                _ => MovesPastWallsTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
             };
         }
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (attacking)
             {
-                position = Move(direction, scale);
+                position = Move(direction, scale, screenOffset);
                 moveDist += moveSpeed * scale;
             } else if (++movementTimer >= timeUntilMove)
             {

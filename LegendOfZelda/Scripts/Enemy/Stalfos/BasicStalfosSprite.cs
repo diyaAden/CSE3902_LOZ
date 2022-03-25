@@ -20,19 +20,19 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
             timeUntilDirectionChange = rnd.Next(45, 76);
             MoveSpeed = moveSpeed;
         }
-        private Vector2 Move(int direction, int scale)
+        private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
             return direction switch
             {
-                0 => MovesPastWallsTest(position, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
-                1 => MovesPastWallsTest(position, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
-                2 => MovesPastWallsTest(position, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
-                _ => MovesPastWallsTest(position, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+                0 => MovesPastWallsTest(screenOffset, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesPastWallsTest(screenOffset, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesPastWallsTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                _ => MovesPastWallsTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
             };
         }
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
-            position = Move(direction, scale);
+            position = Move(direction, scale, screenOffset);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;

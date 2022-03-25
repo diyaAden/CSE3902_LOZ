@@ -20,7 +20,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             pos = position;
         }
 
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (++animationTimer > 4)
             {

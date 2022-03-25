@@ -14,7 +14,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
         }
 
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (++animationTimer > 2)
             {

@@ -21,13 +21,13 @@ namespace LegendOfZelda.Scripts.Links.State
             this.Sprite = new PickItemLinkSprite(LoadLink.linkPickItem, position, isDamaged);
         }
 
-        public void CreatePickItem(string name, Vector2 linkPosition)
+        public void CreatePickItem(string name, Vector2 linkPosition, int scale)
         {
             item = ItemSpriteFactory.Instance.CreateItemFromString(name);
-            item.PickItem(linkPosition);
+            item.PickItem(linkPosition, scale);
         }
 
-        public override void PickItem(string name)
+        public override void PickItem(string name, int scale)
         {
             //do nothing
 

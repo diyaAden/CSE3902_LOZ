@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.Links
         void PositionRight();
         void PositionLeft();
         void UseItem();
-        void PickItem(String name);
+        void PickItem(String name, int scale);
         void Attack();
         Rectangle LinkBox(int scale);
         void Update();

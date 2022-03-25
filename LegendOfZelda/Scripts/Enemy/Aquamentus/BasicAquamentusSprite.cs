@@ -35,7 +35,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
                 fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, pos));
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
-        public override void Update(int scale)
+        public override void Update(int scale, Vector2 screenOffset)
         {
             if (++animationTimer % animationSpeed == 0)
                 currentFrame = ++currentFrame % animationFrames.Count;
@@ -51,7 +51,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
                 attackTimerLimit = rnd.Next(120, 181);
             }
             foreach (IEnemy fireball in fireballs)
-                fireball.Update(scale);
+                fireball.Update(scale, screenOffset);
             position = new Vector2(position.X - (moveSpeed * movingRight * scale), position.Y);
         }
         public override void Draw(SpriteBatch spriteBatch, int scale)

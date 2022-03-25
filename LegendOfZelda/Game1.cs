@@ -8,8 +8,6 @@ using LegendOfZelda.Scripts.Enemy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Scripts.LevelManager;
-using LegendOfZelda.Scripts.Collision.CollisionDetector;
-using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Collision;
 
 namespace LegendOfZelda
@@ -18,18 +16,15 @@ namespace LegendOfZelda
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         private List<IController> controllerList;
-
+        private readonly Vector2 screenOffset = new Vector2(0, 32);
+        private readonly Vector2 linkStartPosition = new Vector2(120, 120);
+        internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
+        public readonly int gameScale = 2;
         public DetectorManager detectorManager;
         public HandlerManager handlerManager;
-
-        public readonly int gameScale = 2;
-        public Vector2 position = new Vector2(120, 80);
         public ILink link;
-
         public RoomManager roomManager;
-        internal List<IWeapon> activeWeapons = new List<IWeapon>();
 
         public Game1()
         {
@@ -66,9 +61,9 @@ namespace LegendOfZelda
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             RoomBackgroundFactory.Instance.LoadAllTextures(Content);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
-            roomManager.LoadContent(gameScale);
+            roomManager.LoadContent(gameScale, screenOffset);
             LoadLink.LoadTexture(Content);
-            link = new Link(position);
+            link = new Link(linkStartPosition, screenOffset, gameScale);
         }
 
         protected override void Update(GameTime gameTime)
@@ -83,7 +78,7 @@ namespace LegendOfZelda
             }
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
-            roomManager.Update(gameScale);
+            roomManager.Update(link.State.Position, gameScale, screenOffset);
             handlerManager.Update(link, activeWeapons, roomManager, gameScale);
             
 
@@ -92,7 +87,7 @@ namespace LegendOfZelda
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
             roomManager.Draw(_spriteBatch, gameScale);
             foreach (IWeapon weapon in activeWeapons)

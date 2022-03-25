@@ -5,16 +5,18 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
 {
     class BombWeapon : BasicWeapon
     {
+        private const int offsetS = 16, offsetN = -14, offsetW = -8, offsetE = 16;
+
         public BombWeapon(Vector2 linkPosition, int facing, int scale)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
             weaponType = WeaponType.BOMB;
             position = facing switch
             {
-                0 => new Vector2(linkPosition.X, linkPosition.Y + 16 * scale),
-                1 => new Vector2(linkPosition.X, linkPosition.Y - 14 * scale),
-                2 => new Vector2(linkPosition.X - 8 * scale, linkPosition.Y),
-                _ => new Vector2(linkPosition.X + 16 * scale, linkPosition.Y),
+                0 => new Vector2(linkPosition.X, linkPosition.Y + offsetS * scale),
+                1 => new Vector2(linkPosition.X, linkPosition.Y + offsetN * scale),
+                2 => new Vector2(linkPosition.X + offsetW * scale, linkPosition.Y),
+                _ => new Vector2(linkPosition.X + offsetE * scale, linkPosition.Y),
             };
             Weapon.Position = position;
         }

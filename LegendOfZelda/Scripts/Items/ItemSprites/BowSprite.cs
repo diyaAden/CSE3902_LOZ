@@ -5,12 +5,14 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
 {
     public class BowSprite : BasicItem
     {
-        
+        private const int xPos = 30, yPos = 0, width = 8, height = 16;
+        private const string itemName = "Bow";
+
         public BowSprite(Texture2D itemSpriteSheet)
         {
             spriteSheet = itemSpriteSheet;
-            animationFrames.Add(new Rectangle(30, 0, 8, 16));
-            name = "Bow";
+            animationFrames.Add(new Rectangle(xPos, yPos, width, height));
+            name = itemName;
         }
 
         public override void Update()

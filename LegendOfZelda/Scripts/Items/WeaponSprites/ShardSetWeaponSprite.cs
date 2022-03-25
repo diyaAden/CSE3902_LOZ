@@ -7,13 +7,14 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class ShardSetWeaponSprite : BasicItem
     {
         private readonly List<IItem> shards;
+        private const int shardsToSpawn = 4, itemTimeLimit = 30;
         
         public ShardSetWeaponSprite(Vector2 position)
         {
             shards = new List<IItem>();
             pos = position;
-            timerLimit = 30;
-            for (int i = 0; i < 4; i++)
+            timerLimit = itemTimeLimit;
+            for (int i = 0; i < shardsToSpawn; i++)
             {
                 shards.Add(WeaponSpriteFactory.Instance.CreateSwordShardWeaponSprite(i));
                 shards[i].Position = pos;
