@@ -11,20 +11,15 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
         private int direction, attackingTimer = 0, waitTimeLimit, waitingTimer = 0;
         private bool originSet = false;
         private Vector2 originalPosition;
-        private readonly int attackSpeed = 2, retreatSpeed = 1, attackingTimeLimit = 45;
+        private readonly Vector2 permittedMoveDist = new Vector2(80, 40);
         private readonly Random rnd = new Random();
+        private const int attackSpeed = 2, retreatSpeed = 1, attackingTimeLimit = 45;
 
-        public override Vector2 position
-        {
-            get
-            {
-                return pos;
-            }
-            set
-            {
+        public override Vector2 position {
+            get { return pos; }
+            set {
                 pos = value;
-                if (!originSet)
-                {
+                if (!originSet) {
                     originSet = true;
                     originalPosition = value;
                 }
@@ -48,7 +43,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
                 _ => new Vector2(position.X + attackSpeed * scale, position.Y),
             };
         }
-        private Vector2 Retreat(int direction, int scale)
+        private Vector2 BackTrack(int direction, int scale)
         {
             return direction switch
             {
@@ -58,29 +53,36 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
                 _ => new Vector2(position.X - retreatSpeed * scale, position.Y),
             };
         }
+        private void Attack(int scale)
+        {
+            position = Advance(direction, scale);
+            if (++attackingTimer >= attackingTimeLimit)
+            {
+                currentState = MovingState.RETREATING;
+                attackingTimer = 0;
+                waitTimeLimit = rnd.Next(45, 76);
+            }
+        }
+        private void Retreat(int scale)
+        {
+            position = BackTrack(direction, scale);
+            if (position.X == originalPosition.X && position.Y == originalPosition.Y)
+            {
+                currentState = MovingState.READY;
+                direction = rnd.Next(0, 4);
+            }
+        }
+        public void DetectDirection(Vector2 linkPosition, int scale)
+        {
+            //detect if start moving and which direction
+        }
         public override void Update(Vector2 linkPosition, int scale)
         {
-            if (currentState == MovingState.ATTACKING)
-            {
-                position = Advance(direction, scale);
-                if (++attackingTimer >= attackingTimeLimit)
-                {
-                    currentState = MovingState.RETREATING;
-                    attackingTimer = 0;
-                    waitTimeLimit = rnd.Next(45, 76);
-                }
-            }
-            else if (currentState == MovingState.RETREATING)
-            {
-                position = Retreat(direction, scale);
-                if (position.X == originalPosition.X && position.Y == originalPosition.Y)
-                {
-                    currentState = MovingState.READY;
-                    direction = rnd.Next(0, 4);
-                }
-            }
+            if (currentState == MovingState.ATTACKING) Attack(scale);
+            else if (currentState == MovingState.RETREATING) Retreat(scale);
             else
             {
+                //insert call to DetectDirection here
                 if (++waitingTimer >= waitTimeLimit)
                 {
                     waitingTimer = 0;
