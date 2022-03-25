@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -55,12 +56,12 @@ namespace LegendOfZelda.Scripts.LevelManager
             CurrentRoom--;
             CurrentRoom = (CurrentRoom + Rooms.Count) % Rooms.Count;
         }
-        public void Update(int scale)
+        public void Update(Vector2 linkPosition, int scale)
         {
             if (CurrentRoom  < 0)
                 CurrentRoom += Rooms.Count;
             CurrentRoom %= Rooms.Count;
-            Rooms[CurrentRoom].Update(scale);
+            Rooms[CurrentRoom].Update(linkPosition, scale);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

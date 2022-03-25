@@ -83,7 +83,7 @@ namespace LegendOfZelda
             }
             foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
             link.Update();
-            roomManager.Update(gameScale);
+            roomManager.Update(link.State.Position, gameScale);
             handlerManager.Update(link, activeWeapons, roomManager, gameScale);
             
 

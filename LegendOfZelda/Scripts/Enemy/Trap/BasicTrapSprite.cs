@@ -6,8 +6,10 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
 {
     class BasicTrapSprite : Enemy
     {
+        enum MovingState { READY, ATTACKING, RETREATING }
+        private MovingState currentState = MovingState.READY;
         private int direction, attackingTimer = 0, waitTimeLimit, waitingTimer = 0;
-        private bool attacking = false, retreating = false, originSet = false;
+        private bool originSet = false;
         private Vector2 originalPosition;
         private readonly int attackSpeed = 2, retreatSpeed = 1, attackingTimeLimit = 45;
         private readonly Random rnd = new Random();
@@ -56,25 +58,24 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
                 _ => new Vector2(position.X - retreatSpeed * scale, position.Y),
             };
         }
-        public override void Update(int scale)
+        public override void Update(Vector2 linkPosition, int scale)
         {
-            if (attacking)
+            if (currentState == MovingState.ATTACKING)
             {
                 position = Advance(direction, scale);
                 if (++attackingTimer >= attackingTimeLimit)
                 {
-                    attacking = false;
-                    retreating = true;
+                    currentState = MovingState.RETREATING;
                     attackingTimer = 0;
                     waitTimeLimit = rnd.Next(45, 76);
                 }
             }
-            else if (retreating)
+            else if (currentState == MovingState.RETREATING)
             {
                 position = Retreat(direction, scale);
                 if (position.X == originalPosition.X && position.Y == originalPosition.Y)
                 {
-                    retreating = false;
+                    currentState = MovingState.READY;
                     direction = rnd.Next(0, 4);
                 }
             }
@@ -83,7 +84,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
                 if (++waitingTimer >= waitTimeLimit)
                 {
                     waitingTimer = 0;
-                    attacking = true;
+                    currentState = MovingState.ATTACKING;
                 }
             }
         }

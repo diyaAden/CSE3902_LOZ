@@ -72,7 +72,12 @@ namespace LegendOfZelda.Scripts.Enemy
             return returnPos;
         }
 
-        public abstract void Update(int scale);
+        public virtual void Update(Vector2 linkPosition, int scale)
+        {
+            Update(scale);
+        }
+
+        public virtual void Update(int scale) { }
 
         public virtual Rectangle ObjectBox(int scale)
         {
