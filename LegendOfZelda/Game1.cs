@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.GameStateMachine;
+using LegendOfZelda.Scripts.HUD;
 
 namespace LegendOfZelda
 {
@@ -18,7 +19,7 @@ namespace LegendOfZelda
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private readonly Vector2 screenOffset = new Vector2(0, 32);
+        private readonly Vector2 screenOffset = new Vector2(74, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
         public readonly int gameScale = 2;
@@ -26,6 +27,7 @@ namespace LegendOfZelda
         public HandlerManager handlerManager;
         public ILink link;
         public RoomManager roomManager;
+        public HUDAppearance hudAppearance;
         public GameState Gstate;
 
         public Game1()
@@ -43,7 +45,7 @@ namespace LegendOfZelda
             con.RegisterCommands(control);
             con.RegisterCommands(mouse);
             controllerList = new List<IController>() { control, mouse };
-
+            hudAppearance = new HUDAppearance();
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             handlerManager = new HandlerManager(detectorManager.collisionDetectors);
@@ -64,6 +66,7 @@ namespace LegendOfZelda
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             RoomBackgroundFactory.Instance.LoadAllTextures(Content);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
+            HUDAppearance.Instance.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale, screenOffset);
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale);
@@ -116,6 +119,7 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
             roomManager.Draw(_spriteBatch, gameScale);
+            hudAppearance.Draw(_spriteBatch);
             foreach (IWeapon weapon in activeWeapons)
             {
                 weapon.Draw(_spriteBatch, gameScale);
