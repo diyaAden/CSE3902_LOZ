@@ -35,8 +35,12 @@ namespace LegendOfZelda.Scripts.Items
                     Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
                     weaponType = WeaponType.SWORDSHARDS;
                     break;
+                case WeaponType.BOOMERANG:
+                    SoundController.Instance.StopBoomerangSound();
+                    Weapon = null;
+                    weaponType = WeaponType.NONE;
+                    break;
                 default:
-                    SoundController.Instance.StopMagicBoomerangSound();
                     Weapon = null;
                     weaponType = WeaponType.NONE;
                     break;

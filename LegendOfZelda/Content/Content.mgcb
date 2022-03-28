@@ -13,17 +13,23 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Sounds/boomerang.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/boomerang.mp3
+
 #begin Sounds/dungeonMusic.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Sounds/dungeonMusic.mp3
 
-#begin Sounds/magicBoomerang.mp3
+#begin Sounds/getItem.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/magicBoomerang.mp3
+/build:Sounds/getItem.mp3
 
 #begin Sounds/openDoor.mp3
 /importer:Mp3Importer

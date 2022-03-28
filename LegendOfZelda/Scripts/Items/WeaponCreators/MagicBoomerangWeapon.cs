@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
     {
         public MagicBoomerangWeapon(Vector2 pos, int facing)
         {
-            SoundController.Instance.StartMagicBoomerangSound();
+            SoundController.Instance.StartBoomerangSound();
             Weapon = WeaponSpriteFactory.Instance.CreateMagicBoomerangWeaponSprite(facing);
             weaponType = WeaponType.BOOMERANG;
             position = pos;

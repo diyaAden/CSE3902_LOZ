@@ -7,8 +7,8 @@ namespace LegendOfZelda.Scripts.Sounds
     class SoundController
     {
         private Song music;
-        private SoundEffect openDoor, magicBoomerang;
-        private SoundEffectInstance magicBoom;
+        private SoundEffect openDoor, boomerang, getItem;
+        private SoundEffectInstance boomerangInstance;
         private static readonly SoundController instance = new SoundController(); 
         public static SoundController Instance => instance;
 
@@ -18,7 +18,8 @@ namespace LegendOfZelda.Scripts.Sounds
         {
             music = content.Load<Song>("Sounds/dungeonMusic");
             openDoor = content.Load<SoundEffect>("Sounds/openDoor");
-            magicBoomerang = content.Load<SoundEffect>("Sounds/magicBoomerang");
+            boomerang = content.Load<SoundEffect>("Sounds/boomerang");
+            getItem = content.Load<SoundEffect>("Sounds/getItem");
 
         }
         public void StartMusic()
@@ -30,15 +31,19 @@ namespace LegendOfZelda.Scripts.Sounds
         {
             openDoor.Play();
         }
-        public void StartMagicBoomerangSound()
+        public void StartBoomerangSound()
         {
-            magicBoom = magicBoomerang.CreateInstance();
-            magicBoom.IsLooped = true;
-            magicBoom.Play();
+            boomerangInstance = boomerang.CreateInstance();
+            boomerangInstance.IsLooped = true;
+            boomerangInstance.Play();
         }
-        public void StopMagicBoomerangSound()
+        public void StopBoomerangSound()
         {
-            magicBoom.Stop();
+            boomerangInstance.Stop();
+        }
+        public void PlayGetItemSound()
+        {
+            getItem.Play();
         }
     }
 }
