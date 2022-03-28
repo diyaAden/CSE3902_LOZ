@@ -19,6 +19,12 @@
 /processorParam:Quality=Best
 /build:Sounds/dungeonMusic.mp3
 
+#begin Sounds/magicBoomerang.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/magicBoomerang.mp3
+
 #begin Sounds/openDoor.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor

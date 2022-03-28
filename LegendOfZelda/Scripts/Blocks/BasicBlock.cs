@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -17,7 +18,7 @@ namespace LegendOfZelda.Scripts.Blocks
         {
             //mainly used for making doors appear to open
             enabled = false;
-            SoundFactory.Instance.PlayOpenDoorSound();
+            SoundController.Instance.PlayOpenDoorSound();
         }
         public abstract void Update();
         public virtual void HandleCollision(ICollision side, int scale) { }
