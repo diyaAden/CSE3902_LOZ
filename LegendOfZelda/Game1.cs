@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
-using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
