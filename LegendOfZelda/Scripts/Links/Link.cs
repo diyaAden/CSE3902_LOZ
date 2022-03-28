@@ -1,12 +1,10 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.LevelManager;
-using LegendOfZelda.Scripts.Links.Sprite;
 using LegendOfZelda.Scripts.Links.State;
+using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -16,8 +14,9 @@ namespace LegendOfZelda.Scripts.Links
     {
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
-        bool isDamaged =false;
-        private int attackCooldown, cooldownLimit = 30;
+        bool isDamaged = false;
+        private int attackCooldown;
+        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
 
         public Link(Vector2 position, Vector2 screenOffset, int scale)
@@ -70,9 +69,16 @@ namespace LegendOfZelda.Scripts.Links
             }
         }
 
-        public void PickItem(String name, int scale)
+        public void PickItem(string name, int scale)
         {
-            if (attackCooldown == 0)
+            if (name.Contains("Rupee")) SoundController.Instance.PlayGetRupeeSound();
+            else if (name.Contains("Triforce"))
+            {
+                attackCooldown = getTriforceCooldownLimit;
+                SoundController.Instance.PlayGetTriforceMusic();
+                state.PickItem(name, scale);
+            }
+            else
             {
                 attackCooldown = cooldownLimit;
                 state.PickItem(name, scale);

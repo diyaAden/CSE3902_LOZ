@@ -31,6 +31,18 @@
 /processorParam:Quality=Best
 /build:Sounds/getItem.mp3
 
+#begin Sounds/getRupee.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/getRupee.mp3
+
+#begin Sounds/getTriforce.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/getTriforce.mp3
+
 #begin Sounds/openDoor.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor

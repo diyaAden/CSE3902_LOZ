@@ -66,7 +66,7 @@ namespace LegendOfZelda
             roomManager.LoadContent(gameScale, screenOffset);
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale);
-            SoundController.Instance.StartMusic();
+            SoundController.Instance.StartDungeonMusic();
         }
 
         protected override void Update(GameTime gameTime)

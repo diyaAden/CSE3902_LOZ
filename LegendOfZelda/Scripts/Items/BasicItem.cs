@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace LegendOfZelda.Scripts.Items
 
         public virtual void PickItem(Vector2 linkPosition, int scale)
         {
+            SoundController.Instance.PlayGetItemSound();
             pos = new Vector2(linkPosition.X + itemOffset.X * scale, linkPosition.Y - (itemOffset.Y + animationFrames[currentFrame].Height) * scale);
         }
         public virtual Rectangle ObjectBox(int scale)
