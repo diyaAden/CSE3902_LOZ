@@ -15,7 +15,9 @@ namespace LegendOfZelda.Scripts.Blocks
         public int AdjacentRoom { get; set; }
         public void Disable()
         {
+            //mainly used for making doors appear to open
             enabled = false;
+            SoundFactory.Instance.PlayOpenDoorSound();
         }
         public abstract void Update();
         public virtual void HandleCollision(ICollision side, int scale) { }
