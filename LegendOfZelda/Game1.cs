@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.GameStateMachine;
 
 namespace LegendOfZelda
 {
@@ -25,6 +26,7 @@ namespace LegendOfZelda
         public HandlerManager handlerManager;
         public ILink link;
         public RoomManager roomManager;
+        public GameState Gstate;
 
         public Game1()
         {
@@ -34,6 +36,7 @@ namespace LegendOfZelda
         }
         protected override void Initialize()
         {
+            Gstate = GameState.Playing;
             KeyboardController control = new KeyboardController();
             MouseController mouse = new MouseController();
             InitializeController con = new InitializeController(this);
@@ -68,18 +71,41 @@ namespace LegendOfZelda
 
         protected override void Update(GameTime gameTime)
         {
-            handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
-
-            foreach (IController controller in controllerList) { controller.Update(); }
-
-            for (int i = 0; i < activeWeapons.Count; i++)
+            switch (Gstate)
             {
-                while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.NONE) { activeWeapons.RemoveAt(i); }
+                case GameState.Playing:
+                    handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
+
+                    foreach (IController controller in controllerList) { controller.Update(); }
+
+                    for (int i = 0; i < activeWeapons.Count; i++)
+                    {
+                        while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.NONE) { activeWeapons.RemoveAt(i); }
+                    }
+                    foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
+                    link.Update();
+                    roomManager.Update(link.State.Position, gameScale, screenOffset);
+                    handlerManager.Update(link, activeWeapons, roomManager, gameScale);
+                    break;
+                case GameState.ItemSelection:
+
+                    break;
+                case GameState.Triforce:
+
+                    break;
+                case GameState.RoomSwitch:
+
+                    break;
+                case GameState.Paused:
+
+                    break;
+                case GameState.GameOver:
+
+                    break;
+                case GameState.WonGame:
+
+                    break;
             }
-            foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
-            link.Update();
-            roomManager.Update(link.State.Position, gameScale, screenOffset);
-            handlerManager.Update(link, activeWeapons, roomManager, gameScale);
             
 
             base.Update(gameTime);
