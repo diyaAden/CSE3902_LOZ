@@ -30,6 +30,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             linkLeftItem = content.Load<Texture2D>("SpriteSheets/Link/LeftUseItem");
             linkRightItem = content.Load<Texture2D>("SpriteSheets/Link/RightUseItem");
             linkFrontItem = content.Load<Texture2D>("SpriteSheets/Link/FrontUseItem");
+            linkBackItem = content.Load<Texture2D>("SpriteSheets/Link/BackUseItem");
             linkPickItem = content.Load<Texture2D>("SpriteSheets/Link/LinkPickItem");
             //Pick item
             linkBackAttack = content.Load<Texture2D>("SpriteSheets/Link/LinkAttackBack");
