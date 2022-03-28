@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
+using Microsoft.Xna.Framework.Media;
 
 namespace LegendOfZelda
 {
@@ -61,9 +62,11 @@ namespace LegendOfZelda
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             RoomBackgroundFactory.Instance.LoadAllTextures(Content);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
+            SoundFactory.Instance.LoadAllSounds(Content);
             roomManager.LoadContent(gameScale, screenOffset);
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale);
+            SoundFactory.Instance.StartMusic();
         }
 
         protected override void Update(GameTime gameTime)
