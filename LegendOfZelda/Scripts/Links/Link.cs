@@ -72,6 +72,7 @@ namespace LegendOfZelda.Scripts.Links
         public void PickItem(string name, int scale)
         {
             if (name.Contains("Rupee")) SoundController.Instance.PlayGetRupeeSound();
+            else if (name.Equals("Heart")) SoundController.Instance.PlayGetHeartSound();
             else if (name.Contains("Triforce"))
             {
                 attackCooldown = getTriforceCooldownLimit;

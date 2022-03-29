@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Sounds
     {
         private Song music;
         private SoundEffect openDoor, boomerang, getItem, getRupee, getTriforce, linkGetsHurt, useFire, placeAndExplodeBomb, 
-            swordBeam;
+            swordBeam, getHeart;
         private SoundEffectInstance boomerangInstance, useFireInstance;
         private static readonly SoundController instance = new SoundController(); 
         public static SoundController Instance => instance;
@@ -27,6 +27,7 @@ namespace LegendOfZelda.Scripts.Sounds
             useFire = content.Load<SoundEffect>("Sounds/ItemSounds/useFire");
             placeAndExplodeBomb = content.Load<SoundEffect>("Sounds/ItemSounds/placeAndExplodeBomb");
             swordBeam = content.Load<SoundEffect>("Sounds/ItemSounds/useSwordBeam");
+            getHeart = content.Load<SoundEffect>("Sounds/ItemSounds/getHeart");
         }
         public void StartDungeonMusic()
         {
@@ -38,6 +39,7 @@ namespace LegendOfZelda.Scripts.Sounds
             MediaPlayer.Stop();
             getTriforce.Play();
         }
+        public void PlayGetHeartSound() { getHeart.Play(); }
         public void PlayLinkGetsHurtSound() { linkGetsHurt.Play(); }
         public void PlaySwordBeamSound() { swordBeam.Play(); }
         public void PlayBombSound() { placeAndExplodeBomb.Play(); }
