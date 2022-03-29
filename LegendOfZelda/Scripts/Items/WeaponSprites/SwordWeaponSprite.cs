@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Sounds;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Items.WeaponSprites
@@ -8,7 +9,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
         private int currentSpeed = 0;
         private bool swordOut = false;
         private readonly int direction;
-        private const int swordSpeed = 2, delayUntilSwordSpawn = 30, timePerFrame = 3, itemTimeLimit = 75;
+        private const int swordSpeed = 5, delayUntilSwordSpawn = 30, timePerFrame = 3, itemTimeLimit = 60;
         private const int xPosS1 = 0, yPosS1 = 16, xPosS2 = 0, yPosS2 = 0, widthS = 7, heightS = 16;
         private const int xPosN1 = 7, yPosN1 = 0, xPosN2 = 7, yPosN2 = 16, widthN = 7, heightN = 16;
         private const int xPosW1 = 14, yPosW1 = 18, xPosW2 = 30, yPosW2 = 18, widthW = 16, heightW = 7;
@@ -25,6 +26,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
         private void SpawnSword()
         {
             animationFrames.Clear();
+            SoundController.Instance.PlaySwordBeamSound();
             switch (direction)
             {
                 case 0:

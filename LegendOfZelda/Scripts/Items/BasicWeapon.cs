@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static LegendOfZelda.Scripts.Items.IWeapon;
@@ -33,6 +34,16 @@ namespace LegendOfZelda.Scripts.Items
                 case WeaponType.SWORD:
                     Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
                     weaponType = WeaponType.SWORDSHARDS;
+                    break;
+                case WeaponType.BOOMERANG:
+                    SoundController.Instance.StopBoomerangSound();
+                    Weapon = null;
+                    weaponType = WeaponType.NONE;
+                    break;
+                case WeaponType.FIRE:
+                    SoundController.Instance.StopFireSound();
+                    Weapon = null;
+                    weaponType = WeaponType.NONE;
                     break;
                 default:
                     Weapon = null;

@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -31,6 +32,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
         public override void Attack()
         {
             fireballs = new List<IEnemy>();
+            SoundController.Instance.PlayBossRoarSound();
             for (int i = -1; i < 2; i++)
                 fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, pos));
         }
