@@ -117,7 +117,7 @@ namespace LegendOfZelda.Scripts.Links
             {
                 Debug.WriteLine("enemy collision registered");
                 // isDamaged = true;
-               
+                SoundController.Instance.PlayLinkGetsHurtSound();
                 state.ToDamaged();
             }
 
@@ -129,6 +129,7 @@ namespace LegendOfZelda.Scripts.Links
             {
                 Debug.WriteLine("hurt by urs weapon");
                 isDamaged = true;
+                SoundController.Instance.PlayLinkGetsHurtSound();
                 state.ToDamaged();
             }
 

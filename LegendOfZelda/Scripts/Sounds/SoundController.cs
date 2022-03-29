@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.Sounds
     class SoundController
     {
         private Song music;
-        private SoundEffect openDoor, boomerang, getItem, getRupee, getTriforce;
+        private SoundEffect openDoor, boomerang, getItem, getRupee, getTriforce, linkGetsHurt;
         private SoundEffectInstance boomerangInstance;
         private static readonly SoundController instance = new SoundController(); 
         public static SoundController Instance => instance;
@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.Sounds
             boomerang = content.Load<SoundEffect>("Sounds/boomerang");
             getItem = content.Load<SoundEffect>("Sounds/getItem");
             getRupee = content.Load<SoundEffect>("Sounds/getRupee");
+            linkGetsHurt = content.Load<SoundEffect>("Sounds/playerGetsHurt");
         }
         public void StartDungeonMusic()
         {
@@ -33,27 +34,16 @@ namespace LegendOfZelda.Scripts.Sounds
             MediaPlayer.Stop();
             getTriforce.Play();
         }
-        public void PlayOpenDoorSound()
-        {
-            openDoor.Play();
-        }
+        public void PlayLinkGetsHurtSound() { linkGetsHurt.Play(); }
+        public void PlayOpenDoorSound() { openDoor.Play(); }
         public void StartBoomerangSound()
         {
             boomerangInstance = boomerang.CreateInstance();
             boomerangInstance.IsLooped = true;
             boomerangInstance.Play();
         }
-        public void StopBoomerangSound()
-        {
-            boomerangInstance.Stop();
-        }
-        public void PlayGetItemSound()
-        {
-            getItem.Play();
-        }
-        public void PlayGetRupeeSound()
-        {
-            getRupee.Play();
-        }
+        public void StopBoomerangSound() { boomerangInstance.Stop(); }
+        public void PlayGetItemSound() { getItem.Play(); }
+        public void PlayGetRupeeSound() { getRupee.Play(); }
     }
 }
