@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Sounds;
+using Microsoft.Xna.Framework;
 using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items.WeaponCreators
@@ -9,6 +10,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
 
         public BombWeapon(Vector2 linkPosition, int facing, int scale)
         {
+            SoundController.Instance.PlayBombSound();
             Weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
             weaponType = WeaponType.BOMB;
             position = facing switch
