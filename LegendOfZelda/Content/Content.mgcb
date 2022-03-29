@@ -13,125 +13,125 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Sounds/boomerang.mp3
+#begin Sounds/EnemySounds/bossDefeated.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/boomerang.mp3
+/build:Sounds/EnemySounds/bossDefeated.mp3
 
-#begin Sounds/bossDefeated.mp3
+#begin Sounds/EnemySounds/bossGetsDamaged.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/bossDefeated.mp3
+/build:Sounds/EnemySounds/bossGetsDamaged.mp3
 
-#begin Sounds/bossGetsDamaged.mp3
+#begin Sounds/EnemySounds/bossRoar.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/bossGetsDamaged.mp3
+/build:Sounds/EnemySounds/bossRoar.mp3
 
-#begin Sounds/bossRoar.mp3
+#begin Sounds/EnemySounds/enemyGetsDamaged.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/bossRoar.mp3
+/build:Sounds/EnemySounds/enemyGetsDamaged.mp3
 
-#begin Sounds/deflectWithShield.mp3
+#begin Sounds/Environment/findSecret.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/deflectWithShield.mp3
+/build:Sounds/Environment/findSecret.mp3
 
-#begin Sounds/dungeonMusic.mp3
+#begin Sounds/Environment/openDoor.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Environment/openDoor.mp3
+
+#begin Sounds/Environment/useStairs.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Environment/useStairs.mp3
+
+#begin Sounds/ItemSounds/boomerang.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/boomerang.mp3
+
+#begin Sounds/ItemSounds/getHeart.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/getHeart.mp3
+
+#begin Sounds/ItemSounds/getItem.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/getItem.mp3
+
+#begin Sounds/ItemSounds/getRupee.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/getRupee.mp3
+
+#begin Sounds/ItemSounds/getTriforce.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/getTriforce.mp3
+
+#begin Sounds/ItemSounds/keyAppears.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/keyAppears.mp3
+
+#begin Sounds/ItemSounds/placeAndExplodeBomb.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/placeAndExplodeBomb.mp3
+
+#begin Sounds/ItemSounds/rupeesDecreasing.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/rupeesDecreasing.mp3
+
+#begin Sounds/ItemSounds/useFire.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/useFire.mp3
+
+#begin Sounds/ItemSounds/useSwordBeam.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/useSwordBeam.mp3
+
+#begin Sounds/LinkSounds/deflectWithShield.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/LinkSounds/deflectWithShield.mp3
+
+#begin Sounds/LinkSounds/playerGetsHurt.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/LinkSounds/playerGetsHurt.mp3
+
+#begin Sounds/Music/dungeonMusic.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Sounds/dungeonMusic.mp3
-
-#begin Sounds/enemyGetsDamaged.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/enemyGetsDamaged.mp3
-
-#begin Sounds/findSecret.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/findSecret.mp3
-
-#begin Sounds/getHeart.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/getHeart.mp3
-
-#begin Sounds/getItem.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/getItem.mp3
-
-#begin Sounds/getRupee.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/getRupee.mp3
-
-#begin Sounds/getTriforce.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/getTriforce.mp3
-
-#begin Sounds/keyAppears.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/keyAppears.mp3
-
-#begin Sounds/openDoor.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/openDoor.mp3
-
-#begin Sounds/placeAndExplodeBomb.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/placeAndExplodeBomb.mp3
-
-#begin Sounds/playerGetsHurt.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/playerGetsHurt.mp3
-
-#begin Sounds/rupeesDecreasing.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/rupeesDecreasing.mp3
-
-#begin Sounds/useFire.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/useFire.mp3
-
-#begin Sounds/useStairs.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/useStairs.mp3
-
-#begin Sounds/useSwordBeam.mp3
-/importer:Mp3Importer
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/useSwordBeam.mp3
+/build:Sounds/Music/dungeonMusic.mp3
 
 #begin SpriteSheets/Blocks/TileSpriteSheet.png
 /importer:TextureImporter

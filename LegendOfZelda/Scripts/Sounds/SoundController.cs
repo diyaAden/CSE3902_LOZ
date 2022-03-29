@@ -16,13 +16,13 @@ namespace LegendOfZelda.Scripts.Sounds
 
         public void LoadAllSounds(ContentManager content)
         {
-            music = content.Load<Song>("Sounds/dungeonMusic");
-            getTriforce = content.Load<SoundEffect>("Sounds/getTriforce");
-            openDoor = content.Load<SoundEffect>("Sounds/openDoor");
-            boomerang = content.Load<SoundEffect>("Sounds/boomerang");
-            getItem = content.Load<SoundEffect>("Sounds/getItem");
-            getRupee = content.Load<SoundEffect>("Sounds/getRupee");
-            linkGetsHurt = content.Load<SoundEffect>("Sounds/playerGetsHurt");
+            music = content.Load<Song>("Sounds/Music/dungeonMusic");
+            getTriforce = content.Load<SoundEffect>("Sounds/ItemSounds/getTriforce");
+            openDoor = content.Load<SoundEffect>("Sounds/Environment/openDoor");
+            boomerang = content.Load<SoundEffect>("Sounds/ItemSounds/boomerang");
+            getItem = content.Load<SoundEffect>("Sounds/ItemSounds/getItem");
+            getRupee = content.Load<SoundEffect>("Sounds/ItemSounds/getRupee");
+            linkGetsHurt = content.Load<SoundEffect>("Sounds/LinkSounds/playerGetsHurt");
         }
         public void StartDungeonMusic()
         {
