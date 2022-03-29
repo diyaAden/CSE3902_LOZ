@@ -8,15 +8,15 @@ namespace LegendOfZelda.Scripts.Items
 {
     public abstract class BasicWeapon : IWeapon
     {
-        private int timer = 0;
         public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
         private int animationTimer = 1;
+        protected int itemLifeSpan = 0;
 
         protected WeaponType weaponType;
         protected IItem Weapon;
         protected Vector2 position;
 
-        private void DestroyWeapon()
+        public virtual void DestroyWeapon()
         {
             position = Weapon.Position;
             switch (weaponType)
@@ -25,11 +25,6 @@ namespace LegendOfZelda.Scripts.Items
                     Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
                     Weapon.Position = position;
                     weaponType = WeaponType.EXPLOSION;
-                    break;
-                case WeaponType.ARROW:
-                    Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
-                    Weapon.Position = position;
-                    weaponType = WeaponType.NICK;
                     break;
                 case WeaponType.SWORD:
                     Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
@@ -50,7 +45,7 @@ namespace LegendOfZelda.Scripts.Items
                     weaponType = WeaponType.NONE;
                     break;
             }
-            timer = 0;
+            itemLifeSpan = 0;
         }
         public Vector2 GetPosition()
         {
@@ -60,19 +55,19 @@ namespace LegendOfZelda.Scripts.Items
         {
             return weaponType;
         }
-        public void Update(Vector2 linkPosition)
+        public virtual void Update(Vector2 linkPosition)
         {
             if (weaponType == WeaponType.BOOMERANG)
             {
                 Weapon.Update(linkPosition);
                 AnimationTimer = Weapon.AnimationTimer;
-                if (timer == Weapon.TimeLimit) { DestroyWeapon(); }
+                if (itemLifeSpan == Weapon.TimeLimit) { DestroyWeapon(); }
             }
             else if (Weapon != null)
             {
                 Weapon.Update();
                 AnimationTimer = Weapon.AnimationTimer;
-                if (++timer == Weapon.TimeLimit) { DestroyWeapon(); }
+                if (++itemLifeSpan == Weapon.TimeLimit) { DestroyWeapon(); }
             }
         }
 

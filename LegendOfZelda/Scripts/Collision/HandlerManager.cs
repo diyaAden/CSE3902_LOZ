@@ -145,6 +145,7 @@ namespace LegendOfZelda.Scripts.Collision
                     if (!weapon.IsNull())
                     {
                         List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, weapon, gameScale);
+                        if (sides.Count != 0) weapon.DestroyWeapon();
                         foreach (ICollision side in sides)
                         {
                             collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);

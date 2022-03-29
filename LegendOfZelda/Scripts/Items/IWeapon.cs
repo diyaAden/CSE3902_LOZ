@@ -10,6 +10,8 @@ namespace LegendOfZelda.Scripts.Items
         public Vector2 GetPosition();
         public int AnimationTimer { get; set; }
 
+        public void DestroyWeapon();
+
         public WeaponType GetWeaponType();
 
         public bool IsNull();

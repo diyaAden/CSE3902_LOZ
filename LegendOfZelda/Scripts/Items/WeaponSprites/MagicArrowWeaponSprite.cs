@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
     public class MagicArrowWeaponSprite : BasicItem
     {
         private readonly int direction;
-        private const int speed = 2, itemTimeLimit = 50, length = 16, width = 5;
+        private const int speed = 4, itemTimeLimit = 50, length = 16, width = 5;
         private const int xPosS = 46, yPosS = 0, xPosN = 52, yPosN = 16, xPosW = 30, yPosW = 6, xPosE = 14, yPosE = 0;
 
         public MagicArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
