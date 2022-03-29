@@ -40,6 +40,11 @@ namespace LegendOfZelda.Scripts.Items
                     Weapon = null;
                     weaponType = WeaponType.NONE;
                     break;
+                case WeaponType.FIRE:
+                    SoundController.Instance.StopFireSound();
+                    Weapon = null;
+                    weaponType = WeaponType.NONE;
+                    break;
                 default:
                     Weapon = null;
                     weaponType = WeaponType.NONE;
