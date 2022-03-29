@@ -78,7 +78,8 @@ namespace LegendOfZelda.Scripts.Items
         public virtual void HandleCollision(ICollision side, int scale) { }
         public virtual Rectangle ObjectBox(int scale)
         {
-            return Weapon.ObjectBox(scale);
+            if (Weapon == null) return new Rectangle();
+            else return Weapon.ObjectBox(scale);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

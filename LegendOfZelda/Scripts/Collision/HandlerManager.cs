@@ -49,7 +49,7 @@ namespace LegendOfZelda.Scripts.Collision
             ForLinkWeapon();
             ForLinkItem();
             ForLinkBlocks();
-            
+            ForWeaponObject();
             ForEnemy();
         }
 
@@ -60,6 +60,22 @@ namespace LegendOfZelda.Scripts.Collision
             roomManager = RoomManager;
             gameScale = GameScale;
             ForAllUpdate();
+        }
+        public void ForWeaponObject()
+        {
+            foreach (IWeapon weapon in activeWeapons)
+            {
+                bool setToDestroy = false;
+                foreach (IBlock block in blocks)
+                {
+                    List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, block, gameScale);
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    {
+                        setToDestroy = true;
+                    }
+                }
+                if (setToDestroy) weapon.DestroyWeapon();
+            }
         }
         private void ForLinkBlocks()
         {

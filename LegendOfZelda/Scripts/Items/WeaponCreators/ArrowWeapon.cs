@@ -27,7 +27,17 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             {
                 Weapon.Update();
                 AnimationTimer = Weapon.AnimationTimer;
-                if (++itemLifeSpan == Weapon.TimeLimit) { DestroyWeapon(); }
+                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
+            }
+        }
+
+        private void DestructionOverride()
+        {
+            if (weaponType == WeaponType.ARROW) DestroyWeapon();
+            else
+            {
+                Weapon = null;
+                weaponType = WeaponType.NONE;
             }
         }
 
@@ -39,10 +49,6 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
                 Weapon.Position = position;
                 weaponType = WeaponType.NICK;
                 itemLifeSpan = 0;
-            } else
-            {
-                Weapon = null;
-                weaponType = WeaponType.NONE;
             }
         }
     }
