@@ -5,10 +5,12 @@ namespace LegendOfZelda.Scripts.Items
 {
     public interface IWeapon: IGameObject
     {
-        public enum WeaponType { ARROW, BOMB, FIRE, BOOMERANG, SWORD, SWORDSHARDS, EXPLOSION, NICK, NONE }
+        public enum WeaponType { ARROW, BOMB, FIRE, BOOMERANG, SWORDBEAM, SWORDSHARDS, EXPLOSION, NICK, NONE }
 
         public Vector2 GetPosition();
         public int AnimationTimer { get; set; }
+
+        public void DestroyWeapon();
 
         public WeaponType GetWeaponType();
 

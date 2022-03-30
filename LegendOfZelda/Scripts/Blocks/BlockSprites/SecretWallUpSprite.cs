@@ -4,23 +4,25 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
-    class CrackedDoorSpriteDown : BasicBlock
+    class SecretWallUpSprite : BasicBlock
     {
-        public CrackedDoorSpriteDown(Texture2D blockSpriteSheet)
+        private const int xPos = 815, yPos = 11, width = 32, height = 32;
+
+        public SecretWallUpSprite(Texture2D blockSpriteSheet)
         {
             spriteSheet = blockSpriteSheet;
-            sourceRect = new Rectangle(914, 11, 32, 32);
-            transparency = 1f;
+            sourceRect = new Rectangle(xPos, yPos, width, height);
         }
+
         public override void Disable()
         {
             enabled = false;
-            SoundController.Instance.PlayOpenDoorSound();
+            SoundController.Instance.PlayFindSecretSound();
         }
 
         public override void Update()
         {
-
+            
         }
     }
 }

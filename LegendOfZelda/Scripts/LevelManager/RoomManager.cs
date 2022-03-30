@@ -9,8 +9,35 @@ namespace LegendOfZelda.Scripts.LevelManager
     {
         private const int roomsToLoad = 18;
         private XmlReader xml;
+        private bool secretPath6To10Open = false, secretPath7To11Open = false;
         public List<ILevel> Rooms { get; set; }
         public int CurrentRoom { get; set; }
+        public bool SecretPath6To10Open
+        {
+            get { return secretPath6To10Open; }
+            set
+            {
+                secretPath6To10Open = value;
+                if (secretPath6To10Open)
+                {
+                    Rooms[6].OpenSecretDoorUp();
+                    Rooms[10].OpenSecretDoorDown();
+                }
+            }
+        }
+        public bool SecretPath7To11Open
+        {
+            get { return secretPath7To11Open; }
+            set
+            {
+                secretPath7To11Open = value;
+                if (secretPath7To11Open)
+                {
+                    Rooms[7].OpenSecretDoorUp();
+                    Rooms[11].OpenSecretDoorDown();
+                }
+            }
+        }
         public RoomManager() { }
 
         public void LoadContent(int scale, Vector2 screenOffset)
@@ -59,9 +86,6 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
-            if (CurrentRoom  < 0)
-                CurrentRoom += Rooms.Count;
-            CurrentRoom %= Rooms.Count;
             Rooms[CurrentRoom].Update(linkPosition, scale, screenOffset);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)

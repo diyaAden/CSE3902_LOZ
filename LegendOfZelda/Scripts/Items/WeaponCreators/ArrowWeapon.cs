@@ -20,5 +20,36 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             };
             Weapon.Position = position;
         }
+
+        public override void Update(Vector2 linkPosition)
+        {
+            if (Weapon != null)
+            {
+                Weapon.Update();
+                AnimationTimer = Weapon.AnimationTimer;
+                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
+            }
+        }
+
+        private void DestructionOverride()
+        {
+            if (weaponType == WeaponType.ARROW) DestroyWeapon();
+            else
+            {
+                Weapon = null;
+                weaponType = WeaponType.NONE;
+            }
+        }
+
+        public override void DestroyWeapon()
+        {
+            if (weaponType == WeaponType.ARROW) {
+                position = Weapon.Position;
+                Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
+                Weapon.Position = position;
+                weaponType = WeaponType.NICK;
+                itemLifeSpan = 0;
+            }
+        }
     }
 }

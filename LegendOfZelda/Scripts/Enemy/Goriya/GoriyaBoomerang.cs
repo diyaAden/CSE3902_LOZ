@@ -1,16 +1,15 @@
-﻿using LegendOfZelda.Scripts.Sounds;
+﻿using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using static LegendOfZelda.Scripts.Items.IWeapon;
 
-namespace LegendOfZelda.Scripts.Items.WeaponCreators
+namespace LegendOfZelda.Scripts.Enemy.Goriya
 {
-    class FireWeapon : BasicWeapon
+    class GoriyaBoomerang : BasicWeapon
     {
-        public FireWeapon(Vector2 pos, int facing)
+        public GoriyaBoomerang(Vector2 pos, int facing)
         {
-            SoundController.Instance.StartFireSound();
-            Weapon = WeaponSpriteFactory.Instance.CreateFireWeaponSprite(facing);
-            weaponType = WeaponType.FIRE;
+            Weapon = WeaponSpriteFactory.Instance.CreateWoodBoomerangWeaponSprite(facing);
+            weaponType = WeaponType.BOOMERANG;
             position = pos;
             Weapon.Position = position;
         }
@@ -19,17 +18,16 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
         {
             if (Weapon != null)
             {
-                Weapon.Update();
+                Weapon.Update(linkPosition);
                 AnimationTimer = Weapon.AnimationTimer;
-                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
+                if (itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
             }
         }
 
         private void DestructionOverride()
         {
-            if (weaponType == WeaponType.FIRE)
+            if (weaponType == WeaponType.BOOMERANG)
             {
-                SoundController.Instance.StopFireSound();
                 Weapon = null;
                 weaponType = WeaponType.NONE;
             }

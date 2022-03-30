@@ -17,5 +17,11 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset);
         public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale);
         public void Draw(SpriteBatch spriteBatch, int scale);
+        public void OpenSecretDoorUp();
+        public void OpenSecretDoorDown();
+
+        public void OpenSecretDoorLeft();
+
+        public void OpenSecretDoorRight();
     }
 }

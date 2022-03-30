@@ -4,16 +4,11 @@ using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-
 namespace LegendOfZelda.Scripts.Collision.CollisionDetector
 {
-    class CollisionPlayerEnemyDetector: ICollisionDetector
+    class CollisionWeaponGameObjectDetector: ICollisionDetector
     {
-        public List<ICollision> BoxTest(IEnemy link, IGameObject gameObject, int scale)
-        {
-            return null;
-        }
-        public List<ICollision> BoxTest(IWeapon weapon, IGameObject gameObject, int scale)
+        public List<ICollision> BoxTest(ILink link, IEnemy enemy, int scale)
         {
             return null;
         }
@@ -21,20 +16,20 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
         {
             return null;
         }
-
-        public List<ICollision> BoxTest(ILink link, IEnemy enemy, int scale)
+        public List<ICollision> BoxTest(IWeapon weapon, IGameObject gameObject, int scale)
         {
             List<ICollision> sides = new List<ICollision>();
-            Rectangle linkBox = link.State.LinkBox(scale);
-            Rectangle CheckSide = Rectangle.Intersect(linkBox, enemy.ObjectBox(scale));
+            Rectangle weaponBox = weapon.ObjectBox(scale);
+            Rectangle objectBox = gameObject.ObjectBox(scale);
+            Rectangle CheckSide = Rectangle.Intersect(weaponBox, objectBox);
             if (CheckSide.IsEmpty)
             {
                 sides.Add(ICollision.SideNone);
             }
             else
             {
-                float LeftRightCheck = CheckSide.Center.X - linkBox.Center.X;
-                float TopBottomCheck = CheckSide.Center.Y - linkBox.Center.Y;
+                float LeftRightCheck = CheckSide.Center.X - objectBox.Center.X;
+                float TopBottomCheck = CheckSide.Center.Y - objectBox.Center.Y;
 
                 if (LeftRightCheck < 0)
                 {
@@ -54,6 +49,11 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
                 }
             }
             return sides;
+        }
+
+        public List<ICollision> BoxTest(IEnemy link, IGameObject gameObject, int scale)
+        {
+            return null;
         }
     }
 }

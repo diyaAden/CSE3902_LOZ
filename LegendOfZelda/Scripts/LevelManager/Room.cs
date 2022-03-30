@@ -1,6 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
-using LegendOfZelda.Scripts.Enemy.Trap.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,7 +22,36 @@ namespace LegendOfZelda.Scripts.LevelManager
             Enemies = new List<IEnemy>();
             Blocks = new List<IBlock>();
         }
+        public void OpenSecretDoorUp()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallUpSprite) block.Disable();
+            }
+        }
+        public void OpenSecretDoorDown()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallDownSprite) block.Disable();
+            }
+        }
 
+        public void OpenSecretDoorLeft()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallLeftSprite) block.Disable();
+            }
+        }
+
+        public void OpenSecretDoorRight()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallRightSprite) block.Disable();
+            }
+        }
         public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom)
         {
             if (type == "Item") AddItem(name, xPos, yPos);

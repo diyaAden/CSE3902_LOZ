@@ -15,9 +15,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
         {
             return new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height / 2 * scale);
         }
-        public override void Update()
-        {
-
-        }
+        public override void Update() { }
+        public override void Draw(SpriteBatch spriteBatch, int scale) { }
     }
 }

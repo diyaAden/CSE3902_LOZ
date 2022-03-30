@@ -8,49 +8,18 @@ namespace LegendOfZelda.Scripts.Items
 {
     public abstract class BasicWeapon : IWeapon
     {
-        private int timer = 0;
         public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
         private int animationTimer = 1;
+        protected int itemLifeSpan = 0;
 
         protected WeaponType weaponType;
         protected IItem Weapon;
         protected Vector2 position;
 
-        private void DestroyWeapon()
+        public virtual void DestroyWeapon()
         {
-            position = Weapon.Position;
-            switch (weaponType)
-            {
-                case WeaponType.BOMB:
-                    Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
-                    Weapon.Position = position;
-                    weaponType = WeaponType.EXPLOSION;
-                    break;
-                case WeaponType.ARROW:
-                    Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
-                    Weapon.Position = position;
-                    weaponType = WeaponType.NICK;
-                    break;
-                case WeaponType.SWORD:
-                    Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
-                    weaponType = WeaponType.SWORDSHARDS;
-                    break;
-                case WeaponType.BOOMERANG:
-                    SoundController.Instance.StopBoomerangSound();
-                    Weapon = null;
-                    weaponType = WeaponType.NONE;
-                    break;
-                case WeaponType.FIRE:
-                    SoundController.Instance.StopFireSound();
-                    Weapon = null;
-                    weaponType = WeaponType.NONE;
-                    break;
-                default:
-                    Weapon = null;
-                    weaponType = WeaponType.NONE;
-                    break;
-            }
-            timer = 0;
+            Weapon = null;
+            weaponType = WeaponType.NONE;
         }
         public Vector2 GetPosition()
         {
@@ -60,21 +29,7 @@ namespace LegendOfZelda.Scripts.Items
         {
             return weaponType;
         }
-        public void Update(Vector2 linkPosition)
-        {
-            if (weaponType == WeaponType.BOOMERANG)
-            {
-                Weapon.Update(linkPosition);
-                AnimationTimer = Weapon.AnimationTimer;
-                if (timer == Weapon.TimeLimit) { DestroyWeapon(); }
-            }
-            else if (Weapon != null)
-            {
-                Weapon.Update();
-                AnimationTimer = Weapon.AnimationTimer;
-                if (++timer == Weapon.TimeLimit) { DestroyWeapon(); }
-            }
-        }
+        public virtual void Update(Vector2 linkPosition) { }
 
         public virtual bool IsNull()
         {
@@ -83,7 +38,8 @@ namespace LegendOfZelda.Scripts.Items
         public virtual void HandleCollision(ICollision side, int scale) { }
         public virtual Rectangle ObjectBox(int scale)
         {
-            return Weapon.ObjectBox(scale);
+            if (Weapon == null) return new Rectangle();
+            else return Weapon.ObjectBox(scale);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

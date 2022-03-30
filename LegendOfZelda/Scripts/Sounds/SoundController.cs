@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Sounds
     {
         private Song music;
         private SoundEffect openDoor, boomerang, getItem, getRupee, getTriforce, linkGetsHurt, useFire, placeAndExplodeBomb, 
-            swordBeam, getHeart, bossRoar;
+            swordBeam, getHeart, bossRoar, findSecret;
         private SoundEffectInstance boomerangInstance, useFireInstance;
         private static readonly SoundController instance = new SoundController(); 
         public static SoundController Instance => instance;
@@ -29,6 +29,7 @@ namespace LegendOfZelda.Scripts.Sounds
             swordBeam = content.Load<SoundEffect>("Sounds/ItemSounds/useSwordBeam");
             getHeart = content.Load<SoundEffect>("Sounds/ItemSounds/getHeart");
             bossRoar = content.Load<SoundEffect>("Sounds/EnemySounds/bossRoar");
+            findSecret = content.Load<SoundEffect>("Sounds/Environment/findSecret");
         }
         public void StartDungeonMusic()
         {
@@ -40,6 +41,7 @@ namespace LegendOfZelda.Scripts.Sounds
             MediaPlayer.Stop();
             getTriforce.Play();
         }
+        public void PlayFindSecretSound() { findSecret.Play(); }
         public void PlayBossRoarSound() { bossRoar.Play(); }
         public void PlayGetHeartSound() { getHeart.Play(); }
         public void PlayLinkGetsHurtSound() { linkGetsHurt.Play(); }
@@ -52,7 +54,11 @@ namespace LegendOfZelda.Scripts.Sounds
             boomerangInstance.IsLooped = true;
             boomerangInstance.Play();
         }
-        public void StopBoomerangSound() { boomerangInstance.Stop(); }
+        public void StopBoomerangSound()
+        { 
+            if (boomerangInstance != null) boomerangInstance.Stop();
+            boomerangInstance = null;
+        }
         public void StartFireSound()
         {
             useFireInstance = useFire.CreateInstance();

@@ -4,6 +4,7 @@ using System;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Sounds;
 
 namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
@@ -40,7 +41,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public override void Attack()
         {
             attacking = true;
-            boomerang = new BoomerangWeapon(pos, direction);
+            boomerang = new GoriyaBoomerang(pos, direction);
         }
         public override void Update(int scale, Vector2 screenOffset)
         {

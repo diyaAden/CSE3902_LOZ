@@ -3,11 +3,10 @@ using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision
 {
@@ -24,7 +23,7 @@ namespace LegendOfZelda.Scripts.Collision
 
         private List<IBlock> blocks;
         private List<IItem> items;
-        private List<IEnemy> enemys;
+        private List<IEnemy> enemies;
 
         public HandlerManager(List<ICollisionDetector> CollisionDetectors)
         {
@@ -34,13 +33,14 @@ namespace LegendOfZelda.Scripts.Collision
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
             PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
             PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
+            BombWallCollisionHandler bombWallCollisionHandler = new BombWallCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler, bombWallCollisionHandler };
         }
         public void AssignRoom()
         {
             blocks = room.Blocks;
             items = room.Items;
-            enemys = room.Enemies;
+            enemies = room.Enemies;
         }
 
         public void ForAllUpdate()
@@ -49,7 +49,7 @@ namespace LegendOfZelda.Scripts.Collision
             ForLinkWeapon();
             ForLinkItem();
             ForLinkBlocks();
-            
+            ForWeaponObject();
             ForEnemy();
         }
 
@@ -60,6 +60,31 @@ namespace LegendOfZelda.Scripts.Collision
             roomManager = RoomManager;
             gameScale = GameScale;
             ForAllUpdate();
+        }
+        public void ForWeaponObject()
+        {
+            foreach (IWeapon weapon in activeWeapons)
+            {
+                bool setToDestroy = false;
+                foreach (IBlock block in blocks)
+                {
+                    List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, block, gameScale);
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    {
+                        setToDestroy = true;
+                        if (weapon is BombWeapon) collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
+                    }
+                }
+                foreach (IEnemy enemy in enemies)
+                {
+                    List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, enemy, gameScale);
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    {
+                        setToDestroy = true;
+                    }
+                }
+                if (setToDestroy) weapon.DestroyWeapon();
+            }
         }
         private void ForLinkBlocks()
         {
@@ -133,7 +158,7 @@ namespace LegendOfZelda.Scripts.Collision
 
         public void ForEnemy()
         {
-            foreach (IEnemy enemy in enemys)
+            foreach (IEnemy enemy in enemies)
             {
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
                 foreach (ICollision side in sides2)
