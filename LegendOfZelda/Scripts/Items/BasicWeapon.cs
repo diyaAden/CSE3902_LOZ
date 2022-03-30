@@ -18,20 +18,8 @@ namespace LegendOfZelda.Scripts.Items
 
         public virtual void DestroyWeapon()
         {
-            position = Weapon.Position;
-            switch (weaponType)
-            {
-                case WeaponType.BOMB:
-                    Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
-                    Weapon.Position = position;
-                    weaponType = WeaponType.EXPLOSION;
-                    break;
-                default:
-                    Weapon = null;
-                    weaponType = WeaponType.NONE;
-                    break;
-            }
-            itemLifeSpan = 0;
+            Weapon = null;
+            weaponType = WeaponType.NONE;
         }
         public Vector2 GetPosition()
         {
@@ -41,15 +29,7 @@ namespace LegendOfZelda.Scripts.Items
         {
             return weaponType;
         }
-        public virtual void Update(Vector2 linkPosition)
-        {
-            if (Weapon != null)
-            {
-                Weapon.Update();
-                AnimationTimer = Weapon.AnimationTimer;
-                if (++itemLifeSpan == Weapon.TimeLimit) { DestroyWeapon(); }
-            }
-        }
+        public virtual void Update(Vector2 linkPosition) { }
 
         public virtual bool IsNull()
         {
