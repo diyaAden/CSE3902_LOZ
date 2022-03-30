@@ -1,13 +1,13 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision
 {
@@ -72,6 +72,9 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
+                        // Create walls to hide bombed doors and change the if statement to check for secret walls
+                        if (weapon is BombWeapon)
+                        block.Disable();
                     }
                 }
                 foreach (IEnemy enemy in enemies)
