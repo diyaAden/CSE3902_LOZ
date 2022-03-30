@@ -52,7 +52,11 @@ namespace LegendOfZelda.Scripts.Sounds
             boomerangInstance.IsLooped = true;
             boomerangInstance.Play();
         }
-        public void StopBoomerangSound() { boomerangInstance.Stop(); }
+        public void StopBoomerangSound()
+        { 
+            if (boomerangInstance != null) boomerangInstance.Stop();
+            boomerangInstance = null;
+        }
         public void StartFireSound()
         {
             useFireInstance = useFire.CreateInstance();

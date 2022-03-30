@@ -24,7 +24,7 @@ namespace LegendOfZelda.Scripts.Collision
 
         private List<IBlock> blocks;
         private List<IItem> items;
-        private List<IEnemy> enemys;
+        private List<IEnemy> enemies;
 
         public HandlerManager(List<ICollisionDetector> CollisionDetectors)
         {
@@ -40,7 +40,7 @@ namespace LegendOfZelda.Scripts.Collision
         {
             blocks = room.Blocks;
             items = room.Items;
-            enemys = room.Enemies;
+            enemies = room.Enemies;
         }
 
         public void ForAllUpdate()
@@ -69,6 +69,14 @@ namespace LegendOfZelda.Scripts.Collision
                 foreach (IBlock block in blocks)
                 {
                     List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, block, gameScale);
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    {
+                        setToDestroy = true;
+                    }
+                }
+                foreach (IEnemy enemy in enemies)
+                {
+                    List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, enemy, gameScale);
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
@@ -149,7 +157,7 @@ namespace LegendOfZelda.Scripts.Collision
 
         public void ForEnemy()
         {
-            foreach (IEnemy enemy in enemys)
+            foreach (IEnemy enemy in enemies)
             {
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
                 foreach (ICollision side in sides2)
