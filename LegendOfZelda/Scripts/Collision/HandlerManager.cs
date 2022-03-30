@@ -72,9 +72,8 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
-                        // Create walls to hide bombed doors and change the if statement to check for secret walls
-                        if (weapon is BombWeapon)
-                        block.Disable();
+                        if (weapon is BombWeapon && (block is SecretWallUpSprite || block is SecretWallDownSprite || block is SecretWallLeftSprite || block is SecretWallRightSprite))
+                            block.Disable();
                     }
                 }
                 foreach (IEnemy enemy in enemies)

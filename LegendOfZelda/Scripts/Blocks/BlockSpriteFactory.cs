@@ -41,6 +41,10 @@ namespace LegendOfZelda.Scripts.Blocks
                 "EmptyWallWidth" => CreateEmptyWallFullWidthSprite(),
                 "HalfWallWidth" => CreateEmptyWallHalfWidthSprite(),
                 "HalfWallLen" => CreateEmptyWallHalfLenSprite(),
+                "SecretWallUp" => CreateSecretWallUpSprite(),
+                "SecretWallDown" => CreateSecretWallDownSprite(),
+                "SecretWallLeft" => CreateSecretWallLeftSprite(),
+                "SecretWallRight" => CreateSecretWallRightSprite(),
                 //Doors
                 "BombedDoorUp" => CreateBombedDoorSpriteUp(),
                 "BombedDoorDown" => CreateBombedDoorSpriteDown(),
@@ -60,6 +64,22 @@ namespace LegendOfZelda.Scripts.Blocks
                 "CrackedDoorRight" => CreateCrackedDoorSpriteRight(),
                 _ => null,
             };
+        }
+        public IBlock CreateSecretWallUpSprite()
+        {
+            return new SecretWallUpSprite(doorSpriteSheet);
+        }
+        public IBlock CreateSecretWallDownSprite()
+        {
+            return new SecretWallDownSprite(doorSpriteSheet);
+        }
+        public IBlock CreateSecretWallLeftSprite()
+        {
+            return new SecretWallLeftSprite(doorSpriteSheet);
+        }
+        public IBlock CreateSecretWallRightSprite()
+        {
+            return new SecretWallRightSprite(doorSpriteSheet);
         }
         public IBlock CreateFireBlockSprite()
         {
