@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
     class BackAttackLinkSprite: BasicLinkSprite
     {
         private Vector2 spritePosition;
-        public BackAttackLinkSprite(Texture2D texture, Vector2 Position, bool damageState)
+        public BackAttackLinkSprite(Texture2D texture, Vector2 Position, bool damageState, int scale)
         {
             Rows = 1;
             Columns = 3;
@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             TotalFrames = Rows * Columns;
             Texture = texture;
             Pos = Position;
-            Position.Y -= 12;
+            Position.Y -= 12 * scale;
             spritePosition = Position;
             checkDamageState = damageState;
             Timer = 2;
