@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
         public SwordWeapon(Vector2 linkPosition, int facing, int scale)
         {
             Weapon = WeaponSpriteFactory.Instance.CreateSwordWeaponSprite(facing);
-            weaponType = WeaponType.SWORD;
+            weaponType = WeaponType.SWORDBEAM;
             position = facing switch
             {
                 0 => new Vector2(linkPosition.X + 3 * scale, linkPosition.Y + 8 * scale),
@@ -17,6 +17,36 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
                 _ => new Vector2(linkPosition.X + 8 * scale, linkPosition.Y + 3 * scale),
             };
             Weapon.Position = position;
+        }
+
+        public override void Update(Vector2 linkPosition)
+        {
+            if (Weapon != null)
+            {
+                Weapon.Update();
+                AnimationTimer = Weapon.AnimationTimer;
+                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
+            }
+        }
+
+        private void DestructionOverride()
+        {
+            if (weaponType == WeaponType.SWORDBEAM) DestroyWeapon();
+            else
+            {
+                Weapon = null;
+                weaponType = WeaponType.NONE;
+            }
+        }
+
+        public override void DestroyWeapon() {
+            if (weaponType == WeaponType.SWORDBEAM)
+            {
+                position = Weapon.Position;
+                Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
+                weaponType = WeaponType.SWORDSHARDS;
+                itemLifeSpan = 0;
+            }
         }
     }
 }

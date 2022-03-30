@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands.LinkAction
         }
         private static bool containsSword(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.SWORD || weapon.GetWeaponType() == IWeapon.WeaponType.SWORDSHARDS;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.SWORDBEAM || weapon.GetWeaponType() == IWeapon.WeaponType.SWORDSHARDS;
         }
         public void Execute()
         {

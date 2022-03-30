@@ -26,15 +26,6 @@ namespace LegendOfZelda.Scripts.Items
                     Weapon.Position = position;
                     weaponType = WeaponType.EXPLOSION;
                     break;
-                case WeaponType.SWORD:
-                    Weapon = WeaponSpriteFactory.Instance.CreateSwordShardSetWeaponSprite(position);
-                    weaponType = WeaponType.SWORDSHARDS;
-                    break;
-                case WeaponType.FIRE:
-                    SoundController.Instance.StopFireSound();
-                    Weapon = null;
-                    weaponType = WeaponType.NONE;
-                    break;
                 default:
                     Weapon = null;
                     weaponType = WeaponType.NONE;
@@ -52,13 +43,7 @@ namespace LegendOfZelda.Scripts.Items
         }
         public virtual void Update(Vector2 linkPosition)
         {
-            if (weaponType == WeaponType.BOOMERANG)
-            {
-                Weapon.Update(linkPosition);
-                AnimationTimer = Weapon.AnimationTimer;
-                if (itemLifeSpan == Weapon.TimeLimit) { DestroyWeapon(); }
-            }
-            else if (Weapon != null)
+            if (Weapon != null)
             {
                 Weapon.Update();
                 AnimationTimer = Weapon.AnimationTimer;
