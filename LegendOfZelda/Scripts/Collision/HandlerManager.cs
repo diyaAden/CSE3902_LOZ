@@ -1,5 +1,4 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
-using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Enemy;
@@ -34,7 +33,8 @@ namespace LegendOfZelda.Scripts.Collision
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
             PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
             PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
+            BombWallCollisionHandler bombWallCollisionHandler = new BombWallCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler, bombWallCollisionHandler };
         }
         public void AssignRoom()
         {
@@ -72,8 +72,7 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
-                        if (weapon is BombWeapon && (block is SecretWallUpSprite || block is SecretWallDownSprite || block is SecretWallLeftSprite || block is SecretWallRightSprite))
-                            block.Disable();
+                        if (weapon is BombWeapon) collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
                     }
                 }
                 foreach (IEnemy enemy in enemies)
