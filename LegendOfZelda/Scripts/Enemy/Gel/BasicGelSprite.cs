@@ -18,6 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
             animationFrames.Add(new Rectangle(8, 0, 8, 9));
             direction = rnd.Next(0, 4);
             MoveSpeed = moveSpeed;
+            health = 1;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {

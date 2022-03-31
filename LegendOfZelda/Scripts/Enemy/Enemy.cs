@@ -18,11 +18,15 @@ namespace LegendOfZelda.Scripts.Enemy
 
         public virtual Texture2D Texture { get; set; }
 
+        public virtual int Health { get { return health; } set { health = value; } }
+        public virtual int health { get; set; }
+
         protected virtual int Rows { get; set; }
         protected virtual int Columns { get; set; }
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
         protected virtual float MoveSpeed { get; set; }
+        
 
         public virtual void Attack() { }
         public virtual void HandleBlockCollision(IGameObject block, ICollision side, int scale)
@@ -52,6 +56,7 @@ namespace LegendOfZelda.Scripts.Enemy
         {
             if (!(side is ICollision.SideNone))
             {
+                health--;
                 Debug.WriteLine("Boom! Enemy is damaged!");
             }
         }

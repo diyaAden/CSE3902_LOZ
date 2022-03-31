@@ -133,6 +133,9 @@ namespace LegendOfZelda.Scripts.Collision
 
         public void ForEnemy()
         {
+            int index = 0;
+            List<int> indices = new List<int>(); //I mean, design the object could delete itself is more effectively.
+
             foreach (IEnemy enemy in enemys)
             {
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
@@ -144,13 +147,20 @@ namespace LegendOfZelda.Scripts.Collision
                 {
                     if (!weapon.IsNull())
                     {
+
                         List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, weapon, gameScale);
+                        if (!sides.Contains(ICollision.SideNone) && sides.Count > 0 && enemy.Health <= 0)
+                        {
+                            indices.Add(index);
+                        }
                         foreach (ICollision side in sides)
                         {
                             collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
                         }
                     }
                 }
+                
+
                 foreach (IBlock block in blocks)
                 {
                     List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, block, gameScale);
@@ -160,6 +170,15 @@ namespace LegendOfZelda.Scripts.Collision
                         collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
                     }
                 }
+                index++;
+            }
+            int delete = 0; //when the object remove, all index behind that will change.
+
+            foreach (int ind in indices)
+            {
+                int actualDeleteIndex = ind - delete;
+                collisionHandlers[1].HandleEnemyDestroy((Room)room, actualDeleteIndex);
+                delete++;
             }
         }
 

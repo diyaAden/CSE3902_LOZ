@@ -15,7 +15,6 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         private IEnemy sprite;
         private bool attacking = false;
         private Random rnd = new Random();
-
         public override Vector2 position { 
             get { 
                 return pos; 
@@ -31,6 +30,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             MoveSpeed = moveSpeed;
             direction = 0;
             attackTimeLimit = rnd.Next(100, 181);
+            health = 3; //red is 3, blue is 5.
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {

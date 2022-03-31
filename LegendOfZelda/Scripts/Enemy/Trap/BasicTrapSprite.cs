@@ -30,6 +30,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             MoveSpeed = retreatSpeed;
+            health = 3; //Actually no health.
         }
         private Vector2 Advance(int scale)
         {
