@@ -1,15 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Links.Sprite
 {
     class LeftAttackLinkSprite: BasicLinkSprite
     {
         private Vector2 spritePosition;
-        public LeftAttackLinkSprite(Texture2D texture, Vector2 Position, bool damageState)
+        public LeftAttackLinkSprite(Texture2D texture, Vector2 Position, bool damageState, int scale)
         {
             Rows = 3;
             Columns = 1;
@@ -17,7 +14,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             TotalFrames = Rows * Columns;
             Texture = texture;
             Pos = Position;
-            Position.X -= 11;
+            Position.X -= 11 * scale;
             spritePosition = Position;
             checkDamageState = damageState;
             Timer = 2;

@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,8 +22,10 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         {
             if (!myGame.activeWeapons.Exists(containsBoomerang))
             {
+                Rectangle linkBox = myGame.link.State.LinkBox(myGame.gameScale);
+                Vector2 linkCenter = new Vector2(linkBox.X + linkBox.Width / 2f, linkBox.Y + linkBox.Height / 2f);
                 myGame.link.UseItem();
-                IWeapon boomerang = new MagicBoomerangWeapon(myGame.link.State.Position, myGame.link.State.Direction);
+                IWeapon boomerang = new MagicBoomerangWeapon(linkCenter, myGame.link.State.Direction);
                 myGame.activeWeapons.Add(boomerang);
             }
         }

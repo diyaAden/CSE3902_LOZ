@@ -9,6 +9,8 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
         private const int speed = 2, itemTimeLimit = 50, length = 16, width = 5;
         private const int xPosS = 46, yPosS = 16, xPosN = 52, yPosN = 0, xPosW = 14, yPosW = 6, xPosE = 30, yPosE = 0;
 
+        public int Direction { get { return direction; } }
+
         public ArrowWeaponSprite(Texture2D itemSpriteSheet, int movingDirection)
         {
             spriteSheet = itemSpriteSheet;

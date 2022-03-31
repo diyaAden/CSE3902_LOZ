@@ -23,22 +23,28 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             Weapon.Position = position;
         }
 
-        public override void Update(Vector2 linkPosition)
+        public override void Update(Vector2 linkPosition, int scale)
         {
             if (Weapon != null)
             {
                 Weapon.Update();
                 AnimationTimer = Weapon.AnimationTimer;
-                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
+                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(scale); }
             }
         }
 
-        private void DestructionOverride()
+        public bool DetonatingNow() { return Weapon.TimeLimit - itemLifeSpan <= 1; }
+
+        private void DestructionOverride(int scale)
         {
             if (weaponType == WeaponType.BOMB)
             {
                 position = Weapon.Position;
+                Rectangle bombBox = Weapon.ObjectBox(scale);
                 Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
+                Rectangle explosionBox = Weapon.ObjectBox(scale);
+                position = new Vector2(position.X + bombBox.Width / 2f - explosionBox.Width / 2f, 
+                    position.Y + bombBox.Height / 2f - explosionBox.Height / 2f);
                 Weapon.Position = position;
                 weaponType = WeaponType.EXPLOSION;
                 itemLifeSpan = 0;
@@ -50,6 +56,6 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             }
         }
 
-        public override void DestroyWeapon() { }
+        public override void DestroyWeapon(int scale) { }
     }
 }

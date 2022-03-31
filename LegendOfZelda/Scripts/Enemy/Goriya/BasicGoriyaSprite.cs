@@ -2,20 +2,19 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.Collision;
-using LegendOfZelda.Scripts.Sounds;
 
 namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
 {
-     class BasicGoriyaSprite : Enemy
+    class BasicGoriyaSprite : Enemy
     {
         private readonly int moveSpeed = 1;
+        private readonly Random rnd = new Random();
         private int animationTimer = 0, direction, attackTimer = 0, attackTimeLimit;
         private IWeapon boomerang;
         private IEnemy sprite;
         private bool attacking = false;
-        private Random rnd = new Random();
+        private Vector2 goriyaCenter;
 
         public override Vector2 position { 
             get { 
@@ -41,7 +40,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public override void Attack()
         {
             attacking = true;
-            boomerang = new GoriyaBoomerang(pos, direction);
+            boomerang = new GoriyaBoomerang(goriyaCenter, direction);
         }
         public override void Update(int scale, Vector2 screenOffset)
         {
@@ -61,8 +60,9 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                     Attack();
                 }
             }
+            goriyaCenter = new Vector2(pos.X + sprite.ObjectBox(scale).Width / 2f, pos.Y + sprite.ObjectBox(scale).Height / 2f);
             if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) 
-                boomerang.Update(pos);
+                boomerang.Update(goriyaCenter, scale);
             else 
                 attacking = false;
         }
@@ -94,9 +94,8 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         public override Rectangle ObjectBox(int scale) { return sprite.ObjectBox(scale); }
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {
+            if (boomerang != null) boomerang.Draw(spriteBatch, scale);
             sprite.Draw(spriteBatch, scale);
-            if (boomerang != null)
-                boomerang.Draw(spriteBatch, scale);
         }
     }
 }

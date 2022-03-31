@@ -72,7 +72,8 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
-                        if (weapon is BombWeapon) collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
+                        if (weapon is BombWeapon && ((BombWeapon)weapon).DetonatingNow()) 
+                            collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
                     }
                 }
                 foreach (IEnemy enemy in enemies)
@@ -83,7 +84,7 @@ namespace LegendOfZelda.Scripts.Collision
                         setToDestroy = true;
                     }
                 }
-                if (setToDestroy) weapon.DestroyWeapon();
+                if (setToDestroy) weapon.DestroyWeapon(gameScale);
             }
         }
         private void ForLinkBlocks()

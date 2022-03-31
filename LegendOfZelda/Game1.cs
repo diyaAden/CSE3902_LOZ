@@ -85,7 +85,9 @@ namespace LegendOfZelda
                     {
                         while (i < activeWeapons.Count && activeWeapons[i].GetWeaponType() == IWeapon.WeaponType.NONE) { activeWeapons.RemoveAt(i); }
                     }
-                    foreach (IWeapon weapon in activeWeapons) { weapon.Update(link.State.Position); }
+                    Rectangle linkBox = link.State.LinkBox(gameScale);
+                    Vector2 linkCenter = new Vector2(linkBox.X + linkBox.Width / 2f, linkBox.Y + linkBox.Height / 2f);
+                    foreach (IWeapon weapon in activeWeapons) { weapon.Update(linkCenter, gameScale); }
                     link.Update();
                     roomManager.Update(link.State.Position, gameScale, screenOffset);
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
