@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             Weapon.Position = position;
         }
 
-        public override void Update(Vector2 linkPosition)
+        public override void Update(Vector2 linkPosition, int scale)
         {
             if (Weapon != null)
             {
@@ -35,6 +35,6 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             }
         }
 
-        public override void DestroyWeapon() { }
+        public override void DestroyWeapon(int scale) { }
     }
 }

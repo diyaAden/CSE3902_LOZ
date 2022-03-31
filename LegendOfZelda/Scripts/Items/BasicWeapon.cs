@@ -16,7 +16,7 @@ namespace LegendOfZelda.Scripts.Items
         protected IItem Weapon;
         protected Vector2 position;
 
-        public virtual void DestroyWeapon()
+        public virtual void DestroyWeapon(int scale)
         {
             Weapon = null;
             weaponType = WeaponType.NONE;
@@ -29,7 +29,7 @@ namespace LegendOfZelda.Scripts.Items
         {
             return weaponType;
         }
-        public virtual void Update(Vector2 linkPosition) { }
+        public virtual void Update(Vector2 linkPosition, int scale) { }
 
         public virtual bool IsNull()
         {

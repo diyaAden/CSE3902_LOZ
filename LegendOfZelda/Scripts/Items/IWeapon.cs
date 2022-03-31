@@ -10,13 +10,13 @@ namespace LegendOfZelda.Scripts.Items
         public Vector2 GetPosition();
         public int AnimationTimer { get; set; }
 
-        public void DestroyWeapon();
+        public void DestroyWeapon(int scale);
 
         public WeaponType GetWeaponType();
 
         public bool IsNull();
 
-        public void Update(Vector2 linkPosition);
+        public void Update(Vector2 linkPosition, int scale);
 
         public void Draw(SpriteBatch spriteBatch, int scale);
     }

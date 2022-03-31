@@ -83,7 +83,7 @@ namespace LegendOfZelda.Scripts.Collision
                         setToDestroy = true;
                     }
                 }
-                if (setToDestroy) weapon.DestroyWeapon();
+                if (setToDestroy) weapon.DestroyWeapon(gameScale);
             }
         }
         private void ForLinkBlocks()

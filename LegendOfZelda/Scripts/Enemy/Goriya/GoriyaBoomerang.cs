@@ -14,7 +14,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya
             Weapon.Position = position;
         }
 
-        public override void Update(Vector2 linkPosition)
+        public override void Update(Vector2 linkPosition, int scale)
         {
             if (Weapon != null)
             {
@@ -33,6 +33,6 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya
             }
         }
 
-        public override void DestroyWeapon() { }
+        public override void DestroyWeapon(int scale) { }
     }
 }

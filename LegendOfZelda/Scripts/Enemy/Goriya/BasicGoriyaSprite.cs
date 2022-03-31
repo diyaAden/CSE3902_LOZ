@@ -62,7 +62,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                 }
             }
             if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) 
-                boomerang.Update(pos);
+                boomerang.Update(pos, scale);
             else 
                 attacking = false;
         }
