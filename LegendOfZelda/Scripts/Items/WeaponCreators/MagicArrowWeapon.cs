@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Items.WeaponSprites;
+using Microsoft.Xna.Framework;
 using static LegendOfZelda.Scripts.Items.IWeapon;
 
 namespace LegendOfZelda.Scripts.Items.WeaponCreators
@@ -46,7 +47,12 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             if (weaponType == WeaponType.ARROW)
             {
                 position = Weapon.Position;
+                Rectangle arrowBox = Weapon.ObjectBox(2);
+                int direction = ((MagicArrowWeaponSprite)Weapon).Direction;
                 Weapon = WeaponSpriteFactory.Instance.CreateArrowNickSprite();
+                Rectangle nickBox = Weapon.ObjectBox(2);
+                if (direction == 3) position.X = position.X + arrowBox.Width - nickBox.Width;
+                else if (direction == 0) position.Y = position.Y + arrowBox.Height - nickBox.Height;
                 Weapon.Position = position;
                 weaponType = WeaponType.NICK;
                 itemLifeSpan = 0;
