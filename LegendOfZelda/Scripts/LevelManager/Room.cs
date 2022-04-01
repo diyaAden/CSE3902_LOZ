@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room : ILevel
     {
-        public IRoomBackground roomBackground;
+        public IRoomBackground roomBackground { get; private set; }
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
@@ -113,10 +113,14 @@ namespace LegendOfZelda.Scripts.LevelManager
 
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            roomBackground.Draw(spriteBatch, scale);
-            foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
+            DrawBackgroundAndBlocks(spriteBatch, scale);
             foreach (IEnemy enemy in Enemies) enemy.Draw(spriteBatch, scale);
             foreach (IItem item in Items) item.Draw(spriteBatch, scale);
+        }
+        public void DrawBackgroundAndBlocks(SpriteBatch spriteBatch, int scale)
+        {
+            roomBackground.Draw(spriteBatch, scale);
+            foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
         }
     }
 }

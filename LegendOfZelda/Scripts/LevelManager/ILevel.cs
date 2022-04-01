@@ -9,6 +9,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public interface ILevel
     {
+        public IRoomBackground roomBackground { get; }
         public List<IItem> Items { get; }
         public List<IEnemy> Enemies { get; }
         public List<IBlock> Blocks { get; }
@@ -19,9 +20,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void Draw(SpriteBatch spriteBatch, int scale);
         public void OpenSecretDoorUp();
         public void OpenSecretDoorDown();
-
         public void OpenSecretDoorLeft();
-
         public void OpenSecretDoorRight();
+        public void DrawBackgroundAndBlocks(SpriteBatch spriteBatch, int scale);
     }
 }
