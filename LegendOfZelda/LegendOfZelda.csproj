@@ -121,6 +121,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Blocks\BlockSprites\DoorSprites\" />
-    <Folder Include="Scripts\GameStateMachine\" />
   </ItemGroup>
 </Project>
