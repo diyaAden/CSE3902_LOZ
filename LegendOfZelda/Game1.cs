@@ -11,6 +11,7 @@ using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Sounds;
 using LegendOfZelda.Scripts.GameStateMachine;
+using LegendOfZelda.Scripts.HUDandInventoryManager;
 
 namespace LegendOfZelda
 {
@@ -19,7 +20,7 @@ namespace LegendOfZelda
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private readonly Vector2 screenOffset = new Vector2(0, 32);
+        private readonly Vector2 screenOffset = new Vector2(80, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
         public readonly int gameScale = 2;
@@ -28,6 +29,7 @@ namespace LegendOfZelda
         public ILink link;
         public RoomManager roomManager;
         public GameState Gstate;
+        public HUDSprite HUD;
 
         public Game1()
         {
@@ -48,6 +50,7 @@ namespace LegendOfZelda
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             handlerManager = new HandlerManager(detectorManager.collisionDetectors);
+            HUD = new HUDSprite();
 
             base.Initialize();
         }
@@ -70,6 +73,7 @@ namespace LegendOfZelda
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale);
             SoundController.Instance.StartDungeonMusic();
+            HUD.LoadAllTextures(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,6 +95,7 @@ namespace LegendOfZelda
                     link.Update();
                     roomManager.Update(link.State.Position, gameScale, screenOffset);
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
+                    //update HUD
                     break;
                 case GameState.ItemSelection:
 
@@ -121,6 +126,7 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
             roomManager.Draw(_spriteBatch, gameScale);
+            HUD.Draw(_spriteBatch, gameScale);
             foreach (IWeapon weapon in activeWeapons)
             {
                 weapon.Draw(_spriteBatch, gameScale);
