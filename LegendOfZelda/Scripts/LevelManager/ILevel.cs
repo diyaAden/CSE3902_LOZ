@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public interface ILevel
     {
-        public IRoomBackground roomBackground { get; }
+        public IRoomBackground RoomBackground { get; }
         public List<IItem> Items { get; }
         public List<IEnemy> Enemies { get; }
         public List<IBlock> Blocks { get; }

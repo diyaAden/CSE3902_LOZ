@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
@@ -26,12 +27,13 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 
         }
         public void HandleItemDestroy(Room CurrentRoom, int index) { }
-        public void HandleCollision(ILink link, IBlock door, RoomManager roomManager, int scale)
+        public void HandleCollision(ILink link, IBlock door, RoomManager roomManager, int scale) { }
+        public void HandleCollision(ILink link, IBlock door, RoomMovingController roomMovingController, int scale)
         {
             switch (door)
             {
                 case StairsSprite _:
-                    UseStairs(link, door, roomManager, scale);
+                    UseStairs(link, door, roomMovingController, scale);
                     break;
                 case OpenDoorSpriteDown _:
                 case OpenDoorSpriteUp _:
@@ -41,7 +43,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 case BombedDoorSpriteUp _:
                 case BombedDoorSpriteLeft _:
                 case BombedDoorSpriteRight _:
-                    MoveThroughDoor(link, door, roomManager, scale);
+                    MoveThroughDoor(link, door, roomMovingController, scale);
                     break;
                 case CrackedDoorSpriteDown _:
                 case CrackedDoorSpriteUp _:
@@ -57,9 +59,9 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                     break;
             }
         }
-        private void UseStairs(ILink link, IBlock stairs, RoomManager roomManager, int scale)
+        private void UseStairs(ILink link, IBlock stairs, RoomMovingController roomMovingController, int scale)
         {
-            int currentRoom = roomManager.CurrentRoom;
+            int currentRoom = roomMovingController.CurrentRoom;
             int newRoom = stairs.AdjacentRoom;
             int direction;
             if (currentRoom == 17)
@@ -67,23 +69,22 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
             else
                 direction = 5;
             link.HandleDoorCollision(direction, scale);
-            roomManager.CurrentRoom = newRoom;
+            roomMovingController.CurrentRoom = newRoom;
         }
-        private void MoveThroughDoor(ILink link, IBlock door, RoomManager roomManager, int scale)
+        private void MoveThroughDoor(ILink link, IBlock door, RoomMovingController roomMovingController, int scale)
         {
-            int currentRoom = roomManager.CurrentRoom;
+            int currentRoom = roomMovingController.CurrentRoom;
             int newRoom = door.AdjacentRoom;
             int direction;
-            if (currentRoom - newRoom > 1)
-                direction = 0;
-            else if (newRoom - currentRoom > 1)
-                direction = 1;
-            else if (currentRoom - newRoom == 1)
-                direction = 2;
-            else
-                direction = 3;
+
+            if (currentRoom - newRoom > 1) direction = 0; 
+            else if (newRoom - currentRoom > 1) direction = 1; 
+            else if (currentRoom - newRoom == 1) direction = 2; 
+            else direction = 3; 
+
             link.HandleDoorCollision(direction, scale);
-            roomManager.CurrentRoom = newRoom;
+            roomMovingController.ShiftCamera(direction, newRoom);
+            GameStateController.Instance.SetGameStateRoomSwitch();
         }
     }
 }

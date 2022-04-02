@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.LevelManager;
@@ -18,6 +19,7 @@ namespace LegendOfZelda.Scripts.Collision
         private ILink Link;
         private List<IWeapon> activeWeapons;
         private RoomManager roomManager;
+        public RoomMovingController roomMovingController;
         private int gameScale = 2;
 
 
@@ -25,9 +27,10 @@ namespace LegendOfZelda.Scripts.Collision
         private List<IItem> items;
         private List<IEnemy> enemies;
 
-        public HandlerManager(List<ICollisionDetector> CollisionDetectors)
+        public HandlerManager(List<ICollisionDetector> CollisionDetectors, RoomMovingController roomMovingController)
         {
             collisionDetectors = CollisionDetectors;
+            this.roomMovingController = roomMovingController;
 
             PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
@@ -94,7 +97,7 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, block, gameScale);
                 if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                 {
-                    collisionHandlers[3].HandleCollision(Link, block, roomManager, gameScale);
+                    ((PlayerDoorCollisionHandler)collisionHandlers[3]).HandleCollision(Link, block, roomMovingController, gameScale);
                 }
                 foreach (ICollision side in sides)
                 {

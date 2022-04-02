@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room : ILevel
     {
-        public IRoomBackground roomBackground { get; private set; }
+        public IRoomBackground RoomBackground { get; private set; }
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
@@ -100,8 +100,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale)
         {
-            roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
-            roomBackground.Position = new Vector2((roomBackground.Position.X + screenOffset.X) * scale, (roomBackground.Position.Y + screenOffset.Y) * scale);
+            RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
+            RoomBackground.Position = new Vector2((RoomBackground.Position.X + screenOffset.X) * scale, (RoomBackground.Position.Y + screenOffset.Y) * scale);
         }
 
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
@@ -119,8 +119,17 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void DrawBackgroundAndBlocks(SpriteBatch spriteBatch, int scale)
         {
-            roomBackground.Draw(spriteBatch, scale);
+            RoomBackground.Draw(spriteBatch, scale);
             foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
+        }
+
+        public void ShiftRoom(int distX, int distY, int scale)
+        {
+            RoomBackground.Position = new Vector2(RoomBackground.Position.X + distX * scale, RoomBackground.Position.Y + distY * scale);
+            foreach (IBlock block in Blocks)
+            {
+                block.Position = new Vector2(block.Position.X + distX * scale, block.Position.Y + distY * scale);
+            }
         }
     }
 }
