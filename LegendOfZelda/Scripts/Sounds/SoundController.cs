@@ -66,7 +66,11 @@ namespace LegendOfZelda.Scripts.Sounds
             useFireInstance.IsLooped = true;
             useFireInstance.Play();
         }
-        public void StopFireSound() { useFireInstance.Stop(); }
+        public void StopFireSound()
+        {
+            if (useFireInstance != null) useFireInstance.Stop();
+            useFireInstance = null;
+        }
         public void PlayGetItemSound() { getItem.Play(); }
         public void PlayGetRupeeSound() { getRupee.Play(); }
         public void PlayUseStairsSound() { useStairs.Play(); }
