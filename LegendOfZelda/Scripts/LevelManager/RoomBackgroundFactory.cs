@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     class RoomBackgroundFactory
     {
-        private Texture2D DungeonTiles;
+        private Texture2D DungeonTiles, BlackScreen;
         private static readonly RoomBackgroundFactory instance = new RoomBackgroundFactory();
         public static RoomBackgroundFactory Instance => instance;
         internal ICollection RoomCollection { get; private set; }
@@ -17,6 +17,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void LoadAllTextures(ContentManager content)
         {
             DungeonTiles = content.Load<Texture2D>("SpriteSheets/General/DungeonMap");
+            BlackScreen = content.Load<Texture2D>("SpriteSheets/General/blackScreen");
         }
         public IRoomBackground CreateFromRoomNumber(int roomNumber) {
             return roomNumber switch
@@ -44,7 +45,10 @@ namespace LegendOfZelda.Scripts.LevelManager
             };
         }
 
-
+        public IRoomBackground CreateScreenFade()
+        {
+            return new BlackRoomFade(BlackScreen);
+        }
         public IRoomBackground CreateDevRoom()
         {
             return new Room0Sprite(DungeonTiles);

@@ -69,7 +69,7 @@ namespace LegendOfZelda
             SoundController.Instance.LoadAllSounds(Content);
 
             roomManager.LoadContent(gameScale, screenOffset);
-            roomMovingController = new RoomMovingController(roomManager, gameScale);
+            roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
             handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController);
 
             LoadLink.LoadTexture(Content);
