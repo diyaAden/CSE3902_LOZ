@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.LevelManager;
+using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -115,6 +116,7 @@ namespace LegendOfZelda.Scripts.GameStateMachine
             this.newRoomNum = newRoomNum;
             ((BlackRoomFade)blackFade).Reset();
             direction = Direction.STAIRS;
+            SoundController.Instance.PlayUseStairsSound();
         }
         public void ShiftCamera(int direction, int newRoomNum)
         {

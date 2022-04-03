@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Sounds
     {
         private Song music;
         private SoundEffect openDoor, boomerang, getItem, getRupee, getTriforce, linkGetsHurt, useFire, placeAndExplodeBomb, 
-            swordBeam, getHeart, bossRoar, findSecret;
+            swordBeam, getHeart, bossRoar, findSecret, useStairs;
         private SoundEffectInstance boomerangInstance, useFireInstance;
         private static readonly SoundController instance = new SoundController(); 
         public static SoundController Instance => instance;
@@ -30,6 +30,7 @@ namespace LegendOfZelda.Scripts.Sounds
             getHeart = content.Load<SoundEffect>("Sounds/ItemSounds/getHeart");
             bossRoar = content.Load<SoundEffect>("Sounds/EnemySounds/bossRoar");
             findSecret = content.Load<SoundEffect>("Sounds/Environment/findSecret");
+            useStairs = content.Load<SoundEffect>("Sounds/Environment/useStairs");
         }
         public void StartDungeonMusic()
         {
@@ -68,5 +69,6 @@ namespace LegendOfZelda.Scripts.Sounds
         public void StopFireSound() { useFireInstance.Stop(); }
         public void PlayGetItemSound() { getItem.Play(); }
         public void PlayGetRupeeSound() { getRupee.Play(); }
+        public void PlayUseStairsSound() { useStairs.Play(); }
     }
 }
