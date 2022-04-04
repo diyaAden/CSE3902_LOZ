@@ -8,21 +8,31 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
     {
         private readonly int xPos = 250, yPos = 10, width = 256, height = 60;
 
-        Rectangle sourceRect;
-        Texture2D HUDTexture;
-        protected Vector2 pos = new Vector2(270, 10);
         public int rupees;
         public int keys;
-        public bool hasMap; 
-        public void LoadAllTextures(ContentManager content)
-        {
-            HUDTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
-        }
+        public bool hasMap;
+        public float health;
+     
         public HUDInventoryManager()
         {
            // SpriteSheet = HUDTexture;
-            sourceRect = new Rectangle(xPos, yPos, width, height);
+            //sourceRect = new Rectangle(xPos, yPos, width, height);
             //destRectangle = new Rectangle()
+        }
+
+        public void updateRupees()
+        {
+
+        }
+
+        public void updateKeys()
+        {
+
+        }
+
+        public void updateHealth()
+        {
+
         }
         public void Update() 
         { 
@@ -30,10 +40,5 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             //check color for map
         }
 
-        public void Draw(SpriteBatch spriteBatch, int scale)
-        {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
-            spriteBatch.Draw(HUDTexture, pos, sourceRect, Color.White);
-        }
     }
 }
