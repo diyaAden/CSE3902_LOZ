@@ -11,6 +11,7 @@ using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Sounds;
 using LegendOfZelda.Scripts.GameStateMachine;
+using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda
 {
@@ -19,7 +20,7 @@ namespace LegendOfZelda
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private readonly Vector2 screenOffset = new Vector2(0, 32);
+        private readonly Vector2 screenOffset = new Vector2(78, 58);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
         public readonly int gameScale = 2;
@@ -29,6 +30,33 @@ namespace LegendOfZelda
         public RoomManager roomManager;
         public RoomMovingController roomMovingController;
         public GameState Gstate = GameState.Playing;
+
+        //public GameStateManager gameStateManager;
+
+
+        /*
+         * Pause Trial
+         */
+
+        Texture2D pausedTexture;
+        Rectangle pausedRectangle;
+
+        /*
+         * End Pause Trial
+         */
+
+        /* 
+         * Game Over Trial
+         */
+
+        Texture2D gameOverTexture;
+        Rectangle gameOverRectangle;
+
+        /*
+         * End GameOver Trial
+         */
+
+        
 
         public Game1()
         {
@@ -49,12 +77,15 @@ namespace LegendOfZelda
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
 
+            //gameStateManager = new GameStateManager();
+
             base.Initialize();
         }
         public void ResetGame()
         {
             //GraphicsDevice.Reset();
             LoadContent();
+            Gstate = GameState.Playing;
         }
 
         protected override void LoadContent()
@@ -76,13 +107,42 @@ namespace LegendOfZelda
             link = new Link(linkStartPosition, screenOffset, gameScale);
 
             SoundController.Instance.StartDungeonMusic();
+
+
+            // ********* GameState **********
+
+            //gameStateManager.LoadContent(gameScale, screenOffset);
+
+            //Paused
+            
+            pausedTexture = Content.Load<Texture2D>("Paused");
+            pausedRectangle = new Rectangle(0, 0, pausedTexture.Width, pausedTexture.Height);
+
+            //GameOver
+            gameOverTexture = Content.Load<Texture2D>("GameOver");
+            gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
+
+            //*******************************
+
         }
 
         protected override void Update(GameTime gameTime)
         {
+
+            KeyboardState keyboard = Keyboard.GetState();
+
             switch (Gstate)
             {
                 case GameState.Playing:
+                    handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
+                    if (keyboard.IsKeyDown(Keys.Enter))
+                    {
+                        Gstate = GameState.Paused;
+                    }
+                    if (keyboard.IsKeyDown(Keys.RightShift))
+                    {
+                        Gstate = GameState.GameOver;
+                    }
                     foreach (IController controller in controllerList) { controller.Update(); }
 
                     for (int i = 0; i < activeWeapons.Count; i++)
@@ -96,6 +156,8 @@ namespace LegendOfZelda
                     roomManager.Update(link.State.Position, gameScale, screenOffset);
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
+
+                    
                     break;
                 case GameState.ItemSelection:
 
@@ -107,9 +169,20 @@ namespace LegendOfZelda
                     roomMovingController.Update();
                     break;
                 case GameState.Paused:
-
+                    if (keyboard.IsKeyDown(Keys.O))
+                    {
+                        Gstate = GameState.Playing;
+                    }
                     break;
                 case GameState.GameOver:
+
+                    // play animation
+
+                    //reset
+                    if (keyboard.IsKeyDown(Keys.O))
+                    {
+                        this.ResetGame();
+                    }
 
                     break;
                 case GameState.WonGame:
@@ -138,6 +211,17 @@ namespace LegendOfZelda
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
                     break;
+            }
+            link.Draw(_spriteBatch, gameScale);
+
+            //Paused
+            if(Gstate == GameState.Paused)
+            {
+                _spriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
+            }
+            if(Gstate == GameState.GameOver)
+            {
+                _spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
             }
             _spriteBatch.End();
             base.Draw(gameTime);
