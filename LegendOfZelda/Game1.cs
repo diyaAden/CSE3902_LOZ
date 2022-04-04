@@ -68,9 +68,11 @@ namespace LegendOfZelda
         {
             KeyboardController control = new KeyboardController();
             MouseController mouse = new MouseController();
+            GamepadController gamepad = new GamepadController();
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             con.RegisterCommands(mouse);
+            con.RegisterCommands(gamepad);
             controllerList = new List<IController>() { control, mouse };
 
             GameStateController.Instance.LoadGame(this);

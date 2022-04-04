@@ -60,5 +60,15 @@ namespace LegendOfZelda.Scripts.Input.Controller
             mouse.RegisterCommand(Keys.K, new PreviousRoom(myGame));
             mouse.RegisterCommand(Keys.L, new NextRoom(myGame));
         }
+        public void RegisterCommands(GamepadController gamepad)
+        {
+            gamepad.RegisterCommand(Keys.A, new SetLinkLeft(myGame));
+            gamepad.RegisterCommand(Keys.D, new SetLinkRight(myGame));
+            gamepad.RegisterCommand(Keys.W, new SetLinkUp(myGame));
+            gamepad.RegisterCommand(Keys.S, new SetLinkDown(myGame));
+            gamepad.RegisterCommand(Keys.X, new UseItem(myGame));
+            gamepad.RegisterCommand(Keys.Z, new Attack(myGame));
+
+        }
     }
 }
