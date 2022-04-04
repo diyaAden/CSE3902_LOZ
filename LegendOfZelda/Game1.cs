@@ -126,7 +126,7 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
             roomManager.Draw(_spriteBatch, gameScale);
-            HUD.Draw(_spriteBatch, gameScale);
+            HUD.Draw(_spriteBatch, 20);
             foreach (IWeapon weapon in activeWeapons)
             {
                 weapon.Draw(_spriteBatch, gameScale);
