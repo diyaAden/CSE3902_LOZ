@@ -28,7 +28,8 @@ namespace LegendOfZelda
         public HandlerManager handlerManager;
         public ILink link;
         public RoomManager roomManager;
-        public GameState Gstate;
+        public RoomMovingController roomMovingController;
+        public GameState Gstate = GameState.Playing;
 
         //public GameStateManager gameStateManager;
 
@@ -65,9 +66,6 @@ namespace LegendOfZelda
         }
         protected override void Initialize()
         {
-
-
-            Gstate = GameState.Playing;
             KeyboardController control = new KeyboardController();
             MouseController mouse = new MouseController();
             InitializeController con = new InitializeController(this);
@@ -75,9 +73,9 @@ namespace LegendOfZelda
             con.RegisterCommands(mouse);
             controllerList = new List<IController>() { control, mouse };
 
+            GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
-            handlerManager = new HandlerManager(detectorManager.collisionDetectors);
 
             //gameStateManager = new GameStateManager();
 
@@ -93,15 +91,21 @@ namespace LegendOfZelda
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
             RoomBackgroundFactory.Instance.LoadAllTextures(Content);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             SoundController.Instance.LoadAllSounds(Content);
+
             roomManager.LoadContent(gameScale, screenOffset);
+            roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
+            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController);
+
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale);
+
             SoundController.Instance.StartDungeonMusic();
 
 
@@ -150,6 +154,7 @@ namespace LegendOfZelda
                     foreach (IWeapon weapon in activeWeapons) { weapon.Update(linkCenter, gameScale); }
                     link.Update();
                     roomManager.Update(link.State.Position, gameScale, screenOffset);
+                    handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
 
                     
@@ -161,7 +166,7 @@ namespace LegendOfZelda
 
                     break;
                 case GameState.RoomSwitch:
-
+                    roomMovingController.Update();
                     break;
                 case GameState.Paused:
                     if (keyboard.IsKeyDown(Keys.O))
@@ -193,10 +198,19 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-            roomManager.Draw(_spriteBatch, gameScale);
-            foreach (IWeapon weapon in activeWeapons)
+            switch (Gstate)
             {
-                weapon.Draw(_spriteBatch, gameScale);
+                case GameState.Playing:
+                    roomManager.Draw(_spriteBatch, gameScale);
+                    foreach (IWeapon weapon in activeWeapons)
+                    {
+                        weapon.Draw(_spriteBatch, gameScale);
+                    }
+                    link.Draw(_spriteBatch, gameScale);
+                    break;
+                case GameState.RoomSwitch:
+                    roomMovingController.Draw(_spriteBatch);
+                    break;
             }
             link.Draw(_spriteBatch, gameScale);
 
