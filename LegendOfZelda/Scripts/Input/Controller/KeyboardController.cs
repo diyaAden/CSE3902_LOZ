@@ -10,7 +10,8 @@ namespace LegendOfZelda.Scripts.Input.Controller
     {
         private Dictionary<Keys, ICommand> controllerMappings;
         private KeyboardState oldKeyState;
-        private List<Keys> movementKeys = new List<Keys> { Keys.A, Keys.W, Keys.D, Keys.S, Keys.Up, Keys.Down, Keys.Left, Keys.Right };
+        private List<Keys> movementKeys = new List<Keys> { Keys.A, Keys.W, Keys.D, Keys.S};
+        private List<Keys> arrowKeys = new List<Keys> { Keys.Up, Keys.Down, Keys.Left, Keys.Right };
         public KeyboardController()
         {
             controllerMappings = new Dictionary<Keys, ICommand>();
@@ -23,6 +24,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
         {
             Keys[] keys = Keyboard.GetState().GetPressedKeys();
             KeyboardState keyState = Keyboard.GetState();
+            Boolean isMoving = false;
 
             if (keys.Length == 0)
             {
@@ -30,16 +32,21 @@ namespace LegendOfZelda.Scripts.Input.Controller
             }
             foreach (Keys key in keys)
             {
-                if (movementKeys.Contains(key)) {
+                if (movementKeys.Contains(key) && !isMoving){
                     controllerMappings[key].Execute();
+                    isMoving = true;
                 }
-
+                else if (arrowKeys.Contains(key) && !isMoving) {
+                    controllerMappings[key].Execute();
+                    isMoving = true;
+                }
                 else if (controllerMappings.ContainsKey(key) && keyState.IsKeyDown(key) && oldKeyState.IsKeyUp(key))
                 {
                     controllerMappings[key].Execute();
                 } 
             }
             oldKeyState = keyState;
+            //isMoving = false;
 
 
 

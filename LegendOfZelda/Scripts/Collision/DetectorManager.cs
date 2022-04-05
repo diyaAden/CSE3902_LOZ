@@ -13,7 +13,8 @@ namespace LegendOfZelda.Scripts.Collision
             CollisionPlayerGameObjectDetector collisionPlayerBlockDetector = new CollisionPlayerGameObjectDetector();
             CollisionEnemyGameObjectDetector collisionEnemyItemDetector = new CollisionEnemyGameObjectDetector();
             CollisionPlayerEnemyDetector collisionPlayerEnemyDetector = new CollisionPlayerEnemyDetector();
-            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector, collisionPlayerEnemyDetector };
+            CollisionWeaponGameObjectDetector collisionWeaponGameObjectDetector = new CollisionWeaponGameObjectDetector();
+            collisionDetectors = new List<ICollisionDetector>() { collisionPlayerBlockDetector, collisionEnemyItemDetector, collisionPlayerEnemyDetector, collisionWeaponGameObjectDetector };
         }
 
 

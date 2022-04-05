@@ -60,12 +60,12 @@ namespace LegendOfZelda.Scripts.Links
                 state.UseItem();
             }
         }
-        public void Attack()
+        public void Attack(int scale)
         {
             if (attackCooldown == 0)
             {
                 attackCooldown = cooldownLimit;
-                state.Attack();
+                state.Attack(scale);
             }
         }
 

@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Sounds
     {
         private Song music;
         private SoundEffect openDoor, boomerang, getItem, getRupee, getTriforce, linkGetsHurt, useFire, placeAndExplodeBomb, 
-            swordBeam, getHeart, bossRoar;
+            swordBeam, getHeart, bossRoar, findSecret, useStairs;
         private SoundEffectInstance boomerangInstance, useFireInstance;
         private static readonly SoundController instance = new SoundController(); 
         public static SoundController Instance => instance;
@@ -29,6 +29,8 @@ namespace LegendOfZelda.Scripts.Sounds
             swordBeam = content.Load<SoundEffect>("Sounds/ItemSounds/useSwordBeam");
             getHeart = content.Load<SoundEffect>("Sounds/ItemSounds/getHeart");
             bossRoar = content.Load<SoundEffect>("Sounds/EnemySounds/bossRoar");
+            findSecret = content.Load<SoundEffect>("Sounds/Environment/findSecret");
+            useStairs = content.Load<SoundEffect>("Sounds/Environment/useStairs");
         }
         public void StartDungeonMusic()
         {
@@ -40,6 +42,7 @@ namespace LegendOfZelda.Scripts.Sounds
             MediaPlayer.Stop();
             getTriforce.Play();
         }
+        public void PlayFindSecretSound() { findSecret.Play(); }
         public void PlayBossRoarSound() { bossRoar.Play(); }
         public void PlayGetHeartSound() { getHeart.Play(); }
         public void PlayLinkGetsHurtSound() { linkGetsHurt.Play(); }
@@ -52,15 +55,24 @@ namespace LegendOfZelda.Scripts.Sounds
             boomerangInstance.IsLooped = true;
             boomerangInstance.Play();
         }
-        public void StopBoomerangSound() { boomerangInstance.Stop(); }
+        public void StopBoomerangSound()
+        { 
+            if (boomerangInstance != null) boomerangInstance.Stop();
+            boomerangInstance = null;
+        }
         public void StartFireSound()
         {
             useFireInstance = useFire.CreateInstance();
             useFireInstance.IsLooped = true;
             useFireInstance.Play();
         }
-        public void StopFireSound() { useFireInstance.Stop(); }
+        public void StopFireSound()
+        {
+            if (useFireInstance != null) useFireInstance.Stop();
+            useFireInstance = null;
+        }
         public void PlayGetItemSound() { getItem.Play(); }
         public void PlayGetRupeeSound() { getRupee.Play(); }
+        public void PlayUseStairsSound() { useStairs.Play(); }
     }
 }

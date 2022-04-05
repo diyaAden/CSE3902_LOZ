@@ -97,5 +97,7 @@ namespace LegendOfZelda.Scripts.Enemy
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
         }
+
+        public void HandleCollision(ICollision side, int scale) { }
     }
 }

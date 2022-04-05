@@ -1,6 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
-using LegendOfZelda.Scripts.Enemy.Trap.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room : ILevel
     {
-        public IRoomBackground roomBackground;
+        public IRoomBackground RoomBackground { get; private set; }
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
@@ -22,7 +22,36 @@ namespace LegendOfZelda.Scripts.LevelManager
             Enemies = new List<IEnemy>();
             Blocks = new List<IBlock>();
         }
+        public void OpenSecretDoorUp()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallUpSprite) block.Disable();
+            }
+        }
+        public void OpenSecretDoorDown()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallDownSprite) block.Disable();
+            }
+        }
 
+        public void OpenSecretDoorLeft()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallLeftSprite) block.Disable();
+            }
+        }
+
+        public void OpenSecretDoorRight()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is SecretWallRightSprite) block.Disable();
+            }
+        }
         public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom)
         {
             if (type == "Item") AddItem(name, xPos, yPos);
@@ -71,8 +100,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale)
         {
-            roomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
-            roomBackground.Position = new Vector2((roomBackground.Position.X + screenOffset.X) * scale, (roomBackground.Position.Y + screenOffset.Y) * scale);
+            RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
+            RoomBackground.Position = new Vector2((RoomBackground.Position.X + screenOffset.X) * scale, (RoomBackground.Position.Y + screenOffset.Y) * scale);
         }
 
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
@@ -84,10 +113,23 @@ namespace LegendOfZelda.Scripts.LevelManager
 
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            roomBackground.Draw(spriteBatch, scale);
-            foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
+            DrawBackgroundAndBlocks(spriteBatch, scale);
             foreach (IEnemy enemy in Enemies) enemy.Draw(spriteBatch, scale);
             foreach (IItem item in Items) item.Draw(spriteBatch, scale);
+        }
+        public void DrawBackgroundAndBlocks(SpriteBatch spriteBatch, int scale)
+        {
+            RoomBackground.Draw(spriteBatch, scale);
+            foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
+        }
+
+        public void ShiftRoom(int distX, int distY, int scale)
+        {
+            RoomBackground.Position = new Vector2(RoomBackground.Position.X + distX * scale, RoomBackground.Position.Y + distY * scale);
+            foreach (IBlock block in Blocks)
+            {
+                block.Position = new Vector2(block.Position.X + distX * scale, block.Position.Y + distY * scale);
+            }
         }
     }
 }

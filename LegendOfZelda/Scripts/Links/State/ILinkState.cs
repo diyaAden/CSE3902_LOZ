@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Links
 {
@@ -23,7 +20,7 @@ namespace LegendOfZelda.Scripts.Links
         void PositionLeft();
         void UseItem();
         void PickItem(String name, int scale);
-        void Attack();
+        void Attack(int scale);
         Rectangle LinkBox(int scale);
         void Update();
         void Draw(SpriteBatch spriteBatch, int scale);

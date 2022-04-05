@@ -1,8 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Input.Command.Commands.LinkAction
 {
@@ -15,11 +12,11 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands.LinkAction
         }
         private static bool containsSword(IWeapon weapon)
         {
-            return weapon.GetWeaponType() == IWeapon.WeaponType.SWORD || weapon.GetWeaponType() == IWeapon.WeaponType.SWORDSHARDS;
+            return weapon.GetWeaponType() == IWeapon.WeaponType.SWORDBEAM || weapon.GetWeaponType() == IWeapon.WeaponType.SWORDSHARDS;
         }
         public void Execute()
         {
-            myGame.link.Attack();
+            myGame.link.Attack(myGame.gameScale);
             if (!myGame.activeWeapons.Exists(containsSword))
             {
                 IWeapon sword = new SwordWeapon(myGame.link.State.Position, myGame.link.State.Direction, myGame.gameScale);

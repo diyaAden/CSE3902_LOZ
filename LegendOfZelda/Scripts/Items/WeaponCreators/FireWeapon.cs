@@ -14,5 +14,27 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
             position = pos;
             Weapon.Position = position;
         }
+
+        public override void Update(Vector2 linkPosition, int scale)
+        {
+            if (Weapon != null)
+            {
+                Weapon.Update();
+                AnimationTimer = Weapon.AnimationTimer;
+                if (++itemLifeSpan == Weapon.TimeLimit) { DestructionOverride(); }
+            }
+        }
+
+        private void DestructionOverride()
+        {
+            if (weaponType == WeaponType.FIRE)
+            {
+                SoundController.Instance.StopFireSound();
+                Weapon = null;
+                weaponType = WeaponType.NONE;
+            }
+        }
+
+        public override void DestroyWeapon(int scale) { }
     }
 }

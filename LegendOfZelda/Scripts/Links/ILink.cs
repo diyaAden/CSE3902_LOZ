@@ -1,15 +1,7 @@
-﻿using LegendOfZelda.Scripts.Blocks;
-using LegendOfZelda.Scripts.Collision;
+﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.LevelManager;
-using LegendOfZelda.Scripts.Links.State;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static LegendOfZelda.Scripts.Items.BasicWeapon;
 
 namespace LegendOfZelda.Scripts.Links
 {
@@ -22,8 +14,8 @@ namespace LegendOfZelda.Scripts.Links
         public void MoveRight();
         public void MoveLeft();
         public void UseItem();
-        public void PickItem(String name, int scale);
-        public void Attack();
+        public void PickItem(string name, int scale);
+        public void Attack(int scale);
         public void HandleBlockCollision(IGameObject block, ICollision side);
         public void HandleDoorCollision(int direction, int scale);
         public void HandleItemCollision(IGameObject item, ICollision side, int scale);

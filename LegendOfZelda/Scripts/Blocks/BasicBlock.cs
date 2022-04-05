@@ -10,16 +10,11 @@ namespace LegendOfZelda.Scripts.Blocks
         protected Texture2D spriteSheet;
         protected Rectangle sourceRect;
         protected Vector2 pos = new Vector2(400, 100);
-        private bool enabled = true;
+        protected bool enabled = true;
         protected float transparency = 1f;
         public virtual Vector2 Position { get { return pos; } set { pos = value; } }
         public int AdjacentRoom { get; set; }
-        public void Disable()
-        {
-            //mainly used for making doors appear to open
-            enabled = false;
-            SoundController.Instance.PlayOpenDoorSound();
-        }
+        public virtual void Disable() { }
         public abstract void Update();
         public virtual void HandleCollision(ICollision side, int scale) { }
 

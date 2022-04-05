@@ -5,7 +5,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponSprites
 {
     public class ArrowNickSprite : BasicItem
     {
-        private const int itemTimeLimit = 6, xPos = 0, yPos = 0, width = 7, height = 7;
+        private const int itemTimeLimit = 3, xPos = 0, yPos = 0, width = 7, height = 7;
 
         public ArrowNickSprite(Texture2D particleSpriteSheet)
         {

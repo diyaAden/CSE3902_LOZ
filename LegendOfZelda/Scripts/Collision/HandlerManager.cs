@@ -2,12 +2,12 @@
 using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision
 {
@@ -19,28 +19,31 @@ namespace LegendOfZelda.Scripts.Collision
         private ILink Link;
         private List<IWeapon> activeWeapons;
         private RoomManager roomManager;
+        public RoomMovingController roomMovingController;
         private int gameScale = 2;
 
 
         private List<IBlock> blocks;
         private List<IItem> items;
-        private List<IEnemy> enemys;
+        private List<IEnemy> enemies;
 
-        public HandlerManager(List<ICollisionDetector> CollisionDetectors)
+        public HandlerManager(List<ICollisionDetector> CollisionDetectors, RoomMovingController roomMovingController)
         {
             collisionDetectors = CollisionDetectors;
+            this.roomMovingController = roomMovingController;
 
             PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
             PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
             PlayerDoorCollisionHandler playerDoorCollisionHandler = new PlayerDoorCollisionHandler();
-            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler };
+            BombWallCollisionHandler bombWallCollisionHandler = new BombWallCollisionHandler();
+            collisionHandlers = new List<ICollisionHandler>() { playerBlockCollisionHandler, enemyItemCollisionHandler, playerEnemyCollisionHandler, playerDoorCollisionHandler, bombWallCollisionHandler };
         }
         public void AssignRoom()
         {
             blocks = room.Blocks;
             items = room.Items;
-            enemys = room.Enemies;
+            enemies = room.Enemies;
         }
 
         public void ForAllUpdate()
@@ -49,7 +52,7 @@ namespace LegendOfZelda.Scripts.Collision
             ForLinkWeapon();
             ForLinkItem();
             ForLinkBlocks();
-            
+            ForWeaponObject();
             ForEnemy();
         }
 
@@ -61,6 +64,32 @@ namespace LegendOfZelda.Scripts.Collision
             gameScale = GameScale;
             ForAllUpdate();
         }
+        public void ForWeaponObject()
+        {
+            foreach (IWeapon weapon in activeWeapons)
+            {
+                bool setToDestroy = false;
+                foreach (IBlock block in blocks)
+                {
+                    List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, block, gameScale);
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    {
+                        setToDestroy = true;
+                        if (weapon is BombWeapon && ((BombWeapon)weapon).DetonatingNow()) 
+                            collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
+                    }
+                }
+                foreach (IEnemy enemy in enemies)
+                {
+                    List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, enemy, gameScale);
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    {
+                        setToDestroy = true;
+                    }
+                }
+                if (setToDestroy) weapon.DestroyWeapon(gameScale);
+            }
+        }
         private void ForLinkBlocks()
         {
             foreach (IBlock block in blocks)
@@ -68,7 +97,7 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, block, gameScale);
                 if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                 {
-                    collisionHandlers[3].HandleCollision(Link, block, roomManager, gameScale);
+                    ((PlayerDoorCollisionHandler)collisionHandlers[3]).HandleCollision(Link, block, roomMovingController, gameScale);
                 }
                 foreach (ICollision side in sides)
                 {
@@ -133,10 +162,7 @@ namespace LegendOfZelda.Scripts.Collision
 
         public void ForEnemy()
         {
-            int index = 0;
-            List<int> indices = new List<int>(); //I mean, design the object could delete itself is more effectively.
-
-            foreach (IEnemy enemy in enemys)
+            foreach (IEnemy enemy in enemies)
             {
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
                 foreach (ICollision side in sides2)
@@ -147,20 +173,13 @@ namespace LegendOfZelda.Scripts.Collision
                 {
                     if (!weapon.IsNull())
                     {
-
                         List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, weapon, gameScale);
-                        if (!sides.Contains(ICollision.SideNone) && sides.Count > 0 && enemy.Health <= 0)
-                        {
-                            indices.Add(index);
-                        }
                         foreach (ICollision side in sides)
                         {
                             collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
                         }
                     }
                 }
-                
-
                 foreach (IBlock block in blocks)
                 {
                     List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, block, gameScale);
@@ -170,15 +189,6 @@ namespace LegendOfZelda.Scripts.Collision
                         collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
                     }
                 }
-                index++;
-            }
-            int delete = 0; //when the object remove, all index behind that will change.
-
-            foreach (int ind in indices)
-            {
-                int actualDeleteIndex = ind - delete;
-                collisionHandlers[1].HandleEnemyDestroy((Room)room, actualDeleteIndex);
-                delete++;
             }
         }
 

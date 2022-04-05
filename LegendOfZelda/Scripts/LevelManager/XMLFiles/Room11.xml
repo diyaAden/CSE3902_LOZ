@@ -9,6 +9,12 @@
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
+		<ObjectName>SecretWallDown</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>144</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorLeft</ObjectName>
 		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>

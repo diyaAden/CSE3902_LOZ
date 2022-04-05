@@ -14,6 +14,10 @@ namespace LegendOfZelda.Scripts.Collision.CollisionDetector
         {
             return null;
         }
+        public List<ICollision> BoxTest(IWeapon weapon, IGameObject gameObject, int scale)
+        {
+            return null;
+        }
         public List<ICollision> BoxTest(ILink link, IGameObject gameObject, int scale)
         {
             List<ICollision> sides = new List<ICollision>();

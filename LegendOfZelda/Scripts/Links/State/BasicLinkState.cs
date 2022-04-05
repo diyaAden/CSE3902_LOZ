@@ -1,12 +1,6 @@
-﻿using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.Links.Sprite;
+﻿using LegendOfZelda.Scripts.Links.Sprite;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace LegendOfZelda.Scripts.Links.State
 {
@@ -143,20 +137,19 @@ namespace LegendOfZelda.Scripts.Links.State
             Link.State = new PickItemLinkState(Link, Position, isDamaged);
             ((PickItemLinkState) Link.State).CreatePickItem(name, Position, scale);
         }
-        public virtual void Attack()
+        public virtual void Attack(int scale)
         {
-            // Must apply the other 3 directions
             if (direction == 0)
             {
                 Link.State = new FrontAttackLinkState(Link, Position, isDamaged);
             }
             else if (direction == 1)
             {
-                Link.State = new BackAttackLinkState(Link, Position, isDamaged);
+                Link.State = new BackAttackLinkState(Link, Position, isDamaged, scale);
             }
             else if (direction == 2)
             {
-                Link.State = new LeftAttackLinkState(Link, Position, isDamaged);
+                Link.State = new LeftAttackLinkState(Link, Position, isDamaged, scale);
             }
             else if (direction == 3)
             {
