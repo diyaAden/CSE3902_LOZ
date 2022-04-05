@@ -36,9 +36,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
            // SpriteSheet = HUDTexture;
             sourceRect = new Rectangle(xPos, yPos, width, height);
             fullHeartSource = new Rectangle(20, 20, 20, 20);
-            levelImageSource = new Rectangle(0, 0, 50, 25);
-            levelFrameSource = new Rectangle(70, 0, 65, 10);
-            tempRect = new Rectangle(80, 0, 150, 100);
+            levelImageSource = new Rectangle(0, 0, 50, 26);
+            levelFrameSource = new Rectangle(70, 1, 63, 8);
+            tempRect = new Rectangle(80, 0, 152, 100);
         }
         public void Update() 
         { 
@@ -48,7 +48,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * 2, sourceRect.Height * 2);
-            Rectangle levelIconDestRect = new Rectangle(220, 50, levelImageSource.Width * 2, levelImageSource.Height * 2);
+            Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * 2, levelImageSource.Height * 2);
             Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * 2, levelFrameSource.Height * 2);
             spriteBatch.Draw(HUDTexture, destRect, sourceRect, Color.White);
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
