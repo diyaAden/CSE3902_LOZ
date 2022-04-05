@@ -11,6 +11,7 @@ using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Sounds;
 using LegendOfZelda.Scripts.GameStateMachine;
+using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda
@@ -20,7 +21,8 @@ namespace LegendOfZelda
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private List<IController> controllerList;
-        private readonly Vector2 screenOffset = new Vector2(78, 58);
+
+        private readonly Vector2 screenOffset = new Vector2(80, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
         public readonly int gameScale = 2;
@@ -28,6 +30,9 @@ namespace LegendOfZelda
         public HandlerManager handlerManager;
         public ILink link;
         public RoomManager roomManager;
+
+        public GameState Gstate;
+        public HUDSprite HUD;
         public RoomMovingController roomMovingController;
         public GameState Gstate = GameState.Playing;
 
@@ -76,6 +81,8 @@ namespace LegendOfZelda
             GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
+            handlerManager = new HandlerManager(detectorManager.collisionDetectors);
+            HUD = new HUDSprite();
 
             //gameStateManager = new GameStateManager();
 
@@ -108,6 +115,9 @@ namespace LegendOfZelda
 
             SoundController.Instance.StartDungeonMusic();
 
+            HUD.LoadAllTextures(Content);
+
+
 
             // ********* GameState **********
 
@@ -123,6 +133,7 @@ namespace LegendOfZelda
             gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //*******************************
+
 
         }
 
@@ -157,7 +168,8 @@ namespace LegendOfZelda
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
 
-                    
+                    //update HUD
+
                     break;
                 case GameState.ItemSelection:
 
@@ -198,7 +210,12 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
+            roomManager.Draw(_spriteBatch, gameScale);
+            HUD.Draw(_spriteBatch, 20);
+            foreach (IWeapon weapon in activeWeapons)
+
             switch (Gstate)
+
             {
                 case GameState.Playing:
                     roomManager.Draw(_spriteBatch, gameScale);
