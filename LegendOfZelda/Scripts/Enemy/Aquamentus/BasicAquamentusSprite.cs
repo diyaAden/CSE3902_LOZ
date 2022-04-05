@@ -27,6 +27,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             animationFrames.Add(new Rectangle(72, 0, 24, 32));
             MoveSpeed = moveSpeed;
             attackTimerLimit = rnd.Next(120, 181);
+            health = 6;
         }
 
         public override void Attack()

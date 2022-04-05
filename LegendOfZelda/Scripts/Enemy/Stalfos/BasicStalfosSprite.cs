@@ -19,6 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
             direction = rnd.Next(0, 4);
             timeUntilDirectionChange = rnd.Next(45, 76);
             MoveSpeed = moveSpeed;
+            health = 2;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {

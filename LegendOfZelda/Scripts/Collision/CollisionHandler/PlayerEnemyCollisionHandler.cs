@@ -25,6 +25,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         }
         public void HandleCollision(ILink link, IBlock door, RoomManager roomManager, int scale) { }
         public void HandleItemDestroy(Room CurrentRoom, int index) { }
+        public void HandleEnemyDestroy(Room CurrentRoom, int index) { }
     }
 
 }
