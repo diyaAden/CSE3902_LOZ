@@ -30,8 +30,6 @@ namespace LegendOfZelda
         public HandlerManager handlerManager;
         public ILink link;
         public RoomManager roomManager;
-
-        public GameState Gstate;
         public HUDSprite HUD;
         public RoomMovingController roomMovingController;
         public GameState Gstate = GameState.Playing;
@@ -81,7 +79,7 @@ namespace LegendOfZelda
             GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
-            handlerManager = new HandlerManager(detectorManager.collisionDetectors);
+            //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
             HUD = new HUDSprite();
 
             //gameStateManager = new GameStateManager();
@@ -212,16 +210,16 @@ namespace LegendOfZelda
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
             roomManager.Draw(_spriteBatch, gameScale);
             HUD.Draw(_spriteBatch, 20);
-            foreach (IWeapon weapon in activeWeapons)
+          //  foreach (IWeapon weapon in activeWeapons)
 
             switch (Gstate)
 
             {
                 case GameState.Playing:
                     roomManager.Draw(_spriteBatch, gameScale);
-                    foreach (IWeapon weapon in activeWeapons)
+                    foreach (IWeapon w in activeWeapons)
                     {
-                        weapon.Draw(_spriteBatch, gameScale);
+                        w.Draw(_spriteBatch, gameScale);
                     }
                     link.Draw(_spriteBatch, gameScale);
                     break;
