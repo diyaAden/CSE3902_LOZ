@@ -10,6 +10,5 @@ namespace LegendOfZelda.Scripts.GameStateMachine
         Triforce,
         RoomSwitch,
         GameOver
-
     }
 }
