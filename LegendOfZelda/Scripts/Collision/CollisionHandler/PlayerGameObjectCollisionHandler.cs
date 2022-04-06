@@ -44,5 +44,6 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
             CurrentRoom.RemoveObject("Item", index);
         }
+        public void HandleEnemyDestroy(Room CurrentRoom, int index) { }
     }
 }

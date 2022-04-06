@@ -8,7 +8,7 @@ namespace LegendOfZelda.Scripts.Enemy
     public interface IEnemy : IGameObject
     {
         public Vector2 position { get; set; }
-
+        public int Health { get; set; }
         public void Attack();
         void HandleBlockCollision(IGameObject block, ICollision side, int scale);
         void HandleWeaponCollision(IGameObject weapon, ICollision side);

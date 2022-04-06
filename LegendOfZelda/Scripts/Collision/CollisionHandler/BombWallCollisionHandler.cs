@@ -26,6 +26,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 
         }
         public void HandleItemDestroy(Room CurrentRoom, int index) { }
+        public void HandleEnemyDestroy(Room CurrentRoom, int index) { }
         public void HandleCollision(ILink link, IBlock wall, RoomManager roomManager, int scale)
         {
             if (wall is SecretWallUpSprite || wall is SecretWallDownSprite || wall is SecretWallLeftSprite || wall is SecretWallRightSprite)

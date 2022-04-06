@@ -18,7 +18,7 @@ namespace LegendOfZelda.Scripts.Links
         private int attackCooldown;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
-
+       // private float numHearts = 10;
         public Link(Vector2 position, Vector2 screenOffset, int scale)
         {
             position.X = (position.X + screenOffset.X) * scale;
