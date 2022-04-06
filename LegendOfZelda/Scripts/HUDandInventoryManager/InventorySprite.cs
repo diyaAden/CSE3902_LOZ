@@ -29,11 +29,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, int scale)
+        public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             spriteBatch.Draw(InventoryTexture, pos, sourceRect, Color.White);
-            HUDSpr.Draw(spriteBatch, scale); //draw HUD Sprite (needs to be bottom of screen)
+            HUDSpr.Draw(spriteBatch, scale, offset); //draw HUD Sprite (needs to be bottom of screen)
         }
     }
 }
