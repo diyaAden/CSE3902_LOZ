@@ -24,5 +24,15 @@ namespace LegendOfZelda.Scripts.GameStateMachine
             ICommand command = new GameStatePlaying(myGame);
             command.Execute();
         }
+        public void SetGameStatePaused()
+        {
+            ICommand command = new GameStatePaused(myGame);
+            command.Execute();
+        }
+        public void SetGameStateGameOver()
+        {
+            ICommand command = new GameStateGameOver(myGame);
+            command.Execute();
+        }
     }
 }

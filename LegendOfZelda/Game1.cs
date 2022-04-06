@@ -123,11 +123,11 @@ namespace LegendOfZelda
 
             //Paused
             
-            pausedTexture = Content.Load<Texture2D>("Paused");
+            pausedTexture = Content.Load<Texture2D>("SpriteSheets/General/PausedScreen");
             pausedRectangle = new Rectangle(0, 0, pausedTexture.Width, pausedTexture.Height);
 
             //GameOver
-            gameOverTexture = Content.Load<Texture2D>("GameOver");
+            gameOverTexture = Content.Load<Texture2D>("SpriteSheets/General/GameOverScreen");
             gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //*******************************
@@ -146,11 +146,11 @@ namespace LegendOfZelda
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     if (keyboard.IsKeyDown(Keys.Enter))
                     {
-                        Gstate = GameState.Paused;
+                        GameStateController.Instance.SetGameStatePaused();
                     }
                     if (keyboard.IsKeyDown(Keys.RightShift))
                     {
-                        Gstate = GameState.GameOver;
+                        GameStateController.Instance.SetGameStateGameOver();
                     }
                     foreach (IController controller in controllerList) { controller.Update(); }
 
@@ -221,10 +221,12 @@ namespace LegendOfZelda
                     roomMovingController.Draw(_spriteBatch);
                     break;
                 case GameState.Paused:
-                    _spriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
+                    Rectangle destRect1 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, pausedRectangle.Width * gameScale, pausedRectangle.Height * gameScale);
+                    _spriteBatch.Draw(pausedTexture, destRect1, pausedRectangle, Color.White);
                     break;
                 case GameState.GameOver:
-                    _spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
+                    Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
+                    _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
