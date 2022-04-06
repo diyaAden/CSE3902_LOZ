@@ -90,7 +90,7 @@ namespace LegendOfZelda
         {
             //GraphicsDevice.Reset();
             LoadContent();
-            Gstate = GameState.Playing;
+            GameStateController.Instance.SetGameStatePlaying();
         }
 
         protected override void LoadContent()
@@ -144,14 +144,6 @@ namespace LegendOfZelda
             {
                 case GameState.Playing:
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
-                    if (keyboard.IsKeyDown(Keys.Enter))
-                    {
-                        GameStateController.Instance.SetGameStatePaused();
-                    }
-                    if (keyboard.IsKeyDown(Keys.RightShift))
-                    {
-                        GameStateController.Instance.SetGameStateGameOver();
-                    }
                     foreach (IController controller in controllerList) { controller.Update(); }
 
                     for (int i = 0; i < activeWeapons.Count; i++)
@@ -181,7 +173,7 @@ namespace LegendOfZelda
                 case GameState.Paused:
                     if (keyboard.IsKeyDown(Keys.O))
                     {
-                        Gstate = GameState.Playing;
+                        GameStateController.Instance.SetGameStatePlaying();
                     }
                     break;
                 case GameState.GameOver:
