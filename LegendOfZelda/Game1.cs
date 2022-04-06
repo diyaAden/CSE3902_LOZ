@@ -191,16 +191,13 @@ namespace LegendOfZelda
                     //reset
                     if (keyboard.IsKeyDown(Keys.O))
                     {
-                        this.ResetGame();
+                        ResetGame();
                     }
-
                     break;
                 case GameState.WonGame:
 
                     break;
             }
-            
-
             base.Update(gameTime);
         }
 
@@ -208,12 +205,9 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-            roomManager.Draw(_spriteBatch, gameScale);
-            HUD.Draw(_spriteBatch, 20);
           //  foreach (IWeapon weapon in activeWeapons)
 
             switch (Gstate)
-
             {
                 case GameState.Playing:
                     roomManager.Draw(_spriteBatch, gameScale);
@@ -226,18 +220,14 @@ namespace LegendOfZelda
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
                     break;
+                case GameState.Paused:
+                    _spriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
+                    break;
+                case GameState.GameOver:
+                    _spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
+                    break;
             }
-            link.Draw(_spriteBatch, gameScale);
-
-            //Paused
-            if(Gstate == GameState.Paused)
-            {
-                _spriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
-            }
-            if(Gstate == GameState.GameOver)
-            {
-                _spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
-            }
+            HUD.Draw(_spriteBatch, gameScale, screenOffset);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -12,12 +12,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D HUDTexture;
         Texture2D HUDText;
         Texture2D level;
+        Texture2D blackScreen;
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
         Rectangle fullHeartSource;
         Rectangle halfHeartSource;
         Rectangle emptyHeartSource;
+        Rectangle blackBackgroundSource;
         Rectangle levelImageSource;
         Rectangle levelFrameSource;
         Rectangle tempRect;
@@ -27,6 +29,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             HUDTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
             HUDText = content.Load<Texture2D>("SpriteSheets/General/HUDText");
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
+            blackScreen = content.Load<Texture2D>("SpriteSheets/General/blackScreen");
 
             //test for Inventory
 
@@ -38,6 +41,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             fullHeartSource = new Rectangle(20, 20, 20, 20);
             levelImageSource = new Rectangle(0, 0, 50, 26);
             levelFrameSource = new Rectangle(70, 1, 63, 8);
+            blackBackgroundSource = new Rectangle(0, 0, 256, 176);
             tempRect = new Rectangle(80, 0, 152, 100);
         }
         public void Update() 
@@ -45,11 +49,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, int scale)
+        public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * 2, sourceRect.Height * 2);
-            Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * 2, levelImageSource.Height * 2);
-            Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * 2, levelFrameSource.Height * 2);
+            Rectangle blackBackgroundDestRect = new Rectangle((int)offset.X * scale, (int)(offset.Y - blackBackgroundSource.Height) * scale,
+                blackBackgroundSource.Width * scale, blackBackgroundSource.Height * scale);
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
+            Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
+            Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
+            spriteBatch.Draw(blackScreen, blackBackgroundDestRect, blackBackgroundSource, Color.White);
             spriteBatch.Draw(HUDTexture, destRect, sourceRect, Color.White);
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
