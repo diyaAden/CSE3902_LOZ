@@ -18,7 +18,13 @@ namespace LegendOfZelda.Scripts.Links
         private int attackCooldown;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
-       // private float numHearts = 10;
+        private int numKeys = 0;
+        private int numRupees = 10;
+        private int numBombs = 0;
+
+
+       
+        public List<IGameObject> linkInventory = new List<IGameObject>();
         public Link(Vector2 position, Vector2 screenOffset, int scale)
         {
             position.X = (position.X + screenOffset.X) * scale;
@@ -78,6 +84,7 @@ namespace LegendOfZelda.Scripts.Links
                 attackCooldown = getTriforceCooldownLimit;
                 SoundController.Instance.PlayGetTriforceMusic();
                 state.PickItem(name, scale);
+                
             }
             else
             {
@@ -124,6 +131,31 @@ namespace LegendOfZelda.Scripts.Links
 
         }
 
+        public void addInventoryItem(IGameObject gameObject)
+        {
+            if (((IItem)gameObject).Name == "Rupee")
+            {
+                //add to rupee count
+                numRupees++;
+                Debug.WriteLine("rupee added!");
+            }
+            else if (((IItem)gameObject).Name == "Key")
+            {
+                //add to key
+                numKeys++;
+                Debug.WriteLine("key added!");
+            }
+            else
+            {
+                linkInventory.Add(gameObject);
+                if (((IItem)gameObject).Name == "Bomb")
+                {
+                    numBombs++;
+                }
+                    Debug.WriteLine("item added!");
+            }
+        }
+
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
         {
             if (!(side is ICollision.SideNone))
@@ -142,6 +174,7 @@ namespace LegendOfZelda.Scripts.Links
                 Debug.WriteLine(((IItem)gameObject).Name);
                 Debug.WriteLine("Pick up item!!!!");
                 PickItem(((IItem)gameObject).Name, scale);
+                addInventoryItem(gameObject);
 
             }
         }
