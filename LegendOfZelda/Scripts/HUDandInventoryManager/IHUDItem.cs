@@ -6,7 +6,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
     public interface IHUDItem
     {
-        
+        public string name { get; set; }
+
         public Vector2 Position { get; set; }
 
         public void Update();

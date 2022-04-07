@@ -17,8 +17,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public HUDInventoryManager(HUDSprite HUDG)
         {
             HUD = HUDG;
-            //sourceRect = new Rectangle(xPos, yPos, width, height);
-            //destRectangle = new Rectangle()
         }
         public void LoadContent()
         {
@@ -48,10 +46,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void updateHealth()
         {
-
+            int lastHeart = HUD.findLastHeart();
+            HUD.RemoveObject(lastHeart);
         }
         public void Update()
         {
+            updateHealth();
             //update lives
             //check color for map
         }

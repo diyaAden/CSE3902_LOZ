@@ -166,7 +166,7 @@ namespace LegendOfZelda
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
 
                     //update HUD
-
+                    HUDManager.Update();
                     break;
                 case GameState.ItemSelection:
 

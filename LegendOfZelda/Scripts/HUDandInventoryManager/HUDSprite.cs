@@ -50,7 +50,23 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             HUDItems.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
             HUDItems[^1].Position = new Vector2(xPos, yPos);
+            HUDItems[^1].name = name;
         }
+        public void RemoveObject(int index) {
+            HUDItems.RemoveAt(index);
+        }
+        public int findLastHeart() {
+            for ( int i = HUDItems.Count-1; i > 0; i--) {
+                    if( HUDItems[i].name == "HeartItem") {
+                    return i;
+                    } else if(HUDItems[i].name == "HalfHeartItem") {
+                    return i;
+                }
+            }
+            return 0;
+
+        }
+
 
         public void Update() 
         {

@@ -5,6 +5,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
     public abstract class BasicHUDItem : IHUDItem
     {
+        public string name { get; set; }
         public virtual Texture2D SpriteSheet { get; set; }
         protected Rectangle sourceRect;
         //protected Vector2 pos = new Vector2(0, 0);
