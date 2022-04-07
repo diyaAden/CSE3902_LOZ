@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -12,6 +13,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D HUDTexture;
         Texture2D HUDText;
         Texture2D level;
+        public List<IHUDItem> HUDItems { get; private set; }
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
@@ -37,16 +39,22 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         }
         public HUDSprite()
         {
-           // SpriteSheet = HUDTexture;
+            // SpriteSheet = HUDTexture;
+            HUDItems = new List<IHUDItem>();
             sourceRect = new Rectangle(xPos, yPos, width, height);
-            fullHeartSource = new Rectangle(20, 20, 20, 20);
             levelImageSource = new Rectangle(0, 0, 50, 26);
             levelFrameSource = new Rectangle(70, 1, 63, 8);
             tempRect = new Rectangle(80, 0, 152, 100);
         }
-        public void Update() 
-        { 
+        public void AddObject(string name, int xPos, int yPos)
+        {
+            HUDItems.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
+            HUDItems[^1].Position = new Vector2(xPos, yPos);
+        }
 
+        public void Update() 
+        {
+            foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
@@ -59,6 +67,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
             spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
+            foreach (IHUDItem HUDitem in HUDItems)
+            {
+                HUDitem.Draw(spriteBatch, scale, offset);
+            }
         }
     }
 }

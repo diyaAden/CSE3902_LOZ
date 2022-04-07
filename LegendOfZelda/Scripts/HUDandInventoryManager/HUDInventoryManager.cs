@@ -12,14 +12,30 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int keys;
         public bool hasMap;
         public float health;
-     
-        public HUDInventoryManager()
+        public HUDSprite HUD { get; set; }
+
+        public HUDInventoryManager(HUDSprite HUDG)
         {
-           // SpriteSheet = HUDTexture;
+            HUD = HUDG;
             //sourceRect = new Rectangle(xPos, yPos, width, height);
             //destRectangle = new Rectangle()
         }
+        public void LoadContent()
+        {
+            int numberOfHearts = 17;
+            int HeartposX = 179;
+            int HeartposY = 36;
+            //Add hearts
+            for (int i = 1; i < numberOfHearts; i++) {
+                HUD.AddObject("HeartItem", HeartposX, HeartposY);
+                HeartposX += 8;
+                if(i == 8) {
+                    HeartposY += 8;
+                    HeartposX = 179;
+                }
 
+            }
+        }
         public void updateRupees()
         {
 
@@ -34,11 +50,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
 
         }
-        public void Update() 
-        { 
+        public void Update()
+        {
             //update lives
             //check color for map
         }
+        
+
 
     }
 }

@@ -18,6 +18,7 @@
     <None Remove="Content\XmlFiles\**" />
     <None Remove="Scripts\Blocks\BlockSprites\DoorSprites\" />
     <None Remove="Scripts\GameStateMachine\" />
+    <None Remove="Scripts\HUDandInventoryManager\HUDItemSprites\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -121,5 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Blocks\BlockSprites\DoorSprites\" />
+    <Folder Include="Scripts\HUDandInventoryManager\HUDItemSprites\" />
   </ItemGroup>
 </Project>

@@ -30,10 +30,12 @@ namespace LegendOfZelda
         public HandlerManager handlerManager;
         public ILink link;
         public RoomManager roomManager;
+
+        public HUDInventoryManager HUDManager;
+
+        public GameState Gstate;
         public HUDSprite HUD;
         public RoomMovingController roomMovingController;
-        public GameState Gstate = GameState.Playing;
-
         //public GameStateManager gameStateManager;
 
 
@@ -83,6 +85,8 @@ namespace LegendOfZelda
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
             HUD = new HUDSprite();
+            HUDManager = new HUDInventoryManager(HUD);
+            
 
             //gameStateManager = new GameStateManager();
 
@@ -102,9 +106,12 @@ namespace LegendOfZelda
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
+            HUDSpriteFactory.Instance.LoadAllTextures(Content);
             RoomBackgroundFactory.Instance.LoadAllTextures(Content);
             WeaponSpriteFactory.Instance.LoadAllTextures(Content);
             SoundController.Instance.LoadAllSounds(Content);
+            HUDManager.LoadContent();
+            HUD.LoadAllTextures(Content);
 
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
@@ -114,8 +121,6 @@ namespace LegendOfZelda
             link = new Link(linkStartPosition, screenOffset, gameScale);
 
             SoundController.Instance.StartDungeonMusic();
-
-            HUD.LoadAllTextures(Content);
 
 
 
@@ -199,7 +204,9 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-          //  foreach (IWeapon weapon in activeWeapons)
+
+            roomManager.Draw(_spriteBatch, gameScale);
+            HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
             switch (Gstate)
             {
