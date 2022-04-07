@@ -137,11 +137,13 @@ namespace LegendOfZelda.Scripts.Links
             {
                 //add to rupee count
                 numRupees++;
+                Debug.WriteLine("rupee added!");
             }
-            else if (((IItem)gameObject).Name != "Key")
+            else if (((IItem)gameObject).Name == "Key")
             {
                 //add to key
                 numKeys++;
+                Debug.WriteLine("key added!");
             }
             else
             {
