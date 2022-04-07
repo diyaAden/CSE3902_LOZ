@@ -61,6 +61,12 @@
 /processorParam:Quality=Best
 /build:Sounds/ItemSounds/boomerang.mp3
 
+#begin Sounds/ItemSounds/explodeBomb.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/ItemSounds/explodeBomb.mp3
+
 #begin Sounds/ItemSounds/getHeart.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -91,11 +97,11 @@
 /processorParam:Quality=Best
 /build:Sounds/ItemSounds/keyAppears.mp3
 
-#begin Sounds/ItemSounds/placeAndExplodeBomb.mp3
+#begin Sounds/ItemSounds/placeBomb.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/ItemSounds/placeAndExplodeBomb.mp3
+/build:Sounds/ItemSounds/placeBomb.mp3
 
 #begin Sounds/ItemSounds/rupeesDecreasing.mp3
 /importer:Mp3Importer

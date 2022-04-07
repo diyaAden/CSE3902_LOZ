@@ -53,7 +53,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             HUDItems[^1].name = name;
         }
         public void RemoveObject(int index) {
-            HUDItems.RemoveAt(index);
+            if (HUDItems.Count > index) HUDItems.RemoveAt(index);
         }
         public int findLastHeart() {
             for ( int i = HUDItems.Count-1; i > 0; i--) {

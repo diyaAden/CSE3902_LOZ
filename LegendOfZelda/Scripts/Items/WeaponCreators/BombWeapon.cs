@@ -10,7 +10,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
 
         public BombWeapon(Vector2 linkPosition, int facing, int scale)
         {
-            SoundController.Instance.PlayBombSound();
+            SoundController.Instance.PlayPlaceBombSound();
             Weapon = WeaponSpriteFactory.Instance.CreateBombWeaponSprite();
             weaponType = WeaponType.BOMB;
             position = facing switch
@@ -42,6 +42,7 @@ namespace LegendOfZelda.Scripts.Items.WeaponCreators
                 position = Weapon.Position;
                 Rectangle bombBox = Weapon.ObjectBox(scale);
                 Weapon = WeaponSpriteFactory.Instance.CreateExplosionSprite();
+                SoundController.Instance.PlayExplodeBombSound();
                 Rectangle explosionBox = Weapon.ObjectBox(scale);
                 position = new Vector2(position.X + bombBox.Width / 2f - explosionBox.Width / 2f, 
                     position.Y + bombBox.Height / 2f - explosionBox.Height / 2f);
