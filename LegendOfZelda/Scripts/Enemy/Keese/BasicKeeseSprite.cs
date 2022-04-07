@@ -21,7 +21,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
             direction = rnd.Next(0, 8);
             timeUntilDirectionChange = rnd.Next(30, 61);
             MoveSpeed = moveSpeed;
-            health = 1;
+            Health = 1;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {

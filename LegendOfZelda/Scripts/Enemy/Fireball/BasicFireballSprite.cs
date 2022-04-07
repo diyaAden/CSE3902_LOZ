@@ -18,7 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             moveDirection = direction;
             MoveSpeed = moveSpeed;
             pos = position;
-            health = 1;
+            Health = 1;
         }
 
         public override void Update(int scale, Vector2 screenOffset)

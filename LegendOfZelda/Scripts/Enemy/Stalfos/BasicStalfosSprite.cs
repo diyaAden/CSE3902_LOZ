@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
             direction = rnd.Next(0, 4);
             timeUntilDirectionChange = rnd.Next(45, 76);
             MoveSpeed = moveSpeed;
-            health = 2;
+            Health = 2;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
@@ -33,7 +33,7 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
         }
         public override void Update(int scale, Vector2 screenOffset)
         {
-            position = Move(direction, scale, screenOffset);
+            if (hurtCooldown == 0) position = Move(direction, scale, screenOffset);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;
@@ -45,6 +45,7 @@ namespace LegendOfZelda.Scripts.Enemy.Stalfos.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+            base.Update(scale, screenOffset);
         }
     }
 }

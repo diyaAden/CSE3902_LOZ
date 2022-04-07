@@ -9,25 +9,21 @@ namespace LegendOfZelda.Scripts.Enemy
 {
     public abstract class Enemy : IEnemy
     {
-        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
+        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223, hurtCooldownLimit = 30;
         protected Texture2D spriteSheet;
         protected Vector2 pos = new Vector2(400, 400);
         protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
-        protected int currentFrame = 0;
+        protected int currentFrame = 0, hurtCooldown = 0;
+        private Color drawColor = Color.White;
         public virtual Vector2 position { get { return pos; } set { pos = value; } }
-
         public virtual Texture2D Texture { get; set; }
-
-        public virtual int Health { get { return health; } set { health = value; } }
-        public virtual int health { get; set; }
-
+        public virtual int Health { get; set; }
         protected virtual int Rows { get; set; }
         protected virtual int Columns { get; set; }
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
         protected virtual float MoveSpeed { get; set; }
         
-
         public virtual void Attack() { }
         public virtual void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {
@@ -52,11 +48,13 @@ namespace LegendOfZelda.Scripts.Enemy
                 //do nothing
             }
         }
-        public void HandleWeaponCollision(IGameObject weapon, ICollision side)
+        public virtual void HandleWeaponCollision(IGameObject weapon, ICollision side)
         {
-            if (!(side is ICollision.SideNone))
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
             {
-                health--;
+                hurtCooldown = hurtCooldownLimit;
+                drawColor = Color.Red;
+                Health--;
                 Debug.WriteLine("Boom! Enemy is damaged!");
             }
         }
@@ -80,14 +78,15 @@ namespace LegendOfZelda.Scripts.Enemy
 
             return returnPos;
         }
-
         public virtual void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             Update(scale, screenOffset);
         }
-
-        public virtual void Update(int scale, Vector2 screenOffset) { }
-
+        public virtual void Update(int scale, Vector2 screenOffset) 
+        {
+            if (hurtCooldown > 0) hurtCooldown--;
+            else if (hurtCooldown == 0) drawColor = Color.White;
+        }
         public virtual Rectangle ObjectBox(int scale)
         {
             return new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
@@ -95,9 +94,8 @@ namespace LegendOfZelda.Scripts.Enemy
         public virtual void Draw(SpriteBatch spriteBatch, int scale)
         {
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
-            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], Color.White);
+            spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], drawColor);
         }
-
         public void HandleCollision(ICollision side, int scale) { }
     }
 }

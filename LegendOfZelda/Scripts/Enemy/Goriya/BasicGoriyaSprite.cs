@@ -31,7 +31,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             MoveSpeed = moveSpeed;
             direction = 0;
             attackTimeLimit = rnd.Next(100, 181);
-            health = 3; //red is 3, blue is 5.
+            Health = 3; //red is 3, blue is 5.
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {

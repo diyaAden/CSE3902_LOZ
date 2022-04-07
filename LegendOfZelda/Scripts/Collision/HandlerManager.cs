@@ -75,7 +75,7 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
-                        if (weapon is BombWeapon && ((BombWeapon)weapon).DetonatingNow()) 
+                        if (weapon is BombWeapon bomb && bomb.DetonatingNow()) 
                             collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
                     }
                 }
