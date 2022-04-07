@@ -92,7 +92,7 @@ namespace LegendOfZelda
         {
             //GraphicsDevice.Reset();
             LoadContent();
-            Gstate = GameState.Playing;
+            GameStateController.Instance.SetGameStatePlaying();
         }
 
         protected override void LoadContent()
@@ -125,11 +125,11 @@ namespace LegendOfZelda
 
             //Paused
             
-            pausedTexture = Content.Load<Texture2D>("Paused");
+            pausedTexture = Content.Load<Texture2D>("SpriteSheets/General/PausedScreen");
             pausedRectangle = new Rectangle(0, 0, pausedTexture.Width, pausedTexture.Height);
 
             //GameOver
-            gameOverTexture = Content.Load<Texture2D>("GameOver");
+            gameOverTexture = Content.Load<Texture2D>("SpriteSheets/General/GameOverScreen");
             gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //*******************************
@@ -146,14 +146,6 @@ namespace LegendOfZelda
             {
                 case GameState.Playing:
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
-                    if (keyboard.IsKeyDown(Keys.Enter))
-                    {
-                        Gstate = GameState.Paused;
-                    }
-                    if (keyboard.IsKeyDown(Keys.RightShift))
-                    {
-                        Gstate = GameState.GameOver;
-                    }
                     foreach (IController controller in controllerList) { controller.Update(); }
 
                     for (int i = 0; i < activeWeapons.Count; i++)
@@ -183,7 +175,7 @@ namespace LegendOfZelda
                 case GameState.Paused:
                     if (keyboard.IsKeyDown(Keys.O))
                     {
-                        Gstate = GameState.Playing;
+                        GameStateController.Instance.SetGameStatePlaying();
                     }
                     break;
                 case GameState.GameOver:
@@ -193,16 +185,13 @@ namespace LegendOfZelda
                     //reset
                     if (keyboard.IsKeyDown(Keys.O))
                     {
-                        this.ResetGame();
+                        ResetGame();
                     }
-
                     break;
                 case GameState.WonGame:
 
                     break;
             }
-            
-
             base.Update(gameTime);
         }
 
@@ -210,12 +199,9 @@ namespace LegendOfZelda
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
-            roomManager.Draw(_spriteBatch, gameScale);
-            HUD.Draw(_spriteBatch, 20);
           //  foreach (IWeapon weapon in activeWeapons)
 
             switch (Gstate)
-
             {
                 case GameState.Playing:
                     roomManager.Draw(_spriteBatch, gameScale);
@@ -228,18 +214,16 @@ namespace LegendOfZelda
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
                     break;
+                case GameState.Paused:
+                    Rectangle destRect1 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, pausedRectangle.Width * gameScale, pausedRectangle.Height * gameScale);
+                    _spriteBatch.Draw(pausedTexture, destRect1, pausedRectangle, Color.White);
+                    break;
+                case GameState.GameOver:
+                    Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
+                    _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
+                    break;
             }
-            link.Draw(_spriteBatch, gameScale);
-
-            //Paused
-            if(Gstate == GameState.Paused)
-            {
-                _spriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
-            }
-            if(Gstate == GameState.GameOver)
-            {
-                _spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
-            }
+            HUD.Draw(_spriteBatch, gameScale, screenOffset);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

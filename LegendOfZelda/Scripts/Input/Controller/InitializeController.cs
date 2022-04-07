@@ -50,9 +50,9 @@ namespace LegendOfZelda.Scripts.Input.Controller
             //Block, enemy, and item controls
             control.RegisterCommand(Keys.K, new PreviousRoom(myGame));
             control.RegisterCommand(Keys.L, new NextRoom(myGame));
-
             //Pause controls
-            // control.RegisterCommand(Keys.Enter, new PauseGame(myGame));
+            control.RegisterCommand(Keys.Enter, new GameStatePaused(myGame));
+            control.RegisterCommand(Keys.RightShift, new GameStateGameOver(myGame));
         }
         public void RegisterCommands(MouseController mouse)
         {

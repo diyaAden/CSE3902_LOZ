@@ -22,8 +22,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Rectangle levelFrameSource;
         Rectangle tempRect;
 
+        private GameScreenBorder border = new GameScreenBorder();
+
         public void LoadAllTextures(ContentManager content)
         {
+            border.LoadTextures(content);
+
             HUDTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
             HUDText = content.Load<Texture2D>("SpriteSheets/General/HUDText");
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
@@ -45,11 +49,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, int scale)
+        public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * 2, sourceRect.Height * 2);
-            Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * 2, levelImageSource.Height * 2);
-            Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * 2, levelFrameSource.Height * 2);
+            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
+            Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
+            Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
+            border.Draw(spriteBatch, scale, offset);
             spriteBatch.Draw(HUDTexture, destRect, sourceRect, Color.White);
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
