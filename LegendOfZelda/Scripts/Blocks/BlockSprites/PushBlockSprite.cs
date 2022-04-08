@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace LegendOfZelda.Scripts.Blocks.BlockSprites
 {
@@ -10,7 +11,7 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
         private readonly Vector2 permittedMovement = new Vector2(16, 16);
         private bool originSet = false;
         private Vector2 originalPos;
-
+        public bool PushTriggerActive { get; set; } = false;
         public override Vector2 Position { 
             get { 
                 return pos;
@@ -48,11 +49,19 @@ namespace LegendOfZelda.Scripts.Blocks.BlockSprites
             {
                 pos.X += pushSpeed;
             }
+            DetectPushTrigger(scale);
+        }
+        private void DetectPushTrigger(int scale)
+        {
+            if (!PushTriggerActive)
+            {
+                if (Math.Abs(Position.X - originalPos.X) >= width * scale || Math.Abs(Position.Y - originalPos.Y) >= height * scale)
+                {
+                    PushTriggerActive = true;
+                }
+            }
         }
 
-        public override void Update()
-        {
-            
-        }
+        public override void Update() { }
     }
 }

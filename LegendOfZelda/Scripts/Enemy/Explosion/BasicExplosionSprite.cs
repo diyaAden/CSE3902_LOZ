@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
@@ -15,8 +17,9 @@ namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
             animationFrames.Add(new Rectangle(32, 0, 15, 16));
             animationFrames.Add(new Rectangle(48, 0, 15, 16));
             MoveSpeed = moveSpeed;
-            health = 1; //actually no health, just set now.
+            Health = 1; //actually no health, just set now.
         }
+        public override void HandleWeaponCollision(IGameObject weapon, ICollision side) { }
 
         public override void Update(int scale, Vector2 screenOffset)
         {

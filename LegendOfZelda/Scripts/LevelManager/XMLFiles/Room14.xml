@@ -16,7 +16,7 @@
 	</Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
-		<ObjectName>LockedDoorLeft</ObjectName>
+		<ObjectName>CrackedDoorLeft</ObjectName>
 		<PositionX>224</PositionX>
 		<PositionY>72</PositionY>
 		<roomNumber>15</roomNumber>

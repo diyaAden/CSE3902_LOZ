@@ -23,10 +23,10 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
             switch (gameObject)
             {
-                case IBlock block:
+                case IBlock _:
                     enemy.HandleBlockCollision(gameObject, side, scale);
                     break;
-                case IWeapon weapon:
+                case IWeapon _:
                     enemy.HandleWeaponCollision(gameObject, side);
                     break;
                 default:

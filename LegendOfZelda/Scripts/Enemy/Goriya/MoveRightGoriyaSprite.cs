@@ -24,6 +24,11 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
             }
             position = MovesPastWallsTest(screenOffset, new Vector2(position.X + MoveSpeed * scale, position.Y), scale);
         }
+        public void Draw(SpriteBatch spriteBatch, int scale, Color drawColor)
+        {
+            this.drawColor = drawColor;
+            base.Draw(spriteBatch, scale);
+        }
     }
 }
 
