@@ -55,14 +55,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void RemoveObject(int index) {
             if (HUDItems.Count > index) HUDItems.RemoveAt(index);
         }
-        public int findLastHeart() {
+        public int findObject(string name) {
             for ( int i = HUDItems.Count-1; i > 0; i--) {
-                    if( HUDItems[i].name == "HeartItem") {
-                    return i;
-                    } else if(HUDItems[i].name == "HalfHeartItem") {
-                    return i;
-                }
-            }
+                    if( HUDItems[i].name.Equals(name)) {
+                        return i;
+                    } 
+             }
             return 0;
 
         }
