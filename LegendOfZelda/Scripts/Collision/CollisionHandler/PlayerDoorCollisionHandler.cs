@@ -46,10 +46,6 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 case BombedDoorSpriteRight _:
                     MoveThroughDoor(link, door, roomMovingController, scale);
                     break;
-                case CrackedDoorSpriteDown _:
-                case CrackedDoorSpriteUp _:
-                case CrackedDoorSpriteLeft _:
-                case CrackedDoorSpriteRight _:
                 case LockedDoorSpriteDown _:
                 case LockedDoorSpriteUp _:
                 case LockedDoorSpriteLeft _:

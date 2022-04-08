@@ -10,8 +10,7 @@ namespace LegendOfZelda.Scripts.LevelManager
     public class Room : ILevel
     {
         private Vector2 keySpawnPos;
-        private bool keySpawned = false;
-        private RoomObjectEditor roomObjectEditor;
+        private readonly RoomObjectEditor roomObjectEditor;
         public IRoomBackground RoomBackground { get; private set; }
         public List<IItem> Items { get; private set; } = new List<IItem>();
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>();
@@ -22,7 +21,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void OpenSecretDoorDown() { roomObjectEditor.OpenSecretDoorDown(); }
         public void OpenSecretDoorLeft() { roomObjectEditor.OpenSecretDoorLeft(); }
         public void OpenSecretDoorRight() { roomObjectEditor.OpenSecretDoorRight(); }
-        public void SpawnKey() { roomObjectEditor.SpawnKey(keySpawned, keySpawnPos); }
+        public void OpenCrackedDoors() { roomObjectEditor.OpenCrackedDoors(); }
+        public void SpawnKey() { roomObjectEditor.SpawnKey(keySpawnPos); }
         public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom)
         {
             if (type == "Item") roomObjectEditor.AddItem(name, xPos, yPos);

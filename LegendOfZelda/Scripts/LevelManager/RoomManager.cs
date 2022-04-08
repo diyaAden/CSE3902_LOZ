@@ -89,6 +89,8 @@ namespace LegendOfZelda.Scripts.LevelManager
             Rooms[CurrentRoom].Update(linkPosition, scale, screenOffset);
             if (Rooms[CurrentRoom].Enemies.Count == 0 && (CurrentRoom == 1 || CurrentRoom == 3 || CurrentRoom == 6 || CurrentRoom == 13 || CurrentRoom == 18)) 
                 ((Room)Rooms[CurrentRoom]).SpawnKey();
+            if (Rooms[CurrentRoom].Enemies.Count == 0 && (CurrentRoom == 4 || CurrentRoom == 5 || CurrentRoom == 14))
+                ((Room)Rooms[CurrentRoom]).OpenCrackedDoors();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

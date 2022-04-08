@@ -9,6 +9,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class RoomObjectEditor
     {
+        private bool keySpawned = false, crackedDoorsOpened = false;
         public List<IItem> Items { get; private set; } 
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
@@ -46,6 +47,17 @@ namespace LegendOfZelda.Scripts.LevelManager
                 if (block is SecretWallRightSprite) block.Disable();
             }
         }
+        public void OpenCrackedDoors()
+        {
+            if (!crackedDoorsOpened) {
+                foreach (IBlock block in Blocks)
+                {
+                    if (block is CrackedDoorSpriteRight || block is CrackedDoorSpriteLeft || block is CrackedDoorSpriteUp || block is CrackedDoorSpriteDown)
+                        block.Disable();
+                    crackedDoorsOpened = true;
+                }
+            }
+        }
         public void AddItem(string name, int xPos, int yPos)
         {
             Items.Add(ItemSpriteFactory.Instance.CreateItemFromString(name));
@@ -69,7 +81,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void RemoveItem(int index) { Items.RemoveAt(index); }
         public void RemoveBlock(int index) { }
         public void RemoveEnemy(int index) { Enemies.RemoveAt(index); }
-        public void SpawnKey(bool keySpawned, Vector2 keySpawnPos)
+        public void SpawnKey(Vector2 keySpawnPos)
         {
             if (!keySpawned)
             {
