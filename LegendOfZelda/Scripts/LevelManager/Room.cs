@@ -12,16 +12,11 @@ namespace LegendOfZelda.Scripts.LevelManager
     public class Room : ILevel
     {
         public IRoomBackground RoomBackground { get; private set; }
-        public List<IItem> Items { get; private set; }
-        public List<IEnemy> Enemies { get; private set; }
-        public List<IBlock> Blocks { get; private set; }
+        public List<IItem> Items { get; private set; } = new List<IItem>();
+        public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>();
+        public List<IBlock> Blocks { get; private set; } = new List<IBlock>();
 
-        public Room()
-        {
-            Items = new List<IItem>();
-            Enemies = new List<IEnemy>();
-            Blocks = new List<IBlock>();
-        }
+        public Room() { }
         public void OpenSecretDoorUp()
         {
             foreach (IBlock block in Blocks)
@@ -36,7 +31,6 @@ namespace LegendOfZelda.Scripts.LevelManager
                 if (block is SecretWallDownSprite) block.Disable();
             }
         }
-
         public void OpenSecretDoorLeft()
         {
             foreach (IBlock block in Blocks)
@@ -44,7 +38,6 @@ namespace LegendOfZelda.Scripts.LevelManager
                 if (block is SecretWallLeftSprite) block.Disable();
             }
         }
-
         public void OpenSecretDoorRight()
         {
             foreach (IBlock block in Blocks)
@@ -84,33 +77,24 @@ namespace LegendOfZelda.Scripts.LevelManager
             Enemies.Add(EnemySpriteFactory.Instance.CreateEnemyFromString(name));
             Enemies[^1].position = new Vector2(xPos, yPos);
         }
-
         private void RemoveItem(int index)
         {
             Debug.WriteLine("Remove" + index);
             Items.RemoveAt(index);
         }
-        private void RemoveBlock(int index)
-        {
-            //Do nothing now
-        }
-        private void RemoveEnemy(int index)
-        {
-            Enemies.RemoveAt(index);
-        }
+        private void RemoveBlock(int index) { }
+        private void RemoveEnemy(int index) { Enemies.RemoveAt(index); }
         public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale)
         {
             RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
             RoomBackground.Position = new Vector2((RoomBackground.Position.X + screenOffset.X) * scale, (RoomBackground.Position.Y + screenOffset.Y) * scale);
         }
-
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
             foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
         }
-
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
             DrawBackgroundAndBlocks(spriteBatch, scale);
@@ -122,7 +106,6 @@ namespace LegendOfZelda.Scripts.LevelManager
             RoomBackground.Draw(spriteBatch, scale);
             foreach (IBlock block in Blocks) block.Draw(spriteBatch, scale);
         }
-
         public void ShiftRoom(int distX, int distY, int scale)
         {
             RoomBackground.Position = new Vector2(RoomBackground.Position.X + distX * scale, RoomBackground.Position.Y + distY * scale);
