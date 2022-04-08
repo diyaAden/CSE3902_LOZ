@@ -12,7 +12,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int keys;
         public bool hasMap;
         public float health = 4;
-        private float lastHealth;
         private int HeartposX = 179;
         private int HeartposY = 36;
         public HUDSprite HUD { get; set; }
@@ -34,15 +33,33 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 }
 
             }
+            HeartposX = 179;
+            HeartposY = 36;
             for(int w = 0; w < 4; w++)
             {
                 HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+                HeartposX += 8;
             }
             
         }
         public void damageLink() {
             health -= 0.5f;
+            HUD.RemoveHeart();
+            HeartposX -= 8;
+            if(HeartposX < 179) {
+                HeartposX = 179;
+            }
+
+            if(health % 1 == 0.5) {
+                HUD.AddHearts("HalfHeartItem", HeartposX, HeartposY);
+            }
         }
+        public void gainHeart() {
+            health += 1.0f;
+            HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+            HeartposX += 8;
+        }
+
 
         public void updateRupees()
         {
@@ -56,26 +73,26 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void updateHealth()
         {
-            for(int w = 1; w <= HUD.Hearts.Count; w++) {
-                if (!((w - health) == 0.5))
-                {
+            //for(int w = 1; w <= HUD.Hearts.Count; w++) {
+            //    if (!((w - health) == 0.5))
+            //    {
 
-                    if (w < health)
-                    {
-                        HUD.AddHearts("HeartItem", HeartposX, HeartposY);
-                    }
-                    else if (w > health)
-                    {
-                        HUD.AddHearts("EmptyHeartItem", HeartposX, HeartposY);
-                    }
-                }else {
-                    HUD.AddHearts("HalfHeartItem", HeartposX, HeartposY);
-                }
-                HeartposX += 8;
+            //        if (w < health)
+            //        {
+            //            HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+            //        }
+            //        else if (w > health)
+            //        {
+            //            HUD.AddHearts("EmptyHeartItem", HeartposX, HeartposY);
+            //        }
+            //    }else {
+            //        HUD.AddHearts("HalfHeartItem", HeartposX, HeartposY);
+            //    }
+                //HeartposX += 8;
 
 
 
-            }
+            //}
 
         }
         public void Update()

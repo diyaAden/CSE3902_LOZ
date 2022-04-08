@@ -20,6 +20,8 @@ namespace LegendOfZelda.Scripts.Input.Controller
             //Game Controls
             control.RegisterCommand(Keys.Q, new QuitGame(myGame));
             control.RegisterCommand(Keys.R, new ResetGame(myGame));
+            control.RegisterCommand(Keys.P, new DamageLink(myGame));
+            control.RegisterCommand(Keys.J, new ObtainHeart(myGame));
             //KeyboardControls for Link
             control.RegisterCommand(Keys.A, new SetLinkLeft(myGame));
             control.RegisterCommand(Keys.D, new SetLinkRight(myGame));
