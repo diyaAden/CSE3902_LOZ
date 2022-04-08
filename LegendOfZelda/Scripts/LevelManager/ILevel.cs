@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void OpenCrackedDoors();
         public void SpawnKey();
         public void SpawnHeartContainer();
+        public void DetectPushBlockMovement();
         public void DrawBackgroundAndBlocks(SpriteBatch spriteBatch, int scale);
     }
 }

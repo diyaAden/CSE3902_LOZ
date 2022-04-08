@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
@@ -21,6 +22,13 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void OpenCrackedDoors() { roomObjectEditor.OpenCrackedDoors(); }
         public void SpawnKey() { roomObjectEditor.SpawnKey(lastEnemyPos); }
         public void SpawnHeartContainer() { roomObjectEditor.SpawnHeartContainer(lastEnemyPos); }
+        public void DetectPushBlockMovement()
+        {
+            foreach (IBlock block in Blocks)
+            {
+                if (block is PushBlockSprite pushBlock && pushBlock.PushTriggerActive) OpenCrackedDoors();
+            }
+        }
         public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom)
         {
             if (type == "Item") roomObjectEditor.AddItem(name, xPos, yPos);
