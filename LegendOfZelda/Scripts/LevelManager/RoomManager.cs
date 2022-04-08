@@ -8,6 +8,9 @@ namespace LegendOfZelda.Scripts.LevelManager
     public class RoomManager
     {
         private const int roomsToLoad = 18;
+        private readonly List<int> roomsToSpawnKey = new List<int>() { 1, 3, 6, 13, 18 };
+        private readonly List<int> roomsToSpawnHeartContainer = new List<int>() { 14 };
+        private readonly List<int> roomsToOpenDoorsEnemies = new List<int>() { 4, 5, 14 };
         private XmlReader xml;
         private bool secretPath6To10Open = false, secretPath7To11Open = false;
         public List<ILevel> Rooms { get; set; }
@@ -20,8 +23,8 @@ namespace LegendOfZelda.Scripts.LevelManager
                 secretPath6To10Open = value;
                 if (secretPath6To10Open)
                 {
-                    Rooms[6].OpenSecretDoorUp();
-                    Rooms[10].OpenSecretDoorDown();
+                    Rooms[6].OpenSecretDoor(RoomObjectEditor.Direction.UP);
+                    Rooms[10].OpenSecretDoor(RoomObjectEditor.Direction.DOWN);
                 }
             }
         }
@@ -33,8 +36,8 @@ namespace LegendOfZelda.Scripts.LevelManager
                 secretPath7To11Open = value;
                 if (secretPath7To11Open)
                 {
-                    Rooms[7].OpenSecretDoorUp();
-                    Rooms[11].OpenSecretDoorDown();
+                    Rooms[7].OpenSecretDoor(RoomObjectEditor.Direction.UP);
+                    Rooms[11].OpenSecretDoor(RoomObjectEditor.Direction.DOWN);
                 }
             }
         }
@@ -87,14 +90,20 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             Rooms[CurrentRoom].Update(linkPosition, scale, screenOffset);
-            if (Rooms[CurrentRoom].Enemies.Count == 0 && (CurrentRoom == 1 || CurrentRoom == 3 || CurrentRoom == 6 || CurrentRoom == 13 || CurrentRoom == 18)) 
-                ((Room)Rooms[CurrentRoom]).SpawnKey();
-            if (Rooms[CurrentRoom].Enemies.Count == 0 && (CurrentRoom == 4 || CurrentRoom == 5 || CurrentRoom == 14))
-                ((Room)Rooms[CurrentRoom]).OpenCrackedDoors();
+            RoomEvents();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
             Rooms[CurrentRoom].Draw(spriteBatch, scale);
+        }
+        private void RoomEvents()
+        {
+            if (roomsToSpawnKey.Contains(CurrentRoom) && Rooms[CurrentRoom].Enemies.Count == 0)
+                Rooms[CurrentRoom].SpawnKey();
+            if (roomsToSpawnHeartContainer.Contains(CurrentRoom) && Rooms[CurrentRoom].Enemies.Count == 0)
+                Rooms[CurrentRoom].SpawnHeartContainer();
+            if (roomsToOpenDoorsEnemies.Contains(CurrentRoom) && Rooms[CurrentRoom].Enemies.Count == 0)
+                Rooms[CurrentRoom].OpenCrackedDoors();
         }
     }
 }

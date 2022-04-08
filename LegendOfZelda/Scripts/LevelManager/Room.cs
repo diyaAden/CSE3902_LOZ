@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room : ILevel
     {
-        private Vector2 keySpawnPos;
+        private Vector2 lastEnemyPos;
         private readonly RoomObjectEditor roomObjectEditor;
         public IRoomBackground RoomBackground { get; private set; }
         public List<IItem> Items { get; private set; } = new List<IItem>();
@@ -17,12 +17,10 @@ namespace LegendOfZelda.Scripts.LevelManager
         public List<IBlock> Blocks { get; private set; } = new List<IBlock>();
 
         public Room() { roomObjectEditor = new RoomObjectEditor(Items, Enemies, Blocks); }
-        public void OpenSecretDoorUp() { roomObjectEditor.OpenSecretDoorUp(); }
-        public void OpenSecretDoorDown() { roomObjectEditor.OpenSecretDoorDown(); }
-        public void OpenSecretDoorLeft() { roomObjectEditor.OpenSecretDoorLeft(); }
-        public void OpenSecretDoorRight() { roomObjectEditor.OpenSecretDoorRight(); }
+        public void OpenSecretDoor(RoomObjectEditor.Direction direction) { roomObjectEditor.OpenSecretDoor(direction); }
         public void OpenCrackedDoors() { roomObjectEditor.OpenCrackedDoors(); }
-        public void SpawnKey() { roomObjectEditor.SpawnKey(keySpawnPos); }
+        public void SpawnKey() { roomObjectEditor.SpawnKey(lastEnemyPos); }
+        public void SpawnHeartContainer() { roomObjectEditor.SpawnHeartContainer(lastEnemyPos); }
         public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom)
         {
             if (type == "Item") roomObjectEditor.AddItem(name, xPos, yPos);
@@ -45,7 +43,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
             foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
-            if (Enemies.Count == 1) keySpawnPos = Enemies[0].position;
+            if (Enemies.Count == 1) lastEnemyPos = Enemies[0].position;
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

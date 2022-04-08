@@ -3,13 +3,17 @@ using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.LevelManager
 {
     public class RoomObjectEditor
     {
-        private bool keySpawned = false, crackedDoorsOpened = false;
+        public enum Direction { UP, DOWN, LEFT, RIGHT }
+        private const int enemyDropItemProb = 6;
+        private bool keySpawned = false, crackedDoorsOpened = false, heartContainerSpawned = false;
+        private Random rnd = new Random();
         public List<IItem> Items { get; private set; } 
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
@@ -19,32 +23,14 @@ namespace LegendOfZelda.Scripts.LevelManager
             Enemies = enemies;
             Blocks = blocks;
         }
-        public void OpenSecretDoorUp()
+        public void OpenSecretDoor(Direction direction)
         {
             foreach (IBlock block in Blocks)
             {
-                if (block is SecretWallUpSprite) block.Disable();
-            }
-        }
-        public void OpenSecretDoorDown()
-        {
-            foreach (IBlock block in Blocks)
-            {
-                if (block is SecretWallDownSprite) block.Disable();
-            }
-        }
-        public void OpenSecretDoorLeft()
-        {
-            foreach (IBlock block in Blocks)
-            {
-                if (block is SecretWallLeftSprite) block.Disable();
-            }
-        }
-        public void OpenSecretDoorRight()
-        {
-            foreach (IBlock block in Blocks)
-            {
-                if (block is SecretWallRightSprite) block.Disable();
+                if (direction == Direction.UP && block is SecretWallUpSprite) block.Disable();
+                else if (direction == Direction.DOWN && block is SecretWallDownSprite) block.Disable();
+                else if (direction == Direction.LEFT && block is SecretWallLeftSprite) block.Disable();
+                else if (direction == Direction.RIGHT && block is SecretWallRightSprite) block.Disable();
             }
         }
         public void OpenCrackedDoors()
@@ -71,7 +57,6 @@ namespace LegendOfZelda.Scripts.LevelManager
             {
                 Blocks[^1].AdjacentRoom = adjacentRoom;
             }
-
         }
         public void AddEnemy(string name, int xPos, int yPos)
         {
@@ -80,7 +65,24 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void RemoveItem(int index) { Items.RemoveAt(index); }
         public void RemoveBlock(int index) { }
-        public void RemoveEnemy(int index) { Enemies.RemoveAt(index); }
+        public void RemoveEnemy(int index) 
+        {
+            Vector2 enemyPos = Enemies[index].position;
+            int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
+            if (itemSpawnChance == 0)
+            {
+                IItem heart = ItemSpriteFactory.Instance.CreateHeartSprite();
+                heart.Position = enemyPos;
+                Items.Add(heart);
+            }
+            else if (itemSpawnChance == 1)
+            {
+                IItem rupee = ItemSpriteFactory.Instance.CreateRupeeSprite();
+                rupee.Position = enemyPos;
+                Items.Add(rupee);
+            }
+            Enemies.RemoveAt(index); 
+        }
         public void SpawnKey(Vector2 keySpawnPos)
         {
             if (!keySpawned)
@@ -89,6 +91,16 @@ namespace LegendOfZelda.Scripts.LevelManager
                 key.Position = keySpawnPos;
                 Items.Add(key);
                 keySpawned = true;
+            }
+        }
+        public void SpawnHeartContainer(Vector2 heartContainerSpawnPos)
+        {
+            if (!heartContainerSpawned)
+            {
+                IItem container = ItemSpriteFactory.Instance.CreateHeartContainerSprite();
+                container.Position = heartContainerSpawnPos;
+                Items.Add(container);
+                heartContainerSpawned = true;
             }
         }
     }
