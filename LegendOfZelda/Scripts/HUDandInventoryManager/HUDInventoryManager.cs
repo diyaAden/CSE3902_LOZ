@@ -12,6 +12,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int keys;
         public bool hasMap;
         public float health;
+        private float lastHealth;
         public HUDSprite HUD { get; set; }
 
         public HUDInventoryManager(HUDSprite HUDG)
@@ -33,6 +34,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 }
 
             }
+            lastHealth = health;
         }
         public void updateRupees()
         {
@@ -46,8 +48,28 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void updateHealth()
         {
-            int lastHeart = HUD.findLastHeart();
-            HUD.RemoveObject(lastHeart);
+            int lastHeart;
+            int posX, posY;
+            if (health < lastHealth)
+            {
+                if (health % 1 == 0.5)
+                {
+                    lastHeart = HUD.findObject("HalfHeartItem");
+                    posX = (int)HUD.HUDItems[lastHeart].Position.X;
+                    posY = (int)HUD.HUDItems[lastHeart].Position.Y;
+                    HUD.RemoveObject(lastHeart);
+                }
+                else
+                {
+                    lastHeart = HUD.findObject("HeartItem");
+                    posX = (int)HUD.HUDItems[lastHeart].Position.X;
+                    posY = (int)HUD.HUDItems[lastHeart].Position.Y;
+                    HUD.RemoveObject(lastHeart);
+                }
+                HUD.AddObject("EmptyHeartIteam", posX, posY);
+            }
+            lastHealth = health;
+            
         }
         public void Update()
         {
