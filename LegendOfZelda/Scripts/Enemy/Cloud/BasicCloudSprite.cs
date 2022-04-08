@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
@@ -19,6 +21,7 @@ namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
             MoveSpeed = moveSpeed;
             Health = 1; //Not find online.
         }
+        public override void HandleWeaponCollision(IGameObject weapon, ICollision side) { }
 
         public override void Update(int scale, Vector2 screenOffset)
         {

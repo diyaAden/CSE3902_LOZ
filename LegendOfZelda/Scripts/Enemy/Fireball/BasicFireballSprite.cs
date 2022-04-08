@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
@@ -20,6 +22,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             pos = position;
             Health = 1;
         }
+        public override void HandleWeaponCollision(IGameObject weapon, ICollision side) { }
 
         public override void Update(int scale, Vector2 screenOffset)
         {
