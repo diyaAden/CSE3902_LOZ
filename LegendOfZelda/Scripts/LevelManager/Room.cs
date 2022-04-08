@@ -11,6 +11,8 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room : ILevel
     {
+        private Vector2 keySpawnPos;
+        private bool keySpawned = false;
         public IRoomBackground RoomBackground { get; private set; }
         public List<IItem> Items { get; private set; } = new List<IItem>();
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>();
@@ -84,6 +86,16 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         private void RemoveBlock(int index) { }
         private void RemoveEnemy(int index) { Enemies.RemoveAt(index); }
+        public void SpawnKey() 
+        {
+            if (!keySpawned)
+            {
+                IItem key = ItemSpriteFactory.Instance.CreateKeySprite();
+                key.Position = keySpawnPos;
+                Items.Add(key);
+                keySpawned = true;
+            }
+        }
         public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale)
         {
             RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
@@ -94,6 +106,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
             foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
+            if (Enemies.Count == 1) keySpawnPos = Enemies[0].position;
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

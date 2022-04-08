@@ -87,6 +87,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             Rooms[CurrentRoom].Update(linkPosition, scale, screenOffset);
+            if (Rooms[CurrentRoom].Enemies.Count == 0 && (CurrentRoom == 1 || CurrentRoom == 3 || CurrentRoom == 6 || CurrentRoom == 13 || CurrentRoom == 18)) 
+                ((Room)Rooms[CurrentRoom]).SpawnKey();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
