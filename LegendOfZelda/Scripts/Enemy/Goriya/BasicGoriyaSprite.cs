@@ -45,7 +45,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         }
         public override void Update(int scale, Vector2 screenOffset)
         {
-            if (!attacking)
+            if (!attacking && hurtCooldown == 0)
             {
                 sprite.Update(scale, screenOffset);
                 pos = sprite.position;
@@ -62,6 +62,7 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
                 }
             }
             goriyaCenter = new Vector2(pos.X + sprite.ObjectBox(scale).Width / 2f, pos.Y + sprite.ObjectBox(scale).Height / 2f);
+            base.Update(scale, screenOffset);
             if (boomerang != null && boomerang.GetWeaponType() == IWeapon.WeaponType.BOOMERANG) 
                 boomerang.Update(goriyaCenter, scale);
             else 
@@ -97,6 +98,10 @@ namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
         {
             if (boomerang != null) boomerang.Draw(spriteBatch, scale);
             sprite.Draw(spriteBatch, scale);
+            if (sprite is MoveLeftGoriyaSprite) ((MoveLeftGoriyaSprite)sprite).Draw(spriteBatch, scale, drawColor);
+            else if (sprite is MoveRightGoriyaSprite) ((MoveRightGoriyaSprite)sprite).Draw(spriteBatch, scale, drawColor);
+            else if (sprite is MoveUpGoriyaSprite) ((MoveUpGoriyaSprite)sprite).Draw(spriteBatch, scale, drawColor);
+            else if (sprite is MoveDownGoriyaSprite) ((MoveDownGoriyaSprite)sprite).Draw(spriteBatch, scale, drawColor);
         }
     }
 }

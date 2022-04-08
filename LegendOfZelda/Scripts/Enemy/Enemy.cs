@@ -10,11 +10,12 @@ namespace LegendOfZelda.Scripts.Enemy
     public abstract class Enemy : IEnemy
     {
         private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223, hurtCooldownLimit = 30;
+        protected readonly List<Color> damagedColors = new List<Color>() { Color.Red, Color.Green, Color.Yellow };
+        protected Color drawColor = Color.White;
         protected Texture2D spriteSheet;
         protected Vector2 pos = new Vector2(400, 400);
         protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
         protected int currentFrame = 0, hurtCooldown = 0;
-        private Color drawColor = Color.White;
         public virtual Vector2 position { get { return pos; } set { pos = value; } }
         public virtual Texture2D Texture { get; set; }
         public virtual int Health { get; set; }
@@ -53,7 +54,6 @@ namespace LegendOfZelda.Scripts.Enemy
             if (!(side is ICollision.SideNone) && hurtCooldown == 0)
             {
                 hurtCooldown = hurtCooldownLimit;
-                drawColor = Color.Red;
                 Health--;
                 Debug.WriteLine("Boom! Enemy is damaged!");
             }
@@ -84,7 +84,12 @@ namespace LegendOfZelda.Scripts.Enemy
         }
         public virtual void Update(int scale, Vector2 screenOffset) 
         {
-            if (hurtCooldown > 0) hurtCooldown--;
+            if (hurtCooldown > 0)
+            {
+                hurtCooldown--;
+                int index = hurtCooldown % damagedColors.Count;
+                drawColor = damagedColors[index];
+            }
             else if (hurtCooldown == 0) drawColor = Color.White;
         }
         public virtual Rectangle ObjectBox(int scale)
