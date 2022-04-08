@@ -18,7 +18,7 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
             animationFrames.Add(new Rectangle(8, 0, 8, 9));
             direction = rnd.Next(0, 4);
             MoveSpeed = moveSpeed;
-            health = 1;
+            Health = 1;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
@@ -34,7 +34,7 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
         {
             if (attacking)
             {
-                position = Move(direction, scale, screenOffset);
+                if (hurtCooldown == 0) position = Move(direction, scale, screenOffset);
                 moveDist += moveSpeed * scale;
             } else if (++movementTimer >= timeUntilMove)
             {
@@ -50,6 +50,7 @@ namespace LegendOfZelda.Scripts.Enemy.Gel.Sprite
                 direction = rnd.Next(0, 4);
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+            base.Update(scale, screenOffset);
         }
     }
 }

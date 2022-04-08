@@ -1,4 +1,5 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
+using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Collision.CollisionDetector;
 using LegendOfZelda.Scripts.Collision.CollisionHandler;
 using LegendOfZelda.Scripts.Enemy;
@@ -72,10 +73,10 @@ namespace LegendOfZelda.Scripts.Collision
                 foreach (IBlock block in blocks)
                 {
                     List<ICollision> sides = collisionDetectors[3].BoxTest(weapon, block, gameScale);
-                    if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                    if (sides.Count > 0 && sides[0] != ICollision.SideNone && !(block is BlueGapSprite))
                     {
                         setToDestroy = true;
-                        if (weapon is BombWeapon && ((BombWeapon)weapon).DetonatingNow()) 
+                        if (weapon is BombWeapon bomb && bomb.DetonatingNow()) 
                             collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
                     }
                 }

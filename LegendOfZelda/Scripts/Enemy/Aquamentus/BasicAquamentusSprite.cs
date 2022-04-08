@@ -27,7 +27,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             animationFrames.Add(new Rectangle(72, 0, 24, 32));
             MoveSpeed = moveSpeed;
             attackTimerLimit = rnd.Next(120, 181);
-            health = 6;
+            Health = 6;
         }
 
         public override void Attack()
@@ -56,6 +56,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
             foreach (IEnemy fireball in fireballs)
                 fireball.Update(scale, screenOffset);
             position = new Vector2(position.X - (moveSpeed * movingRight * scale), position.Y);
+            base.Update(scale, screenOffset);
         }
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {

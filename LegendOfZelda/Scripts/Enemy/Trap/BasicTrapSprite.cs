@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -30,8 +32,9 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 16, 16));
             MoveSpeed = retreatSpeed;
-            health = 3; //Actually no health.
+            Health = 3; //Actually no health.
         }
+        public override void HandleWeaponCollision(IGameObject weapon, ICollision side) { }
         private Vector2 Advance(int scale)
         {
             return direction switch

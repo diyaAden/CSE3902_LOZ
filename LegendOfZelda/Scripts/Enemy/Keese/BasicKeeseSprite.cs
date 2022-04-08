@@ -21,7 +21,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
             direction = rnd.Next(0, 8);
             timeUntilDirectionChange = rnd.Next(30, 61);
             MoveSpeed = moveSpeed;
-            health = 1;
+            Health = 1;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
@@ -40,7 +40,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale, Vector2 screenOffset)
         {
-            position = Move(direction, scale, screenOffset);
+            if (hurtCooldown == 0) position = Move(direction, scale, screenOffset);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;
@@ -52,6 +52,7 @@ namespace LegendOfZelda.Scripts.Enemy.Keese.Sprite
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
+            base.Update(scale, screenOffset);
         }
     }
 }
