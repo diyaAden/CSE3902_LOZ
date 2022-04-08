@@ -25,6 +25,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 "HeartItem" => CreateFullHeart(),
                 "HalfHeartItem" => CreateHalfHeart(),
                 "EmptyHeartItem" => CreateEmptyHeart(),
+                "BlackSpace" => CreateBlackSpace(),
                 _ => null,
             };
         }
@@ -40,6 +41,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public IHUDItem CreateEmptyHeart()
         {
             return new EmptyHeartItem(HUDText);
+        }
+        public IHUDItem CreateBlackSpace()
+        {
+            return new BlackSpace(HUDText);
         }
 
     }

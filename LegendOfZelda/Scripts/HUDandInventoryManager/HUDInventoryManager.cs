@@ -11,8 +11,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int rupees;
         public int keys;
         public bool hasMap;
-        public float health;
+        public float health = 4;
         private float lastHealth;
+        private int HeartposX = 179;
+        private int HeartposY = 36;
         public HUDSprite HUD { get; set; }
 
         public HUDInventoryManager(HUDSprite HUDG)
@@ -22,11 +24,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void LoadContent()
         {
             int numberOfHearts = 17;
-            int HeartposX = 179;
-            int HeartposY = 36;
             //Add hearts
             for (int i = 1; i < numberOfHearts; i++) {
-                HUD.AddObject("HeartItem", HeartposX, HeartposY);
+                HUD.AddObject("BlackSpace", HeartposX, HeartposY);
                 HeartposX += 8;
                 if(i == 8) {
                     HeartposY += 8;
@@ -34,8 +34,16 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 }
 
             }
-            lastHealth = health;
+            for(int w = 0; w < 4; w++)
+            {
+                HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+            }
+            
         }
+        public void damageLink() {
+            health -= 0.5f;
+        }
+
         public void updateRupees()
         {
 
@@ -48,28 +56,27 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void updateHealth()
         {
-            int lastHeart;
-            int posX, posY;
-            if (health < lastHealth)
-            {
-                if (health % 1 == 0.5)
+            for(int w = 1; w <= HUD.Hearts.Count; w++) {
+                if (!((w - health) == 0.5))
                 {
-                    lastHeart = HUD.findObject("HalfHeartItem");
-                    posX = (int)HUD.HUDItems[lastHeart].Position.X;
-                    posY = (int)HUD.HUDItems[lastHeart].Position.Y;
-                    HUD.RemoveObject(lastHeart);
+
+                    if (w < health)
+                    {
+                        HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+                    }
+                    else if (w > health)
+                    {
+                        HUD.AddHearts("EmptyHeartItem", HeartposX, HeartposY);
+                    }
+                }else {
+                    HUD.AddHearts("HalfHeartItem", HeartposX, HeartposY);
                 }
-                else
-                {
-                    lastHeart = HUD.findObject("HeartItem");
-                    posX = (int)HUD.HUDItems[lastHeart].Position.X;
-                    posY = (int)HUD.HUDItems[lastHeart].Position.Y;
-                    HUD.RemoveObject(lastHeart);
-                }
-                HUD.AddObject("EmptyHeartIteam", posX, posY);
+                HeartposX += 8;
+
+
+
             }
-            lastHealth = health;
-            
+
         }
         public void Update()
         {

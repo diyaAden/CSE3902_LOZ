@@ -167,6 +167,10 @@ namespace LegendOfZelda
 
                     //update HUD
                     HUDManager.Update();
+                    if (keyboard.IsKeyDown(Keys.P)) {
+                        HUDManager.damageLink();
+                    }
+
                     break;
                 case GameState.ItemSelection:
 

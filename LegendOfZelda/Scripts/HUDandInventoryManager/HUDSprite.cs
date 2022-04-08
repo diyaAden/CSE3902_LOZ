@@ -14,6 +14,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D HUDText;
         Texture2D level;
         public List<IHUDItem> HUDItems { get; private set; }
+        public List<IHUDItem> Hearts { get; set; }
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
@@ -41,6 +42,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             // SpriteSheet = HUDTexture;
             HUDItems = new List<IHUDItem>();
+            Hearts = new List<IHUDItem>();
             sourceRect = new Rectangle(xPos, yPos, width, height);
             levelImageSource = new Rectangle(0, 0, 50, 26);
             levelFrameSource = new Rectangle(70, 1, 63, 8);
@@ -52,8 +54,18 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             HUDItems[^1].Position = new Vector2(xPos, yPos);
             HUDItems[^1].name = name;
         }
+        public void AddHearts(string name, int xPos, int yPos)
+        {
+            Hearts.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
+            Hearts[^1].Position = new Vector2(xPos, yPos);
+            Hearts[^1].name = name;
+        }
         public void RemoveObject(int index) {
             if (HUDItems.Count > index) HUDItems.RemoveAt(index);
+        }
+        public void RemoveHeart()
+        {
+           if(Hearts.Count > 0) Hearts.RemoveAt(Hearts.Count-1);
         }
         public int findObject(string name) {
             for ( int i = HUDItems.Count-1; i > 0; i--) {
@@ -69,6 +81,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Update() 
         {
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
+            foreach (IHUDItem Heart in Hearts) Heart.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
@@ -84,6 +97,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             foreach (IHUDItem HUDitem in HUDItems)
             {
                 HUDitem.Draw(spriteBatch, scale, offset);
+            }
+            foreach (IHUDItem Heart in Hearts)
+            {
+                Heart.Draw(spriteBatch, scale, offset);
             }
         }
     }

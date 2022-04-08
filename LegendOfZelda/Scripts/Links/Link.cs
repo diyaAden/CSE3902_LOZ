@@ -14,7 +14,7 @@ namespace LegendOfZelda.Scripts.Links
     {
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
-        bool isDamaged = false;
+        public bool isDamaged = false;
         private int attackCooldown;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
