@@ -62,6 +62,10 @@ namespace LegendOfZelda.Scripts.Items
         {
             return new FireWeaponSprite(fireSpriteSheet, facingDirection);
         }
+        public IItem CreateSwordBeamWeaponSprite(int facingDirection)
+        {
+            return new SwordBeamWeaponSprite(arrowSwordSpriteSheet, facingDirection);
+        }
         public IItem CreateSwordWeaponSprite(int facingDirection)
         {
             return new SwordWeaponSprite(arrowSwordSpriteSheet, facingDirection);

@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -67,21 +68,33 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void RemoveBlock(int index) { }
         public void RemoveEnemy(int index) 
         {
-            Vector2 enemyPos = Enemies[index].position;
-            int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
-            if (itemSpawnChance == 0)
+            if (!(Enemies[index] is BasicExplosionSprite || Enemies[index] is BasicCloudSprite))
             {
-                IItem heart = ItemSpriteFactory.Instance.CreateHeartSprite();
-                heart.Position = enemyPos;
-                Items.Add(heart);
-            }
-            else if (itemSpawnChance == 1)
-            {
-                IItem rupee = ItemSpriteFactory.Instance.CreateRupeeSprite();
-                rupee.Position = enemyPos;
-                Items.Add(rupee);
+                Vector2 enemyPos = Enemies[index].position;
+                int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
+                if (itemSpawnChance == 0)
+                {
+                    IItem heart = ItemSpriteFactory.Instance.CreateHeartSprite();
+                    heart.Position = enemyPos;
+                    Items.Add(heart);
+                }
+                else if (itemSpawnChance == 1)
+                {
+                    IItem rupee = ItemSpriteFactory.Instance.CreateRupeeSprite();
+                    rupee.Position = enemyPos;
+                    Items.Add(rupee);
+                }
+                SpawnEnemyExplosion(index, enemyPos);
             }
             Enemies.RemoveAt(index); 
+        }
+        public void SpawnEnemyExplosion(int index, Vector2 enemyPos)
+        {
+            IEnemy explosion;
+            if (Enemies[index] is BasicAquamentusSprite) explosion = EnemySpriteFactory.Instance.CreateCloudSprite();
+            else explosion = EnemySpriteFactory.Instance.CreateExplosionSprite();
+            explosion.position = enemyPos;
+            Enemies.Add(explosion);
         }
         public void SpawnKey(Vector2 keySpawnPos)
         {

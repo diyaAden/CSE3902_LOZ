@@ -3,7 +3,7 @@ using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
+namespace LegendOfZelda.Scripts.Enemy
 {
     class BasicCloudSprite : Enemy
     {
@@ -25,10 +25,11 @@ namespace LegendOfZelda.Scripts.Enemy.Cloud.Sprite
 
         public override void Update(int scale, Vector2 screenOffset)
         {
-            if (++animationTimer > 4)
+            if (++animationTimer > 10)
             {
                 animationTimer = 0;
-                currentFrame = ++currentFrame % animationFrames.Count;
+                if (++currentFrame == animationFrames.Count) Health = 0;
+                currentFrame %= animationFrames.Count;
             }
 
         }
