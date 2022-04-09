@@ -1,7 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
-using LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -115,6 +114,11 @@ namespace LegendOfZelda.Scripts.LevelManager
                 Items.Add(container);
                 heartContainerSpawned = true;
             }
+        }
+        public void UpdateEnemyWithProjectiles(IEnemy enemy, Vector2 linkPosition, int scale, Vector2 screenOffset)
+        {
+            if (enemy is BasicAquamentusSprite dragon)
+                dragon.Update(Enemies, scale, screenOffset);
         }
     }
 }

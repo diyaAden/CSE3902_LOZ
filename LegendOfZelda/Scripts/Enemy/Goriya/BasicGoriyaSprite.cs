@@ -3,8 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Collision;
+using LegendOfZelda.Scripts.Enemy.Goriya;
+using LegendOfZelda.Scripts.Enemy.Goriya.Sprite;
 
-namespace LegendOfZelda.Scripts.Enemy.Goriya.Sprite
+namespace LegendOfZelda.Scripts.Enemy
 {
     class BasicGoriyaSprite : Enemy
     {

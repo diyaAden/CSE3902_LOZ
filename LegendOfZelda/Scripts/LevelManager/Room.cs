@@ -50,7 +50,15 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
+            int numEnemies = Enemies.Count;
+            for (int i = 0; i < numEnemies; i++) 
+            {
+                if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
+                    roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
+                else
+                    Enemies[i].Update(linkPosition, scale, screenOffset); 
+            }
+
             if (Enemies.Count == 1) lastEnemyPos = Enemies[0].position;
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
