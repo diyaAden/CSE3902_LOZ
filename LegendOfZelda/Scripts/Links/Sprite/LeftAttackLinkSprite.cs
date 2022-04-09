@@ -5,7 +5,9 @@ namespace LegendOfZelda.Scripts.Links.Sprite
 {
     class LeftAttackLinkSprite: BasicLinkSprite
     {
+        private const int linkWidthInTexture = 15;
         private Vector2 spritePosition;
+
         public LeftAttackLinkSprite(Texture2D texture, Vector2 Position, bool damageState, int scale)
         {
             Rows = 3;
@@ -26,6 +28,11 @@ namespace LegendOfZelda.Scripts.Links.Sprite
                 ++CurrentFrame;
                 Timer = 2;
             }
+        }
+        public override Rectangle LinkBox(int scale)
+        {
+            GetBoxSize();
+            return new Rectangle((int)Pos.X, (int)Pos.Y, linkWidthInTexture * scale, height * scale);
         }
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {
