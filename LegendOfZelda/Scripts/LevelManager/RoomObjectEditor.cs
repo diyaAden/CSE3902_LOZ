@@ -105,12 +105,12 @@ namespace LegendOfZelda.Scripts.LevelManager
                 keySpawned = true;
             }
         }
-        public void SpawnHeartContainer(Vector2 heartContainerSpawnPos)
+        public void SpawnHeartContainer(int scale, Vector2 screenOffset)
         {
             if (!heartContainerSpawned)
             {
                 IItem container = ItemSpriteFactory.Instance.CreateHeartContainerSprite();
-                container.Position = heartContainerSpawnPos;
+                container.Position = new Vector2((209 + screenOffset.X) * scale, (81 + screenOffset.Y) * scale);
                 Items.Add(container);
                 heartContainerSpawned = true;
             }
