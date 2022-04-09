@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
-namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
+namespace LegendOfZelda.Scripts.Enemy
 {
     class BasicFireballSprite : Enemy
     {
@@ -33,7 +33,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
             position = new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * moveDirection * scale);
-            if (position.X <= (screenOffset.X - 16) * scale) Health = 0;
+            if (position.X <= (screenOffset.X) * scale) Health = 0;
         }
     }
 }

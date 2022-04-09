@@ -13,16 +13,14 @@ namespace LegendOfZelda.Scripts.Enemy
     {
         private readonly int moveSpeed = 1;
         private readonly Random rnd = new Random();
+        private readonly List<IEnemy> boomerang = new List<IEnemy>();
         private int animationTimer = 0, direction, attackTimer = 0, attackTimeLimit;
-        private List<IEnemy> boomerang = new List<IEnemy>();
         private IEnemy sprite;
         private bool attacking = false;
         private Vector2 goriyaCenter;
 
         public override Vector2 position { 
-            get { 
-                return pos; 
-            } 
+            get { return pos; } 
             set { 
                 pos = value;
                 sprite.position = value;
@@ -69,8 +67,19 @@ namespace LegendOfZelda.Scripts.Enemy
             }
             goriyaCenter = new Vector2(pos.X + sprite.ObjectBox(scale).Width / 2f, pos.Y + sprite.ObjectBox(scale).Height / 2f);
             base.Update(scale, screenOffset);
-            if (boomerang.Count == 0)
+            if (boomerang.Count > 0 && ((BoomerangEnemy)boomerang[0]).GetWeaponType() == IWeapon.WeaponType.BOOMERANG)
+                boomerang[0].Update(goriyaCenter, scale, screenOffset);
+            else
                 attacking = false;
+        }
+        public override void HandleWeaponCollision(IGameObject weapon, ICollision side)
+        {
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
+            {
+                hurtCooldown = hurtCooldownLimit;
+                Health--;
+                foreach (IEnemy rang in boomerang) rang.Health = 0;
+            }
         }
         private void NewDirection()
         {

@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.Goriya;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -65,9 +66,13 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void RemoveItem(int index) { Items.RemoveAt(index); }
         public void RemoveBlock(int index) { }
+        private bool IsNormalEnemy(IEnemy enemy)
+        {
+            return !(enemy is BasicExplosionSprite || enemy is BasicCloudSprite || enemy is BasicFireballSprite || enemy is BoomerangEnemy);
+        }
         public void RemoveEnemy(int index) 
         {
-            if (!(Enemies[index] is BasicExplosionSprite || Enemies[index] is BasicCloudSprite))
+            if (IsNormalEnemy(Enemies[index]))
             {
                 Vector2 enemyPos = Enemies[index].position;
                 int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
