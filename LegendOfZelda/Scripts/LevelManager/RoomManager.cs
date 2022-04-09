@@ -91,18 +91,18 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
         {
             Rooms[CurrentRoom].Update(linkPosition, scale, screenOffset);
-            RoomEvents();
+            RoomEvents(scale, screenOffset);
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
             Rooms[CurrentRoom].Draw(spriteBatch, scale);
         }
-        private void RoomEvents()
+        private void RoomEvents(int scale, Vector2 screenOffset)
         {
             if (roomsToSpawnKey.Contains(CurrentRoom) && Rooms[CurrentRoom].Enemies.Count == 0)
                 Rooms[CurrentRoom].SpawnKey();
             if (roomsToSpawnHeartContainer.Contains(CurrentRoom) && Rooms[CurrentRoom].Enemies.Count == 0)
-                Rooms[CurrentRoom].SpawnHeartContainer();
+                Rooms[CurrentRoom].SpawnHeartContainer(scale, screenOffset);
             if (roomsToOpenDoorsEnemies.Contains(CurrentRoom) && Rooms[CurrentRoom].Enemies.Count == 0)
                 Rooms[CurrentRoom].OpenCrackedDoors();
             if (roomsToOpenDoorsBlocks.Contains(CurrentRoom))

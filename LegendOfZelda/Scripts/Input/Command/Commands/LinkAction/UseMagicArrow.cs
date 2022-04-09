@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            if (!myGame.activeWeapons.Exists(containsMagicArrow))
+            if (!myGame.activeWeapons.Exists(containsMagicArrow) && myGame.link.hasArrows())
             {
                 myGame.link.UseItem();
                 IWeapon arrow = new MagicArrowWeapon(myGame.link.State.Position, myGame.link.State.Direction, myGame.gameScale);

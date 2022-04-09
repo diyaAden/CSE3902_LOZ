@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.Goriya;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,7 +22,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void OpenSecretDoor(RoomObjectEditor.Direction direction) { roomObjectEditor.OpenSecretDoor(direction); }
         public void OpenCrackedDoors() { roomObjectEditor.OpenCrackedDoors(); }
         public void SpawnKey() { roomObjectEditor.SpawnKey(lastEnemyPos); }
-        public void SpawnHeartContainer() { roomObjectEditor.SpawnHeartContainer(lastEnemyPos); }
+        public void SpawnHeartContainer(int scale, Vector2 screenOffset) { roomObjectEditor.SpawnHeartContainer(scale, screenOffset); }
         public void DetectPushBlockMovement()
         {
             foreach (IBlock block in Blocks)
@@ -50,7 +51,15 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            foreach (IEnemy enemy in Enemies) enemy.Update(linkPosition, scale, screenOffset);
+            int numEnemies = Enemies.Count;
+            for (int i = 0; i < numEnemies; i++) 
+            {
+                if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
+                    roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
+                else if (!(Enemies[i] is BoomerangEnemy))
+                    Enemies[i].Update(linkPosition, scale, screenOffset); 
+            }
+
             if (Enemies.Count == 1) lastEnemyPos = Enemies[0].position;
         }
         public void Draw(SpriteBatch spriteBatch, int scale)

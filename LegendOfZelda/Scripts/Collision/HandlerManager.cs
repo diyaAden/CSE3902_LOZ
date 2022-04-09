@@ -197,7 +197,7 @@ namespace LegendOfZelda.Scripts.Collision
                         collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
                     }
                 }
-                if ((enemy is BasicExplosionSprite || enemy is BasicCloudSprite) && enemy.Health == 0 && !indices.Contains(index))
+                if (enemy.Health == 0 && !indices.Contains(index))
                     indices.Add(index);
                 index++;
             }

@@ -2,8 +2,9 @@
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
-namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
+namespace LegendOfZelda.Scripts.Enemy
 {
     class BasicFireballSprite : Enemy
     {
@@ -23,7 +24,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
             Health = 1;
         }
         public override void HandleWeaponCollision(IGameObject weapon, ICollision side) { }
-
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale, Vector2 screenOffset)
         {
             if (++animationTimer > 4)
@@ -32,7 +33,7 @@ namespace LegendOfZelda.Scripts.Enemy.Fireball.Sprite
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
             position = new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * moveDirection * scale);
-
+            if (position.X <= (screenOffset.X) * scale) Health = 0;
         }
     }
 }
