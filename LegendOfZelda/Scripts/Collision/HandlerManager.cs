@@ -53,8 +53,8 @@ namespace LegendOfZelda.Scripts.Collision
             ForLinkWeapon();
             ForLinkItem();
             ForLinkBlocks();
-            ForWeaponObject();
             ForEnemy();
+            ForWeaponObject();
         }
 
         public void Update(ILink link, List<IWeapon> ActiveWeapons, RoomManager RoomManager, int GameScale)
