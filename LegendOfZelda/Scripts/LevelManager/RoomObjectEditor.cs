@@ -119,6 +119,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             if (enemy is BasicAquamentusSprite dragon)
                 dragon.Update(Enemies, scale, screenOffset);
+            else if (enemy is BasicGoriyaSprite goriya)
+                goriya.Update(Enemies, scale, screenOffset);
         }
     }
 }
