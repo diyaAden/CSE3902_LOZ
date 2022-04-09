@@ -20,7 +20,8 @@ namespace LegendOfZelda.Scripts.Links
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
         private int numKeys = 0;
         private int numRupees = 10;
-        private int numBombs = 0;
+        private int numBombs = 3;
+      
 
 
        
@@ -131,9 +132,28 @@ namespace LegendOfZelda.Scripts.Links
 
         }
 
+        public bool hasArrows()
+        {
+            if (numRupees> 0)
+            {
+                numRupees--;
+                return true;
+            }
+            return false; 
+        }
+
+        public bool hasBombs()
+        {
+            if (numBombs > 0)
+            {
+                numBombs--;
+                return true;
+            }
+            return false;
+        }
         public void addInventoryItem(IGameObject gameObject)
         {
-            if (((IItem)gameObject).Name == "Rupee")
+            if (((IItem)gameObject).Name == "Rupee" || ((IItem)gameObject).Name == "BlueRupee")
             {
                 //add to rupee count
                 numRupees++;
@@ -183,6 +203,8 @@ namespace LegendOfZelda.Scripts.Links
         {
             if (attackCooldown != 0) attackCooldown--;
             state.Update();
+
+            
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
