@@ -17,12 +17,11 @@ namespace LegendOfZelda.Scripts.Links
         private ILinkState state;
         private ILinkState oldState;
         public bool isDamaged = false;
-        private int attackCooldown;
-        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460;
+        private int attackCooldown, hurtCooldown = 0;
+        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 10;
+        private ICollision enemyCollisionSide;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
-        private int numKeys = 0;
-        private int numRupees = 10;
-        private int numBombs = 3;
+        private int numKeys = 0, numRupees = 10, numBombs = 3;
         private float Health = 10.0f;
         private HUDInventoryManager HUDInventoryManager;
 
@@ -118,10 +117,6 @@ namespace LegendOfZelda.Scripts.Links
             {
                 state.PositionLeft();
             }
-            else if (side is ICollision.SideNone)
-            {
-                //do nothing
-            }
         }
         public void HandleDoorCollision(int direction, int scale)
         {
@@ -137,8 +132,9 @@ namespace LegendOfZelda.Scripts.Links
                 HUDInventoryManager.damageLink();   
                 state.ToDamaged();
                 oldState = state;
+                hurtCooldown = hurtCooldownLimit;
+                enemyCollisionSide = side;
             }
-
         }
 
         public bool hasArrows()
@@ -207,14 +203,39 @@ namespace LegendOfZelda.Scripts.Links
 
             }
         }
+        private void HurtRecoil()
+        {
+            int moveDist = 3;
+            if (enemyCollisionSide == ICollision.SideTop)
+            {
+                for (int i = 0; i < moveDist; i++) state.PositionDown();
+            }
+            else if (enemyCollisionSide == ICollision.SideBottom)
+            {
+                for (int i = 0; i < moveDist; i++) state.PositionUp();
+            }
+            else if (enemyCollisionSide == ICollision.SideLeft)
+            {
+                for (int i = 0; i < moveDist; i++) state.PositionRight();
+            }
+            else if (enemyCollisionSide == ICollision.SideRight)
+            {
+                for (int i = 0; i < moveDist; i++) state.PositionLeft();
+            }
+        }
         //Update and draw
         public void Update()
         {
-            if (attackCooldown != 0) attackCooldown--;
+            if (attackCooldown > 0) attackCooldown--;
             oldState = state;
             state.Update();
 
-            
+            if (hurtCooldown > 0)
+            {
+                --hurtCooldown;
+                HurtRecoil();
+            }
+            else enemyCollisionSide = ICollision.SideNone;
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
