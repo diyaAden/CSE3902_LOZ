@@ -9,7 +9,8 @@ namespace LegendOfZelda.Scripts.Enemy
 {
     public abstract class Enemy : IEnemy
     {
-        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223, hurtCooldownLimit = 30;
+        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
+        protected const int hurtCooldownLimit = 30;
         protected readonly List<Color> damagedColors = new List<Color>() { Color.Red, Color.Green, Color.Yellow };
         protected Color drawColor = Color.White;
         protected Texture2D spriteSheet;

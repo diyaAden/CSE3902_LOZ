@@ -21,6 +21,10 @@ namespace LegendOfZelda.Scripts.Links
         public void HandleItemCollision(IGameObject item, ICollision side, int scale);
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side);
 
+        public bool hasArrows();
+
+        public bool hasBombs();
+
         public void addInventoryItem(IGameObject gameObject);
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
         void Update();

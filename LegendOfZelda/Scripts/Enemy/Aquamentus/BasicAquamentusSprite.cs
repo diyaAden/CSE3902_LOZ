@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
+namespace LegendOfZelda.Scripts.Enemy
 {
     class BasicAquamentusSprite : Enemy
     {
@@ -38,8 +38,10 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
                 fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, pos));
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
-        public override void Update(int scale, Vector2 screenOffset)
+        public override void Update(int scale, Vector2 screenOffset) { }
+        public void Update(List<IEnemy> Enemies, int scale, Vector2 screenOffset)
         {
+            fireballs.Clear();
             if (++animationTimer % animationSpeed == 0)
                 currentFrame = ++currentFrame % animationFrames.Count;
             if (animationTimer == animationSpeed * 16)
@@ -54,7 +56,7 @@ namespace LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite
                 attackTimerLimit = rnd.Next(120, 181);
             }
             foreach (IEnemy fireball in fireballs)
-                fireball.Update(scale, screenOffset);
+                Enemies.Add(fireball);
             position = new Vector2(position.X - (moveSpeed * movingRight * scale), position.Y);
             base.Update(scale, screenOffset);
         }

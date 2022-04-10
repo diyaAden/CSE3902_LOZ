@@ -42,7 +42,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
 
         }
 
-        private void GetBoxSize()
+        protected void GetBoxSize()
         {
             width = Texture.Width / Columns;
             height = Texture.Height / Rows;

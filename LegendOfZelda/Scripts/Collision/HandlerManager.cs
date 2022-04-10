@@ -53,8 +53,8 @@ namespace LegendOfZelda.Scripts.Collision
             ForLinkWeapon();
             ForLinkItem();
             ForLinkBlocks();
-            ForWeaponObject();
             ForEnemy();
+            ForWeaponObject();
         }
 
         public void Update(ILink link, List<IWeapon> ActiveWeapons, RoomManager RoomManager, int GameScale)
@@ -180,7 +180,7 @@ namespace LegendOfZelda.Scripts.Collision
                         List<ICollision> sides = collisionDetectors[1].BoxTest(enemy, weapon, gameScale);
                         if (!sides.Contains(ICollision.SideNone) && sides.Count > 0 && enemy.Health <= 0)
                         {
-                            indices.Add(index);
+                            if (!indices.Contains(index)) indices.Add(index);
                         }
                         foreach (ICollision side in sides)
                         {
@@ -197,6 +197,8 @@ namespace LegendOfZelda.Scripts.Collision
                         collisionHandlers[1].HandleCollision(enemy, block, side, gameScale);
                     }
                 }
+                if (enemy.Health == 0 && !indices.Contains(index))
+                    indices.Add(index);
                 index++;
             }
             int delete = 0; //when the object remove, all index behind that will change.

@@ -1,6 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.Goriya;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -65,23 +66,39 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void RemoveItem(int index) { Items.RemoveAt(index); }
         public void RemoveBlock(int index) { }
+        private bool IsNormalEnemy(IEnemy enemy)
+        {
+            return !(enemy is BasicExplosionSprite || enemy is BasicCloudSprite || enemy is BasicFireballSprite || enemy is BoomerangEnemy);
+        }
         public void RemoveEnemy(int index) 
         {
-            Vector2 enemyPos = Enemies[index].position;
-            int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
-            if (itemSpawnChance == 0)
+            if (IsNormalEnemy(Enemies[index]))
             {
-                IItem heart = ItemSpriteFactory.Instance.CreateHeartSprite();
-                heart.Position = enemyPos;
-                Items.Add(heart);
-            }
-            else if (itemSpawnChance == 1)
-            {
-                IItem rupee = ItemSpriteFactory.Instance.CreateRupeeSprite();
-                rupee.Position = enemyPos;
-                Items.Add(rupee);
+                Vector2 enemyPos = Enemies[index].position;
+                int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
+                if (itemSpawnChance == 0)
+                {
+                    IItem heart = ItemSpriteFactory.Instance.CreateHeartSprite();
+                    heart.Position = enemyPos;
+                    Items.Add(heart);
+                }
+                else if (itemSpawnChance == 1)
+                {
+                    IItem rupee = ItemSpriteFactory.Instance.CreateRupeeSprite();
+                    rupee.Position = enemyPos;
+                    Items.Add(rupee);
+                }
+                SpawnEnemyExplosion(index, enemyPos);
             }
             Enemies.RemoveAt(index); 
+        }
+        public void SpawnEnemyExplosion(int index, Vector2 enemyPos)
+        {
+            IEnemy explosion;
+            if (Enemies[index] is BasicAquamentusSprite) explosion = EnemySpriteFactory.Instance.CreateCloudSprite();
+            else explosion = EnemySpriteFactory.Instance.CreateExplosionSprite();
+            explosion.position = enemyPos;
+            Enemies.Add(explosion);
         }
         public void SpawnKey(Vector2 keySpawnPos)
         {
@@ -93,15 +110,22 @@ namespace LegendOfZelda.Scripts.LevelManager
                 keySpawned = true;
             }
         }
-        public void SpawnHeartContainer(Vector2 heartContainerSpawnPos)
+        public void SpawnHeartContainer(int scale, Vector2 screenOffset)
         {
             if (!heartContainerSpawned)
             {
                 IItem container = ItemSpriteFactory.Instance.CreateHeartContainerSprite();
-                container.Position = heartContainerSpawnPos;
+                container.Position = new Vector2((209 + screenOffset.X) * scale, (81 + screenOffset.Y) * scale);
                 Items.Add(container);
                 heartContainerSpawned = true;
             }
+        }
+        public void UpdateEnemyWithProjectiles(IEnemy enemy, Vector2 linkPosition, int scale, Vector2 screenOffset)
+        {
+            if (enemy is BasicAquamentusSprite dragon)
+                dragon.Update(Enemies, scale, screenOffset);
+            else if (enemy is BasicGoriyaSprite goriya)
+                goriya.Update(Enemies, scale, screenOffset);
         }
     }
 }

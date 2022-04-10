@@ -2,8 +2,9 @@
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
-namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
+namespace LegendOfZelda.Scripts.Enemy
 {
     class BasicExplosionSprite : Enemy
     {
@@ -26,7 +27,8 @@ namespace LegendOfZelda.Scripts.Enemy.Explosion.Sprite
             if (++animationTimer > 4)
             {
                 animationTimer = 0;
-                currentFrame = ++currentFrame % animationFrames.Count;
+                if (++currentFrame == animationFrames.Count) Health = 0;
+                currentFrame %= animationFrames.Count;
             }
         }
     }

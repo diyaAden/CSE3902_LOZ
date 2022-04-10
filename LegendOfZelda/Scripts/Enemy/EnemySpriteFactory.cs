@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using LegendOfZelda.Scripts.Enemy.Aquamentus.Sprite;
-using LegendOfZelda.Scripts.Enemy.Cloud.Sprite;
-using LegendOfZelda.Scripts.Enemy.Explosion.Sprite;
 using LegendOfZelda.Scripts.Enemy.Fireball.Sprite;
 using LegendOfZelda.Scripts.Enemy.Gel.Sprite;
 using LegendOfZelda.Scripts.Enemy.Goriya.Sprite;
