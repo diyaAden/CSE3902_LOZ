@@ -120,7 +120,7 @@ namespace LegendOfZelda
             handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController);
 
             LoadLink.LoadTexture(Content);
-            link = new Link(linkStartPosition, screenOffset, gameScale);
+            link = new Link(linkStartPosition, screenOffset, gameScale, HUDManager);
 
             SoundController.Instance.StartDungeonMusic();
 

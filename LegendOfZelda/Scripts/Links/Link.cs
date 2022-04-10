@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links.State;
 using LegendOfZelda.Scripts.Sounds;
@@ -14,6 +15,7 @@ namespace LegendOfZelda.Scripts.Links
     {
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
+        private ILinkState oldState;
         public bool isDamaged = false;
         private int attackCooldown;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460;
@@ -21,13 +23,15 @@ namespace LegendOfZelda.Scripts.Links
         private int numKeys = 0;
         private int numRupees = 10;
         private int numBombs = 3;
-      
+        private float Health = 10.0f;
+        private HUDInventoryManager HUDInventoryManager;
 
 
        
         public List<IGameObject> linkInventory = new List<IGameObject>();
-        public Link(Vector2 position, Vector2 screenOffset, int scale)
+        public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager)
         {
+            HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;
             position.Y = (position.Y + screenOffset.Y) * scale;
             state = new RightIdleLinkState(this, position, isDamaged);
@@ -79,13 +83,16 @@ namespace LegendOfZelda.Scripts.Links
         public void PickItem(string name, int scale)
         {
             if (name.Contains("Rupee")) SoundController.Instance.PlayGetRupeeSound();
-            else if (name.Equals("Heart")) SoundController.Instance.PlayGetHeartSound();
+            else if (name.Equals("Heart")) {
+                HUDInventoryManager.gainHeart();
+                SoundController.Instance.PlayGetHeartSound(); 
+            }
             else if (name.Contains("Triforce"))
             {
                 attackCooldown = getTriforceCooldownLimit;
                 SoundController.Instance.PlayGetTriforceMusic();
                 state.PickItem(name, scale);
-                
+
             }
             else
             {
@@ -122,12 +129,14 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side)
         {
-            if (!(side is ICollision.SideNone))
+            if (!(side is ICollision.SideNone) && !oldState.checkDamaged())
             {
                 Debug.WriteLine("enemy collision registered");
                 // isDamaged = true;
                 SoundController.Instance.PlayLinkGetsHurtSound();
+                HUDInventoryManager.damageLink();   
                 state.ToDamaged();
+                oldState = state;
             }
 
         }
@@ -202,6 +211,7 @@ namespace LegendOfZelda.Scripts.Links
         public void Update()
         {
             if (attackCooldown != 0) attackCooldown--;
+            oldState = state;
             state.Update();
 
             

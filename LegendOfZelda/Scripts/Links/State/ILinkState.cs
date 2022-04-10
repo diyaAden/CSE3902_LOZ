@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Links
         int Direction { get; }
         void ToIdle();
         void ToDamaged();
+        bool checkDamaged();
         void MoveUp();
         void MoveDown();
         void MoveRight();

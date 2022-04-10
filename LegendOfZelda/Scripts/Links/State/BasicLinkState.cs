@@ -47,9 +47,12 @@ namespace LegendOfZelda.Scripts.Links.State
             {
                 isDamaged = false;
             } 
-
-            
         }
+        public virtual bool checkDamaged()
+        {
+            return isDamaged;
+        }
+        
         public virtual void ToIdle()
         {
             if (direction == 0)
