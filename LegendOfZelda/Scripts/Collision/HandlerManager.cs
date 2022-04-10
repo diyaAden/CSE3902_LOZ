@@ -91,7 +91,7 @@ namespace LegendOfZelda.Scripts.Collision
                 if (setToDestroy) weapon.DestroyWeapon(gameScale);
             }
         }
-        private void ForLinkBlocks()
+        public void ForLinkBlocks()
         {
             foreach (IBlock block in blocks)
             {
@@ -184,7 +184,8 @@ namespace LegendOfZelda.Scripts.Collision
                         }
                         foreach (ICollision side in sides)
                         {
-                            collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
+                            if (weapon.GetWeaponType() != IWeapon.WeaponType.BOMB)
+                                collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
                         }
                     }
                 }
