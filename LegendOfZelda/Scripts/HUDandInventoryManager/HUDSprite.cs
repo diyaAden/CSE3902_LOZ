@@ -17,9 +17,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
-        Rectangle fullHeartSource;
-        Rectangle halfHeartSource;
-        Rectangle emptyHeartSource;
         Rectangle levelImageSource;
         Rectangle levelFrameSource;
         Rectangle tempRect;

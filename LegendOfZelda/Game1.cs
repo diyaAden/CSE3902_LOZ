@@ -36,6 +36,8 @@ namespace LegendOfZelda
         public GameState Gstate;
         public HUDSprite HUD;
         public RoomMovingController roomMovingController;
+
+        
         //public GameStateManager gameStateManager;
 
 
@@ -146,6 +148,7 @@ namespace LegendOfZelda
         {
 
             KeyboardState keyboard = Keyboard.GetState();
+            Gstate = GameState.Paused;
 
             switch (Gstate)
             {
