@@ -15,9 +15,8 @@ namespace LegendOfZelda.Scripts.Links
     {
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
-        public bool isDamaged = false;
         private int attackCooldown, hurtCooldown = 0;
-        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 10;
+        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70;
         private ICollision enemyCollisionSide;
         private readonly HandlerManager handlerManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
@@ -32,7 +31,7 @@ namespace LegendOfZelda.Scripts.Links
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;
             position.Y = (position.Y + screenOffset.Y) * scale;
-            state = new RightIdleLinkState(this, position, isDamaged);
+            state = new RightIdleLinkState(this, position, false);
             attackCooldown = 0;
             for (int i = 0; i < roomSwapPositions.Count; i++)
             {
@@ -126,7 +125,6 @@ namespace LegendOfZelda.Scripts.Links
             if (!(side is ICollision.SideNone) && hurtCooldown == 0)
             {
                 Debug.WriteLine("enemy collision registered");
-                // isDamaged = true;
                 SoundController.Instance.PlayLinkGetsHurtSound();
                 HUDInventoryManager.damageLink();   
                 state.ToDamaged();
@@ -184,7 +182,6 @@ namespace LegendOfZelda.Scripts.Links
             if (!(side is ICollision.SideNone))
             {
                 Debug.WriteLine("hurt by urs weapon");
-                isDamaged = true;
                 SoundController.Instance.PlayLinkGetsHurtSound();
                 state.ToDamaged();
             }
@@ -243,12 +240,15 @@ namespace LegendOfZelda.Scripts.Links
             if (attackCooldown > 0) attackCooldown--;
             state.Update();
 
-            if (hurtCooldown > 0)
+            if (hurtCooldown > hurtCooldownLimit - 10)
             {
                 --hurtCooldown;
                 HurtRecoil();
             }
+            else if (hurtCooldown > 0) --hurtCooldown;
             else enemyCollisionSide = ICollision.SideNone;
+
+            if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

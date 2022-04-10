@@ -35,7 +35,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
             control.RegisterCommand(Keys.M, new UseItem(myGame));
             control.RegisterCommand(Keys.Z, new Attack(myGame));
             control.RegisterCommand(Keys.N, new Attack(myGame));
-            control.RegisterCommand(Keys.E, new SetLinkDamaged(myGame));
+            //control.RegisterCommand(Keys.E, new SetLinkDamaged(myGame));
             control.RegisterCommand(Keys.F, new SetLinkIdle(myGame));
             control.RegisterCommand(Keys.D1, new UseBomb(myGame));
             control.RegisterCommand(Keys.NumPad1, new UseBomb(myGame));
