@@ -15,7 +15,6 @@ namespace LegendOfZelda.Scripts.Links
     {
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
-        private ILinkState oldState;
         public bool isDamaged = false;
         private int attackCooldown, hurtCooldown = 0;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 10;
@@ -124,14 +123,13 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side)
         {
-            if (!(side is ICollision.SideNone) && !oldState.checkDamaged())
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
             {
                 Debug.WriteLine("enemy collision registered");
                 // isDamaged = true;
                 SoundController.Instance.PlayLinkGetsHurtSound();
                 HUDInventoryManager.damageLink();   
                 state.ToDamaged();
-                oldState = state;
                 hurtCooldown = hurtCooldownLimit;
                 enemyCollisionSide = side;
             }
@@ -227,7 +225,6 @@ namespace LegendOfZelda.Scripts.Links
         public void Update()
         {
             if (attackCooldown > 0) attackCooldown--;
-            oldState = state;
             state.Update();
 
             if (hurtCooldown > 0)
