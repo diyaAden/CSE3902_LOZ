@@ -148,7 +148,7 @@ namespace LegendOfZelda
         {
 
             KeyboardState keyboard = Keyboard.GetState();
-            Gstate = GameState.Paused;
+           // Gstate = GameState.Paused;
 
             switch (Gstate)
             {
