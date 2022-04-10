@@ -19,16 +19,16 @@ namespace LegendOfZelda.Scripts.Links
         private int attackCooldown, hurtCooldown = 0;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 10;
         private ICollision enemyCollisionSide;
+        private readonly HandlerManager handlerManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
         private int numKeys = 0, numRupees = 10, numBombs = 3;
         private float Health = 10.0f;
         private HUDInventoryManager HUDInventoryManager;
-
-
-       
         public List<IGameObject> linkInventory = new List<IGameObject>();
-        public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager)
+
+        public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
+            this.handlerManager = handlerManager;
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;
             position.Y = (position.Y + screenOffset.Y) * scale;
@@ -206,19 +206,35 @@ namespace LegendOfZelda.Scripts.Links
             int moveDist = 3;
             if (enemyCollisionSide == ICollision.SideTop)
             {
-                for (int i = 0; i < moveDist; i++) state.PositionDown();
+                for (int i = 0; i < moveDist; i++)
+                {
+                    state.PositionDown();
+                    handlerManager.ForLinkBlocks();
+                }
             }
             else if (enemyCollisionSide == ICollision.SideBottom)
             {
-                for (int i = 0; i < moveDist; i++) state.PositionUp();
+                for (int i = 0; i < moveDist; i++)
+                {
+                    state.PositionUp();
+                    handlerManager.ForLinkBlocks();
+                }
             }
             else if (enemyCollisionSide == ICollision.SideLeft)
             {
-                for (int i = 0; i < moveDist; i++) state.PositionRight();
+                for (int i = 0; i < moveDist; i++)
+                {
+                    state.PositionRight();
+                    handlerManager.ForLinkBlocks();
+                }
             }
             else if (enemyCollisionSide == ICollision.SideRight)
             {
-                for (int i = 0; i < moveDist; i++) state.PositionLeft();
+                for (int i = 0; i < moveDist; i++)
+                {
+                    state.PositionLeft();
+                    handlerManager.ForLinkBlocks();
+                }
             }
         }
         //Update and draw

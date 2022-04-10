@@ -91,7 +91,7 @@ namespace LegendOfZelda.Scripts.Collision
                 if (setToDestroy) weapon.DestroyWeapon(gameScale);
             }
         }
-        private void ForLinkBlocks()
+        public void ForLinkBlocks()
         {
             foreach (IBlock block in blocks)
             {
