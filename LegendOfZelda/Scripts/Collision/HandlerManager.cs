@@ -184,7 +184,7 @@ namespace LegendOfZelda.Scripts.Collision
                         }
                         foreach (ICollision side in sides)
                         {
-                            if (!(weapon is BombWeapon) || (weapon is BombWeapon bomb && bomb.DetonatingNow()))
+                            if (weapon.GetWeaponType() != IWeapon.WeaponType.BOMB)
                                 collisionHandlers[1].HandleCollision(enemy, weapon, side, gameScale);
                         }
                     }

@@ -120,18 +120,7 @@ namespace LegendOfZelda.Scripts.Links
         {
             state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
         }
-        public void HandleEnemyCollision(IEnemy enemy, ICollision side)
-        {
-            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
-            {
-                Debug.WriteLine("enemy collision registered");
-                SoundController.Instance.PlayLinkGetsHurtSound();
-                HUDInventoryManager.damageLink();   
-                state.ToDamaged();
-                hurtCooldown = hurtCooldownLimit;
-                enemyCollisionSide = side;
-            }
-        }
+        public void HandleEnemyCollision(IEnemy enemy, ICollision side) { HandleWeaponCollision(enemy, side); }
 
         public bool hasArrows()
         {
@@ -179,13 +168,15 @@ namespace LegendOfZelda.Scripts.Links
 
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
         {
-            if (!(side is ICollision.SideNone))
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
             {
-                Debug.WriteLine("hurt by urs weapon");
+                Debug.WriteLine("Link has been hurt");
                 SoundController.Instance.PlayLinkGetsHurtSound();
+                HUDInventoryManager.damageLink();
                 state.ToDamaged();
+                hurtCooldown = hurtCooldownLimit;
+                enemyCollisionSide = side;
             }
-
         }
         public void HandleItemCollision(IGameObject gameObject, ICollision side, int scale)
         {
