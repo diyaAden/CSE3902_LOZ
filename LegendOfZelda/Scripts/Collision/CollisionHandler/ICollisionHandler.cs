@@ -12,7 +12,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         void HandleCollision(ILink link, IGameObject gameObject, ICollision side, int scale);
         void HandleCollision(IEnemy enemy, IGameObject gameObject, ICollision side, int scale);
 
-        void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index);
+        void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index, RoomManager roomManager);
 
         public void HandleCollision(ILink link, IBlock door, RoomManager roomManager, int scale);
         public void HandleItemDestroy(Room CurrentRoom, int index);

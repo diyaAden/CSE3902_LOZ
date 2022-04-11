@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links.State;
@@ -175,7 +176,7 @@ namespace LegendOfZelda.Scripts.Links
 
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
         {
-            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0 && !(gameObject is BasicWallMasterSprite))
             {
                 Debug.WriteLine("Link has been hurt");
                 SoundController.Instance.PlayLinkGetsHurtSound();
@@ -238,15 +239,20 @@ namespace LegendOfZelda.Scripts.Links
             if (attackCooldown > 0) attackCooldown--;
             state.Update();
 
-            if (hurtCooldown > hurtCooldownLimit - 10)
+            if (CatchByEnemy == -1)
             {
-                --hurtCooldown;
-                HurtRecoil();
-            }
-            else if (hurtCooldown > 0) --hurtCooldown;
-            else enemyCollisionSide = ICollision.SideNone;
+                if (hurtCooldown > hurtCooldownLimit - 10)
+                {
+                    --hurtCooldown;
 
-            if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
+                    HurtRecoil();
+
+                }
+                else if (hurtCooldown > 0) --hurtCooldown;
+                else enemyCollisionSide = ICollision.SideNone;
+
+                if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
+            }
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
