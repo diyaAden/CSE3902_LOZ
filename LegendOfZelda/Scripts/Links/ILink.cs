@@ -8,6 +8,7 @@ namespace LegendOfZelda.Scripts.Links
     public interface ILink
     {
         ILinkState State { get; set; }
+        int CatchByEnemy { get; set; }
         public void ToIdle();
         public void MoveUp();
         public void MoveDown();
@@ -27,6 +28,7 @@ namespace LegendOfZelda.Scripts.Links
 
         public void addInventoryItem(IGameObject gameObject);
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
+        public void HandleEnemyCollision(IEnemy enemy);
         void Update();
         void Draw(SpriteBatch spriteBatch, int scale);
     }

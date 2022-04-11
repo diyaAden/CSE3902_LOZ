@@ -24,9 +24,11 @@ namespace LegendOfZelda.Scripts.Links
         private float Health = 10.0f;
         private HUDInventoryManager HUDInventoryManager;
         public List<IGameObject> linkInventory = new List<IGameObject>();
+        public int CatchByEnemy { get; set; }
 
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
+            CatchByEnemy = -1;
             this.handlerManager = handlerManager;
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;
@@ -121,6 +123,11 @@ namespace LegendOfZelda.Scripts.Links
             state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side) { HandleWeaponCollision(enemy, side); }
+        public void HandleEnemyCollision(IEnemy enemy)
+        {
+            state.SetPosition(enemy.position);
+            Debug.WriteLine(state.Position);
+        }
 
         public bool hasArrows()
         {

@@ -7,18 +7,34 @@ using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
     class PlayerEnemyCollisionHandler: ICollisionHandler
     {
-        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset)
+        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index)
         {
             if (enemy is BasicWallMasterSprite)
             {
-                link.HandleEnemyCollision(enemy, side);
-                enemy.HandleCollision(side, scale, screenOffset);
+                if (link.CatchByEnemy == index)
+                {
+                    link.HandleEnemyCollision(enemy);
+                    enemy.HandleCollision(side, scale, screenOffset);
+                    
+                }else if(link.CatchByEnemy == -1 && !(side == ICollision.SideNone))
+                {
+                    link.MoveDown();
+                    link.ToIdle();
+                    link.CatchByEnemy = index;
+                    link.HandleEnemyCollision(enemy);
+                    Debug.WriteLine(link.CatchByEnemy);
+                }
+                else
+                {
+                    link.HandleEnemyCollision(enemy, side);
+                }
             }
             else
             {
