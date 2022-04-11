@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.Links;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System.Diagnostics;
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
@@ -30,7 +24,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public HUDInventoryManager(HUDSprite HUDG)
         {
             HUD = HUDG;
-            
+            health = maxHealth;
         }
         public bool IsFullHealth() { return health == maxHealth; }
         public void LoadContent()
@@ -128,7 +122,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Update()
         {
             updateHealth();
-            
         }
         
 
