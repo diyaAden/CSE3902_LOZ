@@ -25,7 +25,6 @@ namespace LegendOfZelda.Scripts.Collision
         private int gameScale = 2;
 
 
-
         private List<IBlock> blocks;
         private List<IItem> items;
         private List<IEnemy> enemies;
@@ -52,12 +51,9 @@ namespace LegendOfZelda.Scripts.Collision
         public void ForAllUpdate(Vector2 screenOffset)
         {
             AssignRoom();
-            if (Link.CatchByEnemy == -1)
-            {
-                ForLinkWeapon();
-                ForLinkItem();
-                ForLinkBlocks();
-            }
+            ForLinkWeapon();
+            ForLinkItem();
+            ForLinkBlocks();
             ForEnemy(screenOffset);
             ForWeaponObject();
         }
@@ -176,7 +172,7 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
                 foreach (ICollision side in sides2)
                 {
-                    collisionHandlers[2].HandleCollision(Link, enemy, side, gameScale, screenOffset, index);
+                    collisionHandlers[2].HandleCollision(Link, enemy, side, gameScale, screenOffset);
                 }
                 foreach (IWeapon weapon in activeWeapons)
                 {

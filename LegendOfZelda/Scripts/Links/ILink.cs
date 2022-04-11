@@ -14,7 +14,6 @@ namespace LegendOfZelda.Scripts.Links
         public int numKeys { get; set; }
         public int numBombs { get; set; }
         ILinkState State { get; set; }
-        int CatchByEnemy { get; set; }
         public void ToIdle();
         public void GameOverLink();
         public void MoveUp();
@@ -34,7 +33,6 @@ namespace LegendOfZelda.Scripts.Links
         public List<IItem> getInventoryList();
         public void addInventoryItem(IItem gameObject);
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
-        public void HandleEnemyCollision(IEnemy enemy);
         void Update();
         void Draw(SpriteBatch spriteBatch, int scale);
     }

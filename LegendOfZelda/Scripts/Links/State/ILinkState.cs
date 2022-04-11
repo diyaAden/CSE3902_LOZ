@@ -20,7 +20,6 @@ namespace LegendOfZelda.Scripts.Links
         void PositionDown();
         void PositionRight();
         void PositionLeft();
-        void SetPosition(Vector2 destPosition);
         void UseItem();
         void PickItem(String name, int scale);
         void Attack(int scale);

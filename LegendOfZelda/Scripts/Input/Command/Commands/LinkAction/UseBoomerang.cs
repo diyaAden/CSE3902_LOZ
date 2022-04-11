@@ -20,7 +20,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            if (!myGame.activeWeapons.Exists(containsBoomerang) && (myGame.link.CatchByEnemy == -1))
+            if (!myGame.activeWeapons.Exists(containsBoomerang))
             {
                 Rectangle linkBox = myGame.link.State.LinkBox(myGame.gameScale);
                 Vector2 linkCenter = new Vector2(linkBox.X + linkBox.Width / 2f, linkBox.Y + linkBox.Height / 2f);

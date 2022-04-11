@@ -13,8 +13,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            if (myGame.link.CatchByEnemy == -1)
-                myGame.link.MoveLeft();
+            myGame.link.MoveLeft();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            if (!myGame.activeWeapons.Exists(containsBomb) && myGame.link.hasBombs() && (myGame.link.CatchByEnemy == -1))
+            if (!myGame.activeWeapons.Exists(containsBomb) && myGame.link.hasBombs())
             {
                 myGame.link.UseItem();
                 IWeapon bomb = new BombWeapon(myGame.link.State.Position, myGame.link.State.Direction, myGame.gameScale);
