@@ -216,6 +216,7 @@ namespace LegendOfZelda
 
             roomManager.Draw(_spriteBatch, gameScale);
             HUD.getItemSprites(link);
+            HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
             switch (Gstate)

@@ -9,6 +9,10 @@ namespace LegendOfZelda.Scripts.Links
     public interface ILink
     {
         public bool HasClock { get; }
+
+        public int numRupees { get; set; }
+        public int numKeys { get; set; }
+        public int numBombs { get; set; }
         ILinkState State { get; set; }
         public void ToIdle();
         public void GameOverLink();

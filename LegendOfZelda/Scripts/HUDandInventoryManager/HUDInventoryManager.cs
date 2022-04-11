@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private int lastHeart;
         private int firstEmpty;
         public HUDSprite HUD { get; set; }
+      
 
         //List<IGameObject> invDisplayItems = new List<IGameObject>();
         
@@ -112,15 +113,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         }
 
        
-        public void updateRupees()
-        {
+        
 
-        }
-
-        public void updateKeys()
-        {
-
-        }
 
         public void updateHealth()
         {
@@ -134,6 +128,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Update()
         {
             updateHealth();
+            
         }
         
 

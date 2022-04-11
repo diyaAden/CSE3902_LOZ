@@ -30,6 +30,7 @@ namespace LegendOfZelda.Scripts
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
              //HUD.destRect
+              //HUD.Position
               HUD.Draw(spriteBatch, 2, offset);
               invSprite.Draw(spriteBatch, 2, offset);
         }
