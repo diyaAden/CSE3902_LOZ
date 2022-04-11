@@ -47,7 +47,6 @@ namespace LegendOfZelda.Scripts
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 screenOffset)
         {
-             //HUD.destRect
               HUD.Draw(spriteBatch, scale, screenOffset);
               //invSprite.Draw(spriteBatch, scale, screenOffset);
         }

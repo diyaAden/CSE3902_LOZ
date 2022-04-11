@@ -12,9 +12,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private readonly int xPos = 260, yPos = 12, width = 250, height = 55;
 
         Rectangle sourceRect;
-        Texture2D HUDTexture;
-        Texture2D HUDText;
-        Texture2D level;
+        Texture2D HUDTexture, HUDText, level;
         public List<IHUDItem> HUDItems { get; private set; }
 
         public MapDisplaySprite mapDisplay = new MapDisplaySprite();
@@ -22,27 +20,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public List<IHUDItem> Hearts { get; set; }
         public bool hasMap = false;
 
-        protected Vector2 pos = new Vector2(170, 10);
-        protected Vector2 pos2 = new Vector2(190,10);
-        protected Vector2 mapPos = new Vector2(220, 55);
-        protected Vector2 levelFramePos = new Vector2(200, 30);
-        protected Vector2 levelNumPos = new Vector2(295, 24);
-        protected Vector2 rupeeCountPos = new Vector2(360, 36);
-        protected Vector2 keyCountPos = new Vector2(360, 65);
-        protected Vector2 bombCountPos = new Vector2(360, 85);
-        protected Vector2 itemAPos = new Vector2(470, 60);
-        protected Vector2 itemBPos = new Vector2(420, 60);
-        Rectangle levelImageSource;
-        Rectangle levelFrameSource;
-        Rectangle tempRect;
-        Rectangle destRectSlotA;
-        Rectangle destRectSlotB;
+        protected Vector2 pos = new Vector2(170, 10), pos2 = new Vector2(190,10), mapPos = new Vector2(220, 55);
+        protected Vector2 levelFramePos = new Vector2(200, 30), levelNumPos = new Vector2(295, 24);
+        protected Vector2 rupeeCountPos = new Vector2(360, 36), keyCountPos = new Vector2(360, 65), bombCountPos = new Vector2(360, 85);
+        protected Vector2 itemAPos = new Vector2(470, 60), itemBPos = new Vector2(420, 60);
+        Rectangle levelImageSource, levelFrameSource, tempRect;
+        Rectangle destRectSlotA, destRectSlotB;
         public SpriteFont font;
-        public string rupeesText;
-        public string keysText;
-        public string bombsText;
-        IItem slotA;
-        IItem slotB;
+        public string rupeesText, keysText, bombsText;
+        IItem slotA, slotB;
         public int nRupees { get; set; }
         public int nKeys { get; set; }
         public int nBombs { get; set; }
@@ -67,6 +53,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             bombCountPos = new Vector2(bombCountPos.X, bombCountPos.Y + shiftDist.Y * scale);
             itemAPos = new Vector2(itemAPos.X, itemAPos.Y + shiftDist.Y * scale);
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
+            invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
@@ -208,7 +195,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             //for testing purposes - leave till later
             // mapDisplay.Draw(spriteBatch, 2, offset);
-           // invSprite.Draw(spriteBatch, 2, offset);
+            invSprite.Draw(spriteBatch, scale, offset);
         }
     }
 }
