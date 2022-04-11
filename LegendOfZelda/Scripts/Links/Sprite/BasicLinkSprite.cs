@@ -5,6 +5,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
 {
     abstract class BasicLinkSprite: ISprite
     {
+        protected int animationTimer = 1;
         protected virtual Vector2 Pos { get; set; }
         public virtual Vector2 Position
         {
@@ -12,7 +13,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             set { Pos = value; }
         }
         public virtual Texture2D Texture { get; set; }
-
+        public int AnimationTimer { get { return animationTimer; } set { animationTimer = value; } }
         protected virtual int Rows { get; set; }
         protected virtual int Columns { get; set; }
         protected virtual int CurrentFrame { get; set; }

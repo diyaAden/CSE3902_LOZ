@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
     public class InventorySprite 
     {
 
-        private readonly int xPos = 0, yPos = 10, width = 256, height = 100;
+        private readonly int xPos = 2, yPos = 20, width = 254, height = 78;
 
         Rectangle sourceRect;
         Texture2D InventoryTexture;

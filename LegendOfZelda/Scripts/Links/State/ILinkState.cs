@@ -9,6 +9,7 @@ namespace LegendOfZelda.Scripts.Links
         Vector2 Position { get; set; }
         int Direction { get; }
         void ToIdle();
+        void GameOverLink();
         void ToDamaged();
         bool checkDamaged();
         void MoveUp();

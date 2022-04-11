@@ -13,6 +13,7 @@ using LegendOfZelda.Scripts.Sounds;
 using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
+using LegendOfZelda.Scripts;
 
 namespace LegendOfZelda
 {
@@ -31,10 +32,11 @@ namespace LegendOfZelda
         public ILink link;
         public RoomManager roomManager;
 
+        public EndGameController endGameControl;
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
-        public HUDSprite HUD;
+        public ItemSelection HUD;
         public RoomMovingController roomMovingController;
 
         
@@ -74,20 +76,22 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             KeyboardController control = new KeyboardController();
+            endGameControl = new EndGameController();
             MouseController mouse = new MouseController();
             GamepadController gamepad = new GamepadController();
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             con.RegisterCommands(mouse);
             con.RegisterCommands(gamepad);
+            con.RegisterEndGame(endGameControl);
             controllerList = new List<IController>() { control, mouse };
 
             GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
-            HUD = new HUDSprite();
-            HUDManager = new HUDInventoryManager(HUD);
+            HUD = new ItemSelection(gameScale, screenOffset);
+            HUDManager = new HUDInventoryManager(HUD.HUD);
             
 
             //gameStateManager = new GameStateManager();
@@ -96,7 +100,7 @@ namespace LegendOfZelda
         }
         public void ResetGame()
         {
-            //GraphicsDevice.Reset();
+            Initialize();
             LoadContent();
             GameStateController.Instance.SetGameStatePlaying();
         }
@@ -148,7 +152,7 @@ namespace LegendOfZelda
         {
 
             KeyboardState keyboard = Keyboard.GetState();
-           // Gstate = GameState.Paused;
+          //  Gstate = GameState.Paused;
 
             switch (Gstate)
             {
@@ -164,7 +168,7 @@ namespace LegendOfZelda
                     Vector2 linkCenter = new Vector2(linkBox.X + linkBox.Width / 2f, linkBox.Y + linkBox.Height / 2f);
                     foreach (IWeapon weapon in activeWeapons) { weapon.Update(linkCenter, gameScale); }
                     link.Update();
-                    roomManager.Update(link.State.Position, gameScale, screenOffset);
+                    roomManager.Update(link.State.Position, gameScale, screenOffset, link.HasClock);
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale, screenOffset);
 
@@ -183,6 +187,7 @@ namespace LegendOfZelda
                     roomMovingController.Update();
                     break;
                 case GameState.Paused:
+                    
                     if (keyboard.IsKeyDown(Keys.O))
                     {
                         GameStateController.Instance.SetGameStatePlaying();
@@ -192,11 +197,9 @@ namespace LegendOfZelda
 
                     // play animation
 
-                    //reset
-                    if (keyboard.IsKeyDown(Keys.O))
-                    {
-                        ResetGame();
-                    }
+                    //reset or exit
+                    endGameControl.Update();
+                    
                     break;
                 case GameState.WonGame:
 
@@ -211,6 +214,8 @@ namespace LegendOfZelda
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
             roomManager.Draw(_spriteBatch, gameScale);
+            HUD.GetItemSprites(link);
+            HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
             switch (Gstate)
@@ -231,8 +236,9 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(pausedTexture, destRect1, pausedRectangle, Color.White);
                     break;
                 case GameState.GameOver:
+                    link.GameOverLink();
                     Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
-                    _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
+                    //_spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
