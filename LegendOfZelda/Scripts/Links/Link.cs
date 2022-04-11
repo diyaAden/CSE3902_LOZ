@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Items.WeaponSprites;
 using LegendOfZelda.Scripts.Links.State;
 using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
@@ -22,11 +23,17 @@ namespace LegendOfZelda.Scripts.Links
         private readonly HandlerManager handlerManager;
         private readonly HUDInventoryManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
-        private int numKeys = 0, numRupees = 10, numBombs = 3;
+        public int numKeys { get; set; } = 0;
+        public int numRupees { get; set; } = 10;
+        public int numBombs { get; set; } = 3;
         public List<IItem> linkInventory = new List<IItem>();
-
+        //  Texture2D itemSprSheet = 
+        IItem firstItem;
+     
+       // linkInventory.Add(new SwordWeaponSprite());
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
+            
             this.handlerManager = handlerManager;
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;

@@ -16,6 +16,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D HUDText;
         Texture2D level;
         public List<IHUDItem> HUDItems { get; private set; }
+
+        public MapDisplaySprite mapDisplay = new MapDisplaySprite();
+        public InventorySprite invSprite = new InventorySprite();
         public List<IHUDItem> Hearts { get; set; }
         public bool hasMap = true;
 
@@ -32,19 +35,25 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public string bombsText;
         IItem slotA;
         IItem slotB;
-       
+        public int nRupees { get; set; }
+        public int nKeys { get; set; }
+        public int nBombs { get; set; }
+
         List<IItem> invDisplayItems = new List<IItem>();
+
+        public Texture2D itemSheet;
 
         private GameScreenBorder border = new GameScreenBorder();
 
         public void LoadAllTextures(ContentManager content)
         {
             border.LoadTextures(content);
-
+            mapDisplay.LoadAllTextures(content);
+            invSprite.LoadAllTextures(content);
             HUDTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
             HUDText = content.Load<Texture2D>("SpriteSheets/General/HUDText");
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
-            font = content.Load<SpriteFont>("SpriteSheets/HUDtexts");
+            font = content.Load<SpriteFont>("SpriteSheets/General/textFont");
          
             //test for Inventory
 
@@ -59,7 +68,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             levelFrameSource = new Rectangle(70, 1, 63, 8);
             tempRect = new Rectangle(80, 0, 152, 100);
             destRectSlotA = new Rectangle(120, 20, 100, 100);
-            rupeesText = "hi";
+            
         }
         public void AddObject(string name, int xPos, int yPos)
         {
@@ -109,13 +118,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void getItemSprites(ILink link) //add item sprites to list
         {
-            // ((IItem)gameObject).Name == "BlueRupee"
-            //  if (!invDisplayItems.Contains(((IItem)gameObject).Name == "BlueRupee"))
             invDisplayItems = link.getInventoryList();
+        }
 
-
-
-
+        public void updateItemCounts(ILink link)
+        {
+            nRupees = link.numRupees;
+            nKeys = link.numKeys;
+            nBombs = link.numBombs;
         }
         public void Update() 
         {
@@ -125,8 +135,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
-
-          // spriteBatch.DrawString(font, rupeesText, new Vector2(100, 100), Color.White);
+            
+           
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
             Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
@@ -137,6 +147,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
 
+            spriteBatch.DrawString(font, "1", new Vector2(295, 24), Color.White);
+            spriteBatch.DrawString(font, "x" + nRupees, new Vector2(360, 36), Color.White);
+            spriteBatch.DrawString(font, "x" + nKeys, new Vector2(360, 65), Color.White);
+            spriteBatch.DrawString(font, "x" + nBombs, new Vector2(360, 85), Color.White);
             if (hasMap)
             {
                 spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
@@ -164,6 +178,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 Heart.Draw(spriteBatch, scale, offset);
             }
+
+            //for testing purposes - leave till later
+            // mapDisplay.Draw(spriteBatch, 2, offset);
+           // invSprite.Draw(spriteBatch, 2, offset);
         }
     }
 }

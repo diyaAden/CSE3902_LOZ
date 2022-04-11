@@ -32,7 +32,7 @@ namespace LegendOfZelda
         public ILink link;
         public RoomManager roomManager;
 
-        public KeyboardController endGameControl;
+        public EndGameController endGameControl;
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
@@ -76,7 +76,7 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             KeyboardController control = new KeyboardController();
-            endGameControl = new KeyboardController();
+            endGameControl = new EndGameController();
             MouseController mouse = new MouseController();
             GamepadController gamepad = new GamepadController();
             InitializeController con = new InitializeController(this);
@@ -100,7 +100,7 @@ namespace LegendOfZelda
         }
         public void ResetGame()
         {
-            //GraphicsDevice.Reset();
+            Initialize();
             LoadContent();
             GameStateController.Instance.SetGameStatePlaying();
         }
@@ -215,6 +215,8 @@ namespace LegendOfZelda
 
             roomManager.Draw(_spriteBatch, gameScale);
             HUD.GetItemSprites(link);
+            HUD.updateItemCounts(link);
+            HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
             switch (Gstate)
             {

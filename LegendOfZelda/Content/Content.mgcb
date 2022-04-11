@@ -511,12 +511,12 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/General/PausedScreen.png
 
-#begin SpriteSheets/HUDtexts.spritefont
+#begin SpriteSheets/General/textFont.spritefont
 /importer:FontDescriptionImporter
-/processor:LocalizedFontProcessor
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:SpriteSheets/HUDtexts.spritefont
+/build:SpriteSheets/General/textFont.spritefont
 
 #begin SpriteSheets/Items/ArrowSwordSpriteSheet.png
 /importer:TextureImporter
