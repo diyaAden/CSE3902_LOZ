@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
         }
 
-        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index)
+        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index, RoomManager roomManager)
         {
             
         }
@@ -51,7 +51,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 case LockedDoorSpriteUp _:
                 case LockedDoorSpriteLeft _:
                 case LockedDoorSpriteRight _:
-                    if (link.HasKeys()) door.Disable();
+                    door.Disable();
                     break;
                 default:
                     break;

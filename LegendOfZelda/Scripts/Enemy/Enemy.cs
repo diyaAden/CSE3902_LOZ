@@ -106,6 +106,6 @@ namespace LegendOfZelda.Scripts.Enemy
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], drawColor);
         }
         public virtual void HandleCollision(ICollision side, int scale) { }
-        public virtual void HandleCollision(ICollision side, int scale, Vector2 screenOffset) { }
+        public virtual void HandleCollision(ICollision side, int scale, Vector2 screenOffset, int CatchByEnemy) { }
     }
 }

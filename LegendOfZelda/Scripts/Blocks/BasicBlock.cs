@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.Blocks
         public virtual void Disable() { }
         public abstract void Update();
         public virtual void HandleCollision(ICollision side, int scale) { }
-        public void HandleCollision(ICollision side, int scale, Vector2 screenOffset) { }
+        public void HandleCollision(ICollision side, int scale, Vector2 screenOffset, int CatchByEnemy) { }
         public virtual Rectangle ObjectBox(int scale)
         {
             if (enabled)
