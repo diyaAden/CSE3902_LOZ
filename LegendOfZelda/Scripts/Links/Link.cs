@@ -27,11 +27,13 @@ namespace LegendOfZelda.Scripts.Links
         public int numRupees { get; set; } = 10;
         public int numBombs { get; set; } = 3;
         public List<IItem> linkInventory = new List<IItem>();
-      //  Texture2D itemSprSheet = 
-      //  IItem firstItem = new SwordWeaponSprite();
+        //  Texture2D itemSprSheet = 
+        IItem firstItem;
+     
        // linkInventory.Add(new SwordWeaponSprite());
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
+            
             this.handlerManager = handlerManager;
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;

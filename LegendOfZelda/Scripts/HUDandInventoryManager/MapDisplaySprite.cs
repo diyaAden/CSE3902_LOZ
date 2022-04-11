@@ -7,15 +7,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
     public class MapDisplaySprite 
     {
 
-        private readonly int xPos = 0, yPos = 10, width = 256, height = 100;
+        private readonly int xPos = 280, yPos = 115, width = 230, height = 80;
 
-        Rectangle sourceRect;
-        Texture2D InventoryTexture;
+        public Rectangle sourceRect;
+        Texture2D MapTexture;
         protected Vector2 pos = new Vector2(270, 200);
         
         public void LoadAllTextures(ContentManager content)
         {
-            InventoryTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
+            MapTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
         }
         public MapDisplaySprite()
         {
@@ -32,7 +32,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
-            spriteBatch.Draw(InventoryTexture, pos, sourceRect, Color.White);
+            spriteBatch.Draw(MapTexture, pos, sourceRect, Color.White);
            
         }
     }

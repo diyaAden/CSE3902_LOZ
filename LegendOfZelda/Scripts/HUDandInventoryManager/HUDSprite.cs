@@ -16,6 +16,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D HUDText;
         Texture2D level;
         public List<IHUDItem> HUDItems { get; private set; }
+
+        public MapDisplaySprite mapDisplay = new MapDisplaySprite();
+        public InventorySprite invSprite = new InventorySprite();
         public List<IHUDItem> Hearts { get; set; }
         public bool hasMap = true;
 
@@ -38,12 +41,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         List<IItem> invDisplayItems = new List<IItem>();
 
+        public Texture2D itemSheet;
+
         private GameScreenBorder border = new GameScreenBorder();
 
         public void LoadAllTextures(ContentManager content)
         {
             border.LoadTextures(content);
-
+            mapDisplay.LoadAllTextures(content);
+            invSprite.LoadAllTextures(content);
             HUDTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
             HUDText = content.Load<Texture2D>("SpriteSheets/General/HUDText");
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
@@ -129,7 +135,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
-
+            
            
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
@@ -140,6 +146,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
 
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
+
+            spriteBatch.DrawString(font, "1", new Vector2(295, 24), Color.White);
             spriteBatch.DrawString(font, "x" + nRupees, new Vector2(360, 36), Color.White);
             spriteBatch.DrawString(font, "x" + nKeys, new Vector2(360, 65), Color.White);
             spriteBatch.DrawString(font, "x" + nBombs, new Vector2(360, 85), Color.White);
@@ -170,6 +178,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 Heart.Draw(spriteBatch, scale, offset);
             }
+
+            //for testing purposes - leave till later
+            // mapDisplay.Draw(spriteBatch, 2, offset);
+           // invSprite.Draw(spriteBatch, 2, offset);
         }
     }
 }
