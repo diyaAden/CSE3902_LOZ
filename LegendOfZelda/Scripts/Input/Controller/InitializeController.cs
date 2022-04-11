@@ -56,6 +56,12 @@ namespace LegendOfZelda.Scripts.Input.Controller
             control.RegisterCommand(Keys.Enter, new GameStatePaused(myGame));
             control.RegisterCommand(Keys.RightShift, new GameOverLink(myGame));
         }
+        public void RegisterEndGame(KeyboardController controller)
+        {
+            controller.RegisterCommand(Keys.O, new ResetGame(myGame));
+            controller.RegisterCommand(Keys.Q, new QuitGame(myGame));
+
+        }
         public void RegisterCommands(MouseController mouse)
         {
             //Game Controls
