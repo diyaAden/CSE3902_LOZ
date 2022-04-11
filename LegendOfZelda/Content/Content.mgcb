@@ -451,6 +451,18 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/General/GeneraltemSpriteSheet.png
 
+#begin SpriteSheets/General/hasMapTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteSheets/General/hasMapTexture.png
+
 #begin SpriteSheets/General/HUDPauseScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -498,6 +510,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/General/PausedScreen.png
+
+#begin SpriteSheets/HUDtexts.spritefont
+/importer:FontDescriptionImporter
+/processor:LocalizedFontProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:SpriteSheets/HUDtexts.spritefont
 
 #begin SpriteSheets/Items/ArrowSwordSpriteSheet.png
 /importer:TextureImporter

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
-    public class HUDSprite
+    public class HUDSprite 
     {
         private readonly int xPos = 260, yPos = 12, width = 250, height = 55;
 
@@ -15,12 +17,23 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D level;
         public List<IHUDItem> HUDItems { get; private set; }
         public List<IHUDItem> Hearts { get; set; }
+        public bool hasMap = true;
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
         Rectangle levelImageSource;
         Rectangle levelFrameSource;
         Rectangle tempRect;
+        Rectangle destRectSlotA;
+        Rectangle destRectSlotB;
+        public SpriteFont font;
+        public string rupeesText;
+        public string keysText;
+        public string bombsText;
+        IItem slotA;
+        IItem slotB;
+       
+        List<IItem> invDisplayItems = new List<IItem>();
 
         private GameScreenBorder border = new GameScreenBorder();
 
@@ -31,7 +44,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             HUDTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
             HUDText = content.Load<Texture2D>("SpriteSheets/General/HUDText");
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
-
+            font = content.Load<SpriteFont>("SpriteSheets/HUDtexts");
+         
             //test for Inventory
 
         }
@@ -44,6 +58,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             levelImageSource = new Rectangle(0, 0, 50, 26);
             levelFrameSource = new Rectangle(70, 1, 63, 8);
             tempRect = new Rectangle(80, 0, 152, 100);
+            destRectSlotA = new Rectangle(120, 20, 100, 100);
+            rupeesText = "hi";
         }
         public void AddObject(string name, int xPos, int yPos)
         {
@@ -91,7 +107,16 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         }
 
+        public void getItemSprites(ILink link) //add item sprites to list
+        {
+            // ((IItem)gameObject).Name == "BlueRupee"
+            //  if (!invDisplayItems.Contains(((IItem)gameObject).Name == "BlueRupee"))
+            invDisplayItems = link.getInventoryList();
 
+
+
+
+        }
         public void Update() 
         {
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
@@ -100,14 +125,30 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
+
+           // spriteBatch.DrawString(font, rupeesText, new Vector2(100, 100), Color.White);
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
             Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
+            
             border.Draw(spriteBatch, scale, offset);
             spriteBatch.Draw(HUDTexture, destRect, sourceRect, Color.White);
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
+
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
-            spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
+
+            if (hasMap)
+            {
+                spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
+            }
+
+            if (invDisplayItems.Count >= 1)
+            {
+                invDisplayItems[0].Draw(spriteBatch, 2);
+                invDisplayItems[1].Draw(spriteBatch, 2);
+            }
+
+            
             foreach (IHUDItem HUDitem in HUDItems)
             {
                 HUDitem.Draw(spriteBatch, scale, offset);

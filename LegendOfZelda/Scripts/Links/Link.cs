@@ -23,7 +23,7 @@ namespace LegendOfZelda.Scripts.Links
         private readonly HUDInventoryManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
         private int numKeys = 0, numRupees = 10, numBombs = 3;
-        public List<IGameObject> linkInventory = new List<IGameObject>();
+        public List<IItem> linkInventory = new List<IItem>();
 
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
@@ -153,7 +153,7 @@ namespace LegendOfZelda.Scripts.Links
             }
             return false;
         }
-        public void addInventoryItem(IGameObject gameObject)
+        public void addInventoryItem(IItem gameObject)
         {
             if (((IItem)gameObject).Name == "BlueRupee") numRupees += 5;
             else if (((IItem)gameObject).Name == "Rupee") numRupees++;
@@ -168,6 +168,11 @@ namespace LegendOfZelda.Scripts.Links
                 linkInventory.Add(gameObject);
                 if (((IItem)gameObject).Name == "Bomb") numBombs++;
             }
+        }
+
+        public List<IItem> getInventoryList()
+        {
+            return linkInventory;
         }
 
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
@@ -189,7 +194,7 @@ namespace LegendOfZelda.Scripts.Links
                 Debug.WriteLine(((IItem)gameObject).Name);
                 Debug.WriteLine("Pick up item!!!!");
                 PickItem(((IItem)gameObject).Name, scale);
-                addInventoryItem(gameObject);
+                addInventoryItem((IItem)gameObject);
 
             }
         }

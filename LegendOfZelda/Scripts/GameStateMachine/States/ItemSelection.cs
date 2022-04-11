@@ -8,12 +8,14 @@ using System.Text;
 
 namespace LegendOfZelda.Scripts
 {
-    class PauseScreen 
+    class ItemSelection
     {
         public Vector2 position = new Vector2(0,0);
 
+        public HUDSprite HUD = new HUDSprite();
+        public InventorySprite invSprite = new InventorySprite();
         public Vector2 offset = new Vector2(0, 0);
-        public PauseScreen()
+        public ItemSelection()
         {
 
         }
@@ -27,7 +29,9 @@ namespace LegendOfZelda.Scripts
 
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
-             
+             //HUD.destRect
+              HUD.Draw(spriteBatch, 2, offset);
+              invSprite.Draw(spriteBatch, 2, offset);
         }
 
     

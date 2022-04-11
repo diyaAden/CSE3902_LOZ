@@ -148,7 +148,7 @@ namespace LegendOfZelda
         {
 
             KeyboardState keyboard = Keyboard.GetState();
-           // Gstate = GameState.Paused;
+          //  Gstate = GameState.Paused;
 
             switch (Gstate)
             {
@@ -215,6 +215,7 @@ namespace LegendOfZelda
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
             roomManager.Draw(_spriteBatch, gameScale);
+            HUD.getItemSprites(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
             switch (Gstate)

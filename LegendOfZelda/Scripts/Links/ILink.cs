@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.Links
 {
@@ -25,7 +26,8 @@ namespace LegendOfZelda.Scripts.Links
         public bool hasArrows();
         public bool hasBombs();
         public bool HasKeys();
-        public void addInventoryItem(IGameObject gameObject);
+        public List<IItem> getInventoryList();
+        public void addInventoryItem(IItem gameObject);
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
         void Update();
         void Draw(SpriteBatch spriteBatch, int scale);
