@@ -57,8 +57,25 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Hearts[^1].Position = new Vector2(xPos, yPos);
             Hearts[^1].name = name;
         }
-        public void RemoveObject(int index) {
-            if (HUDItems.Count > index) HUDItems.RemoveAt(index);
+        public void ChangeHeart(string name, int index) {
+            Vector2 heartPos = Hearts[index].Position;
+            if (name.Equals("EmptyHeart"))
+            {
+                Hearts.Add(HUDSpriteFactory.Instance.CreateEmptyHeart());
+                Hearts[^1].Position = heartPos;
+                Hearts[^1].name = name;
+            } else if (name.Equals("HalfHeart"))
+            {
+                Hearts.Add(HUDSpriteFactory.Instance.CreateHalfHeart());
+                Hearts[^1].Position = heartPos;
+                Hearts[^1].name = name;
+            } else
+            {
+                Hearts.Add(HUDSpriteFactory.Instance.CreateFullHeart());
+                Hearts[^1].Position = heartPos;
+                Hearts[^1].name = name;
+            }
+
         }
         public void RemoveHeart()
         {
