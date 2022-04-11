@@ -3,7 +3,6 @@ using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
-using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
@@ -13,7 +12,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
         }
 
-        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset)
+        public void HandleCollision(ILink link, IEnemy enemy, ICollision side)
         {
             
         }

@@ -7,6 +7,5 @@ namespace LegendOfZelda.Scripts.Items
     {
         Rectangle ObjectBox(int scale);
         public void HandleCollision(ICollision side, int scale);
-        public void HandleCollision(ICollision side, int scale, Vector2 screenOffset);
     }
 }

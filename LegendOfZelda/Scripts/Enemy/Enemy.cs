@@ -9,9 +9,8 @@ namespace LegendOfZelda.Scripts.Enemy
 {
     public abstract class Enemy : IEnemy
     {
-        protected const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
+        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
         protected const int hurtCooldownLimit = 30;
-        protected bool isCollisionWithLink = false;
         protected readonly List<Color> damagedColors = new List<Color>() { Color.Red, Color.Green, Color.Yellow };
         protected Color drawColor = Color.White;
         protected Texture2D spriteSheet;
@@ -21,8 +20,6 @@ namespace LegendOfZelda.Scripts.Enemy
         public virtual Vector2 position { get { return pos; } set { pos = value; } }
         public virtual Texture2D Texture { get; set; }
         public virtual int Health { get; set; }
-
-        public virtual bool IsCollisionWithLink { get { return isCollisionWithLink; } set { isCollisionWithLink = value; } }
         protected virtual int Rows { get; set; }
         protected virtual int Columns { get; set; }
         protected virtual int CurrentFrame { get; set; }
@@ -105,7 +102,6 @@ namespace LegendOfZelda.Scripts.Enemy
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], drawColor);
         }
-        public virtual void HandleCollision(ICollision side, int scale) { }
-        public virtual void HandleCollision(ICollision side, int scale, Vector2 screenOffset) { }
+        public void HandleCollision(ICollision side, int scale) { }
     }
 }

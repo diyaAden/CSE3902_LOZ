@@ -2,7 +2,6 @@
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Enemy.Goriya;
-using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -127,12 +126,6 @@ namespace LegendOfZelda.Scripts.LevelManager
                 dragon.Update(Enemies, scale, screenOffset);
             else if (enemy is BasicGoriyaSprite goriya)
                 goriya.Update(Enemies, scale, screenOffset);
-        }
-
-        public void UpdateEnemyToWall(IEnemy enemy, int scale, Vector2 screenOffset, bool isCollisionWithLink)
-        {
-            if (enemy is BasicWallMasterSprite wallMaster)
-                wallMaster.Update(isCollisionWithLink, scale, screenOffset);
         }
     }
 }
