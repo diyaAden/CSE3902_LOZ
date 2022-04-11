@@ -236,8 +236,9 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(pausedTexture, destRect1, pausedRectangle, Color.White);
                     break;
                 case GameState.GameOver:
+                    link.GameOverLink();
                     Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
-                    _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
+                    //_spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
             HUD.Draw(_spriteBatch, gameScale, screenOffset);

@@ -18,6 +18,7 @@ namespace LegendOfZelda.Scripts.Links.Sprite
         public static Texture2D linkBackItem;
         public static Texture2D linkPickItem;
         public static Texture2D linkRightAttack, linkLeftAttack, linkFrontAttack, linkBackAttack;
+        public static Texture2D linkGameOver;
 
         public static void LoadTexture(ContentManager content)
         {
@@ -39,6 +40,8 @@ namespace LegendOfZelda.Scripts.Links.Sprite
             linkRightAttack = content.Load<Texture2D>("SpriteSheets/Link/LinkAttackRight");
             linkFrontAttack = content.Load<Texture2D>("SpriteSheets/Link/LinkAttackFront");
             linkBackAttack = content.Load<Texture2D>("SpriteSheets/Link/LinkAttackBack");
+            //Game Over
+            linkGameOver = content.Load<Texture2D>("SpriteSheets/Link/LinkSping");
         }
     }
 }

@@ -10,6 +10,7 @@ namespace LegendOfZelda.Scripts.Links
     {
         ILinkState State { get; set; }
         public void ToIdle();
+        public void GameOverLink();
         public void MoveUp();
         public void MoveDown();
         public void MoveRight();

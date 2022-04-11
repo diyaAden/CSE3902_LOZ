@@ -54,7 +54,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
             control.RegisterCommand(Keys.L, new NextRoom(myGame));
             //Pause controls
             control.RegisterCommand(Keys.Enter, new GameStatePaused(myGame));
-            control.RegisterCommand(Keys.RightShift, new GameStateGameOver(myGame));
+            control.RegisterCommand(Keys.RightShift, new GameOverLink(myGame));
         }
         public void RegisterCommands(MouseController mouse)
         {

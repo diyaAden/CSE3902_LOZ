@@ -43,6 +43,10 @@ namespace LegendOfZelda.Scripts.Links
         {
             if (attackCooldown == 0) state.ToIdle();
         }
+        public void GameOverLink()
+        {
+            state.GameOverLink();
+        }
         public void MoveUp()
         {
             if (attackCooldown == 0) state.MoveUp();
@@ -90,7 +94,7 @@ namespace LegendOfZelda.Scripts.Links
                 state.PickItem(name, scale);
 
             }
-            else
+            else if (name.Equals("Bow"))
             {
                 attackCooldown = cooldownLimit;
                 state.PickItem(name, scale);
