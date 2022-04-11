@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using LegendOfZelda.Scripts.Items;
+using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +14,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public int rupees;
         public int keys;
-        public bool hasMap;
+        public bool hasMap = true;
         public float health = 4;
         private float maxHealth = 4;
         private int HeartposX = 179;
@@ -20,13 +23,18 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private int firstEmpty;
         public HUDSprite HUD { get; set; }
 
+        //List<IGameObject> invDisplayItems = new List<IGameObject>();
+        
+
         public HUDInventoryManager(HUDSprite HUDG)
         {
             HUD = HUDG;
+            
         }
         public bool IsFullHealth() { return health == maxHealth; }
         public void LoadContent()
         {
+            
             int numberOfSpaces = 17;
             //Add hearts
             for (int i = 1; i < numberOfSpaces; i++) {
@@ -103,7 +111,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             
         }
 
-
+       
         public void updateRupees()
         {
 
