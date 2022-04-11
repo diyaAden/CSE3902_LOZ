@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LegendOfZelda.Scripts.Collision;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Diagnostics;
 
 namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
 {
@@ -29,6 +31,46 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 _ => MovesPastWallsTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
             };
         }
+        private Vector2 MovesToWallTest(Vector2 screenOffset, Vector2 newPosition, int scale)
+        {
+            Vector2 returnPos = new Vector2(newPosition.X, newPosition.Y);
+            int top = (topBorder + (int)screenOffset.Y) * scale;
+            int bottom = (bottomBorder + (int)screenOffset.Y) * scale;
+            int left = (leftBorder + (int)screenOffset.X) * scale;
+            int right = (rightBorder + (int)screenOffset.X) * scale;
+
+            if (newPosition.X < left -animationFrames[currentFrame].Width * scale)
+            {
+                //need move the link to the first screen.
+                Debug.WriteLine("link jump!");
+            }
+            else if(newPosition.X > right)
+            {
+                //move the link to the first screen.
+                Debug.WriteLine("link jump!");
+            }
+            if (newPosition.Y < top - animationFrames[currentFrame].Height * scale)
+            {
+                //need move the link to the first screen.
+                Debug.WriteLine("link jump!");
+            }
+            else if (newPosition.Y > bottom)
+            {
+                //need move the link to the first screen.
+                Debug.WriteLine("link jump!");
+            }
+            return returnPos;
+        }
+        private Vector2 ToWall(int direction, int scale, Vector2 screenOffset)
+        {
+            return direction switch
+            {
+                0 => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
+                1 => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
+                2 => MovesToWallTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
+                _ => MovesToWallTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+            };
+        }
         public override void Update(int scale, Vector2 screenOffset)
         {
             position = Move(direction, scale, screenOffset);
@@ -42,6 +84,32 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
+            }
+        }
+
+        public void Update(bool isCollisionWithLink, int scale, Vector2 screenOffset) //this bool is just to divide with the other update
+        {
+            position = ToWall(direction, scale, screenOffset);
+        }
+
+        private int getDirection(ICollision side)
+        {
+            return side switch
+            {
+                ICollision.SideBottom => 0,
+                ICollision.SideTop => 1,
+                ICollision.SideLeft => 2,
+                _ => 3,
+            };
+        }
+        public override void HandleCollision(ICollision side, int scale, Vector2 screenOffset)
+        {
+            if (side is ICollision.SideNone) {
+                //do nothing
+            }
+            else
+            {
+                this.isCollisionWithLink = true;
             }
         }
     }

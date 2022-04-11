@@ -8,6 +8,7 @@ using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponCreators;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace LegendOfZelda.Scripts.Collision
@@ -47,23 +48,23 @@ namespace LegendOfZelda.Scripts.Collision
             enemies = room.Enemies;
         }
 
-        public void ForAllUpdate()
+        public void ForAllUpdate(Vector2 screenOffset)
         {
             AssignRoom();
             ForLinkWeapon();
             ForLinkItem();
             ForLinkBlocks();
-            ForEnemy();
+            ForEnemy(screenOffset);
             ForWeaponObject();
         }
 
-        public void Update(ILink link, List<IWeapon> ActiveWeapons, RoomManager RoomManager, int GameScale)
+        public void Update(ILink link, List<IWeapon> ActiveWeapons, RoomManager RoomManager, int GameScale, Vector2 screenOffset)
         {
             Link = link;
             activeWeapons = ActiveWeapons;
             roomManager = RoomManager;
             gameScale = GameScale;
-            ForAllUpdate();
+            ForAllUpdate(screenOffset);
         }
         public void ForWeaponObject()
         {
@@ -161,7 +162,7 @@ namespace LegendOfZelda.Scripts.Collision
         }
 
 
-        public void ForEnemy()
+        public void ForEnemy(Vector2 screenOffset)
         {
             int index = 0;
             List<int> indices = new List<int>();
@@ -171,7 +172,7 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
                 foreach (ICollision side in sides2)
                 {
-                    collisionHandlers[2].HandleCollision(Link, enemy, side);
+                    collisionHandlers[2].HandleCollision(Link, enemy, side, gameScale, screenOffset);
                 }
                 foreach (IWeapon weapon in activeWeapons)
                 {

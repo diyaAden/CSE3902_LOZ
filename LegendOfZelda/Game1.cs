@@ -166,7 +166,7 @@ namespace LegendOfZelda
                     link.Update();
                     roomManager.Update(link.State.Position, gameScale, screenOffset);
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
-                    handlerManager.Update(link, activeWeapons, roomManager, gameScale);
+                    handlerManager.Update(link, activeWeapons, roomManager, gameScale, screenOffset);
 
                     //update HUD
                     HUDManager.Update();
