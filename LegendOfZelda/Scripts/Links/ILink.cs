@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.Links
         public bool HasClock { get; }
 
         public bool HasMap { get; }
-
+        public int CatchByEnemy { get; set; }
         public int numRupees { get; set; }
         public int numKeys { get; set; }
         public int numBombs { get; set; }
@@ -35,6 +35,7 @@ namespace LegendOfZelda.Scripts.Links
         public List<IItem> getInventoryList();
         public void addInventoryItem(IItem gameObject);
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
+        public void HandleEnemyCollision(IEnemy enemy, int scale);
         void Update();
         void Draw(SpriteBatch spriteBatch, int scale);
     }
