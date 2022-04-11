@@ -19,10 +19,9 @@ namespace LegendOfZelda.Scripts.Links
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70;
         private ICollision enemyCollisionSide;
         private readonly HandlerManager handlerManager;
+        private readonly HUDInventoryManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
         private int numKeys = 0, numRupees = 10, numBombs = 3;
-        private float Health = 10.0f;
-        private HUDInventoryManager HUDInventoryManager;
         public List<IGameObject> linkInventory = new List<IGameObject>();
 
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
@@ -131,7 +130,15 @@ namespace LegendOfZelda.Scripts.Links
             }
             return false; 
         }
-
+        public bool HasKeys()
+        {
+            if (numKeys > 0)
+            {
+                numKeys--;
+                return true;
+            }
+            return false;
+        }
         public bool hasBombs()
         {
             if (numBombs > 0)
@@ -143,26 +150,13 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void addInventoryItem(IGameObject gameObject)
         {
-            if (((IItem)gameObject).Name == "Rupee" || ((IItem)gameObject).Name == "BlueRupee")
-            {
-                //add to rupee count
-                numRupees++;
-                Debug.WriteLine("rupee added!");
-            }
-            else if (((IItem)gameObject).Name == "Key")
-            {
-                //add to key
-                numKeys++;
-                Debug.WriteLine("key added!");
-            }
+            if (((IItem)gameObject).Name == "BlueRupee") numRupees += 5;
+            else if (((IItem)gameObject).Name == "Rupee") numRupees++;
+            else if (((IItem)gameObject).Name == "Key") numKeys++;
             else
             {
                 linkInventory.Add(gameObject);
-                if (((IItem)gameObject).Name == "Bomb")
-                {
-                    numBombs++;
-                }
-                    Debug.WriteLine("item added!");
+                if (((IItem)gameObject).Name == "Bomb") numBombs++;
             }
         }
 

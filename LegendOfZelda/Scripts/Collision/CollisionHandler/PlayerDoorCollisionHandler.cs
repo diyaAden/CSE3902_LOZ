@@ -50,7 +50,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 case LockedDoorSpriteUp _:
                 case LockedDoorSpriteLeft _:
                 case LockedDoorSpriteRight _:
-                    door.Disable();
+                    if (link.HasKeys()) door.Disable();
                     break;
                 default:
                     break;

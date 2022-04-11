@@ -24,6 +24,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             HUD = HUDG;
         }
+        public bool IsFullHealth() { return health == maxHealth; }
         public void LoadContent()
         {
             int numberOfSpaces = 17;
