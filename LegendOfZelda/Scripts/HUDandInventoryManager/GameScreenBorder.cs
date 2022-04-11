@@ -8,6 +8,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
     {
         Texture2D blackScreen;
         Rectangle blackBackgroundSource;
+        public Vector2 Position { get; set; } = new Vector2(0, 0);
 
         public GameScreenBorder()
         {
@@ -23,13 +24,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
-            Rectangle blackBackgroundDestRect1 = new Rectangle((int)offset.X * scale, (int)(offset.Y - blackBackgroundSource.Height) * scale,
+            Rectangle blackBackgroundDestRect1 = new Rectangle((int)(offset.X * scale + Position.X), (int)((offset.Y - blackBackgroundSource.Height) * scale + Position.Y),
                 blackBackgroundSource.Width * scale, blackBackgroundSource.Height * scale);
-            Rectangle blackBackgroundDestRect2 = new Rectangle((int)offset.X * scale, (int)(offset.Y + blackBackgroundSource.Height) * scale,
+            Rectangle blackBackgroundDestRect2 = new Rectangle((int)(offset.X * scale + Position.X), (int)((offset.Y + blackBackgroundSource.Height) * scale + Position.Y),
                 blackBackgroundSource.Width * scale, blackBackgroundSource.Height * scale);
-            Rectangle blackBackgroundDestRect3 = new Rectangle((int)(offset.X - blackBackgroundSource.Width) * scale, (int)offset.Y * scale,
+            Rectangle blackBackgroundDestRect3 = new Rectangle((int)((offset.X - blackBackgroundSource.Width) * scale + Position.X), (int)(offset.Y * scale + Position.Y),
                 blackBackgroundSource.Width * scale, blackBackgroundSource.Height * scale);
-            Rectangle blackBackgroundDestRect4 = new Rectangle((int)(offset.X + blackBackgroundSource.Width) * scale, (int)offset.Y * scale,
+            Rectangle blackBackgroundDestRect4 = new Rectangle((int)((offset.X + blackBackgroundSource.Width) * scale + Position.X), (int)(offset.Y * scale + Position.Y),
                 blackBackgroundSource.Width * scale, blackBackgroundSource.Height * scale);
             spriteBatch.Draw(blackScreen, blackBackgroundDestRect1, blackBackgroundSource, Color.White);
             spriteBatch.Draw(blackScreen, blackBackgroundDestRect2, blackBackgroundSource, Color.White);
