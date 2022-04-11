@@ -13,6 +13,7 @@ using LegendOfZelda.Scripts.Sounds;
 using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
+using LegendOfZelda.Scripts;
 
 namespace LegendOfZelda
 {
@@ -35,7 +36,7 @@ namespace LegendOfZelda
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
-        public HUDSprite HUD;
+        public ItemSelection HUD;
         public RoomMovingController roomMovingController;
 
         
@@ -89,8 +90,8 @@ namespace LegendOfZelda
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
-            HUD = new HUDSprite();
-            HUDManager = new HUDInventoryManager(HUD);
+            HUD = new ItemSelection(gameScale, screenOffset);
+            HUDManager = new HUDInventoryManager(HUD.HUD);
             
 
             //gameStateManager = new GameStateManager();
@@ -213,8 +214,7 @@ namespace LegendOfZelda
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
             roomManager.Draw(_spriteBatch, gameScale);
-            HUD.getItemSprites(link);
-            HUD.Draw(_spriteBatch, gameScale, screenOffset);
+            HUD.GetItemSprites(link);
 
             switch (Gstate)
             {
