@@ -34,6 +34,14 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
         private Vector2 MovesToWallTest(Vector2 screenOffset, Vector2 newPosition, int scale)
         {
             Vector2 returnPos = new Vector2(newPosition.X, newPosition.Y);
+            ToWallTest(screenOffset, newPosition, scale);
+            return returnPos;
+        }
+
+        private bool ToWallTest(Vector2 screenOffset, Vector2 newPosition, int scale)
+        {
+            isCollisionWithLink = true;
+
             int top = (topBorder + (int)screenOffset.Y) * scale;
             int bottom = (bottomBorder + (int)screenOffset.Y) * scale;
             int left = (leftBorder + (int)screenOffset.X) * scale;
@@ -41,29 +49,25 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
 
             if (newPosition.X < left - animationFrames[currentFrame].Width * scale)
             {
-                //need move the link to the first screen.
-                this.isCollisionWithLink = false;
+                isCollisionWithLink = false;
                 Debug.WriteLine("left, link jump!");
             }
-            else if (newPosition.X > right)
+            if (newPosition.X > right)
             {
-                this.isCollisionWithLink = false;
-                //move the link to the first screen.
+                isCollisionWithLink = false;
                 Debug.WriteLine("right, link jump!");
             }
             if (newPosition.Y < top - animationFrames[currentFrame].Height * scale)
             {
-                this.isCollisionWithLink = false;
-                //need move the link to the first screen.
+                isCollisionWithLink = false;
                 Debug.WriteLine("top, link jump!");
             }
-            else if (newPosition.Y > bottom)
+            if (newPosition.Y > bottom)
             {
-                this.isCollisionWithLink = false;
-                //need move the link to the first screen.
+                isCollisionWithLink = false;
                 Debug.WriteLine("bottom, link jump!");
             }
-            return returnPos;
+            return isCollisionWithLink;
         }
         private Vector2 ToWall(int direction, int scale, Vector2 screenOffset)
         {
@@ -72,7 +76,8 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 0 => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
                 1 => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
                 2 => MovesToWallTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
-                _ => MovesToWallTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+                3 => MovesToWallTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
+                _ => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y), scale)
             };
         }
         public override void Update(int scale, Vector2 screenOffset)
@@ -103,18 +108,25 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 ICollision.SideBottom => 0,
                 ICollision.SideTop => 1,
                 ICollision.SideRight => 2,
-                _ => 3,
+                ICollision.SideLeft => 3,
+                _ => -1
             };
         }
-        public override void HandleCollision(ICollision side, int scale, Vector2 screenOffset)
+        public override void HandleCollision(ICollision side, int scale, Vector2 screenOffset, int CatchByEnemy)
         {
             if (side is ICollision.SideNone)
             {
-                //do nothing
+                if (CatchByEnemy != -1 && ToWallTest(screenOffset, position, scale) == false)
+                {
+                    isCollisionWithLink = false;
+                }
             }
             else
             {
-                this.isCollisionWithLink = true;
+                if (CatchByEnemy != -1 && ToWallTest(screenOffset, position, scale) != false)
+                {
+                    isCollisionWithLink = true;
+                }
             }
         }
     }

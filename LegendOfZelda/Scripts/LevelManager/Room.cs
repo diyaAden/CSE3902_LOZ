@@ -48,7 +48,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
             RoomBackground.Position = new Vector2((RoomBackground.Position.X + screenOffset.X) * scale, (RoomBackground.Position.Y + screenOffset.Y) * scale);
         }
-        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
+        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset, bool hasClock)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();

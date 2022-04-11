@@ -11,9 +11,9 @@ namespace LegendOfZelda.Scripts.Enemy
     {
         protected const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
         protected const int hurtCooldownLimit = 30;
+        protected bool isCollisionWithLink = false;
         protected readonly List<Color> damagedColors = new List<Color>() { Color.Red, Color.Green, Color.Yellow };
         protected Color drawColor = Color.White;
-        protected bool isCollisionWithLink = false;
         protected Texture2D spriteSheet;
         protected Vector2 pos = new Vector2(400, 400);
         protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
@@ -21,13 +21,14 @@ namespace LegendOfZelda.Scripts.Enemy
         public virtual Vector2 position { get { return pos; } set { pos = value; } }
         public virtual Texture2D Texture { get; set; }
         public virtual int Health { get; set; }
+
+        public virtual bool IsCollisionWithLink { get { return isCollisionWithLink; } set { isCollisionWithLink = value; } }
         protected virtual int Rows { get; set; }
         protected virtual int Columns { get; set; }
-        public virtual bool IsCollisionWithLink { get { return isCollisionWithLink; } set { isCollisionWithLink = value; } }
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
         protected virtual float MoveSpeed { get; set; }
-        
+
         public virtual void Attack() { }
         public virtual void HandleBlockCollision(IGameObject block, ICollision side, int scale)
         {
@@ -85,7 +86,7 @@ namespace LegendOfZelda.Scripts.Enemy
         {
             Update(scale, screenOffset);
         }
-        public virtual void Update(int scale, Vector2 screenOffset) 
+        public virtual void Update(int scale, Vector2 screenOffset)
         {
             if (hurtCooldown > 0)
             {
@@ -105,6 +106,6 @@ namespace LegendOfZelda.Scripts.Enemy
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], drawColor);
         }
         public virtual void HandleCollision(ICollision side, int scale) { }
-        public virtual void HandleCollision(ICollision side, int scale, Vector2 screenOffset) { }
+        public virtual void HandleCollision(ICollision side, int scale, Vector2 screenOffset, int CatchByEnemy) { }
     }
 }

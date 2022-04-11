@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponSprites;
@@ -133,7 +134,7 @@ namespace LegendOfZelda.Scripts.Links
             state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side) { HandleWeaponCollision(enemy, side); }
-        public void HandleEnemyCollision(IEnemy enemy)
+        public void HandleEnemyCollision(IEnemy enemy, int scale)
         {
             state.SetPosition(enemy.position);
             Debug.WriteLine(state.Position);
@@ -189,7 +190,7 @@ namespace LegendOfZelda.Scripts.Links
 
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
         {
-            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0 && !(gameObject is BasicWallMasterSprite))
             {
                 Debug.WriteLine("Link has been hurt");
                 SoundController.Instance.PlayLinkGetsHurtSound();
@@ -252,18 +253,21 @@ namespace LegendOfZelda.Scripts.Links
             if (attackCooldown > 0) attackCooldown--;
             state.Update();
 
-            if (hurtCooldown > hurtCooldownLimit - 10)
+            if (CatchByEnemy == -1)
             {
-                --hurtCooldown;
-                HurtRecoil();
+                if (hurtCooldown > hurtCooldownLimit - 10)
+                {
+                    --hurtCooldown;
+                    HurtRecoil();
+                }
+                else if (hurtCooldown > 0) --hurtCooldown;
+                else enemyCollisionSide = ICollision.SideNone;
+
+                if (HasClock && clockCooldown > 0) clockCooldown--;
+                else if (clockCooldown == 0) HasClock = false;
+
+                if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
             }
-            else if (hurtCooldown > 0) --hurtCooldown;
-            else enemyCollisionSide = ICollision.SideNone;
-
-            if (HasClock && clockCooldown > 0) clockCooldown--;
-            else if (clockCooldown == 0) HasClock = false;
-
-            if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

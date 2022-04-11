@@ -14,20 +14,23 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
     class PlayerEnemyCollisionHandler : ICollisionHandler
     {
-        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index)
+        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index, RoomManager roomManager)
         {
             if (enemy is BasicWallMasterSprite)
             {
                 if (link.CatchByEnemy == index)
                 {
+                    enemy.HandleCollision(side, scale, screenOffset, link.CatchByEnemy);
+                    link.HandleEnemyCollision(enemy, scale);
+                    //Debug.WriteLine("why not come" + index);
                     if (enemy.IsCollisionWithLink == false)
                     {
+                        roomManager.CurrentRoom = 2;
+                        link.State.SetPosition(new Vector2(400, 350));
+                        link.Update();
                         link.CatchByEnemy = -1;
+                        //Debug.WriteLine("change" + index);                        
                     }
-                    link.HandleEnemyCollision(enemy, scale);
-                    enemy.HandleCollision(side, scale, screenOffset);
-
-
                 }
                 else if (link.CatchByEnemy == -1 && !(side == ICollision.SideNone))
                 {
@@ -35,7 +38,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                     link.ToIdle();
                     link.CatchByEnemy = index;
                     link.HandleEnemyCollision(enemy, scale);
-                    Debug.WriteLine(link.CatchByEnemy);
+                    //Debug.WriteLine(link.CatchByEnemy + "  " + index);
                 }
                 else
                 {
