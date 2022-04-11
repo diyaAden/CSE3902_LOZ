@@ -11,7 +11,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public Rectangle sourceRect;
         Texture2D MapTexture;
-        protected Vector2 pos = new Vector2(270, 200);
+        public Vector2 Position { get; set; } = new Vector2(190, -170);
         
         public void LoadAllTextures(ContentManager content)
         {
@@ -31,8 +31,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
-            Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
-            spriteBatch.Draw(MapTexture, pos, sourceRect, Color.White);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, sourceRect.Width * scale, sourceRect.Height * scale);
+            spriteBatch.Draw(MapTexture, destRect, sourceRect, Color.White);
            
         }
     }

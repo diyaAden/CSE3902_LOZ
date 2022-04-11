@@ -54,6 +54,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             itemAPos = new Vector2(itemAPos.X, itemAPos.Y + shiftDist.Y * scale);
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
             invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
+            mapDisplay.Position = new Vector2(mapDisplay.Position.X, mapDisplay.Position.Y + shiftDist.Y * scale);
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
@@ -194,7 +195,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             }
 
             //for testing purposes - leave till later
-            // mapDisplay.Draw(spriteBatch, 2, offset);
+            mapDisplay.Draw(spriteBatch, scale, offset);
             invSprite.Draw(spriteBatch, scale, offset);
         }
     }
