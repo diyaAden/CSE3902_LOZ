@@ -94,7 +94,7 @@ namespace LegendOfZelda.Scripts.Links
                 state.PickItem(name, scale);
 
             }
-            else
+            else if (name.Equals("Bow"))
             {
                 attackCooldown = cooldownLimit;
                 state.PickItem(name, scale);
