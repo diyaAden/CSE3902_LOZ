@@ -16,6 +16,8 @@ namespace LegendOfZelda.Scripts.Links
     public class Link: ILink
     {
         public bool HasClock { get; private set; } = false;
+
+        public bool HasMap { get; private set; } = false;
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
         private int attackCooldown, hurtCooldown = 0, clockCooldown = 0;
@@ -31,7 +33,8 @@ namespace LegendOfZelda.Scripts.Links
         public List<IItem> linkInventory = new List<IItem>();
         //  Texture2D itemSprSheet = 
         IItem firstItem;
-     
+       
+        //HUDItems.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
        // linkInventory.Add(new SwordWeaponSprite());
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
@@ -46,6 +49,9 @@ namespace LegendOfZelda.Scripts.Links
             {
                 roomSwapPositions[i] = new Vector2(roomSwapPositions[i].X + screenOffset.X, roomSwapPositions[i].Y + screenOffset.Y);
             }
+            firstItem = ItemSpriteFactory.Instance.CreateSwordSprite();
+            linkInventory.Add(firstItem);
+           
         }
 
         //Motions that link will have, and change the state.
@@ -175,6 +181,10 @@ namespace LegendOfZelda.Scripts.Links
             {
                 HasClock = true;
                 clockCooldown = clockCooldownLimit;
+            }
+            else if (gameObject.Name == "Map")
+            {
+                HasMap = true;
             }
             else
             {

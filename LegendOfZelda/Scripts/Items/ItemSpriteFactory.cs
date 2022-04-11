@@ -6,7 +6,7 @@ namespace LegendOfZelda.Scripts.Items
 {
     public class ItemSpriteFactory
     {
-        private Texture2D itemSpriteSheet, fairySpriteSheet, heartSpriteSheet, rupeeSpriteSheet, triforcePieceSpriteSheet, arrowSwordSpriteSheet;
+        private Texture2D itemSpriteSheet, fairySpriteSheet, heartSpriteSheet, rupeeSpriteSheet, triforcePieceSpriteSheet, arrowSwordSpriteSheet, genItemSpriteSheet;
         private static readonly ItemSpriteFactory instance = new ItemSpriteFactory();
 
         public static ItemSpriteFactory Instance => instance;
@@ -21,6 +21,7 @@ namespace LegendOfZelda.Scripts.Items
             rupeeSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/RupeeSpriteSheet");
             triforcePieceSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/TriforcePieceSpriteSheet");
             arrowSwordSpriteSheet = content.Load<Texture2D>("SpriteSheets/Items/ArrowSwordSpriteSheet"); 
+            genItemSpriteSheet = content.Load<Texture2D>("SpriteSheets/General/GeneraltemSpriteSheet");
         }
         public IItem CreateItemFromString(string itemName)
         {
@@ -42,6 +43,7 @@ namespace LegendOfZelda.Scripts.Items
                 "BlueRupee" => CreateBlueRupeeSprite(),
                 "Clock" => CreateClockSprite(),
                 "Fairy" => CreateFairySprite(),
+                "Sword" => CreateSwordSprite(),
                 _ => null,
             };
         }
@@ -108,6 +110,11 @@ namespace LegendOfZelda.Scripts.Items
         public IItem CreateClockSprite()
         {
             return new ClockSprite(itemSpriteSheet);
+        }
+
+        public IItem CreateSwordSprite()
+        {
+            return new SwordItemSprite(genItemSpriteSheet);
         }
     }
 }
