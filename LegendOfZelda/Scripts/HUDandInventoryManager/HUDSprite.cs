@@ -126,7 +126,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
 
-           // spriteBatch.DrawString(font, rupeesText, new Vector2(100, 100), Color.White);
+          // spriteBatch.DrawString(font, rupeesText, new Vector2(100, 100), Color.White);
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
             Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
@@ -144,8 +144,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             if (invDisplayItems.Count >= 1)
             {
+                invDisplayItems[0].Position = new Vector2(420,60);
                 invDisplayItems[0].Draw(spriteBatch, 2);
+            }
+
+            if (invDisplayItems.Count >= 2)
+            {
+                invDisplayItems[1].Position = new Vector2(470, 60);
                 invDisplayItems[1].Draw(spriteBatch, 2);
+
             }
 
             
