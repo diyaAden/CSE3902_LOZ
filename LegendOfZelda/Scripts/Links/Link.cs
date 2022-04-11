@@ -155,10 +155,10 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void addInventoryItem(IItem gameObject)
         {
-            if (((IItem)gameObject).Name == "BlueRupee") numRupees += 5;
-            else if (((IItem)gameObject).Name == "Rupee") numRupees++;
-            else if (((IItem)gameObject).Name == "Key") numKeys++;
-            else if (((IItem)gameObject).Name == "Clock")
+            if (gameObject.Name == "BlueRupee") numRupees += 5;
+            else if (gameObject.Name == "Rupee") numRupees++;
+            else if (gameObject.Name == "Key") numKeys++;
+            else if (gameObject.Name == "Clock")
             {
                 HasClock = true;
                 clockCooldown = clockCooldownLimit;
@@ -166,7 +166,7 @@ namespace LegendOfZelda.Scripts.Links
             else
             {
                 linkInventory.Add(gameObject);
-                if (((IItem)gameObject).Name == "Bomb") numBombs++;
+                if (gameObject.Name == "Bomb") numBombs++;
             }
         }
 
