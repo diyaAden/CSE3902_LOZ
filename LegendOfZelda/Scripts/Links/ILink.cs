@@ -8,6 +8,7 @@ namespace LegendOfZelda.Scripts.Links
 {
     public interface ILink
     {
+        public bool HasClock { get; }
         ILinkState State { get; set; }
         public void ToIdle();
         public void GameOverLink();
