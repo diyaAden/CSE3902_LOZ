@@ -1,7 +1,7 @@
 ﻿using LegendOfZelda.Scripts.Links.Sprite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace LegendOfZelda.Scripts.Links.State
 {
@@ -34,6 +34,10 @@ namespace LegendOfZelda.Scripts.Links.State
             Sprite.Update();
             Position = Sprite.Position;
 
+        }
+        public virtual void GameOverLink()
+        {
+            Link.State = new GameOverLinkState(Link, Position);
         }
         
         public virtual void ToDamaged()
@@ -114,10 +118,6 @@ namespace LegendOfZelda.Scripts.Links.State
         public virtual void PositionRight()
         {
             Position = new Vector2(Position.X + Sprite.LinkMoveSpeed, Position.Y);
-        }
-        public virtual void SetPosition(Vector2 destPosition)
-        {
-            Sprite.Position = new Vector2(destPosition.X, destPosition.Y);
         }
 
         public virtual void UseItem()

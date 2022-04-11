@@ -176,7 +176,7 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
                 foreach (ICollision side in sides2)
                 {
-                    collisionHandlers[2].HandleCollision(Link, enemy, side, gameScale, screenOffset, index, roomManager);
+                    collisionHandlers[2].HandleCollision(Link, enemy, side, gameScale, screenOffset, index);
                 }
                 foreach (IWeapon weapon in activeWeapons)
                 {

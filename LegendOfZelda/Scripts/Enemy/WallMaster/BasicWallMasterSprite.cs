@@ -34,40 +34,36 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
         private Vector2 MovesToWallTest(Vector2 screenOffset, Vector2 newPosition, int scale)
         {
             Vector2 returnPos = new Vector2(newPosition.X, newPosition.Y);
-            ToWallTest(screenOffset, newPosition, scale);
-            return returnPos;
-        }
-
-        private bool ToWallTest(Vector2 screenOffset, Vector2 newPosition, int scale)
-        {
-            isCollisionWithLink = true;
-
             int top = (topBorder + (int)screenOffset.Y) * scale;
             int bottom = (bottomBorder + (int)screenOffset.Y) * scale;
             int left = (leftBorder + (int)screenOffset.X) * scale;
             int right = (rightBorder + (int)screenOffset.X) * scale;
 
-            if (newPosition.X < left - animationFrames[currentFrame].Width * scale)
+            if (newPosition.X < left -animationFrames[currentFrame].Width * scale)
             {
-                isCollisionWithLink = false;
+                //need move the link to the first screen.
+                this.isCollisionWithLink = false;
                 Debug.WriteLine("left, link jump!");
             }
-            if (newPosition.X > right)
+            else if(newPosition.X > right)
             {
-                isCollisionWithLink = false;
+                this.isCollisionWithLink = false;                
+                //move the link to the first screen.
                 Debug.WriteLine("right, link jump!");
             }
             if (newPosition.Y < top - animationFrames[currentFrame].Height * scale)
             {
-                isCollisionWithLink = false;
+                this.isCollisionWithLink = false;
+                //need move the link to the first screen.
                 Debug.WriteLine("top, link jump!");
             }
-            if (newPosition.Y > bottom)
+            else if (newPosition.Y > bottom)
             {
-                isCollisionWithLink = false;
+                this.isCollisionWithLink = false;
+                //need move the link to the first screen.
                 Debug.WriteLine("bottom, link jump!");
             }
-            return isCollisionWithLink;
+            return returnPos;
         }
         private Vector2 ToWall(int direction, int scale, Vector2 screenOffset)
         {
@@ -76,8 +72,7 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 0 => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y + moveSpeed * scale), scale),
                 1 => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y - moveSpeed * scale), scale),
                 2 => MovesToWallTest(screenOffset, new Vector2(position.X - moveSpeed * scale, position.Y), scale),
-                3 => MovesToWallTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
-                _ => MovesToWallTest(screenOffset, new Vector2(position.X, position.Y), scale)
+                _ => MovesToWallTest(screenOffset, new Vector2(position.X + moveSpeed * scale, position.Y), scale),
             };
         }
         public override void Update(int scale, Vector2 screenOffset)
@@ -108,24 +103,17 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
                 ICollision.SideBottom => 0,
                 ICollision.SideTop => 1,
                 ICollision.SideRight => 2,
-                ICollision.SideLeft => 3,
-                _ => -1
+                _ => 3,
             };
         }
-        public override void HandleCollision(ICollision side, int scale, Vector2 screenOffset, int CatchByEnemy)
+        public override void HandleCollision(ICollision side, int scale, Vector2 screenOffset)
         {
             if (side is ICollision.SideNone) {
-                if(CatchByEnemy != -1 && ToWallTest(screenOffset, position, scale) == false)
-                {
-                    isCollisionWithLink = false;
-                }
+                //do nothing
             }
             else
             {
-                if (CatchByEnemy != -1 && ToWallTest(screenOffset, position, scale) != false)
-                {
-                    isCollisionWithLink = true;
-                }
+                this.isCollisionWithLink = true;
             }
         }
     }

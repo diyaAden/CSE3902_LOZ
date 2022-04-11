@@ -17,9 +17,8 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands.LinkAction
         }
         public void Execute()
         {
-            if (myGame.link.CatchByEnemy == -1)
-                myGame.link.Attack(myGame.gameScale);
-            if (!myGame.activeWeapons.Exists(ContainsSwordBeam)) //set to only use beam if full health
+            myGame.link.Attack(myGame.gameScale);
+            if (!myGame.activeWeapons.Exists(ContainsSwordBeam) && myGame.HUDManager.IsFullHealth()) 
             {
                 IWeapon sword = new SwordBeamWeapon(myGame.link.State.Position, myGame.link.State.Direction, myGame.gameScale);
                 myGame.activeWeapons.Add(sword);
