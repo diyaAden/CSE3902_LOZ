@@ -30,6 +30,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         protected Vector2 rupeeCountPos = new Vector2(360, 36);
         protected Vector2 keyCountPos = new Vector2(360, 65);
         protected Vector2 bombCountPos = new Vector2(360, 85);
+        protected Vector2 itemAPos = new Vector2(470, 60);
+        protected Vector2 itemBPos = new Vector2(420, 60);
         Rectangle levelImageSource;
         Rectangle levelFrameSource;
         Rectangle tempRect;
@@ -63,6 +65,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             rupeeCountPos = new Vector2(rupeeCountPos.X, rupeeCountPos.Y + shiftDist.Y * scale);
             keyCountPos = new Vector2(keyCountPos.X, keyCountPos.Y + shiftDist.Y * scale);
             bombCountPos = new Vector2(bombCountPos.X, bombCountPos.Y + shiftDist.Y * scale);
+            itemAPos = new Vector2(itemAPos.X, itemAPos.Y + shiftDist.Y * scale);
+            itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
+            foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
         }
@@ -180,14 +185,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             if (invDisplayItems.Count >= 1)
             {
-                invDisplayItems[0].Position = new Vector2(470,60);
-                invDisplayItems[0].Draw(spriteBatch, 2);
+                invDisplayItems[0].Position = itemAPos;
+                invDisplayItems[0].Draw(spriteBatch, scale);
             }
 
             if (invDisplayItems.Count >= 2)
             {
-                invDisplayItems[1].Position = new Vector2(420, 60);
-                invDisplayItems[1].Draw(spriteBatch, 2);
+                invDisplayItems[1].Position = itemBPos;
+                invDisplayItems[1].Draw(spriteBatch, scale);
 
             }
 

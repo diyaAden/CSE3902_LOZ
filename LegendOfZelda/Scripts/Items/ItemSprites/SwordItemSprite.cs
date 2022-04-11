@@ -5,7 +5,7 @@ namespace LegendOfZelda.Scripts.Items.ItemSprites
 {
     public class SwordItemSprite : BasicItem
     {
-        private const int xPos = 104, yPos = 0, width = 6, height = 16;
+        private const int xPos = 104, yPos = 0, width = 7, height = 16;
         private const string itemName = "Sword";
 
         public SwordItemSprite(Texture2D itemSpriteSheet)
