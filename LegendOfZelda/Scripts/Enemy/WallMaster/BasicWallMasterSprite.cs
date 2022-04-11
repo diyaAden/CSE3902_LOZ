@@ -43,25 +43,25 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
             {
                 //need move the link to the first screen.
                 this.isCollisionWithLink = false;
-                Debug.WriteLine("left, link jump!");
+                Debug.WriteLine("link jump!");
             }
             else if(newPosition.X > right)
             {
-                this.isCollisionWithLink = false;                
+                this.isCollisionWithLink = false;
                 //move the link to the first screen.
-                Debug.WriteLine("right, link jump!");
+                Debug.WriteLine("link jump!");
             }
             if (newPosition.Y < top - animationFrames[currentFrame].Height * scale)
             {
                 this.isCollisionWithLink = false;
                 //need move the link to the first screen.
-                Debug.WriteLine("top, link jump!");
+                Debug.WriteLine("link jump!");
             }
             else if (newPosition.Y > bottom)
             {
                 this.isCollisionWithLink = false;
                 //need move the link to the first screen.
-                Debug.WriteLine("bottom, link jump!");
+                Debug.WriteLine("link jump!");
             }
             return returnPos;
         }
