@@ -31,7 +31,7 @@ namespace LegendOfZelda
         public ILink link;
         public RoomManager roomManager;
 
-        public KeyboardController endGameControl;
+        public EndGameController endGameControl;
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
@@ -75,7 +75,7 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             KeyboardController control = new KeyboardController();
-            endGameControl = new KeyboardController();
+            endGameControl = new EndGameController();
             MouseController mouse = new MouseController();
             GamepadController gamepad = new GamepadController();
             InitializeController con = new InitializeController(this);
