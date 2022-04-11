@@ -31,6 +31,7 @@ namespace LegendOfZelda
         public ILink link;
         public RoomManager roomManager;
 
+        public KeyboardController endGameControl;
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
@@ -74,12 +75,14 @@ namespace LegendOfZelda
         protected override void Initialize()
         {
             KeyboardController control = new KeyboardController();
+            endGameControl = new KeyboardController();
             MouseController mouse = new MouseController();
             GamepadController gamepad = new GamepadController();
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             con.RegisterCommands(mouse);
             con.RegisterCommands(gamepad);
+            con.RegisterEndGame(endGameControl);
             controllerList = new List<IController>() { control, mouse };
 
             GameStateController.Instance.LoadGame(this);
@@ -183,6 +186,7 @@ namespace LegendOfZelda
                     roomMovingController.Update();
                     break;
                 case GameState.Paused:
+                    
                     if (keyboard.IsKeyDown(Keys.O))
                     {
                         GameStateController.Instance.SetGameStatePlaying();
@@ -193,14 +197,8 @@ namespace LegendOfZelda
                     // play animation
 
                     //reset or exit
-                    if (keyboard.IsKeyDown(Keys.O))
-                    {
-                        ResetGame();
-                    }
-                    if (keyboard.IsKeyDown(Keys.Q))
-                    {
-                        Exit();
-                    }
+                    endGameControl.Update();
+                    
                     break;
                 case GameState.WonGame:
 
