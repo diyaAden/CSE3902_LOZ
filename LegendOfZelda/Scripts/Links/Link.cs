@@ -23,6 +23,7 @@ namespace LegendOfZelda.Scripts.Links
         private readonly HandlerManager handlerManager;
         private readonly HUDInventoryManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
+        public int CatchByEnemy { get; set; }
         public int numKeys { get; set; } = 0;
         public int numRupees { get; set; } = 10;
         public int numBombs { get; set; } = 3;
@@ -33,7 +34,7 @@ namespace LegendOfZelda.Scripts.Links
        // linkInventory.Add(new SwordWeaponSprite());
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
-            
+            CatchByEnemy = -1;
             this.handlerManager = handlerManager;
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;
@@ -132,7 +133,11 @@ namespace LegendOfZelda.Scripts.Links
             state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side) { HandleWeaponCollision(enemy, side); }
-
+        public void HandleEnemyCollision(IEnemy enemy)
+        {
+            state.SetPosition(enemy.position);
+            Debug.WriteLine(state.Position);
+        }
         public bool hasArrows()
         {
             if (numRupees> 0)

@@ -41,21 +41,25 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
 
             if (newPosition.X < left - animationFrames[currentFrame].Width * scale)
             {
+                this.isCollisionWithLink = false;
                 //need move the link to the first screen.
                 Debug.WriteLine("link jump!");
             }
             else if (newPosition.X > right)
             {
+                this.isCollisionWithLink = false;
                 //move the link to the first screen.
                 Debug.WriteLine("link jump!");
             }
             if (newPosition.Y < top - animationFrames[currentFrame].Height * scale)
             {
+                this.isCollisionWithLink = false;
                 //need move the link to the first screen.
                 Debug.WriteLine("link jump!");
             }
             else if (newPosition.Y > bottom)
             {
+                this.isCollisionWithLink = false;
                 //need move the link to the first screen.
                 Debug.WriteLine("link jump!");
             }
@@ -98,7 +102,7 @@ namespace LegendOfZelda.Scripts.Enemy.WallMaster.Sprite
             {
                 ICollision.SideBottom => 0,
                 ICollision.SideTop => 1,
-                ICollision.SideLeft => 2,
+                ICollision.SideRight => 2,
                 _ => 3,
             };
         }

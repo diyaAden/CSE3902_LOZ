@@ -13,7 +13,8 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            myGame.link.ToIdle();
+            if (myGame.link.CatchByEnemy == -1)
+                myGame.link.ToIdle();
         }
     }
 }

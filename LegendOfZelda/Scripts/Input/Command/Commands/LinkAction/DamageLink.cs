@@ -9,7 +9,8 @@
         }
         public void Execute()
         {
-            myGame.HUDManager.damageLink();
+            if (myGame.link.CatchByEnemy == -1)
+                myGame.HUDManager.damageLink();
         }
     }
 }

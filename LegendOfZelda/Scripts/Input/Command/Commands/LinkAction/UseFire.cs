@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            if (!myGame.activeWeapons.Exists(containsFire))
+            if (!myGame.activeWeapons.Exists(containsFire) && (myGame.link.CatchByEnemy == -1))
             {
                 myGame.link.UseItem();
                 IWeapon fire = new FireWeapon(myGame.link.State.Position, myGame.link.State.Direction);
