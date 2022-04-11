@@ -1,19 +1,21 @@
-﻿using System;
+﻿using LegendOfZelda.Scripts.GameStateMachine;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegendOfZelda.Scripts.Input.Command.Commands
 {
-    public class GameStatePaused : ICommand
+    public class GameStatePausing : ICommand
     {
         private Game1 myGame;
-        public GameStatePaused(Game1 game)
+        public GameStatePausing(Game1 game)
         {
             myGame = game;
         }
         public void Execute()
         {
-            myGame.Gstate = GameStateMachine.GameState.Paused;
+            myGame.HUD.TogglePause();
+            myGame.Gstate = GameState.Pausing;
         }
     }
 }

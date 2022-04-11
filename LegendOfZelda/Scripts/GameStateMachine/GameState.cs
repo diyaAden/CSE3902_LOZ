@@ -5,7 +5,7 @@ namespace LegendOfZelda.Scripts.GameStateMachine
     {
         Playing,
         ItemSelection,
-        Paused,
+        Pausing,
         WonGame,
         Triforce,
         RoomSwitch,

@@ -20,10 +20,18 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public MapDisplaySprite mapDisplay = new MapDisplaySprite();
         public InventorySprite invSprite = new InventorySprite();
         public List<IHUDItem> Hearts { get; set; }
-        public bool hasMap = true;
+        public bool hasMap = false;
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
+        protected Vector2 mapPos = new Vector2(220, 55);
+        protected Vector2 levelFramePos = new Vector2(200, 30);
+        protected Vector2 levelNumPos = new Vector2(295, 24);
+        protected Vector2 rupeeCountPos = new Vector2(360, 36);
+        protected Vector2 keyCountPos = new Vector2(360, 65);
+        protected Vector2 bombCountPos = new Vector2(360, 85);
+        protected Vector2 itemAPos = new Vector2(470, 60);
+        protected Vector2 itemBPos = new Vector2(420, 60);
         Rectangle levelImageSource;
         Rectangle levelFrameSource;
         Rectangle tempRect;
@@ -44,7 +52,25 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public Texture2D itemSheet;
 
         private GameScreenBorder border = new GameScreenBorder();
-
+        private Vector2 position = new Vector2(0, 0);
+        public void ShiftHUD(Vector2 shiftDist, int scale)
+        {
+            position = new Vector2(position.X, position.Y + shiftDist.Y * scale);
+            pos = new Vector2(pos.X, pos.Y + shiftDist.Y * scale);
+            pos2 = new Vector2(pos.X, pos2.Y + shiftDist.Y * scale);
+            mapPos = new Vector2(mapPos.X, mapPos.Y + shiftDist.Y * scale);
+            border.Position = new Vector2(border.Position.X, border.Position.Y + shiftDist.Y * scale);
+            levelFramePos = new Vector2(levelFramePos.X, levelFramePos.Y + shiftDist.Y * scale);
+            levelNumPos = new Vector2(levelNumPos.X, levelNumPos.Y + shiftDist.Y * scale);
+            rupeeCountPos = new Vector2(rupeeCountPos.X, rupeeCountPos.Y + shiftDist.Y * scale);
+            keyCountPos = new Vector2(keyCountPos.X, keyCountPos.Y + shiftDist.Y * scale);
+            bombCountPos = new Vector2(bombCountPos.X, bombCountPos.Y + shiftDist.Y * scale);
+            itemAPos = new Vector2(itemAPos.X, itemAPos.Y + shiftDist.Y * scale);
+            itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
+            foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
+            foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
+            foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
+        }
         public void LoadAllTextures(ContentManager content)
         {
             border.LoadTextures(content);
@@ -119,6 +145,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void getItemSprites(ILink link) //add item sprites to list
         {
             invDisplayItems = link.getInventoryList();
+            hasMap = link.HasMap;
+           
         }
 
         public void updateItemCounts(ILink link)
@@ -132,14 +160,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
         }
-
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
             
            
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
-            Rectangle levelIconDestRect = new Rectangle(220, 55, levelImageSource.Width * scale, levelImageSource.Height * scale);
-            Rectangle levelFrameDestRect = new Rectangle(200, 30, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
+            Rectangle levelIconDestRect = new Rectangle((int)mapPos.X, (int)mapPos.Y, levelImageSource.Width * scale, levelImageSource.Height * scale);
+            Rectangle levelFrameDestRect = new Rectangle((int)levelFramePos.X, (int)levelFramePos.Y, levelFrameSource.Width * scale, levelFrameSource.Height * scale);
             
             border.Draw(spriteBatch, scale, offset);
             spriteBatch.Draw(HUDTexture, destRect, sourceRect, Color.White);
@@ -147,10 +174,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
 
-            spriteBatch.DrawString(font, "1", new Vector2(295, 24), Color.White);
-            spriteBatch.DrawString(font, "x" + nRupees, new Vector2(360, 36), Color.White);
-            spriteBatch.DrawString(font, "x" + nKeys, new Vector2(360, 65), Color.White);
-            spriteBatch.DrawString(font, "x" + nBombs, new Vector2(360, 85), Color.White);
+            spriteBatch.DrawString(font, "1", levelNumPos, Color.White);
+            spriteBatch.DrawString(font, "x" + nRupees, rupeeCountPos, Color.White);
+            spriteBatch.DrawString(font, "x" + nKeys, keyCountPos, Color.White);
+            spriteBatch.DrawString(font, "x" + nBombs, bombCountPos, Color.White);
             if (hasMap)
             {
                 spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
@@ -158,14 +185,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             if (invDisplayItems.Count >= 1)
             {
-                invDisplayItems[0].Position = new Vector2(420,60);
-                invDisplayItems[0].Draw(spriteBatch, 2);
+                invDisplayItems[0].Position = itemAPos;
+                invDisplayItems[0].Draw(spriteBatch, scale);
             }
 
             if (invDisplayItems.Count >= 2)
             {
-                invDisplayItems[1].Position = new Vector2(470, 60);
-                invDisplayItems[1].Draw(spriteBatch, 2);
+                invDisplayItems[1].Position = itemBPos;
+                invDisplayItems[1].Draw(spriteBatch, scale);
 
             }
 
