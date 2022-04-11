@@ -20,7 +20,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public MapDisplaySprite mapDisplay = new MapDisplaySprite();
         public InventorySprite invSprite = new InventorySprite();
         public List<IHUDItem> Hearts { get; set; }
-        public bool hasMap = true;
+        public bool hasMap = false;
 
         protected Vector2 pos = new Vector2(170, 10);
         protected Vector2 pos2 = new Vector2(190,10);
@@ -119,6 +119,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void getItemSprites(ILink link) //add item sprites to list
         {
             invDisplayItems = link.getInventoryList();
+            hasMap = link.HasMap;
+           
         }
 
         public void updateItemCounts(ILink link)
@@ -158,13 +160,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             if (invDisplayItems.Count >= 1)
             {
-                invDisplayItems[0].Position = new Vector2(420,60);
+                invDisplayItems[0].Position = new Vector2(470,60);
                 invDisplayItems[0].Draw(spriteBatch, 2);
             }
 
             if (invDisplayItems.Count >= 2)
             {
-                invDisplayItems[1].Position = new Vector2(470, 60);
+                invDisplayItems[1].Position = new Vector2(420, 60);
                 invDisplayItems[1].Draw(spriteBatch, 2);
 
             }

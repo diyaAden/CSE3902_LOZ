@@ -10,6 +10,8 @@ namespace LegendOfZelda.Scripts.Links
     {
         public bool HasClock { get; }
 
+        public bool HasMap { get; }
+
         public int numRupees { get; set; }
         public int numKeys { get; set; }
         public int numBombs { get; set; }
