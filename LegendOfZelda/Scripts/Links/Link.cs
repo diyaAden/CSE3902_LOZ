@@ -13,10 +13,11 @@ namespace LegendOfZelda.Scripts.Links
 {
     public class Link: ILink
     {
+        public bool HasClock { get; private set; } = false;
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
-        private int attackCooldown, hurtCooldown = 0;
-        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70;
+        private int attackCooldown, hurtCooldown = 0, clockCooldown = 0;
+        private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70, clockCooldownLimit = 300;
         private ICollision enemyCollisionSide;
         private readonly HandlerManager handlerManager;
         private readonly HUDInventoryManager HUDInventoryManager;
@@ -157,6 +158,11 @@ namespace LegendOfZelda.Scripts.Links
             if (((IItem)gameObject).Name == "BlueRupee") numRupees += 5;
             else if (((IItem)gameObject).Name == "Rupee") numRupees++;
             else if (((IItem)gameObject).Name == "Key") numKeys++;
+            else if (((IItem)gameObject).Name == "Clock")
+            {
+                HasClock = true;
+                clockCooldown = clockCooldownLimit;
+            }
             else
             {
                 linkInventory.Add(gameObject);
@@ -236,6 +242,9 @@ namespace LegendOfZelda.Scripts.Links
             }
             else if (hurtCooldown > 0) --hurtCooldown;
             else enemyCollisionSide = ICollision.SideNone;
+
+            if (HasClock && clockCooldown > 0) clockCooldown--;
+            else if (clockCooldown == 0) HasClock = false;
 
             if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
         }

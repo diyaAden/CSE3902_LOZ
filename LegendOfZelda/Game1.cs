@@ -164,7 +164,7 @@ namespace LegendOfZelda
                     Vector2 linkCenter = new Vector2(linkBox.X + linkBox.Width / 2f, linkBox.Y + linkBox.Height / 2f);
                     foreach (IWeapon weapon in activeWeapons) { weapon.Update(linkCenter, gameScale); }
                     link.Update();
-                    roomManager.Update(link.State.Position, gameScale, screenOffset);
+                    roomManager.Update(link.State.Position, gameScale, screenOffset, link.HasClock);
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     handlerManager.Update(link, activeWeapons, roomManager, gameScale);
 

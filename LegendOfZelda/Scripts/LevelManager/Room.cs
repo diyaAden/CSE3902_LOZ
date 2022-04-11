@@ -47,17 +47,20 @@ namespace LegendOfZelda.Scripts.LevelManager
             RoomBackground = RoomBackgroundFactory.Instance.CreateFromRoomNumber(roomNumber);
             RoomBackground.Position = new Vector2((RoomBackground.Position.X + screenOffset.X) * scale, (RoomBackground.Position.Y + screenOffset.Y) * scale);
         }
-        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset)
+        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset, bool hasClock)
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            int numEnemies = Enemies.Count;
-            for (int i = 0; i < numEnemies; i++) 
+            if (!hasClock) 
             {
-                if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
-                    roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
-                else if (!(Enemies[i] is BoomerangEnemy))
-                    Enemies[i].Update(linkPosition, scale, screenOffset); 
+                int numEnemies = Enemies.Count;
+                for (int i = 0; i < numEnemies; i++)
+                {
+                    if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
+                        roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
+                    else if (!(Enemies[i] is BoomerangEnemy))
+                        Enemies[i].Update(linkPosition, scale, screenOffset);
+                }
             }
 
             if (Enemies.Count == 1) lastEnemyPos = Enemies[0].position;

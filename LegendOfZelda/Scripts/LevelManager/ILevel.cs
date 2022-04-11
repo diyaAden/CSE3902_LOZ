@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public List<IBlock> Blocks { get; }
 
         public void AddObject(string type, string name, int xPos, int yPos, int adjacentRoom);
-        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset);
+        public void Update(Vector2 linkPosition, int scale, Vector2 screenOffset, bool hasClock);
         public void AddRoomBackground(int roomNumber, Vector2 screenOffset, int scale);
         public void Draw(SpriteBatch spriteBatch, int scale);
         public void OpenSecretDoor(RoomObjectEditor.Direction direction);
