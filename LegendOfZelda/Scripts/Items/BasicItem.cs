@@ -30,7 +30,7 @@ namespace LegendOfZelda.Scripts.Items
 
         public virtual void Update(Vector2 linkPosition) { }
         public virtual void HandleCollision(ICollision side, int scale) { }
-
+        public void HandleCollision(ICollision side, int scale, Vector2 screenOffset) { }
         public virtual void PickItem(Vector2 linkPosition, int scale)
         {
             SoundController.Instance.PlayGetItemSound();

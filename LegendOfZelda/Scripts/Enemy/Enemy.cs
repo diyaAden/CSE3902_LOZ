@@ -9,10 +9,11 @@ namespace LegendOfZelda.Scripts.Enemy
 {
     public abstract class Enemy : IEnemy
     {
-        private const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
+        protected const int topBorder = 32, bottomBorder = 143, leftBorder = 32, rightBorder = 223;
         protected const int hurtCooldownLimit = 30;
         protected readonly List<Color> damagedColors = new List<Color>() { Color.Red, Color.Green, Color.Yellow };
         protected Color drawColor = Color.White;
+        protected bool isCollisionWithLink = false;
         protected Texture2D spriteSheet;
         protected Vector2 pos = new Vector2(400, 400);
         protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
@@ -22,6 +23,7 @@ namespace LegendOfZelda.Scripts.Enemy
         public virtual int Health { get; set; }
         protected virtual int Rows { get; set; }
         protected virtual int Columns { get; set; }
+        public virtual bool IsCollisionWithLink { get { return isCollisionWithLink; } set { isCollisionWithLink = value; } }
         protected virtual int CurrentFrame { get; set; }
         protected virtual int TotalFrames { get; set; }
         protected virtual float MoveSpeed { get; set; }
@@ -102,6 +104,7 @@ namespace LegendOfZelda.Scripts.Enemy
             Rectangle destRect = new Rectangle((int)position.X, (int)position.Y, animationFrames[currentFrame].Width * scale, animationFrames[currentFrame].Height * scale);
             spriteBatch.Draw(spriteSheet, destRect, animationFrames[currentFrame], drawColor);
         }
-        public void HandleCollision(ICollision side, int scale) { }
+        public virtual void HandleCollision(ICollision side, int scale) { }
+        public virtual void HandleCollision(ICollision side, int scale, Vector2 screenOffset) { }
     }
 }
