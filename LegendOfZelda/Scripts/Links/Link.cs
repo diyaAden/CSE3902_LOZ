@@ -43,6 +43,10 @@ namespace LegendOfZelda.Scripts.Links
         {
             if (attackCooldown == 0) state.ToIdle();
         }
+        public void GameOverLink()
+        {
+            state.GameOverLink();
+        }
         public void MoveUp()
         {
             if (attackCooldown == 0) state.MoveUp();
