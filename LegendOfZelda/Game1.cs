@@ -192,10 +192,14 @@ namespace LegendOfZelda
 
                     // play animation
 
-                    //reset
+                    //reset or exit
                     if (keyboard.IsKeyDown(Keys.O))
                     {
                         ResetGame();
+                    }
+                    if (keyboard.IsKeyDown(Keys.Q))
+                    {
+                        Exit();
                     }
                     break;
                 case GameState.WonGame:
