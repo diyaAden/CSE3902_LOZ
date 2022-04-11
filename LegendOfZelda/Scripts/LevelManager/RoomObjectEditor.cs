@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Enemy.Goriya;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -15,10 +16,10 @@ namespace LegendOfZelda.Scripts.LevelManager
         private const int enemyDropItemProb = 6;
         private bool keySpawned = false, crackedDoorsOpened = false, heartContainerSpawned = false;
         private Random rnd = new Random();
-        public List<IItem> Items { get; private set; } 
+        public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
         public List<IBlock> Blocks { get; private set; }
-        public RoomObjectEditor(List<IItem> items, List<IEnemy> enemies, List<IBlock> blocks) 
+        public RoomObjectEditor(List<IItem> items, List<IEnemy> enemies, List<IBlock> blocks)
         {
             Items = items;
             Enemies = enemies;
@@ -36,7 +37,8 @@ namespace LegendOfZelda.Scripts.LevelManager
         }
         public void OpenCrackedDoors()
         {
-            if (!crackedDoorsOpened) {
+            if (!crackedDoorsOpened)
+            {
                 foreach (IBlock block in Blocks)
                 {
                     if (block is CrackedDoorSpriteRight || block is CrackedDoorSpriteLeft || block is CrackedDoorSpriteUp || block is CrackedDoorSpriteDown)
@@ -70,7 +72,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             return !(enemy is BasicExplosionSprite || enemy is BasicCloudSprite || enemy is BasicFireballSprite || enemy is BoomerangEnemy);
         }
-        public void RemoveEnemy(int index) 
+        public void RemoveEnemy(int index)
         {
             if (IsNormalEnemy(Enemies[index]))
             {
@@ -90,7 +92,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                 }
                 SpawnEnemyExplosion(index, enemyPos);
             }
-            Enemies.RemoveAt(index); 
+            Enemies.RemoveAt(index);
         }
         public void SpawnEnemyExplosion(int index, Vector2 enemyPos)
         {
@@ -126,6 +128,12 @@ namespace LegendOfZelda.Scripts.LevelManager
                 dragon.Update(Enemies, scale, screenOffset);
             else if (enemy is BasicGoriyaSprite goriya)
                 goriya.Update(Enemies, scale, screenOffset);
+        }
+
+        public void UpdateEnemyToWall(IEnemy enemy, int scale, Vector2 screenOffset, bool isCollisionWithLink)
+        {
+            if (enemy is BasicWallMasterSprite wallMaster)
+                wallMaster.Update(isCollisionWithLink, scale, screenOffset);
         }
     }
 }

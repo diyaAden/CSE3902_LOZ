@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Items.WeaponSprites;
@@ -25,6 +26,7 @@ namespace LegendOfZelda.Scripts.Links
         private readonly HandlerManager handlerManager;
         private readonly HUDInventoryManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
+        public int CatchByEnemy { get; set; }
         public int numKeys { get; set; } = 0;
         public int numRupees { get; set; } = 10;
         public int numBombs { get; set; } = 3;
@@ -36,7 +38,7 @@ namespace LegendOfZelda.Scripts.Links
        // linkInventory.Add(new SwordWeaponSprite());
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
-            
+            CatchByEnemy = -1;
             this.handlerManager = handlerManager;
             HUDInventoryManager = HUDManager;
             position.X = (position.X + screenOffset.X) * scale;
@@ -138,7 +140,11 @@ namespace LegendOfZelda.Scripts.Links
             state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side) { HandleWeaponCollision(enemy, side); }
-
+        public void HandleEnemyCollision(IEnemy enemy, int scale)
+        {
+            Vector2 destPosition = new Vector2(enemy.position.X + enemy.ObjectBox(scale).Width, enemy.position.Y);
+            state.SetPosition(destPosition);
+        }
         public bool hasArrows()
         {
             if (numRupees> 0)
@@ -194,7 +200,7 @@ namespace LegendOfZelda.Scripts.Links
 
         public void HandleWeaponCollision(IGameObject gameObject, ICollision side)
         {
-            if (!(side is ICollision.SideNone) && hurtCooldown == 0)
+            if (!(side is ICollision.SideNone) && hurtCooldown == 0 && !(gameObject is BasicWallMasterSprite))
             {
                 Debug.WriteLine("Link has been hurt");
                 SoundController.Instance.PlayLinkGetsHurtSound();
@@ -257,18 +263,21 @@ namespace LegendOfZelda.Scripts.Links
             if (attackCooldown > 0) attackCooldown--;
             state.Update();
 
-            if (hurtCooldown > hurtCooldownLimit - 10)
+            if (CatchByEnemy == -1)
             {
-                --hurtCooldown;
-                HurtRecoil();
+                if (hurtCooldown > hurtCooldownLimit - 10)
+                {
+                    --hurtCooldown;
+                    HurtRecoil();
+                }
+                else if (hurtCooldown > 0) --hurtCooldown;
+                else enemyCollisionSide = ICollision.SideNone;
+
+                if (HasClock && clockCooldown > 0) clockCooldown--;
+                else if (clockCooldown == 0) HasClock = false;
+
+                if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
             }
-            else if (hurtCooldown > 0) --hurtCooldown;
-            else enemyCollisionSide = ICollision.SideNone;
-
-            if (HasClock && clockCooldown > 0) clockCooldown--;
-            else if (clockCooldown == 0) HasClock = false;
-
-            if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

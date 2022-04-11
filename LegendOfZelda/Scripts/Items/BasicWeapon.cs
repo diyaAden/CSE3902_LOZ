@@ -36,6 +36,7 @@ namespace LegendOfZelda.Scripts.Items
             return Weapon == null;
         }
         public virtual void HandleCollision(ICollision side, int scale) { }
+        public void HandleCollision(ICollision side, int scale, Vector2 screenOffset, int CatchByEnemy) { }
         public virtual Rectangle ObjectBox(int scale)
         {
             if (Weapon == null) return new Rectangle();
