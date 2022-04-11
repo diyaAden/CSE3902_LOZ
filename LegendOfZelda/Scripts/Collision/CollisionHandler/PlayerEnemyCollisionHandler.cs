@@ -20,15 +20,20 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
             {
                 if (link.CatchByEnemy == index)
                 {
-                    link.HandleEnemyCollision(enemy);
+                    if(enemy.IsCollisionWithLink == false)
+                    {
+                        link.CatchByEnemy = -1;
+                    }
+                    link.HandleEnemyCollision(enemy, scale);
                     enemy.HandleCollision(side, scale, screenOffset);
+
                     
                 }else if(link.CatchByEnemy == -1 && !(side == ICollision.SideNone))
                 {
                     link.MoveDown();
                     link.ToIdle();
                     link.CatchByEnemy = index;
-                    link.HandleEnemyCollision(enemy);
+                    link.HandleEnemyCollision(enemy, scale);
                     Debug.WriteLine(link.CatchByEnemy);
                 }
                 else

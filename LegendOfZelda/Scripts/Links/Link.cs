@@ -123,10 +123,10 @@ namespace LegendOfZelda.Scripts.Links
             state.Position = new Vector2(roomSwapPositions[direction].X * scale, roomSwapPositions[direction].Y * scale);
         }
         public void HandleEnemyCollision(IEnemy enemy, ICollision side) { HandleWeaponCollision(enemy, side); }
-        public void HandleEnemyCollision(IEnemy enemy)
+        public void HandleEnemyCollision(IEnemy enemy, int scale)
         {
-            state.SetPosition(enemy.position);
-            Debug.WriteLine(state.Position);
+            Vector2 destPosition = new Vector2(enemy.position.X + enemy.ObjectBox(scale).Width, enemy.position.Y);
+            state.SetPosition(destPosition);
         }
 
         public bool hasArrows()
