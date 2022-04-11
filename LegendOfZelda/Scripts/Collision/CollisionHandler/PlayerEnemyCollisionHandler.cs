@@ -1,14 +1,14 @@
 ﻿using LegendOfZelda.Scripts.Blocks;
 using LegendOfZelda.Scripts.Enemy;
-using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
+using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
+using System.Text;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
@@ -18,11 +18,15 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
             if (enemy is BasicWallMasterSprite)
             {
-
                 if (link.CatchByEnemy == index)
                 {
-                    link.HandleEnemyCollision(enemy);
+                    if (enemy.IsCollisionWithLink == false)
+                    {
+                        link.CatchByEnemy = -1;
+                    }
+                    link.HandleEnemyCollision(enemy, scale);
                     enemy.HandleCollision(side, scale, screenOffset);
+
 
                 }
                 else if (link.CatchByEnemy == -1 && !(side == ICollision.SideNone))
@@ -30,14 +34,17 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                     link.MoveDown();
                     link.ToIdle();
                     link.CatchByEnemy = index;
-                    link.HandleEnemyCollision(enemy);
+                    link.HandleEnemyCollision(enemy, scale);
                     Debug.WriteLine(link.CatchByEnemy);
                 }
                 else
                 {
                     link.HandleEnemyCollision(enemy, side);
                 }
-
+            }
+            else
+            {
+                link.HandleEnemyCollision(enemy, side);
             }
         }
         public void HandleCollision(ILink link, IGameObject gameObject, ICollision side, int scale)
@@ -52,6 +59,5 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         public void HandleItemDestroy(Room CurrentRoom, int index) { }
         public void HandleEnemyDestroy(Room CurrentRoom, int index) { }
     }
+
 }
-
-
