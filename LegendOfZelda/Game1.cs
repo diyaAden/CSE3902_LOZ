@@ -99,7 +99,7 @@ namespace LegendOfZelda
         }
         public void ResetGame()
         {
-            //GraphicsDevice.Reset();
+            Initialize();
             LoadContent();
             GameStateController.Instance.SetGameStatePlaying();
         }
