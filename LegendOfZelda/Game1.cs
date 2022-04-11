@@ -36,7 +36,7 @@ namespace LegendOfZelda
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
-        public ItemSelection HUD;
+        public HUDSprite HUD;
         public RoomMovingController roomMovingController;
 
         
@@ -90,8 +90,8 @@ namespace LegendOfZelda
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
-            HUD = new ItemSelection(gameScale, screenOffset);
-            HUDManager = new HUDInventoryManager(HUD.HUD);
+            HUD = new HUDSprite();
+            HUDManager = new HUDInventoryManager(HUD);
             
 
             //gameStateManager = new GameStateManager();
@@ -214,7 +214,7 @@ namespace LegendOfZelda
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
             roomManager.Draw(_spriteBatch, gameScale);
-            HUD.GetItemSprites(link);
+            HUD.getItemSprites(link);
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
