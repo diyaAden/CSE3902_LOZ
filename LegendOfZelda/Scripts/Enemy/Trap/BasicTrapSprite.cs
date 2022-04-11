@@ -35,6 +35,7 @@ namespace LegendOfZelda.Scripts.Enemy.Trap.Sprite
             Health = 3; //Actually no health.
         }
         public override void HandleWeaponCollision(IGameObject weapon, ICollision side) { }
+        public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         private Vector2 Advance(int scale)
         {
             return direction switch

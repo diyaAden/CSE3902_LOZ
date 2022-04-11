@@ -29,8 +29,6 @@ Updates Log:
 - Sprint 3 Completion 3/11/22
 
 Potential Bugs:
-- Now the link cannot be damaged by the balls from dragon
 - Handler Manager might be refactored in the future.
 - Wait a sec after the link pick up items, then use items.
-- Make Link go back to normal after a second 
 - Increase firing speed of certain items
