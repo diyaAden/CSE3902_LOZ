@@ -3,6 +3,7 @@ using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
+using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
@@ -12,7 +13,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
         {
         }
 
-        public void HandleCollision(ILink link, IEnemy enemy, ICollision side)
+        public void HandleCollision(ILink link, IEnemy enemy, ICollision side, int scale, Vector2 screenOffset, int index, RoomManager roomManager)
         {
             
         }
@@ -21,7 +22,10 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
             switch (gameObject)
             {
                 case IBlock _:
-                    enemy.HandleBlockCollision(gameObject, side, scale);
+                    if (enemy.IsCollisionWithLink == false)
+                    {
+                        enemy.HandleBlockCollision(gameObject, side, scale);
+                    }
                     break;
                 case IWeapon _:
                     enemy.HandleWeaponCollision(gameObject, side);

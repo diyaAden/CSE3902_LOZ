@@ -13,7 +13,8 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
         }
         public void Execute()
         {
-            myGame.link.State.ToDamaged();
+            if (myGame.link.CatchByEnemy == -1)
+                myGame.link.State.ToDamaged();
         }
     }
 }

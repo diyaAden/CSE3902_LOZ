@@ -15,6 +15,8 @@ using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 
 namespace LegendOfZelda
 {
@@ -37,7 +39,7 @@ namespace LegendOfZelda
         public HUDInventoryManager HUDManager;
 
         public GameState Gstate;
-        public HUDSprite HUD;
+        public ItemSelection HUD;
         public RoomMovingController roomMovingController;
 
         
@@ -91,8 +93,8 @@ namespace LegendOfZelda
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
-            HUD = new HUDSprite();
-            HUDManager = new HUDInventoryManager(HUD);
+            HUD = new ItemSelection(gameScale, screenOffset);
+            HUDManager = new HUDInventoryManager(HUD.HUD);
             
 
             //gameStateManager = new GameStateManager();
@@ -153,7 +155,8 @@ namespace LegendOfZelda
         {
 
             KeyboardState keyboard = Keyboard.GetState();
-          //  Gstate = GameState.Paused;
+            //Gstate = GameState.Paused;
+            HUD.Update(gameScale, screenOffset);
 
             switch (Gstate)
             {
@@ -176,15 +179,19 @@ namespace LegendOfZelda
                     link.Update();
                     roomManager.Update(link.State.Position, gameScale, screenOffset, link.HasClock);
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
-                    handlerManager.Update(link, activeWeapons, roomManager, gameScale);
+                    handlerManager.Update(link, activeWeapons, roomManager, gameScale, screenOffset);
 
                     //update HUD
+                    HUD.GetItemSprites(link);
                     HUDManager.Update();
                     
 
                     break;
                 case GameState.ItemSelection:
-
+                    if (keyboard.IsKeyDown(Keys.Enter))
+                    {
+                        GameStateController.Instance.SetGameStatePausing();
+                    }
                     break;
                 case GameState.Triforce:
 
@@ -192,12 +199,8 @@ namespace LegendOfZelda
                 case GameState.RoomSwitch:
                     roomMovingController.Update();
                     break;
-                case GameState.Paused:
-                    
-                    if (keyboard.IsKeyDown(Keys.O))
-                    {
-                        GameStateController.Instance.SetGameStatePlaying();
-                    }
+                case GameState.Pausing:
+
                     break;
                 case GameState.GameOver:
 
@@ -222,7 +225,6 @@ namespace LegendOfZelda
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
             roomManager.Draw(_spriteBatch, gameScale);
-            HUD.getItemSprites(link);
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
@@ -239,13 +241,11 @@ namespace LegendOfZelda
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
                     break;
-                case GameState.Paused:
-                    Rectangle destRect1 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, pausedRectangle.Width * gameScale, pausedRectangle.Height * gameScale);
-                    _spriteBatch.Draw(pausedTexture, destRect1, pausedRectangle, Color.White);
+                case GameState.Pausing:
+                case GameState.ItemSelection:
                     break;
                 case GameState.GameOver:
                     link.Draw(_spriteBatch, gameScale);
-                    Task.Delay(5000);
                     Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
                     _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;

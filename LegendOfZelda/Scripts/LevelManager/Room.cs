@@ -2,6 +2,7 @@
 using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Enemy.Goriya;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -51,16 +52,16 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             foreach (IItem item in Items) item.Update();
             foreach (IBlock block in Blocks) block.Update();
-            if (!hasClock) 
+            int numEnemies = Enemies.Count;
+            for (int i = 0; i < numEnemies; i++)
             {
-                int numEnemies = Enemies.Count;
-                for (int i = 0; i < numEnemies; i++)
-                {
-                    if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
-                        roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
-                    else if (!(Enemies[i] is BoomerangEnemy))
-                        Enemies[i].Update(linkPosition, scale, screenOffset);
-                }
+                if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
+                    roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
+                else if (Enemies[i] is BasicWallMasterSprite && Enemies[i].IsCollisionWithLink == true)
+                    roomObjectEditor.UpdateEnemyToWall(Enemies[i], scale, screenOffset, Enemies[i].IsCollisionWithLink);
+                else if (!(Enemies[i] is BoomerangEnemy))
+                    Enemies[i].Update(linkPosition, scale, screenOffset);
+
             }
 
             if (Enemies.Count == 1) lastEnemyPos = Enemies[0].position;
