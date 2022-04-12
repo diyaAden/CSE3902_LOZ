@@ -1,0 +1,11 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 4/11/22
+Sprint 4
+EndGameController.cs (Author: Ben)
+Time Spent: 5min
+Comments:
+	- The file is really readable.
+	- I like the Map and List the author created at the top.
+	- No advice for this script, all things looks stable and pretty.
+
+The whole script is really good to the handle the end game controller.
