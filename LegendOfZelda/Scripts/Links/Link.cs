@@ -33,9 +33,10 @@ namespace LegendOfZelda.Scripts.Links
         public List<IItem> linkInventory = new List<IItem>();
         //  Texture2D itemSprSheet = 
         IItem firstItem;
-       
+        protected int currentFrame = 0;
+
         //HUDItems.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
-       // linkInventory.Add(new SwordWeaponSprite());
+        // linkInventory.Add(new SwordWeaponSprite());
         public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
         {
             CatchByEnemy = -1;
@@ -61,7 +62,10 @@ namespace LegendOfZelda.Scripts.Links
         }
         public void GameOverLink()
         {
-            state.GameOverLink();
+            
+                state.GameOverLink();
+
+            
         }
         public void MoveUp()
         {
@@ -276,8 +280,10 @@ namespace LegendOfZelda.Scripts.Links
                 if (HasClock && clockCooldown > 0) clockCooldown--;
                 else if (clockCooldown == 0) HasClock = false;
 
-                if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
+
+            if (state.checkDamaged() && hurtCooldown == 0) state.ToDamaged();
             }
+
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {

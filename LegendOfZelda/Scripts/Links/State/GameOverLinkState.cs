@@ -5,24 +5,24 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace LegendOfZelda.Scripts.Links.State
 {
     class GameOverLinkState : BasicLinkState
     {
+        protected readonly List<Rectangle> animationFrames = new List<Rectangle>();
         public GameOverLinkState(ILink link, Vector2 position)
         {
-            direction = 1;
+            direction = 0;
             this.Link = link;
             this.Position = position;
             this.Sprite = new GameOverLinkSprite(LoadLink.linkGameOver, position);
+
         }
 
-        public override void GameOverLink()
-        {
-            Position = new Vector2(Position.X, Position.Y);
-            Sprite.Position = Position;
-            //do nothing;
-        }
+
+        
+
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using LegendOfZelda.Scripts.Input.Command;
@@ -53,12 +53,15 @@ namespace LegendOfZelda.Scripts.Input.Controller
             control.RegisterCommand(Keys.K, new PreviousRoom(myGame));
             control.RegisterCommand(Keys.L, new NextRoom(myGame));
             //Pause controls
+
             control.RegisterCommand(Keys.Enter, new GameStatePausing(myGame));
-            control.RegisterCommand(Keys.RightShift, new GameOverLink(myGame));
+            control.RegisterCommand(Keys.RightShift, new GameStateGameOver(myGame));
         }
         public void RegisterEndGame(EndGameController controller)
         {
-            controller.RegisterCommand(Keys.O, new ResetGame(myGame));
+            controller.RegisterCommand(Keys.R, new ResetGame(myGame));
+            //controller.RegisterCommand(Keys.RightShift, new GameOverLink(myGame));
+
             controller.RegisterCommand(Keys.Q, new QuitGame(myGame));
 
         }

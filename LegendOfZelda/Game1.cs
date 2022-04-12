@@ -14,7 +14,9 @@ using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
+using System.Threading.Tasks;
 using System.Diagnostics;
+
 
 namespace LegendOfZelda
 {
@@ -159,6 +161,11 @@ namespace LegendOfZelda
             switch (Gstate)
             {
                 case GameState.Playing:
+                    if (HUDManager.health == 0)
+                    {
+                        GameStateController.Instance.SetGameStateGameOver();
+                    }
+                    
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     foreach (IController controller in controllerList) { controller.Update(); }
 
@@ -198,10 +205,12 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
-
-                    //reset or exit
+                    link.Update();
                     endGameControl.Update();
+                    //update HUD
+
                     
+
                     break;
                 case GameState.WonGame:
 
@@ -236,9 +245,9 @@ namespace LegendOfZelda
                 case GameState.ItemSelection:
                     break;
                 case GameState.GameOver:
-                    link.GameOverLink();
+                    link.Draw(_spriteBatch, gameScale);
                     Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
-                    //_spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
+                    _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
