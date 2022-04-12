@@ -33,4 +33,4 @@ Potential Bugs:
 - Handler Manager might be refactored in the future.
 - Wait a sec after the link pick up items, then use items.
 - Increase firing speed of certain items
-- Rooms fail to transition correctly under certain circumstances
+- The map and item selection menu remains unfinished
