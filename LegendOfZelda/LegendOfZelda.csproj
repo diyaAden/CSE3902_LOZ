@@ -121,6 +121,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Documents\Sprint4\" />
     <Folder Include="Scripts\Blocks\BlockSprites\DoorSprites\" />
     <Folder Include="Scripts\HUDandInventoryManager\HUDItemSprites\" />
   </ItemGroup>
