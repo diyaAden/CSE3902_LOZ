@@ -54,9 +54,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             bombCountPos = new Vector2(bombCountPos.X, bombCountPos.Y + shiftDist.Y * scale);
             itemAPos = new Vector2(itemAPos.X, itemAPos.Y + shiftDist.Y * scale);
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
-            invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
+            //invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
-            // invSprite.shiftInventory(shiftDist, scale);
+            invSprite.shiftInventory(shiftDist, scale);
             invSprite.areVisible = true;
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);

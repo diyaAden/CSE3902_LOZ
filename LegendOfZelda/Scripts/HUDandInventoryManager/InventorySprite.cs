@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Rectangle sourceRect;
         Texture2D InventoryTexture;
         List<IItem> invDisplayItems = new List<IItem>();
-        Vector2 startPos = new Vector2(320, -110);
+        Vector2 startPos = new Vector2(320, -270);
 
         public bool areVisible = false;
 
@@ -41,12 +41,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             foreach (IItem i in invDisplayItems)
             {
 
-                i.Position = new Vector2(startPos.X + (30 * offs), startPos.Y);
-                //startPos.X = startPos.X + 20;
-              //  i.Draw(spriteBatch, 2);
+                i.Position = new Vector2(startPos.X + (50 * offs), startPos.Y); 
                 offs++;
             }
-
             offs = 0;
 
         }
@@ -54,7 +51,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void shiftInventory(Vector2 shiftDist, int scale)
         {
             Position = new Vector2(Position.X, Position.Y + shiftDist.Y * scale);
-            //foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
+            foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
         }
 
         public void Update() 
