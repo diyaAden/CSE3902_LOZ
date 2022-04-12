@@ -1,0 +1,9 @@
+﻿Author of the code review: Diya Adengada
+Date of the code review: 4/11/22
+Sprint number: 4
+Name of the file being reviewed: roomObjectEditor.cs
+Author of the .cs file being reviewed: Sean B. 
+Specific comments on code quality:
+* The quality of this class is also very clean. The file is long, but this seems unavoidable as there needs to be a block for each item, and there’s a set number of items in each room. The code seems really clean and I don’t believe there is any way it could be shortened.
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+* A hypothetical change might be including some way to reduce the amount of blocks, like for a group of blocks in a specific pattern, maybe they could be grouped together as a certain object to make this file a little shorter. The code would be able to support this change pretty easily.

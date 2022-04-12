@@ -16,8 +16,9 @@ namespace LegendOfZelda.Scripts.Links
     public class Link: ILink
     {
         public bool HasClock { get; private set; } = false;
-
+        public bool BeingPushed { get; private set; } = false;
         public bool HasMap { get; private set; } = false;
+        public bool HasCompass { get; private set; } = false;
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
         private int attackCooldown, hurtCooldown = 0, clockCooldown = 0;
@@ -186,10 +187,8 @@ namespace LegendOfZelda.Scripts.Links
                 HasClock = true;
                 clockCooldown = clockCooldownLimit;
             }
-            else if (gameObject.Name == "Map")
-            {
-                HasMap = true;
-            }
+            else if (gameObject.Name == "Map") HasMap = true;
+            else if (gameObject.Name == "Compass") HasCompass = true;
             else
             {
                 linkInventory.Add(gameObject);
@@ -272,9 +271,14 @@ namespace LegendOfZelda.Scripts.Links
                 if (hurtCooldown > hurtCooldownLimit - 10)
                 {
                     --hurtCooldown;
+                    BeingPushed = true;
                     HurtRecoil();
                 }
-                else if (hurtCooldown > 0) --hurtCooldown;
+                else if (hurtCooldown > 0)
+                {
+                    --hurtCooldown;
+                    BeingPushed = false;
+                }
                 else enemyCollisionSide = ICollision.SideNone;
 
                 if (HasClock && clockCooldown > 0) clockCooldown--;

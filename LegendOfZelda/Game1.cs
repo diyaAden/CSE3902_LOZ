@@ -49,29 +49,19 @@ namespace LegendOfZelda
         //public GameStateManager gameStateManager;
 
 
-        /*
-         * Pause Trial
-         */
 
         Texture2D pausedTexture;
         Rectangle pausedRectangle;
-
-        /*
-         * End Pause Trial
-         */
-
-        /* 
-         * Game Over Trial
-         */
+       
 
         Texture2D gameOverTexture;
         Rectangle gameOverRectangle;
 
-        /*
-         * End GameOver Trial
-         */
+        Texture2D wonGameTexture;
+        Rectangle wonGameRectangle;
 
         
+
 
         public Game1()
         {
@@ -151,6 +141,10 @@ namespace LegendOfZelda
             gameOverTexture = Content.Load<Texture2D>("SpriteSheets/General/GameOverScreen");
             gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
+            //WonGame
+            wonGameTexture = Content.Load<Texture2D>("SpriteSheets/General/GameOverScreen");
+            wonGameRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
+
             //*******************************
 
 
@@ -170,7 +164,13 @@ namespace LegendOfZelda
                     {
                         GameStateController.Instance.SetGameStateGameOver();
                     }
-                    
+                    /*
+                    if (HUDManager.hasTriforce())
+                    {
+                        GameStateController.Instance.SetGameStateWonGame();
+                    }
+                    */
+
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     foreach (IController controller in controllerList) { controller.Update(); }
 
@@ -218,6 +218,8 @@ namespace LegendOfZelda
 
                     break;
                 case GameState.WonGame:
+                    endGameControl.Update();
+
 
                     break;
             }
@@ -248,6 +250,12 @@ namespace LegendOfZelda
                     break;
                 case GameState.Pausing:
                 case GameState.ItemSelection:
+                    break;
+                case GameState.WonGame:
+
+                    //draw winner
+                    Rectangle destRect3 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
+                    _spriteBatch.Draw(wonGameTexture, destRect3, wonGameRectangle, Color.White);
                     break;
                 case GameState.GameOver:
                     link.Draw(_spriteBatch, gameScale);

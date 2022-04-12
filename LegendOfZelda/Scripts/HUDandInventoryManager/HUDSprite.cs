@@ -138,7 +138,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             invDisplayItems = link.getInventoryList();
             invSprite.getItemSprites(link);
             hasMap = link.HasMap;
-            mapDisplay.GetMap(hasMap);
+            mapDisplay.GetMapAndCompass(hasMap, link.HasCompass);
         }
 
         public void updateItemCounts(ILink link)

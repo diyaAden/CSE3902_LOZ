@@ -1,0 +1,13 @@
+Review Author: Sean Burns
+Review Date: 4-11-22
+Sprint: 4
+File Name: PlayerEnemyCollisionHandler.cs
+File Author: Jiayi
+Time Spent Reviewing: 5 min
+
+Comments: 
+	-This class could be made more readable by using better naming conventions and removing magic numbers.
+	-The use of white space increases the readability and makes it easy to see how deep into an if statement the reader is.
+	--Since most of the work is sent to the link class, it makes it easy to see what kind of work is being done and where the program goes to do it.
+
+Hypothetical Change: If something different were to happen when colliding with another specific enemy, such as what was done with the wall master, I feel this class could handle that change very well. The extra functionality would definately make it longer and more complex, but assumming the functionality would be the same as the wallmaster portion, it would still be just as readable and easy to follow.

@@ -1,0 +1,12 @@
+Review Author: Sean Burns
+Review Date: 4-11-22
+Sprint: 4
+File Name: PlayerEnemyCollisionHandler.cs
+File Author: Jiayi
+Time Spent Reviewing: 8 min
+
+Comments: 
+	-This file is kind of simple as in it does not do too much, but the part of the class that deals with a collision with a wall master could be simplified more by maybe offloading a lot of the functionality into the link class.
+	-This file could be made more readable since there are a lot of magic numbers and verious values throughout the class that make it harder to understand and follow. Using variables with good names could make it better.
+	-This file seems like it would be maintainable since finding a bug or error should be easy due to the exact purpose of each line of code and if statement.
+	-This file is not very reusable since it is almost completely dependant on the link class for a lot of its implementation.

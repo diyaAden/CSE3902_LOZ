@@ -1,0 +1,11 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 4/11/22
+Sprint 4
+HUDInventoryManager.cs (Author: Ben)
+Time Spent: 10min
+Comments:
+	- The file is really readable.
+	- There are readable variables, maybe could explain little for lastHeart and firstEmpty.
+	- Maybe DamageLink() could be changed to LinkBeDamaged or LinkLoseHeart, since there is GainHeart next I vote for LoseHeart.
+
+The whole script is really neat and easy to follow.
