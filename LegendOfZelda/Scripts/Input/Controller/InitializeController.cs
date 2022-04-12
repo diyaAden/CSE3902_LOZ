@@ -59,7 +59,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
         public void RegisterEndGame(EndGameController controller)
         {
             controller.RegisterCommand(Keys.R, new ResetGame(myGame));
-            controller.RegisterCommand(Keys.RightShift, new GameOverLink(myGame));
+            //controller.RegisterCommand(Keys.RightShift, new GameOverLink(myGame));
 
             controller.RegisterCommand(Keys.Q, new QuitGame(myGame));
 

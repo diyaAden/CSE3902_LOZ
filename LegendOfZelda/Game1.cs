@@ -14,6 +14,7 @@ using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
+using System.Threading.Tasks;
 
 namespace LegendOfZelda
 {
@@ -244,8 +245,9 @@ namespace LegendOfZelda
                     break;
                 case GameState.GameOver:
                     link.Draw(_spriteBatch, gameScale);
+                    Task.Delay(5000);
                     Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
-                    //_spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
+                    _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
