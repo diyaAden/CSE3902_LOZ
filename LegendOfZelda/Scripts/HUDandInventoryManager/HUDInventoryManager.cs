@@ -63,7 +63,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 HUD.ChangeHeart("HalfHeart", lastHeart);
             }
             Debug.WriteLine("Health is {0}, lastHeart: {1}", health, lastHeart);
-            Debug.WriteLine("LastHeart name: " + HUD.Hearts[lastHeart].name);
+            
             
         }
         public void gainHeart() {

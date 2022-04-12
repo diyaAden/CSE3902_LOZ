@@ -157,6 +157,11 @@ namespace LegendOfZelda
             switch (Gstate)
             {
                 case GameState.Playing:
+                    if (HUDManager.health == 0)
+                    {
+                        GameStateController.Instance.SetGameStateGameOver();
+                    }
+                    
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     foreach (IController controller in controllerList) { controller.Update(); }
 
@@ -196,10 +201,12 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
-
-                    //reset or exit
+                    link.Update();
                     endGameControl.Update();
+                    //update HUD
+
                     
+
                     break;
                 case GameState.WonGame:
 
@@ -236,7 +243,7 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(pausedTexture, destRect1, pausedRectangle, Color.White);
                     break;
                 case GameState.GameOver:
-                    link.GameOverLink();
+                    link.Draw(_spriteBatch, gameScale);
                     Rectangle destRect2 = new Rectangle((int)screenOffset.X * gameScale, (int)screenOffset.Y * gameScale, gameOverRectangle.Width * gameScale, gameOverRectangle.Height * gameScale);
                     //_spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;

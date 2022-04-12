@@ -35,6 +35,7 @@ namespace LegendOfZelda.Scripts.Links
         public List<IItem> getInventoryList();
         public void addInventoryItem(IItem gameObject);
         public void HandleEnemyCollision(IEnemy enemy, ICollision side);
+        public void PlayGameOverAnimation();
         void Update();
         void Draw(SpriteBatch spriteBatch, int scale);
     }
