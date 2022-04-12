@@ -67,11 +67,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             
         }
         public void gainHeart() {
-            if (!(firstEmpty > 0) && (health == maxHealth))
+            if (health == maxHealth)
             {
-                HeartposX += 8;
-                HUD.AddHearts("HeartItem", HeartposX, HeartposY);
-                lastHeart++;
+                //DO Nothing
             }
             else
             {
@@ -86,10 +84,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 {
                     if (health == (maxHealth - 0.5f))
                     {
-                        //HeartposX += 8;
+
                         HUD.ChangeHeart("FullHeart", lastHeart);
-                        //HUD.AddHearts("HalfHeartItem", HeartposX, HeartposY);
-                        lastHeart++;
                         health += 0.5f;
                     }
                     else
@@ -101,7 +97,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                         health += 1.0f;
                     }
                 }
-                
+
             }
             
         }
