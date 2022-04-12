@@ -39,5 +39,11 @@ namespace LegendOfZelda.Scripts.GameStateMachine
             ICommand command = new GameStateGameOver(myGame);
             command.Execute();
         }
+
+        public void SetGameStateWonGame()
+        {
+            ICommand command = new GameStateWonGame(myGame);
+            command.Execute();
+        }
     }
 }
