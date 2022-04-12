@@ -6,6 +6,7 @@ using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace LegendOfZelda.Scripts.Collision.CollisionHandler
 {
@@ -78,8 +79,8 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
             if (currentRoom - newRoom > 1) direction = 0; 
             else if (newRoom - currentRoom > 1) direction = 1; 
             else if (currentRoom - newRoom == 1) direction = 2; 
-            else direction = 3; 
-
+            else direction = 3;
+            Debug.WriteLine(newRoom);
             link.HandleDoorCollision(direction, scale);
             roomMovingController.ShiftCamera(direction, newRoom);
         }

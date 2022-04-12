@@ -10,7 +10,6 @@ namespace LegendOfZelda.Scripts
     public class ItemSelection
     {
         public HUDSprite HUD { get; } = new HUDSprite();
-        public InventorySprite invSprite = new InventorySprite();
         private bool paused = false, shiftingScreen = false;
         private int distMoved = 0;
         private Vector2 position;
@@ -47,9 +46,7 @@ namespace LegendOfZelda.Scripts
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 screenOffset)
         {
-             //HUD.destRect
               HUD.Draw(spriteBatch, scale, screenOffset);
-              //invSprite.Draw(spriteBatch, scale, screenOffset);
         }
     }
 }
