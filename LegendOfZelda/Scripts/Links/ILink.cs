@@ -11,6 +11,7 @@ namespace LegendOfZelda.Scripts.Links
         public bool HasClock { get; }
         public bool BeingPushed { get; }
         public bool HasMap { get; }
+        public bool HasCompass { get; }
         public int CatchByEnemy { get; set; }
         public int numRupees { get; set; }
         public int numKeys { get; set; }
