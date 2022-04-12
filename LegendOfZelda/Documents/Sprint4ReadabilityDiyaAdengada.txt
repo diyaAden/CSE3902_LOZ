@@ -1,0 +1,12 @@
+﻿Author: Diya Adengada
+Date: 4/11/22
+Sprint 4
+File: SoundController.cs
+Author of the .cs file: Sean B.
+Specific comments on code quality:
+* Overall, the quality of this code was very good. The code was easy to read, was well formatted, and most of the names were easy to understand. With an XML file, it’s difficult to really change the format or reorganize– each item (block, enemy, etc) essentially had its own tags and subtags. The code was well named though and it was easy to see what exact items were included in this file from the conventions used. 
+
+
+* A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+   * Some changes we might make in the future might be the addition of more sounds or variations of sounds to this file. The implementation would be able to complete this pretty easily, as one would only have to add in additional tags. 
+Amount of time taken to complete review: ~5 minutes.
