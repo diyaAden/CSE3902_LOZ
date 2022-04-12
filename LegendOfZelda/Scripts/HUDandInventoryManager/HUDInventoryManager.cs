@@ -31,6 +31,24 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             
             int numberOfSpaces = 17;
+            int BlackSpaceX = 99;
+            int BlackSpaceY = 20;
+            for(int w = 0; w < 9; w++)
+            {
+                HUD.AddObject("BlackSpace", BlackSpaceX, BlackSpaceY);
+                BlackSpaceX += 8;
+                if (w == 2)
+                {
+                    BlackSpaceY += 16;
+                    BlackSpaceX = 99;
+                }
+                if (w == 5)
+                {
+                    BlackSpaceY += 8;
+                    BlackSpaceX = 99;
+                }
+            }
+
             //Add hearts
             for (int i = 1; i < numberOfSpaces; i++) {
                 HUD.AddObject("BlackSpace", HeartposX, HeartposY);
@@ -52,8 +70,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             lastHeart = (int) maxHealth - 1;
         }
         public void damageLink() {
-            health -= 0.5f;
-            if (health % 1 == 0)
+            
+            if (health % 1 != 0)
             {
                 HUD.ChangeHeart("EmptyHeart", lastHeart);
                 firstEmpty = lastHeart;
@@ -62,6 +80,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 HUD.ChangeHeart("HalfHeart", lastHeart);
             }
+            health -= 0.5f;
             Debug.WriteLine("Health is {0}, lastHeart: {1}", health, lastHeart);
             
             

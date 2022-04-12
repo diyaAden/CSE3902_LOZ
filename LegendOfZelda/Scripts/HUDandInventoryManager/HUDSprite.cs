@@ -100,19 +100,22 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Vector2 heartPos = Hearts[index].Position;
             if (name.Equals("EmptyHeart"))
             {
-                Hearts.Add(HUDSpriteFactory.Instance.CreateEmptyHeart());
-                Hearts[^1].Position = heartPos;
-                Hearts[^1].name = name;
+                Hearts.Insert(index, HUDSpriteFactory.Instance.CreateEmptyHeart());
+                Hearts.RemoveAt(index + 1);
+                Hearts[index].Position = heartPos;
+                Hearts[index].name = name;
             } else if (name.Equals("HalfHeart"))
             {
-                Hearts.Add(HUDSpriteFactory.Instance.CreateHalfHeart());
-                Hearts[^1].Position = heartPos;
-                Hearts[^1].name = name;
+                Hearts.Insert(index, HUDSpriteFactory.Instance.CreateHalfHeart());
+                Hearts.RemoveAt(index + 1);
+                Hearts[index].Position = heartPos;
+                Hearts[index].name = name;
             } else
             {
-                Hearts.Add(HUDSpriteFactory.Instance.CreateFullHeart());
-                Hearts[^1].Position = heartPos;
-                Hearts[^1].name = name;
+                Hearts.Insert(index, HUDSpriteFactory.Instance.CreateFullHeart());
+                Hearts.RemoveAt(index + 1);
+                Hearts[index].Position = heartPos;
+                Hearts[index].name = name;
             }
 
         }
@@ -161,6 +164,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             spriteBatch.Draw(HUDTexture, pos2, tempRect, Color.Black);
 
             spriteBatch.Draw(HUDText, levelFrameDestRect, levelFrameSource, Color.White);
+            foreach (IHUDItem HUDitem in HUDItems)
+            {
+                HUDitem.Draw(spriteBatch, scale, offset);
+            }
 
             spriteBatch.DrawString(font, "1", levelNumPos, Color.White);
             spriteBatch.DrawString(font, "x" + nRupees, rupeeCountPos, Color.White);
@@ -185,10 +192,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             }
 
             
-            foreach (IHUDItem HUDitem in HUDItems)
-            {
-                HUDitem.Draw(spriteBatch, scale, offset);
-            }
+            
             foreach (IHUDItem Heart in Hearts)
             {
                 Heart.Draw(spriteBatch, scale, offset);
