@@ -100,7 +100,7 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (IBlock block in blocks)
             {
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, block, gameScale);
-                if (sides.Count > 0 && sides[0] != ICollision.SideNone)
+                if (sides.Count > 0 && sides[0] != ICollision.SideNone && !Link.BeingPushed)
                 {
                     ((PlayerDoorCollisionHandler)collisionHandlers[3]).HandleCollision(Link, block, roomMovingController, gameScale);
                 }
