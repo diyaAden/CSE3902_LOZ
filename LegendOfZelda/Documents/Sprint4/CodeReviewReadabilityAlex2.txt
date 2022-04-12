@@ -1,0 +1,13 @@
+﻿Author of Code Review: Alex Quedens
+Date: 4/10/22
+Sprint 4
+HUDSprite.cs (Author: Diya)
+Time Spent: 10min
+Comments:
+	- I think overall, this file is very readable.
+	- Author does a good job of defining variables at the top of the file, along with constant ints being initialized.
+	- Really my only recommendations are adding comments to describe the switch statement.
+	- It looks like some magic numbers are in the file, but for a specific reason so it doesnt hurt having them. 
+	- The class seems complicated but Diya does a good job of making sure everything is organized.
+
+This file is obviously dealing with the sprites within the HUD, and I think Diya did a great job of making sure to keep things organized and readable.

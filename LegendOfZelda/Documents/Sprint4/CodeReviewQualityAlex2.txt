@@ -1,0 +1,12 @@
+﻿Author of Code Review: Alex Quedens
+Date: 4/10/22
+Sprint 4
+HUDSprite.cs (Author: Diya)
+Time Spent: 10min
+Comments:
+	- The class is fairly long, but it is pretty easy to follow along with.
+	- I can quickly see that the constructor method has all variables that we will need to use.
+	- The draw method is a little bit more complicated and can probably be split into another class.
+	- Some magic numbers are laying around, better practice would be to put them in variables.
+
+I think the code quality in the file meets the standard of what high quality code is. It's easy to follow along with and consice and efficient. My only recommendation is fixing the magic numbers and splitting up the draw method.
