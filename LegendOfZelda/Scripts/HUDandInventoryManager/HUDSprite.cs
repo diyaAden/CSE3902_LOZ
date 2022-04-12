@@ -12,14 +12,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private readonly int xPos = 260, yPos = 12, width = 250, height = 55;
 
         Rectangle sourceRect;
+        Rectangle compassMarkerSource = new Rectangle(519, 126, 3, 3);
         Texture2D HUDTexture, HUDText, level;
         public List<IHUDItem> HUDItems { get; private set; }
 
         public MapDisplaySprite mapDisplay = new MapDisplaySprite();
         public InventorySprite invSprite = new InventorySprite();
         public List<IHUDItem> Hearts { get; set; }
-        public bool hasMap = false;
-
+        public bool hasMap = false, hasCompass = false;
+        private int compassTimer = 0;
         protected Vector2 pos = new Vector2(170, 10), pos2 = new Vector2(190,10), mapPos = new Vector2(220, 55);
         protected Vector2 levelFramePos = new Vector2(200, 30), levelNumPos = new Vector2(295, 24);
         protected Vector2 rupeeCountPos = new Vector2(360, 36), keyCountPos = new Vector2(360, 65), bombCountPos = new Vector2(360, 85);
@@ -55,9 +56,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
             invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
+            // invSprite.shiftInventory(shiftDist, scale);
+            invSprite.areVisible = true;
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
+            
         }
         public void LoadAllTextures(ContentManager content)
         {
@@ -136,8 +140,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void getItemSprites(ILink link) //add item sprites to list
         {
             invDisplayItems = link.getInventoryList();
+            invSprite.getItemSprites(link);
             hasMap = link.HasMap;
-            mapDisplay.GetMap(hasMap);
+            hasCompass = link.HasCompass;
+            mapDisplay.GetMapAndCompass(hasMap, hasCompass);
         }
 
         public void updateItemCounts(ILink link)
@@ -150,6 +156,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
@@ -176,6 +183,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             if (hasMap)
             {
                 spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
+                Rectangle compassMarkerDest = new Rectangle(153 * scale, 31 * scale, compassMarkerSource.Width * scale, compassMarkerSource.Height * scale);
+                if (hasCompass)
+                {
+                    if (++compassTimer < 15) spriteBatch.Draw(HUDTexture, compassMarkerDest, compassMarkerSource, Color.White);
+                    else if (compassTimer == 30) compassTimer = 0;
+                }
             }
 
             if (invDisplayItems.Count >= 1)

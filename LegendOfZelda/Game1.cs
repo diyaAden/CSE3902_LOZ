@@ -42,6 +42,9 @@ namespace LegendOfZelda
         public ItemSelection HUD;
         public RoomMovingController roomMovingController;
 
+        //HUD testing
+        public InventorySprite invSpr;
+
         
         //public GameStateManager gameStateManager;
 
@@ -85,7 +88,8 @@ namespace LegendOfZelda
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
             HUD = new ItemSelection(gameScale, screenOffset);
             HUDManager = new HUDInventoryManager(HUD.HUD);
-            
+            invSpr =  new InventorySprite();
+
 
             //gameStateManager = new GameStateManager();
 
@@ -111,6 +115,7 @@ namespace LegendOfZelda
             SoundController.Instance.LoadAllSounds(Content);
             HUDManager.LoadContent();
             HUD.LoadAllTextures(Content);
+            invSpr.LoadAllTextures(Content); //REMOVE LATER
 
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
