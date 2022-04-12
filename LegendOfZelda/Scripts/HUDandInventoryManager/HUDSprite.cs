@@ -55,9 +55,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
             invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
+            // invSprite.shiftInventory(shiftDist, scale);
+            invSprite.areVisible = true;
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
+            
         }
         public void LoadAllTextures(ContentManager content)
         {
@@ -133,6 +136,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void getItemSprites(ILink link) //add item sprites to list
         {
             invDisplayItems = link.getInventoryList();
+            invSprite.getItemSprites(link);
             hasMap = link.HasMap;
             mapDisplay.GetMap(hasMap);
         }
@@ -147,6 +151,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
+            
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
