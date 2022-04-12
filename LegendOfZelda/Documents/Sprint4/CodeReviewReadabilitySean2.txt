@@ -1,0 +1,13 @@
+Review Author: Sean Burns
+Review Date: 4-11-22
+Sprint: 4
+File Name: PlayerEnemyCollisionHandler.cs
+File Author: Jiayi
+Time Spent Reviewing: 10 min
+
+Comments: 
+	-This class makes good use of naming conventions and uses few magic numbers. The use of helper methods also increases readability.
+	-The use of white space increases the readability and makes it easy to see how deep into an if statement the reader is.
+	-Since most of the work is done within this class and not offloaded, it makes it very easy to trace through the program and follow the program flow when searching for any bugs or errors.
+
+Hypothetical Change: If something different were to happen when link collided with a wall master, such as the enemy gaining speed or changing in some other way, I feel that this class could easily support that change. It already has specific functionality when colliding with link, so adding in more actions to take would be very easy and simple.

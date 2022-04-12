@@ -1,0 +1,12 @@
+Review Author: Sean Burns
+Review Date: 4-11-22
+Sprint: 4
+File Name: BasicWallMasterSprite.cs
+File Author: Jiayi
+Time Spent Reviewing: 10 min
+
+Comments: 
+	-This file's simplicity could be improved since this file contains almost all of the functionality of the wallmaster enemy. If some of the functionality were to be offloaded to a helper class, this class would be a lot simpler.
+	-This file is quite readable since there are good naming conventions used and there are multiple methods that have a specific purpose that are used as helper methods.
+	-This file is quite maintainable since tracing through it to find an error of bug would be very easy. The use of if statements allows for the ability to know what conditions were met and which weren't, allowing for an easier time reviewing the state of the program.
+	-This file contains some reusable code that could be used elsewhere, such as the move method, but most of it is designed specifically for use by the wallmaster, which already has a very specific and unique purpose.
