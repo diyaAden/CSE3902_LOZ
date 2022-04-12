@@ -1,0 +1,10 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 4/11/22
+Sprint 4
+EndGameController.cs (Author: Ben)
+Time Spent: 10min
+Comments:
+	- Really easy to follows the script.
+	- Good connection between keys and commands.
+
+I think the code quality of end game controller is good. And it is very easy to add more methods.

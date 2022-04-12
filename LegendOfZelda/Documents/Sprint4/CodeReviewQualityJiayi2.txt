@@ -1,0 +1,10 @@
+﻿Author of Code Review: Jiayi Pu
+Date: 4/11/22
+Sprint 4
+HUDInventoryManager.cs (Author: Ben)
+Time Spent: 10min
+Comments:
+	- use clearly if-else to build how to adjust the hearts for player.
+	- use understandable variables, which is easy to follow.	
+
+All things looks great in this script. And I think its easy to add methods and remove methods for this class.
