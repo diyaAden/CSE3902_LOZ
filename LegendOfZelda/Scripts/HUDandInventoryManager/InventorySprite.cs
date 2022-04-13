@@ -38,10 +38,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             invDisplayItems = link.getInventoryList();
             int offs = 1;
-            foreach (IItem i in invDisplayItems)
+            for (int i = 0; i < invDisplayItems.Count; i++)
             {
-
-                i.Position = new Vector2(startPos.X + (50 * offs), startPos.Y); 
+                invDisplayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y);
                 offs++;
             }
             offs = 0;
@@ -64,20 +63,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             spriteBatch.Draw(InventoryTexture, destRect, sourceRect, Color.White);
 
-
-            // int offs = 1;
             if (areVisible)
             {
                 foreach (IItem i in invDisplayItems)
                 {
-
-                    // i.Position = new Vector2(startPos.X + (30*offs), startPos.Y);
-                    //startPos.X = startPos.X + 20;
                     i.Draw(spriteBatch, 2);
-                    // offs++;
                 }
             }
-           // offs = 0;
+           
 
 
         }
