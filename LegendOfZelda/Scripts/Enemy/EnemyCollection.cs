@@ -22,6 +22,7 @@ namespace LegendOfZelda.Scripts.Enemy
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateTrapSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateWallMasterSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateOldManSprite());
+            enemyCollection.Add(EnemySpriteFactory.Instance.CreateCharizardSprite());
         }
 
         public void Next()

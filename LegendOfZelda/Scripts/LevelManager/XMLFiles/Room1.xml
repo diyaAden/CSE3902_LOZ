@@ -51,7 +51,7 @@
 	</Item>
 	<Item>
 		<ObjectType>Enemy</ObjectType>
-		<ObjectName>Keese</ObjectName>
+		<ObjectName>Charizard</ObjectName>
 		<PositionX>112</PositionX>
 		<PositionY>96</PositionY>
 	</Item>

@@ -19,6 +19,7 @@
     <None Remove="Scripts\Blocks\BlockSprites\DoorSprites\" />
     <None Remove="Scripts\GameStateMachine\" />
     <None Remove="Scripts\HUDandInventoryManager\HUDItemSprites\" />
+    <None Remove="Scripts\Enemy\Charizard\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Icon.ico" />
@@ -123,5 +124,6 @@
   <ItemGroup>
     <Folder Include="Scripts\Blocks\BlockSprites\DoorSprites\" />
     <Folder Include="Scripts\HUDandInventoryManager\HUDItemSprites\" />
+    <Folder Include="Scripts\Enemy\Charizard\" />
   </ItemGroup>
 </Project>

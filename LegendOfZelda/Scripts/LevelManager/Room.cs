@@ -55,7 +55,7 @@ namespace LegendOfZelda.Scripts.LevelManager
             int numEnemies = Enemies.Count;
             for (int i = 0; i < numEnemies; i++)
             {
-                if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite)
+                if (Enemies[i] is BasicAquamentusSprite || Enemies[i] is BasicGoriyaSprite || Enemies[i] is BasicCharizardSprite)
                     roomObjectEditor.UpdateEnemyWithProjectiles(Enemies[i], linkPosition, scale, screenOffset);
                 else if (Enemies[i] is BasicWallMasterSprite && Enemies[i].IsCollisionWithLink == true)
                     roomObjectEditor.UpdateEnemyToWall(Enemies[i], scale, screenOffset, Enemies[i].IsCollisionWithLink);
