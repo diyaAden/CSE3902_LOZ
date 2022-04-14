@@ -16,7 +16,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private int lastHeart;
         private int firstEmpty;
         public HUDSprite HUD { get; set; }
-      
+        private bool firstTime = true;
 
         //List<IGameObject> invDisplayItems = new List<IGameObject>();
         
@@ -29,45 +29,57 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public bool IsFullHealth() { return health == maxHealth; }
         public void LoadContent()
         {
-            
-            int numberOfSpaces = 17;
-            int BlackSpaceX = 99;
-            int BlackSpaceY = 20;
-            for(int w = 0; w < 9; w++)
+            if (firstTime)
             {
-                HUD.AddObject("BlackSpace", BlackSpaceX, BlackSpaceY);
-                BlackSpaceX += 8;
-                if (w == 2)
+                int numberOfSpaces = 17;
+                int BlackSpaceX = 99;
+                int BlackSpaceY = 20;
+                for (int w = 0; w < 9; w++)
                 {
-                    BlackSpaceY += 16;
-                    BlackSpaceX = 99;
-                }
-                if (w == 5)
-                {
-                    BlackSpaceY += 8;
-                    BlackSpaceX = 99;
-                }
-            }
-
-            //Add hearts
-            for (int i = 1; i < numberOfSpaces; i++) {
-                HUD.AddObject("BlackSpace", HeartposX, HeartposY);
-                HeartposX += 8;
-                if(i == 8) {
-                    HeartposY += 8;
-                    HeartposX = 179;
+                    HUD.AddObject("BlackSpace", BlackSpaceX, BlackSpaceY);
+                    BlackSpaceX += 8;
+                    if (w == 2)
+                    {
+                        BlackSpaceY += 16;
+                        BlackSpaceX = 99;
+                    }
+                    if (w == 5)
+                    {
+                        BlackSpaceY += 8;
+                        BlackSpaceX = 99;
+                    }
                 }
 
+                //Add hearts
+                for (int i = 1; i < numberOfSpaces; i++)
+                {
+                    HUD.AddObject("BlackSpace", HeartposX, HeartposY);
+                    HeartposX += 8;
+                    if (i == 8)
+                    {
+                        HeartposY += 8;
+                        HeartposX = 179;
+                    }
+
+                }
+                HeartposX = 179;
+                HeartposY = 36;
+                for (int w = 0; w < maxHealth; w++)
+                {
+                    HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+                    if (!((w + 1) == maxHealth))
+                        HeartposX += 8;
+                }
+                lastHeart = (int)maxHealth - 1;
+                firstTime = false;
             }
-            HeartposX = 179;
-            HeartposY = 36;
-            for (int w = 0; w < maxHealth; w++)
+            else
             {
-                HUD.AddHearts("HeartItem", HeartposX, HeartposY);
-                if(!((w+1)==maxHealth))
-                HeartposX += 8;
+                for (int k = 0; k < maxHealth; k++)
+                {
+                    HUD.ChangeHeart("FullHeart", k);
+                }
             }
-            lastHeart = (int) maxHealth - 1;
         }
         public void damageLink() {
             
