@@ -84,6 +84,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
         public void RegisterCommands(ComboController comboController)
         {
             comboController.RegisterCommand(new JumpToBoss(), new JumpToBossCommand(myGame));
+            comboController.RegisterCommand(new ClearRoom(), new ClearRoomCommand(myGame));
         }
     }
 }
