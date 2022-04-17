@@ -75,12 +75,14 @@ namespace LegendOfZelda
             endGameControl = new EndGameController();
             MouseController mouse = new MouseController();
             GamepadController gamepad = new GamepadController();
+            ComboController comboController = new ComboController();
             InitializeController con = new InitializeController(this);
             con.RegisterCommands(control);
             con.RegisterCommands(mouse);
             con.RegisterCommands(gamepad);
             con.RegisterEndGame(endGameControl);
-            controllerList = new List<IController>() { control, mouse };
+            con.RegisterCommands(comboController);
+            controllerList = new List<IController>() { control, mouse, comboController };
 
             GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();

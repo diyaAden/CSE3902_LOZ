@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LegendOfZelda.Scripts.Input.Combos;
 using LegendOfZelda.Scripts.Input.Command;
 using LegendOfZelda.Scripts.Input.Command.Commands;
 using LegendOfZelda.Scripts.Input.Command.Commands.LinkAction;
@@ -79,7 +80,10 @@ namespace LegendOfZelda.Scripts.Input.Controller
             gamepad.RegisterCommand(Keys.S, new SetLinkDown(myGame));
             gamepad.RegisterCommand(Keys.X, new UseItem(myGame));
             gamepad.RegisterCommand(Keys.Z, new Attack(myGame));
-
+        }
+        public void RegisterCommands(ComboController comboController)
+        {
+            comboController.RegisterCommand(new JumpToBoss(), new JumpToBossCommand(myGame));
         }
     }
 }
