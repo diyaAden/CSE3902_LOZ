@@ -23,6 +23,11 @@ Other Controls
 - Use right mouse click to move to previous room room
 - Use 'Enter' to pause and unpause the game
 
+Cheat Codes
+- WWSSADAD - Go straight to boss room
+- WDSAWDSA - Reduce the number of enemies in the current room down to 1
+- DDDDDW - Set the number of collected rupees to 99
+
 
 Updates Log:
 - Sprint 2 Completion 2/21/22
