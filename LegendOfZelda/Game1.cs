@@ -86,7 +86,7 @@ namespace LegendOfZelda
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
-            HUD = new ItemSelection(gameScale, screenOffset);
+            HUD = new ItemSelection(gameScale, screenOffset, 1);
             HUDManager = new HUDInventoryManager(HUD.HUD);
             invSpr =  new InventorySprite();
 
@@ -155,7 +155,7 @@ namespace LegendOfZelda
 
             KeyboardState keyboard = Keyboard.GetState();
             //Gstate = GameState.Paused;
-            HUD.Update(gameScale, screenOffset);
+            HUD.Update(gameScale, screenOffset, roomManager.CurrentRoom);
 
             switch (Gstate)
             {
