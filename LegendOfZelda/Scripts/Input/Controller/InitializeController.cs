@@ -85,6 +85,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
         {
             comboController.RegisterCommand(new JumpToBoss(), new JumpToBossCommand(myGame));
             comboController.RegisterCommand(new ClearRoom(), new ClearRoomCommand(myGame));
+            comboController.RegisterCommand(new MaxRupees(), new MaxRupeesCommand(myGame));
         }
     }
 }
