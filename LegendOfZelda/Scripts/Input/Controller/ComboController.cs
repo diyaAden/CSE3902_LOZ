@@ -42,7 +42,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
         {
             foreach (ICombo combo in comboMappings.Keys)
             {
-                if (keyHistory.Count >= combo.ComboInputPattern.Count && keyHistory[keyHistory.Count - 1].Equals(combo.FinalKey()))
+                if (keyHistory.Count >= combo.ComboInputPattern.Count && keyHistory[^1].Equals(combo.FinalKey()))
                 {
                     if (combo.ComboIsComplete(keyHistory)) comboMappings.GetValueOrDefault(combo).Execute();
                 }
