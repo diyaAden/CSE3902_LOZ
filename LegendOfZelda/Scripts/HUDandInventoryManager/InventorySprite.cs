@@ -16,7 +16,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Rectangle sourceRect;
         Texture2D InventoryTexture;
         public List<IItem> displayItems = new List<IItem>();
-        Vector2 startPos = new Vector2(350,  80);
+        Vector2 startPos = new Vector2(360,  80);
 
         public bool areVisible = false;
 
@@ -63,7 +63,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 for (int i = 4; i < displayItems.Count; i++)
                 {
                    // Debug.WriteLine("in display " + displayItems[i]);
-                    displayItems[i].Position = new Vector2(startPos.X + (40 * offs), startPos.Y + 50);
+                    displayItems[i].Position = new Vector2(startPos.X + (40 * offs), startPos.Y + 40);
                     offs++;
                 }
             }
