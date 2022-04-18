@@ -31,13 +31,24 @@ namespace LegendOfZelda.Scripts
         public void Update(int scale, Vector2 screenOffset)
         {
             if (shiftingScreen) {
-                if (!paused) ShiftHUD(new Vector2(0, shiftSpeed), scale);
-                else ShiftHUD(new Vector2(0, -shiftSpeed), scale);
+
+                if (!paused)
+                {
+                     ShiftHUD(new Vector2(0, shiftSpeed), scale);
+                    HUD.isVisible = true;
+                }
+                else
+                {
+                    ShiftHUD(new Vector2(0, -shiftSpeed), scale);
+                    HUD.isVisible = false;
+
+                }
                 distMoved += shiftSpeed;
                 if (distMoved >= distToShift)
                 {
                     shiftingScreen = false;
                     paused = !paused;
+                    
                     distMoved = 0;
                     if (paused) GameStateController.Instance.SetGameStateItemSelection();
                     else GameStateController.Instance.SetGameStatePlaying();

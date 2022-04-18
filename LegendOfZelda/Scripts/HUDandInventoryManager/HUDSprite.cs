@@ -34,10 +34,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int nKeys { get; set; }
         public int nBombs { get; set; }
 
+        public bool isVisible = false;
+
         List<IItem> invDisplayItems = new List<IItem>();
 
         public Texture2D itemSheet;
-
+        ItemDisplay itemDisp = new ItemDisplay();
         private GameScreenBorder border = new GameScreenBorder();
         private Vector2 position = new Vector2(0, 0);
         public void ShiftHUD(Vector2 shiftDist, int scale)
@@ -54,10 +56,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             bombCountPos = new Vector2(bombCountPos.X, bombCountPos.Y + shiftDist.Y * scale);
             itemAPos = new Vector2(itemAPos.X, itemAPos.Y + shiftDist.Y * scale);
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
-            //invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
+            invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
-            invSprite.shiftInventory(shiftDist, scale);
-            invSprite.areVisible = true;
+           // invSprite.shiftInventory(shiftDist, scale);
+           // isVisible = true;
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
@@ -140,7 +142,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void getItemSprites(ILink link) //add item sprites to list
         {
             invDisplayItems = link.getInventoryList();
-            invSprite.getItemSprites(link);
+            invSprite.displayItems = link.getInventoryList();
+           
             hasMap = link.HasMap;
             hasCompass = link.HasCompass;
             mapDisplay.GetMapAndCompass(hasMap, hasCompass);
@@ -211,9 +214,19 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 Heart.Draw(spriteBatch, scale, offset);
             }
 
+            if (isVisible)
+            {
+                invSprite.areVisible = true;
+            }
+            else
+            {
+                invSprite.areVisible = false;
+            }
             //for testing purposes - leave till later
             mapDisplay.Draw(spriteBatch, scale, offset);
+            invSprite.getItemPos();
             invSprite.Draw(spriteBatch, scale, offset);
+           // itemDisp.Draw(spriteBatch, scale, offset);
         }
     }
 }

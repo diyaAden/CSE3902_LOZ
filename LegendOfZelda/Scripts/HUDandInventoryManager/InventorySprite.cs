@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
@@ -14,12 +15,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         Rectangle sourceRect;
         Texture2D InventoryTexture;
-        List<IItem> invDisplayItems = new List<IItem>();
-        Vector2 startPos = new Vector2(320, -270);
+        public List<IItem> displayItems = new List<IItem>();
+        Vector2 startPos = new Vector2(350,  80);
 
         public bool areVisible = false;
 
-        //List<Vector2> itemPos = { Vector2(500, 10) };
         public Vector2 Position { get; set; } = new Vector2(150, -350);
         
         public void LoadAllTextures(ContentManager content)
@@ -31,26 +31,48 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
            // SpriteSheet = HUDTexture;
             sourceRect = new Rectangle(xPos, yPos, width, height);
             
-           
+
+            
+
         }
 
-        public void getItemSprites(ILink link) //add item sprites to list
+        public void getItemPos() //add item sprites to list
         {
-            invDisplayItems = link.getInventoryList();
+           // displayItems = link.getInventoryList();
             int offs = 1;
-            for (int i = 0; i < invDisplayItems.Count; i++)
-            {
-                invDisplayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y);
-                offs++;
-            }
-            offs = 0;
 
+            //offs = 0;
+
+            if (displayItems.Count < 4)
+            {
+                for (int i = 0; i < displayItems.Count; i++)
+                {
+                    displayItems[i].Position = new Vector2(startPos.X + (30 * offs), startPos.Y);
+                    offs++;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                   // Debug.WriteLine("in display " + displayItems[i]);
+                    displayItems[i].Position = new Vector2(startPos.X + (40 * offs), startPos.Y);
+                    offs++;
+                }
+                offs = 1;
+                for (int i = 4; i < displayItems.Count; i++)
+                {
+                   // Debug.WriteLine("in display " + displayItems[i]);
+                    displayItems[i].Position = new Vector2(startPos.X + (40 * offs), startPos.Y + 50);
+                    offs++;
+                }
+            }
         }
 
         public void shiftInventory(Vector2 shiftDist, int scale)
         {
             Position = new Vector2(Position.X, Position.Y + shiftDist.Y * scale);
-            foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
+        // foreach (IItem item in displayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
         }
 
         public void Update() 
@@ -63,13 +85,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             spriteBatch.Draw(InventoryTexture, destRect, sourceRect, Color.White);
 
-            if (areVisible)
+          if (areVisible)
             {
-                foreach (IItem i in invDisplayItems)
+                foreach (IItem i in displayItems)
                 {
                     i.Draw(spriteBatch, 2);
                 }
-            }
+            } 
            
 
 
