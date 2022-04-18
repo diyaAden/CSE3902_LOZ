@@ -194,6 +194,7 @@ namespace LegendOfZelda.Scripts.Links
                 linkInventory.Add(gameObject);
                 if (gameObject.Name == "Bomb") numBombs++;
             }
+            if (numRupees > 99) numRupees = 99;
         }
 
         public List<IItem> getInventoryList()

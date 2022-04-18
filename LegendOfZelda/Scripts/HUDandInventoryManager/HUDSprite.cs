@@ -16,7 +16,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D HUDTexture, HUDText, level;
         public List<IHUDItem> HUDItems { get; private set; }
 
-        public MapDisplaySprite mapDisplay = new MapDisplaySprite();
+        public MapDisplaySprite mapDisplay;
         public InventorySprite invSprite = new InventorySprite();
         public List<IHUDItem> Hearts { get; set; }
         public bool hasMap = false, hasCompass = false;
@@ -33,6 +33,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int nRupees { get; set; }
         public int nKeys { get; set; }
         public int nBombs { get; set; }
+        private Rectangle compassMarkerDest;
+        private MapRoomLocations roomLocations = new MapRoomLocations();
 
         public bool isVisible = false;
 
@@ -78,9 +80,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             //test for Inventory
 
         }
-        public HUDSprite()
+        public HUDSprite(int currentRoom)
         {
             // SpriteSheet = HUDTexture;
+            mapDisplay = new MapDisplaySprite();
             HUDItems = new List<IHUDItem>();
             Hearts = new List<IHUDItem>();
             sourceRect = new Rectangle(xPos, yPos, width, height);
@@ -155,11 +158,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             nKeys = link.numKeys;
             nBombs = link.numBombs;
         }
-        public void Update() 
+        public void Update(int currentRoom) 
         {
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
-            
+            Vector2 roomDestination = roomLocations.RoomLocation(currentRoom);
+            compassMarkerDest = new Rectangle((int)roomDestination.X *2, (int)roomDestination.Y*2, compassMarkerSource.Width * 2, compassMarkerSource.Height * 2);
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
@@ -186,7 +190,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             if (hasMap)
             {
                 spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
-                Rectangle compassMarkerDest = new Rectangle(153 * scale, 31 * scale, compassMarkerSource.Width * scale, compassMarkerSource.Height * scale);
                 if (hasCompass)
                 {
                     if (++compassTimer < 15) spriteBatch.Draw(HUDTexture, compassMarkerDest, compassMarkerSource, Color.White);

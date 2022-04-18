@@ -295,6 +295,18 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/Enemy/OldMan.png
 
+#begin SpriteSheets/Enemy/PokemonSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteSheets/Enemy/PokemonSpriteSheet.png
+
 #begin SpriteSheets/Enemy/Stalfos.png
 /importer:TextureImporter
 /processor:TextureProcessor

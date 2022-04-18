@@ -13,7 +13,7 @@ namespace LegendOfZelda.Scripts.Enemy
 {
     class EnemySpriteFactory
     {
-        private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet, oldmanSpriteSheet;
+        private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet, oldmanSpriteSheet, pokemonSpriteSheet;
         private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
         private static readonly EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
@@ -37,6 +37,7 @@ namespace LegendOfZelda.Scripts.Enemy
             trapSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/Trap");
             wallMasterSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/WallMaster");
             oldmanSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/OldMan");
+            pokemonSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/PokemonSpriteSheet");
         }
         public IEnemy CreateEnemyFromString(string enemyName)
         {
@@ -50,6 +51,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 "Trap" => CreateTrapSprite(),
                 "WallMaster" => CreateWallMasterSprite(),
                 "OldMan" => CreateOldManSprite(),
+                "Charizard" => CreateCharizardSprite(),
                 _ => null,
             };
         }
@@ -112,6 +114,10 @@ namespace LegendOfZelda.Scripts.Enemy
         public IEnemy CreateWallMasterSprite()
         {
             return new BasicWallMasterSprite(wallMasterSpriteSheet);
+        }
+        public IEnemy CreateCharizardSprite()
+        {
+            return new BasicCharizardSprite(pokemonSpriteSheet);
         }
     }
 }
