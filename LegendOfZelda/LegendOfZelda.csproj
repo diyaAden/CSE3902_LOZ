@@ -65,6 +65,12 @@
     <None Update="Scripts\LevelManager\XMLFiles\Room16.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Scripts\LevelManager\XMLFiles\Room19.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Scripts\LevelManager\XMLFiles\Room20.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Scripts\LevelManager\XMLFiles\Room9.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
