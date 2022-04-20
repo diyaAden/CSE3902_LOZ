@@ -5,7 +5,7 @@
     <ObjectName>OpenDoorLeft</ObjectName>
     <PositionX>224</PositionX>
     <PositionY>72</PositionY>
-    <roomNumber>9</roomNumber>
+    <roomNumber>8</roomNumber>
     </Item>
   <Item>
     <ObjectType>Block</ObjectType>
