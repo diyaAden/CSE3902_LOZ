@@ -75,11 +75,23 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
             int currentRoom = roomMovingController.CurrentRoom;
             int newRoom = door.AdjacentRoom;
             int direction;
-
-            if (currentRoom - newRoom > 1) direction = 0; 
-            else if (newRoom - currentRoom > 1) direction = 1; 
-            else if (currentRoom - newRoom == 1) direction = 2; 
-            else direction = 3;
+            if (currentRoom == 8 || currentRoom > 18)
+            {
+                if (newRoom == 20) direction = 2;
+                else if (newRoom == 19 && currentRoom == 20) direction = 3;
+                else if (newRoom == 19 && currentRoom == 8) direction = 2;
+                else if (newRoom == 8 && currentRoom == 19) direction = 3;
+                else if (newRoom == 9 && currentRoom == 8) direction = 2;
+                else direction = 3;
+                
+            }
+            else
+            {
+                if (currentRoom - newRoom > 1) direction = 0;
+                else if (newRoom - currentRoom > 1) direction = 1;
+                else if (currentRoom - newRoom == 1) direction = 2;
+                else direction = 3;
+            }
             Debug.WriteLine(newRoom);
             link.HandleDoorCollision(direction, scale);
             roomMovingController.ShiftCamera(direction, newRoom);

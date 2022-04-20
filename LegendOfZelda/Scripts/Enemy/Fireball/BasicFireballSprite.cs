@@ -9,9 +9,9 @@ namespace LegendOfZelda.Scripts.Enemy
     class BasicFireballSprite : Enemy
     {
 
-        private int animationTimer = 0, moveSpeed = 1, moveDirection;
+        private int animationTimer = 0, moveSpeed = 1, moveDirection, shootingSide;
 
-        public BasicFireballSprite(Texture2D itemSpriteSheet, int direction, Vector2 position)
+        public BasicFireballSprite(Texture2D itemSpriteSheet, int direction, int side, Vector2 position)
         {
             spriteSheet = itemSpriteSheet;
             animationFrames.Add(new Rectangle(0, 0, 8, 10));
@@ -19,6 +19,7 @@ namespace LegendOfZelda.Scripts.Enemy
             animationFrames.Add(new Rectangle(16, 0, 8, 10));
             animationFrames.Add(new Rectangle(24, 0, 8, 10));
             moveDirection = direction;
+            shootingSide = side;
             MoveSpeed = moveSpeed;
             pos = position;
             Health = 1;
@@ -32,7 +33,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
             }
-            position = new Vector2(position.X - moveSpeed * scale, position.Y + moveSpeed * moveDirection * scale);
+            position = new Vector2(position.X - moveSpeed * scale * shootingSide, position.Y + moveSpeed * moveDirection * scale);
             if (position.X <= (screenOffset.X) * scale) Health = 0;
         }
     }

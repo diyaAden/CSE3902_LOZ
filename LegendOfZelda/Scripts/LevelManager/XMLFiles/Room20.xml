@@ -36,5 +36,11 @@
     <ObjectName>EmptyWallLen</ObjectName>
     <PositionX>16</PositionX>
     <PositionY>144</PositionY>
+    <Item>
+      <ObjectType>Enemy</ObjectType>
+      <ObjectName>Zapdos</ObjectName>
+      <PositionX>40</PositionX>
+      <PositionY>120</PositionY>
+    </Item>
   </Item>
 </XnaContent>

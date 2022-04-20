@@ -50,4 +50,22 @@
     <PositionX>16</PositionX>
     <PositionY>144</PositionY>
   </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>StatueRight</ObjectName>
+    <PositionX>176</PositionX>
+    <PositionY>64</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>StatueRight</ObjectName>
+    <PositionX>176</PositionX>
+    <PositionY>96</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Enemy</ObjectType>
+    <ObjectName>Charizard</ObjectName>
+    <PositionX>40</PositionX>
+    <PositionY>120</PositionY>
+  </Item>
 </XnaContent>
