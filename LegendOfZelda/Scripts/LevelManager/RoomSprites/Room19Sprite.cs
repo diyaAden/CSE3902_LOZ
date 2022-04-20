@@ -5,7 +5,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class Room19Sprite : BasicRoomBackground
     {
-        private readonly int xPos = 1, yPos = 886, width = 256, height = 176;
+        private readonly int xPos = 258, yPos = 886, width = 256, height = 176;
 
         public Room19Sprite(Texture2D DungeonMap)
         {
