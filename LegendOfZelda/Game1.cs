@@ -251,7 +251,7 @@ namespace LegendOfZelda
             switch (Gstate)
             {
                 case GameState.Start:
-                    Rectangle destRect4 = new Rectangle(130, 30, gameOverRectangle.Width * gameScale , gameOverRectangle.Height * gameScale );
+                    Rectangle destRect4 = new Rectangle(10, 0, gameOverRectangle.Width * 3 , gameOverRectangle.Height * 3);
                     _spriteBatch.Draw(startTexture, destRect4, startRectangle, Color.White);
                     break;
                 case GameState.Playing:
