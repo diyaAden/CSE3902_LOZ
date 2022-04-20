@@ -29,6 +29,12 @@ namespace LegendOfZelda.Scripts.GameStateMachine
             ICommand command = new GameStatePausing(myGame);
             command.Execute();
         }
+
+        public void SetGameStateStart()
+        {
+            ICommand command = new GameStateStart(myGame);
+            command.Execute();
+        }
         public void SetGameStateItemSelection()
         {
             ICommand command = new GameStateItemSelection(myGame);

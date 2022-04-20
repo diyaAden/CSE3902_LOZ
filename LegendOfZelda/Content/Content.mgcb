@@ -530,6 +530,18 @@
 /processorParam:TextureFormat=Compressed
 /build:SpriteSheets/General/textFont.spritefont
 
+#begin SpriteSheets/General/TitleScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteSheets/General/TitleScreen.png
+
 #begin SpriteSheets/General/winner.png
 /importer:TextureImporter
 /processor:TextureProcessor

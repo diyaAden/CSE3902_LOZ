@@ -57,6 +57,7 @@ namespace LegendOfZelda.Scripts.Input.Controller
 
             control.RegisterCommand(Keys.Enter, new GameStatePausing(myGame));
             control.RegisterCommand(Keys.RightShift, new GameStateGameOver(myGame));
+         //   control.RegisterCommand(Keys.Space, new GameStatePlaying(myGame));
         }
         public void RegisterEndGame(EndGameController controller)
         {

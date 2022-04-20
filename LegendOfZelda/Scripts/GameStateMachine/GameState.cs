@@ -8,6 +8,7 @@ namespace LegendOfZelda.Scripts.GameStateMachine
         Pausing,
         WonGame,
         Triforce,
+        Start,
         RoomSwitch,
         GameOver
     }

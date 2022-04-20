@@ -24,7 +24,8 @@ namespace LegendOfZelda.Scripts.GameStateMachine
 
         public GameStateManager()
         {
-            gameState = GameState.Playing;
+            // gameState = GameState.Playing;
+            gameState = GameState.Start;
         }
 
         public void LoadContent(int scale, Vector2 screenOffset, ContentManager content)

@@ -45,10 +45,11 @@ namespace LegendOfZelda
         //HUD testing
         public InventorySprite invSpr;
 
-        
+
         //public GameStateManager gameStateManager;
 
-
+        Texture2D startTexture;
+        Rectangle startRectangle;
 
         Texture2D pausedTexture;
         Rectangle pausedRectangle;
@@ -91,7 +92,7 @@ namespace LegendOfZelda
             HUD = new ItemSelection(gameScale, screenOffset, 1);
             HUDManager = new HUDInventoryManager(HUD.HUD);
             invSpr =  new InventorySprite();
-
+            Gstate = GameState.Start;
 
             //gameStateManager = new GameStateManager();
 
@@ -101,7 +102,7 @@ namespace LegendOfZelda
         {
             Initialize();
             LoadContent();
-            GameStateController.Instance.SetGameStatePlaying();
+            GameStateController.Instance.SetGameStateStart();
         }
 
         protected override void LoadContent()
@@ -134,8 +135,11 @@ namespace LegendOfZelda
 
             //gameStateManager.LoadContent(gameScale, screenOffset);
 
+            //Start
+           startTexture = Content.Load<Texture2D>("SpriteSheets/General/TitleScreen");
+            startRectangle = new Rectangle(0, 0, startTexture.Width, startTexture.Height);
             //Paused
-            
+
             pausedTexture = Content.Load<Texture2D>("SpriteSheets/General/PausedScreen");
             pausedRectangle = new Rectangle(0, 0, pausedTexture.Width, pausedTexture.Height);
 
@@ -161,6 +165,12 @@ namespace LegendOfZelda
 
             switch (Gstate)
             {
+                case GameState.Start:
+                    if (keyboard.IsKeyDown(Keys.Space))
+                    {
+                        GameStateController.Instance.SetGameStatePlaying();
+                    }
+                    break;
                 case GameState.Playing:
                     if (HUDManager.health == 0)
                     {
@@ -233,12 +243,17 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
-            roomManager.Draw(_spriteBatch, gameScale);
+            //  roomManager.Draw(_spriteBatch, gameScale);
+            
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
-
+          
             switch (Gstate)
             {
+                case GameState.Start:
+                    Rectangle destRect4 = new Rectangle(130, 30, gameOverRectangle.Width * gameScale , gameOverRectangle.Height * gameScale );
+                    _spriteBatch.Draw(startTexture, destRect4, startRectangle, Color.White);
+                    break;
                 case GameState.Playing:
                     roomManager.Draw(_spriteBatch, gameScale);
                     foreach (IWeapon w in activeWeapons)
@@ -251,6 +266,8 @@ namespace LegendOfZelda
                     roomMovingController.Draw(_spriteBatch);
                     break;
                 case GameState.Pausing:
+                    HUD.Draw(_spriteBatch, gameScale, screenOffset);
+                    break;
                 case GameState.ItemSelection:
                     break;
                 case GameState.WonGame:
@@ -265,7 +282,7 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
-            HUD.Draw(_spriteBatch, gameScale, screenOffset);
+          
             _spriteBatch.End();
             base.Draw(gameTime);
         }
