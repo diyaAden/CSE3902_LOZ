@@ -7,7 +7,7 @@ namespace LegendOfZelda.Scripts.LevelManager
 {
     public class RoomManager
     {
-        private const int roomsToLoad = 18;
+        private const int roomsToLoad = 20;
         private readonly List<int> roomsToSpawnKey = new List<int>() { 1, 3, 6, 13, 18 };
         private readonly List<int> roomsToSpawnHeartContainer = new List<int>() { 14 };
         private readonly List<int> roomsToOpenDoorsEnemies = new List<int>() { 4, 5, 14 };
