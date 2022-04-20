@@ -23,7 +23,7 @@ namespace LegendOfZelda.Scripts.Enemy
             animationFrames.Add(new Rectangle(421, 70, 30, 25));
             animationFrames.Add(new Rectangle(421, 104, 30, 25));
             MoveSpeed = moveSpeed;
-            attackTimerLimit = rnd.Next(100, 130);
+            attackTimerLimit = rnd.Next(50, 100);
             Health = 3;
         }
         
@@ -50,10 +50,18 @@ namespace LegendOfZelda.Scripts.Enemy
             }
             if (++attackTimer == attackTimerLimit)
             {
+                if (Enemies.Count > 1)
+                {
+                    for (int i = 1; i < Enemies.Count - 1; i++)
+                    {
+                        Enemies.RemoveAt(i);
+                    }
+                }
                 attackTimer = 0;
                 Attack();
                 attackTimerLimit = rnd.Next(120, 181);
             }
+            
             foreach (IEnemy fireball in fireballs)
                 Enemies.Add(fireball);
             position = new Vector2(position.X, position.Y - (moveSpeed * movingUp * scale));
@@ -62,7 +70,9 @@ namespace LegendOfZelda.Scripts.Enemy
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {
             foreach (IEnemy fireball in fireballs)
+            {
                 fireball.Draw(spriteBatch, scale);
+            }
             base.Draw(spriteBatch, scale);
         }
     }

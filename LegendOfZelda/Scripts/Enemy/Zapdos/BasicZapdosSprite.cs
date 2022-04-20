@@ -40,14 +40,14 @@ namespace LegendOfZelda.Scripts.Enemy.Zapdos.Sprite
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale, Vector2 screenOffset)
         {
-            if (hurtCooldown == 0) position = Move(direction, scale, screenOffset);
+            position = Move(direction, scale, screenOffset);
             if (++movementTimer >= timeUntilDirectionChange)
             {
                 movementTimer = 0;
                 direction = rnd.Next(0, 8);
-                timeUntilDirectionChange = rnd.Next(30, 61);
+                timeUntilDirectionChange = rnd.Next(20, 40);
             }
-            if (++animationTimer == 7)
+            if (++animationTimer == 4)
             {
                 animationTimer = 0;
                 currentFrame = ++currentFrame % animationFrames.Count;
