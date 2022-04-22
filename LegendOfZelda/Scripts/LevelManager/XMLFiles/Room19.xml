@@ -62,6 +62,42 @@
     <PositionX>176</PositionX>
     <PositionY>96</PositionY>
   </Item>
+<Item>
+	<ObjectType>Block</ObjectType>
+	<ObjectName>SquareBlock</ObjectName>
+	<PositionX>96</PositionX>
+	<PositionY>64</PositionY>
+</Item>
+<Item>
+	<ObjectType>Block</ObjectType>
+	<ObjectName>SquareBlock</ObjectName>
+	<PositionX>112</PositionX>
+	<PositionY>48</PositionY>
+</Item>
+<Item>
+	<ObjectType>Block</ObjectType>
+	<ObjectName>SquareBlock</ObjectName>
+	<PositionX>128</PositionX>
+	<PositionY>64</PositionY>
+</Item>
+<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>96</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>112</PositionX>
+		<PositionY>112</PositionY>
+	</Item>
+	<Item>
+		<ObjectType>Block</ObjectType>
+		<ObjectName>SquareBlock</ObjectName>
+		<PositionX>128</PositionX>
+		<PositionY>96</PositionY>
+	</Item>
   <Item>
     <ObjectType>Enemy</ObjectType>
     <ObjectName>Charizard</ObjectName>

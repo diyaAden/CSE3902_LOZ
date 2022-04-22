@@ -3,6 +3,7 @@ using LegendOfZelda.Scripts.Blocks.BlockSprites;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Enemy.Goriya;
 using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
+using LegendOfZelda.Scripts.Enemy.Zapdos.Sprite;
 using LegendOfZelda.Scripts.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -72,12 +73,20 @@ namespace LegendOfZelda.Scripts.LevelManager
         {
             return !(enemy is BasicExplosionSprite || enemy is BasicCloudSprite || enemy is BasicFireballSprite || enemy is BoomerangEnemy);
         }
+        private bool isPokemon(IEnemy enemy) {
+            return (enemy is BasicCharizardSprite || enemy is BasicZapdosSprite);
+        }
+
         public void RemoveEnemy(int index)
         {
+            int itemSpawnChance;
             if (IsNormalEnemy(Enemies[index]))
             {
                 Vector2 enemyPos = Enemies[index].position;
-                int itemSpawnChance = rnd.Next(0, enemyDropItemProb);
+                if (isPokemon(Enemies[index]))
+                {
+                    itemSpawnChance = rnd.Next(0, 1);
+                }else itemSpawnChance = rnd.Next(0, enemyDropItemProb);
                 if (itemSpawnChance == 0)
                 {
                     IItem heart = ItemSpriteFactory.Instance.CreateHeartSprite();
@@ -91,6 +100,7 @@ namespace LegendOfZelda.Scripts.LevelManager
                     Items.Add(rupee);
                 }
                 SpawnEnemyExplosion(index, enemyPos);
+               
             }
             Enemies.RemoveAt(index);
         }

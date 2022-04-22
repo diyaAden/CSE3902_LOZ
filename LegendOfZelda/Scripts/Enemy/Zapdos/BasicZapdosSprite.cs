@@ -21,7 +21,7 @@ namespace LegendOfZelda.Scripts.Enemy.Zapdos.Sprite
             direction = rnd.Next(0, 8);
             timeUntilDirectionChange = rnd.Next(20, 40);
             MoveSpeed = moveSpeed;
-            Health = 5;
+            Health = 4;
         }
         private Vector2 Move(int direction, int scale, Vector2 screenOffset)
         {
@@ -45,7 +45,7 @@ namespace LegendOfZelda.Scripts.Enemy.Zapdos.Sprite
             {
                 movementTimer = 0;
                 direction = rnd.Next(0, 8);
-                timeUntilDirectionChange = rnd.Next(20, 40);
+                timeUntilDirectionChange = rnd.Next(30, 50);
             }
             if (++animationTimer == 4)
             {

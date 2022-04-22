@@ -17,8 +17,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private int firstEmpty;
         public HUDSprite HUD { get; set; }
         private bool firstTime = true;
-
-        //List<IGameObject> invDisplayItems = new List<IGameObject>();
         
 
         public HUDInventoryManager(HUDSprite HUDG)
