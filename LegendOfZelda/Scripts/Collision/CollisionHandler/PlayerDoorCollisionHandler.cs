@@ -81,7 +81,7 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 else if (newRoom == 19 && currentRoom == 20) direction = 3;
                 else if (newRoom == 19 && currentRoom == 8) direction = 2;
                 else if (newRoom == 8 && currentRoom == 19) direction = 3;
-                else if (newRoom == 9 && currentRoom == 8) direction = 2;
+                else if (newRoom == 9 && currentRoom == 8) direction = 3;
                 else direction = 3;
                 
             }
