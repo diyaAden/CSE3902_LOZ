@@ -35,7 +35,7 @@ namespace LegendOfZelda.Scripts.Enemy
             fireballs = new List<IEnemy>();
             SoundController.Instance.PlayBossRoarSound();
             for (int i = -1; i < 2; i++)
-                fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, pos));
+                fireballs.Add(EnemySpriteFactory.Instance.CreateFireballSprite(i, 1, pos));
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale) { }
         public override void Update(int scale, Vector2 screenOffset) { }

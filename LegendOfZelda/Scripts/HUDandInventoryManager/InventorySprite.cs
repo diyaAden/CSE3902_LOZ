@@ -17,7 +17,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         Rectangle sourceRect;
         Texture2D InventoryTexture;
-        public List<IItem> displayItems = new List<IItem>();
+        List<IItem> displayItems = new List<IItem>();
         Vector2 startPos = new Vector2(360,  80);
 
         Vector2 itemSelectBox = new Vector2(290, 75);
@@ -26,7 +26,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public bool areVisible = false;
 
         public Vector2 Position { get; set; } = new Vector2(150, -350);
-        
+
+        public void SetInventory(List<IItem> linkInv)
+        {
+            displayItems = linkInv;
+        }
         public void LoadAllTextures(ContentManager content)
         {
             InventoryTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");

@@ -23,6 +23,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void OpenSecretDoor(RoomObjectEditor.Direction direction) { roomObjectEditor.OpenSecretDoor(direction); }
         public void OpenCrackedDoors() { roomObjectEditor.OpenCrackedDoors(); }
         public void SpawnKey() { roomObjectEditor.SpawnKey(lastEnemyPos); }
+        public void SpawnBoomerang(int scale, Vector2 screenOffset) { roomObjectEditor.SpawnBoomerang(scale, screenOffset); }
         public void SpawnHeartContainer(int scale, Vector2 screenOffset) { roomObjectEditor.SpawnHeartContainer(scale, screenOffset); }
         public void DetectPushBlockMovement()
         {

@@ -7,12 +7,25 @@
 		<PositionY>72</PositionY>
 		<roomNumber>9</roomNumber>
 	</Item>
-	<Item>
-		<ObjectType>Block</ObjectType>
-		<ObjectName>EmptyWallWidth</ObjectName>
-		<PositionX>16</PositionX>
-		<PositionY>16</PositionY>
-	</Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>OpenDoorRight</ObjectName>
+    <PositionX>0</PositionX>
+    <PositionY>72</PositionY>
+    <roomNumber>19</roomNumber>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>HalfWallWidth</ObjectName>
+    <PositionX>16</PositionX>
+    <PositionY>16</PositionY>
+  </Item>
+  <Item>
+    <ObjectType>Block</ObjectType>
+    <ObjectName>HalfWallWidth</ObjectName>
+    <PositionX>16</PositionX>
+    <PositionY>96</PositionY>
+  </Item>
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>EmptyWallLen</ObjectName>

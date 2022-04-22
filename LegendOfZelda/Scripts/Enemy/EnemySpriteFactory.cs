@@ -8,6 +8,7 @@ using LegendOfZelda.Scripts.Enemy.Stalfos.Sprite;
 using LegendOfZelda.Scripts.Enemy.Trap.Sprite;
 using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using Microsoft.Xna.Framework;
+using LegendOfZelda.Scripts.Enemy.Zapdos.Sprite;
 
 namespace LegendOfZelda.Scripts.Enemy
 {
@@ -52,6 +53,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 "WallMaster" => CreateWallMasterSprite(),
                 "OldMan" => CreateOldManSprite(),
                 "Charizard" => CreateCharizardSprite(),
+                "Zapdos" => CreateZapdosSprite(),
                 _ => null,
             };
         }
@@ -71,9 +73,9 @@ namespace LegendOfZelda.Scripts.Enemy
         {
             return new BasicExplosionSprite(explosionSpriteSheet);
         }
-        public IEnemy CreateFireballSprite(int direction, Vector2 position)
+        public IEnemy CreateFireballSprite(int direction, int side, Vector2 position)
         {
-            return new BasicFireballSprite(fireballSpriteSheet, direction, position);
+            return new BasicFireballSprite(fireballSpriteSheet, direction, side, position);
         }
         public IEnemy CreateGelSprite()
         {
@@ -118,6 +120,10 @@ namespace LegendOfZelda.Scripts.Enemy
         public IEnemy CreateCharizardSprite()
         {
             return new BasicCharizardSprite(pokemonSpriteSheet);
+        }
+        public IEnemy CreateZapdosSprite()
+        {
+            return new BasicZapdosSprite(pokemonSpriteSheet);
         }
     }
 }

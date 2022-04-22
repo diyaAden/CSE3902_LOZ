@@ -31,6 +31,8 @@ namespace LegendOfZelda.Scripts.LevelManager
             RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomSixteen());
             RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomSeventeen());
             RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomEighteen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomNineteen());
+            RoomCollection.Add(RoomBackgroundFactory.Instance.CreateRoomTwenty());
         }
 
         public void Next()

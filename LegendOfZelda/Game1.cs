@@ -264,8 +264,10 @@ namespace LegendOfZelda
                     break;
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
+                    HUD.Draw(_spriteBatch, gameScale, screenOffset);
                     break;
                 case GameState.Pausing:
+                    roomManager.Draw(_spriteBatch, gameScale);
                     HUD.Draw(_spriteBatch, gameScale, screenOffset);
                     break;
                 case GameState.ItemSelection:

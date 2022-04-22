@@ -51,9 +51,8 @@ namespace LegendOfZelda.Scripts.Links
             {
                 roomSwapPositions[i] = new Vector2(roomSwapPositions[i].X + screenOffset.X, roomSwapPositions[i].Y + screenOffset.Y);
             }
-            firstItem = ItemSpriteFactory.Instance.CreateSwordSprite();
-            linkInventory.Add(firstItem);
-           
+            linkInventory.Add(ItemSpriteFactory.Instance.CreateSwordSprite());
+            linkInventory.Add(ItemSpriteFactory.Instance.CreateBombItemSprite());
         }
 
         //Motions that link will have, and change the state.
@@ -115,11 +114,13 @@ namespace LegendOfZelda.Scripts.Links
                 state.PickItem(name, scale);
 
             }
-            else if (name.Equals("Bow"))
+            else if (name.Equals("Bow") || name.Contains("Boomerang"))
             {
                 attackCooldown = cooldownLimit;
                 state.PickItem(name, scale);
             }
+            else if (name.Equals("Map") || name.Equals("Compass")) SoundController.Instance.PlayGetItemSound();
+            else SoundController.Instance.PlayGetHeartSound();
         }
         public void HandleBlockCollision(IGameObject gameObject, ICollision side)
         {
@@ -182,6 +183,7 @@ namespace LegendOfZelda.Scripts.Links
             if (gameObject.Name == "BlueRupee") numRupees += 5;
             else if (gameObject.Name == "Rupee") numRupees++;
             else if (gameObject.Name == "Key") numKeys++;
+            else if (gameObject.Name == "Bomb") numBombs++;
             else if (gameObject.Name == "Clock")
             {
                 HasClock = true;
@@ -189,11 +191,8 @@ namespace LegendOfZelda.Scripts.Links
             }
             else if (gameObject.Name == "Map") HasMap = true;
             else if (gameObject.Name == "Compass") HasCompass = true;
-            else
-            {
-                linkInventory.Add(gameObject);
-                if (gameObject.Name == "Bomb") numBombs++;
-            }
+            else if (gameObject.Name == "Bow" || gameObject.Name.Contains("Boomerang")) linkInventory.Add(gameObject);
+
             if (numRupees > 99) numRupees = 99;
         }
 
