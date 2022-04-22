@@ -120,6 +120,8 @@ namespace LegendOfZelda.Scripts.Links
                 attackCooldown = cooldownLimit;
                 state.PickItem(name, scale);
             }
+            else if (name.Equals("Map") || name.Equals("Compass")) SoundController.Instance.PlayGetItemSound();
+            else SoundController.Instance.PlayGetHeartSound();
         }
         public void HandleBlockCollision(IGameObject gameObject, ICollision side)
         {
