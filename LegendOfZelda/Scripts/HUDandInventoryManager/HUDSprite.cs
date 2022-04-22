@@ -160,6 +160,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         }
         public void Update(int currentRoom) 
         {
+            
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
             Vector2 roomDestination = roomLocations.RoomLocation(currentRoom);

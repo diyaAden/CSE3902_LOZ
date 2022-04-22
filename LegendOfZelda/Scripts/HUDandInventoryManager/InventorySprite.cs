@@ -1,8 +1,10 @@
-﻿using LegendOfZelda.Scripts.Items;
+﻿using LegendOfZelda.Scripts.Input.Controller;
+using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -18,6 +20,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public List<IItem> displayItems = new List<IItem>();
         Vector2 startPos = new Vector2(360,  80);
 
+        Vector2 itemSelectBox = new Vector2(290, 75);
+        IItem itemCursor;
+
         public bool areVisible = false;
 
         public Vector2 Position { get; set; } = new Vector2(150, -350);
@@ -30,19 +35,17 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
            // SpriteSheet = HUDTexture;
             sourceRect = new Rectangle(xPos, yPos, width, height);
-            
 
+            
             
 
         }
 
         public void getItemPos() //add item sprites to list
         {
-           // displayItems = link.getInventoryList();
+         
             int offs = 1;
-
-            //offs = 0;
-
+          
             if (displayItems.Count < 4)
             {
                 for (int i = 0; i < displayItems.Count; i++)
@@ -72,9 +75,27 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void shiftInventory(Vector2 shiftDist, int scale)
         {
             Position = new Vector2(Position.X, Position.Y + shiftDist.Y * scale);
-        // foreach (IItem item in displayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
         }
 
+        public void checkCursorPos(KeyboardState k)
+        {
+            int pos = 0;
+            //if user presses arrow key, depending on direction shift
+            if (k.IsKeyDown(Keys.D) && pos < displayItems.Count )
+            {
+                pos++;
+            }
+            if (k.IsKeyDown(Keys.A) && pos > displayItems.Count)
+            {
+                pos--;
+            }
+
+            //if user clicks enter, update item cursor and B choice on HUD
+            if (k.IsKeyDown(Keys.B))
+            {
+                itemCursor = displayItems[pos];
+            }
+        }
         public void Update() 
         { 
 
@@ -85,6 +106,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             spriteBatch.Draw(InventoryTexture, destRect, sourceRect, Color.White);
 
+            if (displayItems.Count > 0)
+            {
+                itemCursor = displayItems[0];
+                itemCursor.Position = itemSelectBox;
+                itemCursor.Draw(spriteBatch, 2);
+            }
+            
+
           if (areVisible)
             {
                 foreach (IItem i in displayItems)
@@ -92,9 +121,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                     i.Draw(spriteBatch, 2);
                 }
             } 
-           
-
-
+      
         }
     }
 }
