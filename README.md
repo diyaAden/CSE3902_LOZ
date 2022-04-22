@@ -6,8 +6,8 @@ Members: Ben Roth, Sean Burns, Alex Quedens, Jiayi Pu, Diya Adengada
 
 Player Controls
 - Arrow and "wasd" keys move Link and change his facing direction.
-- The 'z' and 'n' key cause Link to attack using his sword.
-- Number keys (1, 2, 3, etc.) are used to let Link use a different item
+- The 'z' and 'n' keys cause Link to attack using his sword.
+- The 'm' and 'x' keys cause Link to use the item in the secondary slot.
 
 Item Controls
 - Items can be collected by touching them
@@ -24,10 +24,10 @@ Other Controls
 - Use 'Enter' to pause and unpause the game
 
 Cheat Codes
-- WWSSADAD - Go straight to boss room
+- WWSSADAD - Warp to the boss room
 - WDSAWDSA - Reduce the number of enemies in the current room down to 1
 - DDDDDW - Set the number of collected rupees to 99
-
+- PPP - Warp to the special Pokemon rooms
 
 Updates Log:
 - Sprint 2 Completion 2/21/22
