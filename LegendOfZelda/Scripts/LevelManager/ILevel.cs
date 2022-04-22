@@ -21,6 +21,7 @@ namespace LegendOfZelda.Scripts.LevelManager
         public void OpenSecretDoor(RoomObjectEditor.Direction direction);
         public void OpenCrackedDoors();
         public void SpawnKey();
+        public void SpawnBoomerang(int scale, Vector2 screenOffset);
         public void SpawnHeartContainer(int scale, Vector2 screenOffset);
         public void DetectPushBlockMovement();
         public void DrawBackgroundAndBlocks(SpriteBatch spriteBatch, int scale);

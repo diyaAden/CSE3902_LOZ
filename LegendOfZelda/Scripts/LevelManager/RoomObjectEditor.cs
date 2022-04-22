@@ -15,7 +15,7 @@ namespace LegendOfZelda.Scripts.LevelManager
     {
         public enum Direction { UP, DOWN, LEFT, RIGHT }
         private const int enemyDropItemProb = 6;
-        private bool keySpawned = false, crackedDoorsOpened = false, heartContainerSpawned = false;
+        private bool keySpawned = false, crackedDoorsOpened = false, heartContainerSpawned = false, boomerangSpawned = false;
         private Random rnd = new Random();
         public List<IItem> Items { get; private set; }
         public List<IEnemy> Enemies { get; private set; }
@@ -130,6 +130,16 @@ namespace LegendOfZelda.Scripts.LevelManager
                 container.Position = new Vector2((209 + screenOffset.X) * scale, (81 + screenOffset.Y) * scale);
                 Items.Add(container);
                 heartContainerSpawned = true;
+            }
+        }
+        public void SpawnBoomerang(int scale, Vector2 screenOffset)
+        {
+            if (!boomerangSpawned)
+            {
+                IItem boomerang = ItemSpriteFactory.Instance.CreateWoodBoomerangItemSprite();
+                boomerang.Position = new Vector2((115 + screenOffset.X) * scale, (83 + screenOffset.Y) * scale);
+                Items.Add(boomerang);
+                boomerangSpawned = true;
             }
         }
         public void UpdateEnemyWithProjectiles(IEnemy enemy, Vector2 linkPosition, int scale, Vector2 screenOffset)

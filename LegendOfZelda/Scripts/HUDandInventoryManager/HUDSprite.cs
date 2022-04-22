@@ -37,8 +37,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private MapRoomLocations roomLocations = new MapRoomLocations();
 
         public bool isVisible = false;
-
-        List<IItem> invDisplayItems = new List<IItem>();
+        public int currentItem = 1;
+        public List<IItem> invDisplayItems = new List<IItem>();
 
         public Texture2D itemSheet;
         ItemDisplay itemDisp = new ItemDisplay();
@@ -145,7 +145,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void getItemSprites(ILink link) //add item sprites to list
         {
             invDisplayItems = link.getInventoryList();
-            invSprite.displayItems = link.getInventoryList();
+            invSprite.SetInventory(link.getInventoryList());
            
             hasMap = link.HasMap;
             hasCompass = link.HasCompass;
@@ -203,10 +203,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 invDisplayItems[0].Draw(spriteBatch, scale);
             }
 
-            if (invDisplayItems.Count >= 2)
+            if (invDisplayItems.Count >= currentItem + 1)
             {
-                invDisplayItems[1].Position = itemBPos;
-                invDisplayItems[1].Draw(spriteBatch, scale);
+                invDisplayItems[currentItem].Position = itemBPos;
+                invDisplayItems[currentItem].Draw(spriteBatch, scale);
 
             }
 
