@@ -205,12 +205,17 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 invDisplayItems[0].Draw(spriteBatch, scale);
             }
 
-            if (invDisplayItems.Count >= currentItem + 1)
-            {
-                invDisplayItems[currentItem].Position = itemBPos;
-                invDisplayItems[currentItem].Draw(spriteBatch, scale);
+             if (invDisplayItems.Count >= currentItem + 1 && invSprite.itemCursor != null)
+              {
+                //invDisplayItems[currentItem].Position = itemBPos;
+                // invDisplayItems[currentItem].Draw(spriteBatch, scale);
+                slotB = invSprite.itemCursor;
+                slotB.Position = new Vector2(itemBPos.X, itemBPos.Y);
+                slotB.Draw(spriteBatch, scale);
 
-            }
+            } 
+
+            
 
             
             

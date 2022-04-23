@@ -40,23 +40,34 @@ namespace LegendOfZelda.Scripts
                 if (!paused)
                 {
                      ShiftHUD(new Vector2(0, shiftSpeed), scale);
-                    HUD.isVisible = true;
+                    
                 }
                 else
                 {
                     ShiftHUD(new Vector2(0, -shiftSpeed), scale);
-                    HUD.isVisible = false;
+                    
 
                 }
                 distMoved += shiftSpeed;
+                HUD.isVisible = false;
                 if (distMoved >= distToShift)
                 {
                     shiftingScreen = false;
                     paused = !paused;
-                    
+                  
+
                     distMoved = 0;
-                    if (paused) GameStateController.Instance.SetGameStateItemSelection();
-                    else GameStateController.Instance.SetGameStatePlaying();
+                    if (paused)
+                    {
+                        GameStateController.Instance.SetGameStateItemSelection();
+                        HUD.isVisible = true;
+                    }
+                    else
+                    {
+                        GameStateController.Instance.SetGameStatePlaying();
+                       
+                    }
+
                 }
             }
         }

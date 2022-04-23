@@ -80,7 +80,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 for (int i = 4; i < displayItems.Count; i++)
                 {
                    // Debug.WriteLine("in display " + displayItems[i]);
-                    displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y + 40);
+                    displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y + 50);
                     offs++;
                 }
             }
