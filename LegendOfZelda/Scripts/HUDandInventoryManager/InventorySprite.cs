@@ -20,13 +20,16 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         List<IItem> displayItems = new List<IItem>();
         Vector2 startPos = new Vector2(360,  80);
 
-        Vector2 itemSelectBox = new Vector2(290, 75);
-        IItem itemCursor;
+        public Vector2 itemSelectBox = new Vector2(290, 75);
+        public IItem itemCursor;
         int pos = 0;
         public bool areVisible = false;
         public int cursorCoolDown = 0;
         public int cursorCoolDownLimit = 10;
+        Texture2D indicatorSprTexture;
         public Vector2 Position { get; set; } = new Vector2(150, -350);
+
+        Vector2 indicatorPos = new Vector2(400, 80);
 
         public void SetInventory(List<IItem> linkInv)
         {
@@ -35,6 +38,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void LoadAllTextures(ContentManager content)
         {
             InventoryTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
+            indicatorSprTexture = content.Load<Texture2D>("SpriteSheets/General/indicatorSprite");
         }
         public InventorySprite()
         {
@@ -60,7 +64,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 for (int i = 0; i < displayItems.Count; i++)
                 {
-                    displayItems[i].Position = new Vector2(startPos.X + (30 * offs), startPos.Y);
+                    displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y);
                     offs++;
                 }
             }
@@ -69,14 +73,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 for (int i = 0; i < 4; i++)
                 {
                    // Debug.WriteLine("in display " + displayItems[i]);
-                    displayItems[i].Position = new Vector2(startPos.X + (40 * offs), startPos.Y);
+                    displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y);
                     offs++;
                 }
                 offs = 1;
                 for (int i = 4; i < displayItems.Count; i++)
                 {
                    // Debug.WriteLine("in display " + displayItems[i]);
-                    displayItems[i].Position = new Vector2(startPos.X + (40 * offs), startPos.Y + 40);
+                    displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y + 40);
                     offs++;
                 }
             }
@@ -105,12 +109,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             if (cursorCoolDown > 0)
             {
                 cursorCoolDown--;
+                indicatorPos = new Vector2(displayItems[pos].Position.X - 10, displayItems[pos].Position.Y);
             }
             //if user clicks enter, update item cursor and B choice on HUD
             if (k.IsKeyDown(Keys.B) && displayItems.Count > 0 )
             {
                 Debug.WriteLine("change registered" + pos);
                 itemCursor = displayItems[pos];
+                //set indicator box to same pos as item
+               // indicatorPos = new Vector2(displayItems[pos].Position.X, displayItems[pos].Position.Y);
             }
         }
         public void Update() 
@@ -123,18 +130,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             spriteBatch.Draw(InventoryTexture, destRect, sourceRect, Color.White);
 
-            if (displayItems.Count > 0 && itemCursor != null)
-            {
-                // itemCursor = displayItems[0];
-                // itemCursor.Position = itemSelectBox;
-               // Debug.WriteLine(itemCursor.Name);
-                itemCursor.Position = itemSelectBox;
-                itemCursor.Draw(spriteBatch, 2);
-            }
-            
-
           if (areVisible)
             {
+                if (displayItems.Count > 0 && itemCursor != null)
+                {
+                    itemCursor.Position = itemSelectBox;
+                    itemCursor.Draw(spriteBatch, 2);
+                }
+
+                spriteBatch.Draw(indicatorSprTexture, indicatorPos, Color.White);
                 foreach (IItem i in displayItems)
                 {
                     i.Draw(spriteBatch, 2);
