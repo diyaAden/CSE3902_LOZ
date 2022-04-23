@@ -4,6 +4,7 @@ using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
@@ -158,9 +159,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             nKeys = link.numKeys;
             nBombs = link.numBombs;
         }
-        public void Update(int currentRoom) 
+        public void Update(int currentRoom, KeyboardState k) 
         {
-            
+            invSprite.checkCursorPos(k);
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
             Vector2 roomDestination = roomLocations.RoomLocation(currentRoom);
@@ -168,8 +169,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
+
             
-           
             Rectangle destRect = new Rectangle((int)pos.X, (int)pos.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             Rectangle levelIconDestRect = new Rectangle((int)mapPos.X, (int)mapPos.Y, levelImageSource.Width * scale, levelImageSource.Height * scale);
             Rectangle levelFrameDestRect = new Rectangle((int)levelFramePos.X, (int)levelFramePos.Y, levelFrameSource.Width * scale, levelFrameSource.Height * scale);

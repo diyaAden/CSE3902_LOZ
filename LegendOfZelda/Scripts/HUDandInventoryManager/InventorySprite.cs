@@ -22,9 +22,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         Vector2 itemSelectBox = new Vector2(290, 75);
         IItem itemCursor;
-
+        int pos = 0;
         public bool areVisible = false;
-
+        public int cursorCoolDown = 0;
+        public int cursorCoolDownLimit = 10;
         public Vector2 Position { get; set; } = new Vector2(150, -350);
 
         public void SetInventory(List<IItem> linkInv)
@@ -40,8 +41,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
            // SpriteSheet = HUDTexture;
             sourceRect = new Rectangle(xPos, yPos, width, height);
 
-            
-            
+            if (displayItems.Count > 0)
+            {
+                itemCursor = displayItems[0];
+                itemCursor.Position = itemSelectBox;
+              //  itemCursor.Draw(spriteBatch, 2);
+            }
+
 
         }
 
@@ -83,20 +89,27 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void checkCursorPos(KeyboardState k)
         {
-            int pos = 0;
+            
             //if user presses arrow key, depending on direction shift
-            if (k.IsKeyDown(Keys.D) && pos < displayItems.Count )
+            if (k.IsKeyDown(Keys.D) && pos < displayItems.Count - 1 && cursorCoolDown == 0 )
             {
                 pos++;
+                cursorCoolDown = cursorCoolDownLimit;
             }
-            if (k.IsKeyDown(Keys.A) && pos > displayItems.Count)
+            if (k.IsKeyDown(Keys.A) && pos > 0 && cursorCoolDown == 0)
             {
                 pos--;
+                cursorCoolDown = cursorCoolDownLimit;
             }
 
-            //if user clicks enter, update item cursor and B choice on HUD
-            if (k.IsKeyDown(Keys.B))
+            if (cursorCoolDown > 0)
             {
+                cursorCoolDown--;
+            }
+            //if user clicks enter, update item cursor and B choice on HUD
+            if (k.IsKeyDown(Keys.B) && displayItems.Count > 0 )
+            {
+                Debug.WriteLine("change registered" + pos);
                 itemCursor = displayItems[pos];
             }
         }
@@ -110,9 +123,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, sourceRect.Width * scale, sourceRect.Height * scale);
             spriteBatch.Draw(InventoryTexture, destRect, sourceRect, Color.White);
 
-            if (displayItems.Count > 0)
+            if (displayItems.Count > 0 && itemCursor != null)
             {
-                itemCursor = displayItems[0];
+                // itemCursor = displayItems[0];
+                // itemCursor.Position = itemSelectBox;
+               // Debug.WriteLine(itemCursor.Name);
                 itemCursor.Position = itemSelectBox;
                 itemCursor.Draw(spriteBatch, 2);
             }

@@ -4,6 +4,7 @@ using LegendOfZelda.Scripts.Links;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace LegendOfZelda.Scripts
 {
@@ -31,9 +32,9 @@ namespace LegendOfZelda.Scripts
         { 
             shiftingScreen = true;
         }
-        public void Update(int scale, Vector2 screenOffset, int currentRoom)
+        public void Update(int scale, Vector2 screenOffset, int currentRoom, KeyboardState k )
         {
-            HUD.Update(currentRoom);
+            HUD.Update(currentRoom,k);
             if (shiftingScreen) {
 
                 if (!paused)
