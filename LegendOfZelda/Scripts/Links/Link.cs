@@ -107,6 +107,10 @@ namespace LegendOfZelda.Scripts.Links
                 HUDInventoryManager.gainHeart();
                 SoundController.Instance.PlayGetHeartSound(); 
             }
+            else if (name.Equals("Fairy")) {
+                HUDInventoryManager.setFullHealth();
+            }
+
             else if (name.Contains("Triforce"))
             {
                 attackCooldown = getTriforceCooldownLimit;

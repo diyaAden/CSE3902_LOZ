@@ -173,7 +173,7 @@ namespace LegendOfZelda
                     }
                     break;
                 case GameState.Playing:
-                    if (HUDManager.health == 0)
+                    if (HUDManager.hearts == 0)
                     {
                         GameStateController.Instance.SetGameStateGameOver();
                     }
