@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public Vector2 itemSelectBox = new Vector2(290, 75);
         public IItem itemCursor;
-        int pos = 0;
+        public int itemIndex = 1;
         public bool areVisible = false;
         public int cursorCoolDown = 0;
         public int cursorCoolDownLimit = 10;
@@ -95,27 +95,27 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             
             //if user presses arrow key, depending on direction shift
-            if (k.IsKeyDown(Keys.D) && pos < displayItems.Count - 1 && cursorCoolDown == 0 )
+            if (k.IsKeyDown(Keys.J) && itemIndex < displayItems.Count - 1 && cursorCoolDown == 0 )
             {
-                pos++;
+                itemIndex++;
                 cursorCoolDown = cursorCoolDownLimit;
             }
-            if (k.IsKeyDown(Keys.A) && pos > 0 && cursorCoolDown == 0)
+            if (k.IsKeyDown(Keys.G) && itemIndex > 0 && cursorCoolDown == 0)
             {
-                pos--;
+                itemIndex--;
                 cursorCoolDown = cursorCoolDownLimit;
             }
 
             if (cursorCoolDown > 0)
             {
                 cursorCoolDown--;
-                indicatorPos = new Vector2(displayItems[pos].Position.X - 10, displayItems[pos].Position.Y);
+                indicatorPos = new Vector2(displayItems[itemIndex].Position.X - 10, displayItems[itemIndex].Position.Y);
             }
             //if user clicks enter, update item cursor and B choice on HUD
             if (k.IsKeyDown(Keys.B) && displayItems.Count > 0 )
             {
-                Debug.WriteLine("change registered" + pos);
-                itemCursor = displayItems[pos];
+                Debug.WriteLine("change registered" + itemIndex);
+                itemCursor = displayItems[itemIndex];
                 //set indicator box to same pos as item
                // indicatorPos = new Vector2(displayItems[pos].Position.X, displayItems[pos].Position.Y);
             }

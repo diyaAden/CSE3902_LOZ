@@ -209,6 +209,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
               {
                 //invDisplayItems[currentItem].Position = itemBPos;
                 // invDisplayItems[currentItem].Draw(spriteBatch, scale);
+                currentItem = invSprite.itemIndex;
                 slotB = invSprite.itemCursor;
                 slotB.Position = new Vector2(itemBPos.X, itemBPos.Y);
                 slotB.Draw(spriteBatch, scale);
