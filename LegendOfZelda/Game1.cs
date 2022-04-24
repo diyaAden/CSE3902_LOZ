@@ -36,7 +36,7 @@ namespace LegendOfZelda
         public RoomManager roomManager;
 
         public EndGameController endGameControl;
-        public HUDInventoryManager HUDManager;
+        public HealthManager HUDManager;
 
         public GameState Gstate;
         public ItemSelection HUD;
@@ -90,7 +90,7 @@ namespace LegendOfZelda
             detectorManager = new DetectorManager();
             //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
             HUD = new ItemSelection(gameScale, screenOffset, 1);
-            HUDManager = new HUDInventoryManager(HUD.HUD);
+            HUDManager = new HealthManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
 
@@ -201,7 +201,7 @@ namespace LegendOfZelda
 
                     //update HUD
                     HUD.GetItemSprites(link);
-                    HUDManager.Update();
+                    
                     
 
                     break;

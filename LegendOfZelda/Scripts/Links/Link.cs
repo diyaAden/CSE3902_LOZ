@@ -25,7 +25,7 @@ namespace LegendOfZelda.Scripts.Links
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70, clockCooldownLimit = 300;
         private ICollision enemyCollisionSide;
         private readonly HandlerManager handlerManager;
-        private readonly HUDInventoryManager HUDInventoryManager;
+        private readonly HealthManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
         public int CatchByEnemy { get; set; }
         public int numKeys { get; set; } = 0;
@@ -38,7 +38,7 @@ namespace LegendOfZelda.Scripts.Links
 
         //HUDItems.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
         // linkInventory.Add(new SwordWeaponSprite());
-        public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
+        public Link(Vector2 position, Vector2 screenOffset, int scale, HealthManager HUDManager, HandlerManager handlerManager)
         {
             CatchByEnemy = -1;
             this.handlerManager = handlerManager;

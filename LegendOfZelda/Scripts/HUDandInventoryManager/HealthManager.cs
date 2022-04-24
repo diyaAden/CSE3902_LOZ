@@ -2,36 +2,30 @@
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
-    public class HUDInventoryManager
+    public class HealthManager
     {
-        private readonly int xPos = 250, yPos = 10, width = 256, height = 60;
-
-        public int rupees;
-        public int keys;
+        public int rupees, keys;
         public bool hasMap = true;
-        public float health = 4;
-        private float maxHealth = 4;
-        private int HeartposX = 179;
-        private int HeartposY = 36;
-        private int lastHeart;
-        private int firstEmpty;
+        public float hearts = 4f;
+        private float maxHearts = 4f, halfHeart = 0.5f, fullHeart = 1f;
+        private int HeartposX = 179, HeartposY = 36;
+        private int firstEmpty, lastHeart;
         public HUDSprite HUD { get; set; }
         private bool firstTime = true;
         
-
-        public HUDInventoryManager(HUDSprite HUDG)
+        public HealthManager(HUDSprite HUDG)
         {
             HUD = HUDG;
-            health = maxHealth;
         }
-        public bool IsFullHealth() { return health == maxHealth; }
+        public bool IsFullHealth() { return hearts == maxHearts; }
         public void LoadContent()
         {
+            int numberOfSpaces = 17;
+            int BlackSpaceX = 99;
+            int BlackSpaceY = 20;
             if (firstTime)
             {
-                int numberOfSpaces = 17;
-                int BlackSpaceX = 99;
-                int BlackSpaceY = 20;
+                //Add extra black space for HUD
                 for (int w = 0; w < 9; w++)
                 {
                     HUD.AddObject("BlackSpace", BlackSpaceX, BlackSpaceY);
@@ -48,7 +42,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                     }
                 }
 
-                //Add hearts
+                //Add Blackspace for Hearts
                 for (int i = 1; i < numberOfSpaces; i++)
                 {
                     HUD.AddObject("BlackSpace", HeartposX, HeartposY);
@@ -62,26 +56,24 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 }
                 HeartposX = 179;
                 HeartposY = 36;
-                for (int w = 0; w < maxHealth; w++)
+                //Add hearts
+                for (int w = 0; w < maxHearts; w++)
                 {
                     HUD.AddHearts("HeartItem", HeartposX, HeartposY);
-                    if (!((w + 1) == maxHealth))
+                    if (!((w + 1) == maxHearts))
                         HeartposX += 8;
                 }
-                lastHeart = (int)maxHealth - 1;
+                lastHeart = (int)maxHearts - 1;
                 firstTime = false;
             }
             else
             {
-                for (int k = 0; k < maxHealth; k++)
-                {
-                    HUD.ChangeHeart("FullHeart", k);
-                }
+                setFullHealth();
             }
         }
         public void damageLink() {
             
-            if (health % 1 != 0)
+            if (hearts % 1 != 0)
             {
                 HUD.ChangeHeart("EmptyHeart", lastHeart);
                 firstEmpty = lastHeart;
@@ -90,32 +82,25 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 HUD.ChangeHeart("HalfHeart", lastHeart);
             }
-            health -= 0.5f;
-            Debug.WriteLine("Health is {0}, lastHeart: {1}", health, lastHeart);
-            
-            
+            hearts -= halfHeart;
         }
-        public void gainHeart() {
-            if (health == maxHealth)
+        public void gainHeart()
+        {
+            if (!IsFullHealth())
             {
-                //DO Nothing
-            }
-            else
-            {
-                if (health % 1 == 0)
+                if (hearts % 1 == 0)
                 {
                     HUD.ChangeHeart("FullHeart", firstEmpty);
                     firstEmpty = lastHeart;
                     firstEmpty++;
-                    health += 1.0f;
+                    hearts += fullHeart;
                 }
                 else
                 {
-                    if (health == (maxHealth - 0.5f))
+                    if (hearts == (maxHearts - halfHeart))
                     {
-
                         HUD.ChangeHeart("FullHeart", lastHeart);
-                        health += 0.5f;
+                        hearts += halfHeart;
                     }
                     else
                     {
@@ -123,33 +108,19 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                         HUD.ChangeHeart("HalfHeart", firstEmpty);
                         firstEmpty++;
                         lastHeart++;
-                        health += 1.0f;
+                        hearts += fullHeart;
                     }
                 }
 
             }
-            
+
         }
-
-       
-        
-
-
-        public void updateHealth()
-        {
-            if(health == 0) {
-               //End the game
+        public void setFullHealth() {
+            for (int k = 0; k < maxHearts; k++)
+            {
+                HUD.ChangeHeart("FullHeart", k);
             }
-
-            
-
         }
-        public void Update()
-        {
-            updateHealth();
-        }
-        
-
 
     }
 }
