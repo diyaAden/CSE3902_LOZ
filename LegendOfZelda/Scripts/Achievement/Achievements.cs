@@ -59,11 +59,15 @@ namespace LegendOfZelda.Scripts.Achievement
 
         public void Update()
         {
-            
             if (remainTimer <= remainTimerLimit)
             {
                 remainTimer++;
-                returnSentence(this);
+                if (isGainedAchievement == false)
+                {
+                    returnSentence(this);
+                }
+                isGainedAchievement = true;
+                
             }
             else
             {
