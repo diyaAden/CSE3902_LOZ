@@ -9,11 +9,17 @@ namespace LegendOfZelda.Scripts.Achievement
 {
     public enum AchievementType
     {
-        KilledByEnemy, //player health 
-        BombHurtEnemy, //enemy health, player weapon
+        KilledByEnemy, //game over
+        BombHurtEnemy, //player weapon
         FirstMeetOldMan, //player, room
         PickUpOneItem, //player, item
-        GetBackToStart //hand, player, room
+        GetBackToStart, //hand, player
+        WinDungeon, //dungeon health
+        Win, //win the game
+        WinInSeconds, //win the game in some seconds
+        HurtByGel, //link, gel
+        BombDoor //bomb, door
+
     }
     public class Achievements
     {
@@ -37,19 +43,34 @@ namespace LegendOfZelda.Scripts.Achievement
             switch (achievement.AchievementType)
             {
                 case AchievementType.KilledByEnemy:
-                    AchivementText = "U DEAD :(";    // When dead
+                    AchivementText = "U DEAD :(";    // When dead, 0
                     break;
-                case AchievementType.BombHurtEnemy:  //Use bomb hurt enemy
+                case AchievementType.BombHurtEnemy:  //Use bomb hurt enemy, 1
                     AchivementText = "OMG, BOMB!";
                     break;
-                case AchievementType.FirstMeetOldMan: //First come old man room
+                case AchievementType.FirstMeetOldMan: //First come old man room, 2
                     AchivementText = "Hi! Old Man.";
                     break;
-                case AchievementType.PickUpOneItem:  //first pick up item
+                case AchievementType.PickUpOneItem:  //first pick up item, 3
                     AchivementText = "What is that?";
                     break;
-                case AchievementType.GetBackToStart: //go back first room since wall monster
+                case AchievementType.GetBackToStart: //go back first room since wall monster, 4
                     AchivementText = "OK, IM BACK.";
+                    break;
+                case AchievementType.WinDungeon: //win the dungeon, 5
+                    AchivementText = "An easy fight";
+                    break;
+                case AchievementType.Win: //win the game, 6
+                    AchivementText = "U got it!!";
+                    break;
+                case AchievementType.WinInSeconds: //win the game in certain seconds, 7
+                    AchivementText = "SUPERMAN";
+                    break;
+                case AchievementType.HurtByGel: //hurt by gel, 8
+                    AchivementText = "Soft but Dangerous";
+                    break;
+                case AchievementType.BombDoor: //use bomb to get door, 9
+                    AchivementText = "keen intuition";
                     break;
 
                 default:
@@ -58,17 +79,21 @@ namespace LegendOfZelda.Scripts.Achievement
             }
         }
 
+        public void checkAndChangeText()
+        {
+            if (isGainedAchievement == false)
+            {
+                returnSentence(this);
+                isGainedAchievement = true;
+            }
+
+        }
+
         public void Update()
         {
             if (remainTimer <= remainTimerLimit)
             {
                 remainTimer++;
-                if (isGainedAchievement == false)
-                {
-                    returnSentence(this);
-                }
-                isGainedAchievement = true;
-                
             }
             else
             {
@@ -78,7 +103,7 @@ namespace LegendOfZelda.Scripts.Achievement
 
         public void Draw(SpriteBatch spriteBatch, int scale, SpriteFont font)
         {
-            spriteBatch.DrawString(font, AchivementText, pos, Color.Red);
+            spriteBatch.DrawString(font, AchivementText, pos, Color.White);
         }
     }
 

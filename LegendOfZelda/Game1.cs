@@ -229,7 +229,7 @@ namespace LegendOfZelda
                     //update HUD
                     HUD.GetItemSprites(link);
                     //HUDManager.Update();
-                    //Debug.WriteLine(roomManager.CurrentRoom);
+                    Debug.WriteLine(roomManager.CurrentRoom);
 
                     break;
                 case GameState.ItemSelection:
@@ -250,7 +250,7 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
-                    achievementCollection.currentAchivement = 0;
+                    achievementCollection.changeCurrentAchievement(0);
                     Save(pstat);
                     link.Update();
                     endGameControl.Update();
@@ -258,7 +258,8 @@ namespace LegendOfZelda
 
                     break;
                 case GameState.WonGame:
-                    if(pstat.BestTime.Equals("N/A")){
+                    achievementCollection.changeCurrentAchievement(6);
+                    if (pstat.BestTime.Equals("N/A")){
                         pstat.BestTime = (currentTime / 60).ToString();
                     }
                     else
@@ -268,6 +269,11 @@ namespace LegendOfZelda
                            pstat.BestTime = (currentTime / 60).ToString();
 
                         }
+                    }
+
+                    if(currentTime/60 == 300)
+                    {
+                        achievementCollection.changeCurrentAchievement(7);
                     }
                     Save(pstat);
                     endGameControl.Update();

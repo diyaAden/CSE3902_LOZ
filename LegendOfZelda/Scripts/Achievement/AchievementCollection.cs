@@ -18,6 +18,11 @@ namespace LegendOfZelda.Scripts.Achievement
             achievementCollection.Add(AchivementFactory.Instance.FirstMeetOldManAchievement());
             achievementCollection.Add(AchivementFactory.Instance.PickUpOneItemAchievement());
             achievementCollection.Add(AchivementFactory.Instance.GetBackToStartAchievement());
+            achievementCollection.Add(AchivementFactory.Instance.WinDungeonAchievement());
+            achievementCollection.Add(AchivementFactory.Instance.WinAchievement());
+            achievementCollection.Add(AchivementFactory.Instance.WinInSecondsAchievement());
+            achievementCollection.Add(AchivementFactory.Instance.HurtByGelAchievement());
+            achievementCollection.Add(AchivementFactory.Instance.BombDoorAchievement());
         }
         public void LoadAllTextures(ContentManager content)
         {
@@ -26,6 +31,18 @@ namespace LegendOfZelda.Scripts.Achievement
         public void Update() {
             if (currentAchivement >= 0)
                 achievementCollection[currentAchivement].Update();
+        }
+
+        public void checkAndChangeText()
+        {
+            if (currentAchivement >= 0)
+                achievementCollection[currentAchivement].checkAndChangeText();
+        }
+
+        public void changeCurrentAchievement(int number)
+        {
+            currentAchivement = number;
+            checkAndChangeText();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
