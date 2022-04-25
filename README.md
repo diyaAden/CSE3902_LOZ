@@ -27,12 +27,17 @@ Cheat Codes
 - DDDDDW - Set the number of collected rupees to 99
 - PPP - Warp to the special Pokemon rooms
 
-Achievements
-- U DEAD :( - When game over
-- OMG, BOMB! - When bomb collide with enemy
-- Hi! Old Man. - First meet old man
+Achievements (only show the events at the first time)
+- U DEAD :( - game over
+- OMG, BOMB! - use bomb collide with enemy
+- Hi! Old Man. - meet old man
 - What is that? - Pick up item
 - OK, IM BACK. - Wall monster catch the enemy and send link back to first room
+- An easy fight - Kill the dungeon dragon
+- U got it!! - Win the game out of a time limit
+- SUPERMAN - Win the game in a time limit
+- Soft but Dangerous - Hurt by gel
+- keen intuition - use bomb to get a door
 
 Sprint 5 Additions
 - Cheat Codes
