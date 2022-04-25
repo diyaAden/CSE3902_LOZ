@@ -33,6 +33,11 @@ Achievements
 - Hi! Old Man. - First meet old man
 - What is that? - Pick up item
 - OK, IM BACK. - Wall monster catch the enemy and send link back to first room
+- An easy fight - Kill the dungeon
+- U got it!! - Win the game out of a time limit
+- SUPERMAN - Win the game in a time limit
+- Soft but Dangerous - Hurt by gel
+- keen intuition - first use bomb to get a door
 
 Sprint 5 Additions
 - Cheat Codes
