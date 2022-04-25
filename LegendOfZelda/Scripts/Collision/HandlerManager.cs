@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using LegendOfZelda.Scripts.Achievement;
 using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
+using LegendOfZelda.Scripts.Items.ItemSprites;
+using LegendOfZelda.Scripts.Enemy.Gel.Sprite;
 
 namespace LegendOfZelda.Scripts.Collision
 {
@@ -79,7 +81,7 @@ namespace LegendOfZelda.Scripts.Collision
             switch (roomManager.CurrentRoom)
             {
                 case 8:
-                    achievementCollection.currentAchivement = 2;
+                    achievementCollection.changeCurrentAchievement(2);
                     break;
                 default:
                     break;
@@ -98,6 +100,8 @@ namespace LegendOfZelda.Scripts.Collision
                         setToDestroy = true;
                         if (weapon is BombWeapon bomb && bomb.DetonatingNow()) 
                             collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
+                            if(block is BombedDoorSpriteDown|| block is BombedDoorSpriteUp || block is BombedDoorSpriteLeft || block is BombedDoorSpriteRight)
+                                achievementCollection.changeCurrentAchievement(9);
                     }
                 }
                 foreach (IEnemy enemy in enemies)
@@ -107,7 +111,7 @@ namespace LegendOfZelda.Scripts.Collision
                     {
                         setToDestroy = true;
                         if (weapon is BombWeapon bomb && bomb.DetonatingNow()) //Actually want to have a fire but not find
-                            achievementCollection.currentAchivement = 1; 
+                            achievementCollection.changeCurrentAchievement(1);
                     }
                 }
                 if (setToDestroy) weapon.DestroyWeapon(gameScale);
@@ -161,8 +165,9 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, item, gameScale);
                 if (!sides.Contains(ICollision.SideNone) && sides.Count > 0)
                 {
-                    if (achievementCollection.currentAchivement != 3)
-                        achievementCollection.currentAchivement = 3;
+
+                    achievementCollection.changeCurrentAchievement(3);
+
                     indices.Add(index);
                     collisionHandlers[0].HandleCollision(Link, item, sides[0], gameScale);
                 }
@@ -191,7 +196,9 @@ namespace LegendOfZelda.Scripts.Collision
                 if (!sides2.Contains(ICollision.SideNone) && sides2.Count > 0)
                 {
                     if (enemy is BasicWallMasterSprite)
-                        achievementCollection.currentAchivement = 4;
+                        achievementCollection.changeCurrentAchievement(4);
+                    if (enemy is BasicGelSprite)
+                        achievementCollection.changeCurrentAchievement(8);
                 }
                 foreach (ICollision side in sides2)
                 {
@@ -232,6 +239,8 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (int ind in indices)
             {
                 int actualDeleteIndex = ind - delete;
+                if(room.Enemies[actualDeleteIndex] is BasicAquamentusSprite)
+                    achievementCollection.changeCurrentAchievement(5);
                 collisionHandlers[1].HandleEnemyDestroy((Room)room, actualDeleteIndex);
                 delete++;
             }

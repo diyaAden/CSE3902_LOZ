@@ -50,6 +50,31 @@ namespace LegendOfZelda.Scripts.Achievement
             return new Achievements(AchievementType.GetBackToStart);
         }
 
+        public Achievements WinDungeonAchievement()
+        {
+            return new Achievements(AchievementType.WinDungeon);
+        }
+
+        public Achievements WinAchievement()
+        {
+            return new Achievements(AchievementType.Win);
+        }
+
+        public Achievements WinInSecondsAchievement()
+        {
+            return new Achievements(AchievementType.WinInSeconds);
+        }
+
+        public Achievements HurtByGelAchievement()
+        {
+            return new Achievements(AchievementType.HurtByGel);
+        }
+
+        public Achievements BombDoorAchievement()
+        {
+            return new Achievements(AchievementType.BombDoor);
+        }
+
 
     }
 }
