@@ -55,9 +55,6 @@ namespace LegendOfZelda
 
         public PlayTimer playTimer;
 
-
-        //public GameStateManager gameStateManager;
-
         Texture2D startTexture;
         Rectangle startRectangle;
 
@@ -98,14 +95,13 @@ namespace LegendOfZelda
             GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
-            //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
+           
             HUD = new ItemSelection(gameScale, screenOffset, 1);
             HUDManager = new HealthManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
             playTimer = new PlayTimer();
 
-            //gameStateManager = new GameStateManager();
 
             base.Initialize();
         }
@@ -283,7 +279,7 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
-            //  roomManager.Draw(_spriteBatch, gameScale);
+           
             
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
