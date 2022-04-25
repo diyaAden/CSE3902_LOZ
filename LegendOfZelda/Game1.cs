@@ -132,7 +132,19 @@ namespace LegendOfZelda
             HUD.LoadAllTextures(Content);
             invSpr.LoadAllTextures(Content); //REMOVE LATER
             currentTime = 0;
+            Save(pstat);
+            if (pstat is null)
+            {
+                pstat = new PlayerStat()
+                {
+                    TimeToBeat = 650,
+                    BestTime = "N/A"
+
+                };
+                Save(pstat);
+            }
             pstat = Load();
+            
             
 
             roomManager.LoadContent(gameScale, screenOffset);
