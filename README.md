@@ -27,11 +27,19 @@ Cheat Codes
 - DDDDDW - Set the number of collected rupees to 99
 - PPP - Warp to the special Pokemon rooms
 
+Achievements
+- U DEAD :( - When game over
+- OMG, BOMB! - When bomb collide with enemy
+- Hi! Old Man. - First meet old man
+- What is that? - Pick up item
+- OK, IM BACK. - Wall monster catch the enemy and send link back to first room
+
 Sprint 5 Additions
 - Cheat Codes
 - Game Timer
 - Start Screen
 - Extra Rooms and Enemies
+- Achievements
 
 Updates Log:
 - Sprint 2 Completion 2/21/22
@@ -40,6 +48,5 @@ Updates Log:
 
 Potential Bugs:
 - Handler Manager might be refactored in the future.
-- Wait a sec after the link pick up items, then use items.
 - Increase firing speed of certain items
 - The map and item selection menu remains unfinished
