@@ -24,6 +24,7 @@ namespace LegendOfZelda.Scripts.Enemy
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateOldManSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateCharizardSprite());
             enemyCollection.Add(EnemySpriteFactory.Instance.CreateZapdosSprite());
+            enemyCollection.Add(EnemySpriteFactory.Instance.CreateDarknutSprite());
         }
 
         public void Next()

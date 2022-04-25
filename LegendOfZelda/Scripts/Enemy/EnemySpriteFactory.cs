@@ -10,11 +10,13 @@ using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 using Microsoft.Xna.Framework;
 using LegendOfZelda.Scripts.Enemy.Zapdos.Sprite;
 
+
 namespace LegendOfZelda.Scripts.Enemy
 {
     class EnemySpriteFactory
     {
         private Texture2D goriyaDownSpriteSheet, goriyaRightSpriteSheet, goriyaLeftSpriteSheet, goriyaUpSpriteSheet, oldmanSpriteSheet, pokemonSpriteSheet;
+        private Texture2D darknutDownSpriteSheet, darknutRightSpriteSheet, darknutLeftSpriteSheet, darknutUpSpriteSheet;
         private Texture2D aquamentusSpriteSheet, cloudSpriteSheet, explosionSpriteSheet, fireballSpriteSheet, gelSpriteSheet, keeseSpriteSheet, stalfosSpriteSheet, trapSpriteSheet, wallMasterSpriteSheet;
         private static readonly EnemySpriteFactory instance = new EnemySpriteFactory();
         public static EnemySpriteFactory Instance => instance;
@@ -39,6 +41,10 @@ namespace LegendOfZelda.Scripts.Enemy
             wallMasterSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/WallMaster");
             oldmanSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/OldMan");
             pokemonSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/PokemonSpriteSheet");
+            darknutDownSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/DarknutFront");
+            darknutRightSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/DarknutRight");
+            darknutLeftSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/DarknutLeft");
+            darknutUpSpriteSheet = content.Load<Texture2D>("SpriteSheets/Enemy/DarknutBack");
         }
         public IEnemy CreateEnemyFromString(string enemyName)
         {
@@ -54,6 +60,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 "OldMan" => CreateOldManSprite(),
                 "Charizard" => CreateCharizardSprite(),
                 "Zapdos" => CreateZapdosSprite(),
+                "Darknut" => CreateDarknutSprite(),
                 _ => null,
             };
         }
@@ -124,6 +131,27 @@ namespace LegendOfZelda.Scripts.Enemy
         public IEnemy CreateZapdosSprite()
         {
             return new BasicZapdosSprite(pokemonSpriteSheet);
+        }
+
+        public IEnemy CreateDarknutSprite()
+        {
+            return new BasicDarknutSprite();
+        }
+        public IEnemy CreateDarknutDownSprite(int moveSpeed)
+        {
+            return new MoveDownDarknutSprite(darknutDownSpriteSheet, moveSpeed);
+        }
+        public IEnemy CreateDarknutUpSprite(int moveSpeed)
+        {
+            return new MoveUpDarknutSprite(darknutUpSpriteSheet, moveSpeed);
+        }
+        public IEnemy CreateDarknutLeftSprite(int moveSpeed)
+        {
+            return new MoveLeftDarknutSprite(darknutLeftSpriteSheet, moveSpeed);
+        }
+        public IEnemy CreateDarknutRightSprite(int moveSpeed)
+        {
+            return new MoveRightDarknutSprite(darknutRightSpriteSheet, moveSpeed);
         }
     }
 }

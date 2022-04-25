@@ -6,6 +6,7 @@ using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy.Goriya;
 using LegendOfZelda.Scripts.Enemy.Goriya.Sprite;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LegendOfZelda.Scripts.Enemy
 {
@@ -48,6 +49,7 @@ namespace LegendOfZelda.Scripts.Enemy
         public override void Update(int scale, Vector2 screenOffset) { }
         public void Update(List<IEnemy> Enemies, int scale, Vector2 screenOffset)
         {
+            Debug.WriteLine("should be moving ");
             if (!attacking && hurtCooldown == 0)
             {
                 sprite.Update(scale, screenOffset);

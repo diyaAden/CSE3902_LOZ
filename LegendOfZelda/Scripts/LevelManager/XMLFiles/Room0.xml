@@ -8,6 +8,12 @@
 		<roomNumber>2</roomNumber>
 	</Item>
 	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Darknut</ObjectName>
+		<PositionX>130</PositionX>
+		<PositionY>48</PositionY>
+	</Item>
+	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallLen</ObjectName>
 		<PositionX>16</PositionX>
