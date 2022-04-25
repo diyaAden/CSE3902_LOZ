@@ -39,6 +39,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private MapRoomLocations roomLocations = new MapRoomLocations();
 
         public bool isVisible = false;
+        public bool isUsable = false;
         public int currentItem = 1;
         public List<IItem> invDisplayItems = new List<IItem>();
 
@@ -223,8 +224,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
             if (isVisible) invSprite.areVisible = true;
             else invSprite.areVisible = false;
-            
-            
+
+
+            if (isUsable) invSprite.areUsable = true;
+            else invSprite.areUsable = false;
+
             mapDisplay.Draw(spriteBatch, scale, offset);
             invSprite.getItemPos();
             invSprite.Draw(spriteBatch, scale, offset);
