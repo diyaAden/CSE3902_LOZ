@@ -14,6 +14,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         Rectangle sourceRect;
         Rectangle compassMarkerSource = new Rectangle(519, 126, 3, 3);
+        Rectangle triforceMarkerSource = new Rectangle(528, 126, 3, 3);
         Texture2D HUDTexture, HUDText, level;
         public List<IHUDItem> HUDItems { get; private set; }
 
@@ -34,7 +35,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int nRupees { get; set; }
         public int nKeys { get; set; }
         public int nBombs { get; set; }
-        private Rectangle compassMarkerDest;
+        private Rectangle compassMarkerDest, triforceMarkerDest;
         private MapRoomLocations roomLocations = new MapRoomLocations();
 
         public bool isVisible = false;
@@ -160,7 +161,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             foreach (IHUDItem Heart in Hearts) Heart.Update();
             Vector2 roomDestination = roomLocations.RoomLocation(currentRoom);
+            Vector2 triforceRoom = roomLocations.RoomLocation(15);
             compassMarkerDest = new Rectangle((int)roomDestination.X *2, (int)roomDestination.Y*2, compassMarkerSource.Width * 2, compassMarkerSource.Height * 2);
+            triforceMarkerDest = new Rectangle((int)triforceRoom.X * 2, (int)triforceRoom.Y * 2, compassMarkerSource.Width * 2, compassMarkerSource.Height * 2);
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
@@ -189,7 +192,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
                 if (hasCompass)
                 {
-                    if (++compassTimer < 15) spriteBatch.Draw(HUDTexture, compassMarkerDest, compassMarkerSource, Color.White);
+                    if (++compassTimer < 15)
+                    {
+                        spriteBatch.Draw(HUDTexture, compassMarkerDest, compassMarkerSource, Color.White);
+                        spriteBatch.Draw(HUDTexture, triforceMarkerDest, triforceMarkerSource, Color.White);
+                    }
                     else if (compassTimer == 30) compassTimer = 0;
                 }
             }
