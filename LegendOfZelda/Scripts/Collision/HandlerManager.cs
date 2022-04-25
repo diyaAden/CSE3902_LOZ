@@ -100,7 +100,8 @@ namespace LegendOfZelda.Scripts.Collision
                         setToDestroy = true;
                         if (weapon is BombWeapon bomb && bomb.DetonatingNow()) 
                             collisionHandlers[4].HandleCollision(Link, block, roomManager, gameScale);
-                            achievementCollection.changeCurrentAchievement(9);
+                            if(block is BombedDoorSpriteDown|| block is BombedDoorSpriteUp || block is BombedDoorSpriteLeft || block is BombedDoorSpriteRight)
+                                achievementCollection.changeCurrentAchievement(9);
                     }
                 }
                 foreach (IEnemy enemy in enemies)
