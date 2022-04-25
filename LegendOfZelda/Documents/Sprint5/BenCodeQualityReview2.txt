@@ -1,10 +1,10 @@
-﻿using System;
-namespace LegendOfZelda.Documents.Sprint5
-{
-    public class BenCodeQualityReview1
-    {
-        public BenCodeQualityReview1()
-        {
-        }
-    }
-}
+﻿Author of Code Review: Ben Roth
+Date: 4/25/22
+Sprint 5
+BasicCombo.cs (Author: Sean)
+Time Spent: 10min
+Comments:
+	- Really nice class to handle the inputs so each individual input can just be the inputs.
+	- Works with any inputs so there is no further code needed other than adding the actaul combo.
+	- Setting this up allows for more things combos to be added in the future.
+
