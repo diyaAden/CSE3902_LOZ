@@ -10,11 +10,7 @@ Player Controls
 - The 'm' and 'x' keys cause Link to use the item in the secondary slot.
 
 Item Controls
-- Items can be collected by touching them
-
-Enemy/NPC (other character) Controls
-- Enemies collide with blocks and players
-- Colliding with an enemy causes the player to become damaged (turn red)
+- The 'g' and 'j' keys are used to select the secondary item within the pause screen.
 
 Other Controls
 - Use 'q' to quit 
