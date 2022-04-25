@@ -42,24 +42,18 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         }
         public InventorySprite()
         {
-           // SpriteSheet = HUDTexture;
-            sourceRect = new Rectangle(xPos, yPos, width, height);
 
+            sourceRect = new Rectangle(xPos, yPos, width, height);
             if (displayItems.Count > 0)
             {
                 itemCursor = displayItems[0];
                 itemCursor.Position = itemSelectBox;
-              //  itemCursor.Draw(spriteBatch, 2);
             }
-
-
         }
 
-        public void getItemPos() //add item sprites to list
+        public void getItemPos() 
         {
-         
             int offs = 1;
-          
             if (displayItems.Count < 4)
             {
                 for (int i = 0; i < displayItems.Count; i++)
@@ -72,14 +66,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 for (int i = 0; i < 4; i++)
                 {
-                   // Debug.WriteLine("in display " + displayItems[i]);
                     displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y);
                     offs++;
                 }
                 offs = 1;
                 for (int i = 4; i < displayItems.Count; i++)
                 {
-                   // Debug.WriteLine("in display " + displayItems[i]);
                     displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y + 50);
                     offs++;
                 }
@@ -111,14 +103,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 cursorCoolDown--;
                 indicatorPos = new Vector2(displayItems[itemIndex].Position.X - 10, displayItems[itemIndex].Position.Y);
             }
-            //if user clicks enter, update item cursor and B choice on HUD
-            if (k.IsKeyDown(Keys.B) && displayItems.Count > 0 )
-            {
-                Debug.WriteLine("change registered" + itemIndex);
-                itemCursor = displayItems[itemIndex];
-                //set indicator box to same pos as item
-               // indicatorPos = new Vector2(displayItems[pos].Position.X, displayItems[pos].Position.Y);
-            }
+            if (k.IsKeyDown(Keys.B) && displayItems.Count > 0 )  itemCursor = displayItems[itemIndex];
+           
+            
         }
         public void Update() 
         { 

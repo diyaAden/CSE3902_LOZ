@@ -42,7 +42,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public List<IItem> invDisplayItems = new List<IItem>();
 
         public Texture2D itemSheet;
-        ItemDisplay itemDisp = new ItemDisplay();
         private GameScreenBorder border = new GameScreenBorder();
         private Vector2 position = new Vector2(0, 0);
         public void ShiftHUD(Vector2 shiftDist, int scale)
@@ -61,8 +60,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
             invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
-           // invSprite.shiftInventory(shiftDist, scale);
-           // isVisible = true;
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
@@ -78,12 +75,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
             font = content.Load<SpriteFont>("SpriteSheets/General/textFont");
          
-            //test for Inventory
 
         }
         public HUDSprite(int currentRoom)
         {
-            // SpriteSheet = HUDTexture;
             mapDisplay = new MapDisplaySprite();
             HUDItems = new List<IHUDItem>();
             Hearts = new List<IHUDItem>();
@@ -207,37 +202,26 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
              if (invDisplayItems.Count >= currentItem + 1 && invSprite.itemCursor != null)
               {
-                //invDisplayItems[currentItem].Position = itemBPos;
-                // invDisplayItems[currentItem].Draw(spriteBatch, scale);
                 currentItem = invSprite.itemIndex;
                 slotB = invSprite.itemCursor;
                 slotB.Position = new Vector2(itemBPos.X, itemBPos.Y);
                 slotB.Draw(spriteBatch, scale);
 
             } 
-
-            
-
-            
             
             foreach (IHUDItem Heart in Hearts)
             {
                 Heart.Draw(spriteBatch, scale, offset);
             }
 
-            if (isVisible)
-            {
-                invSprite.areVisible = true;
-            }
-            else
-            {
-                invSprite.areVisible = false;
-            }
-            //for testing purposes - leave till later
+            if (isVisible) invSprite.areVisible = true;
+            else invSprite.areVisible = false;
+            
+            
             mapDisplay.Draw(spriteBatch, scale, offset);
             invSprite.getItemPos();
             invSprite.Draw(spriteBatch, scale, offset);
-           // itemDisp.Draw(spriteBatch, scale, offset);
+         
         }
     }
 }

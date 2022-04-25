@@ -17,10 +17,8 @@ namespace LegendOfZelda.Scripts.Enemy
         private readonly Random rnd = new Random();
         private readonly List<IEnemy> boomerang = new List<IEnemy>();
         private int animationTimer = 0, direction, attackTimer = 0, attackTimeLimit;
+        private int moveTimer = 0, moveTimerLimit = 2;
         private IEnemy sprite;
-        private bool attacking = false;
-        // private Vector2 goriyaCenter;
-        ILinkState link;
         public Vector2 targetPos;
         public override Vector2 position
         {
@@ -44,12 +42,6 @@ namespace LegendOfZelda.Scripts.Enemy
             sprite.HandleBlockCollision(block, side, scale);
             pos = sprite.position;
         }
-        public override void Attack()
-        {
-            attacking = true;
-           // boomerang.Clear();
-           // boomerang.Add(new BoomerangEnemy(goriyaCenter, direction));
-        }
 
         public void getTargetPos(Vector2 linkPos)
         {
@@ -69,20 +61,11 @@ namespace LegendOfZelda.Scripts.Enemy
                     animationTimer = 0;
                     NewDirection(linkPos);
                 }
-              /*  if (++attackTimer == attackTimeLimit)
-                {
-                    attackTimer = 0;
-                    attackTimeLimit = rnd.Next(100, 181);
-                    Attack();
-                    foreach (IEnemy rang in boomerang) Enemies.Add(rang);
-                } */
+         
             }
-          //  goriyaCenter = new Vector2(pos.X + sprite.ObjectBox(scale).Width / 2f, pos.Y + sprite.ObjectBox(scale).Height / 2f);
+         
             base.Update(scale, screenOffset);
-           // if (boomerang.Count > 0 && ((BoomerangEnemy)boomerang[0]).GetWeaponType() == IWeapon.WeaponType.BOOMERANG)
-              //  boomerang[0].Update(goriyaCenter, scale, screenOffset);
-           // else
-               // attacking = false;
+      
         }
         public override void HandleWeaponCollision(IGameObject weapon, ICollision side)
         {
@@ -90,73 +73,61 @@ namespace LegendOfZelda.Scripts.Enemy
             {
                 hurtCooldown = hurtCooldownLimit;
                 Health--;
-                //foreach (IEnemy rang in boomerang) rang.Health = 0;
+                
             }
         }
         private void NewDirection(Vector2 linkPos)
         {
           //  Debug.WriteLine("should be moving ");
             getTargetPos(linkPos);
-            if (Math.Abs(targetPos.X - pos.X) < 250 || Math.Abs(targetPos.Y - pos.Y) < 200)
-           // {
-              //  Debug.WriteLine("should be moving ");
-                //if to the left
+            if (Math.Abs(targetPos.X - pos.X) < 100 || Math.Abs(targetPos.Y - pos.Y) < 100)
+            {
+
                 if (targetPos.X < pos.X)
                 {
                     Debug.WriteLine("check A");
                     sprite = EnemySpriteFactory.Instance.CreateDarknutLeftSprite(moveSpeed);
                     direction = 2;
-                    if (targetPos.Y < pos.Y)
-                    {
-                        Debug.WriteLine("check B");
-                        sprite = EnemySpriteFactory.Instance.CreateDarknutUpSprite(moveSpeed);
-                        direction = 1;
-                    }
-                    //if below
-                    if (targetPos.Y > pos.Y)
-                    {
-                        sprite = EnemySpriteFactory.Instance.CreateDarknutDownSprite(moveSpeed);
-                        direction = 0;
-                    }
+                    moveTimer++;
+
                 }
 
                 //if to the right
-                if (targetPos.X > pos.X)
+                else
                 {
                     sprite = EnemySpriteFactory.Instance.CreateDarknutRightSprite(moveSpeed);
                     direction = 3;
+                    moveTimer++;
+                }
+                //if above
+                if (moveTimer >= 2)
+                {
                     if (targetPos.Y < pos.Y)
                     {
                         sprite = EnemySpriteFactory.Instance.CreateDarknutUpSprite(moveSpeed);
-                        direction = 1;
+                        moveTimer++;
+
                     }
-                    //if below
-                    if (targetPos.Y > pos.Y)
+
+                    else
                     {
                         sprite = EnemySpriteFactory.Instance.CreateDarknutDownSprite(moveSpeed);
                         direction = 0;
+
                     }
-            }
-                //if above
-             /*   if (targetPos.Y < pos.Y)
-                {
-                    sprite = EnemySpriteFactory.Instance.CreateDarknutUpSprite(moveSpeed);
-                    direction = 1;
                 }
-                //if below
-                if (targetPos.Y > pos.Y)
-                {
-                    sprite = EnemySpriteFactory.Instance.CreateDarknutDownSprite(moveSpeed);
-                    direction = 0;
-                } */
-          //  }
+            }
+            else
+            {
+              //  sprite  = EnemySpriteFactory.Instance.CreateIdleDarknutSprite(moveSpeed);
+            }
             sprite.position = pos;
+            if (moveTimer >= moveTimerLimit) moveTimer = 0;
         }
 
         public override Rectangle ObjectBox(int scale) { return sprite.ObjectBox(scale); }
         public override void Draw(SpriteBatch spriteBatch, int scale)
         {
-            //foreach (IEnemy rang in boomerang) rang.Draw(spriteBatch, scale);
             sprite.Draw(spriteBatch, scale);
             if (sprite is MoveLeftDarknutSprite) ((MoveLeftDarknutSprite)sprite).Draw(spriteBatch, scale, drawColor);
             else if (sprite is MoveRightDarknutSprite) ((MoveRightDarknutSprite)sprite).Draw(spriteBatch, scale, drawColor);
