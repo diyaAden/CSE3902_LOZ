@@ -22,7 +22,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void LoadAllTextures(ContentManager content)
         {
             MapTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
-            compassMap = content.Load<Texture2D>("SpriteSheets/General/tempCompassMap");
+            compassMap = content.Load<Texture2D>("SpriteSheets/General/FullMap");
             mapIcon = ItemSpriteFactory.Instance.CreateMapSprite();
             mapIcon.Position = new Vector2(240, -130);
             compassIcon = ItemSpriteFactory.Instance.CreateCompassSprite();
