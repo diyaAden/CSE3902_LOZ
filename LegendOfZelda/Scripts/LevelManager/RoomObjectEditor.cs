@@ -151,6 +151,9 @@ namespace LegendOfZelda.Scripts.LevelManager
             }
             else if (enemy is BasicGoriyaSprite goriya)
                 goriya.Update(Enemies, scale, screenOffset);
+            else if (enemy is BasicDarknutSprite darknut)
+                darknut.Update(Enemies, scale, screenOffset, linkPosition);
+
         }
 
         public void UpdateEnemyToWall(IEnemy enemy, int scale, Vector2 screenOffset, bool isCollisionWithLink)

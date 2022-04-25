@@ -14,12 +14,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         Rectangle sourceRect;
         Rectangle compassMarkerSource = new Rectangle(519, 126, 3, 3);
+        Rectangle triforceMarkerSource = new Rectangle(528, 126, 3, 3);
         Texture2D HUDTexture, HUDText, level;
         public List<IHUDItem> HUDItems { get; private set; }
 
         public MapDisplaySprite mapDisplay;
         public InventorySprite invSprite = new InventorySprite();
-        public List<IHUDItem> Hearts { get; set; }
+        
         public bool hasMap = false, hasCompass = false;
         private int compassTimer = 0;
         protected Vector2 pos = new Vector2(170, 10), pos2 = new Vector2(190,10), mapPos = new Vector2(220, 55);
@@ -34,15 +35,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public int nRupees { get; set; }
         public int nKeys { get; set; }
         public int nBombs { get; set; }
-        private Rectangle compassMarkerDest;
+        private Rectangle compassMarkerDest, triforceMarkerDest;
         private MapRoomLocations roomLocations = new MapRoomLocations();
-
         public bool isVisible = false;
+        public bool isUsable = false;
         public int currentItem = 1;
         public List<IItem> invDisplayItems = new List<IItem>();
 
         public Texture2D itemSheet;
-        ItemDisplay itemDisp = new ItemDisplay();
         private GameScreenBorder border = new GameScreenBorder();
         private Vector2 position = new Vector2(0, 0);
         public void ShiftHUD(Vector2 shiftDist, int scale)
@@ -61,10 +61,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             itemBPos = new Vector2(itemBPos.X, itemBPos.Y + shiftDist.Y * scale);
             invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
-           // invSprite.shiftInventory(shiftDist, scale);
-           // isVisible = true;
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
-            foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             
         }
@@ -78,15 +75,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             level = content.Load<Texture2D>("SpriteSheets/General/levelIcon");
             font = content.Load<SpriteFont>("SpriteSheets/General/textFont");
          
-            //test for Inventory
 
         }
         public HUDSprite(int currentRoom)
         {
-            // SpriteSheet = HUDTexture;
             mapDisplay = new MapDisplaySprite();
             HUDItems = new List<IHUDItem>();
-            Hearts = new List<IHUDItem>();
+            
             sourceRect = new Rectangle(xPos, yPos, width, height);
             levelImageSource = new Rectangle(0, 0, 50, 26);
             levelFrameSource = new Rectangle(70, 1, 63, 8);
@@ -100,39 +95,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             HUDItems[^1].Position = new Vector2(xPos, yPos);
             HUDItems[^1].name = name;
         }
-        public void AddHearts(string name, int xPos, int yPos)
-        {
-            Hearts.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
-            Hearts[^1].Position = new Vector2(xPos, yPos);
-            Hearts[^1].name = name;
-        }
-        public void ChangeHeart(string name, int index) {
-            Vector2 heartPos = Hearts[index].Position;
-            if (name.Equals("EmptyHeart"))
-            {
-                Hearts.Insert(index, HUDSpriteFactory.Instance.CreateEmptyHeart());
-                Hearts.RemoveAt(index + 1);
-                Hearts[index].Position = heartPos;
-                Hearts[index].name = name;
-            } else if (name.Equals("HalfHeart"))
-            {
-                Hearts.Insert(index, HUDSpriteFactory.Instance.CreateHalfHeart());
-                Hearts.RemoveAt(index + 1);
-                Hearts[index].Position = heartPos;
-                Hearts[index].name = name;
-            } else
-            {
-                Hearts.Insert(index, HUDSpriteFactory.Instance.CreateFullHeart());
-                Hearts.RemoveAt(index + 1);
-                Hearts[index].Position = heartPos;
-                Hearts[index].name = name;
-            }
 
-        }
-        public void RemoveHeart()
-        {
-           if(Hearts.Count > 0) Hearts.RemoveAt(Hearts.Count-1);
-        }
         public int findObject(string name) {
             for ( int i = HUDItems.Count-1; i > 0; i--) {
                     if( HUDItems[i].name.Equals(name)) {
@@ -163,9 +126,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         {
             invSprite.checkCursorPos(k);
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
-            foreach (IHUDItem Heart in Hearts) Heart.Update();
+            
             Vector2 roomDestination = roomLocations.RoomLocation(currentRoom);
+            Vector2 triforceRoom = roomLocations.RoomLocation(15);
             compassMarkerDest = new Rectangle((int)roomDestination.X *2, (int)roomDestination.Y*2, compassMarkerSource.Width * 2, compassMarkerSource.Height * 2);
+            triforceMarkerDest = new Rectangle((int)triforceRoom.X * 2, (int)triforceRoom.Y * 2, compassMarkerSource.Width * 2, compassMarkerSource.Height * 2);
         }
         public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
         {
@@ -194,7 +159,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 spriteBatch.Draw(level, levelIconDestRect, levelImageSource, Color.White);
                 if (hasCompass)
                 {
-                    if (++compassTimer < 15) spriteBatch.Draw(HUDTexture, compassMarkerDest, compassMarkerSource, Color.White);
+                    if (++compassTimer < 15)
+                    {
+                        spriteBatch.Draw(HUDTexture, compassMarkerDest, compassMarkerSource, Color.White);
+                        spriteBatch.Draw(HUDTexture, triforceMarkerDest, triforceMarkerSource, Color.White);
+                    }
                     else if (compassTimer == 30) compassTimer = 0;
                 }
             }
@@ -207,36 +176,26 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
              if (invDisplayItems.Count >= currentItem + 1 && invSprite.itemCursor != null)
               {
-                //invDisplayItems[currentItem].Position = itemBPos;
-                // invDisplayItems[currentItem].Draw(spriteBatch, scale);
+                currentItem = invSprite.itemIndex;
                 slotB = invSprite.itemCursor;
                 slotB.Position = new Vector2(itemBPos.X, itemBPos.Y);
                 slotB.Draw(spriteBatch, scale);
 
             } 
-
-            
-
             
             
-            foreach (IHUDItem Heart in Hearts)
-            {
-                Heart.Draw(spriteBatch, scale, offset);
-            }
 
-            if (isVisible)
-            {
-                invSprite.areVisible = true;
-            }
-            else
-            {
-                invSprite.areVisible = false;
-            }
-            //for testing purposes - leave till later
+            if (isVisible) invSprite.areVisible = true;
+            else invSprite.areVisible = false;
+
+
+            if (isUsable) invSprite.areUsable = true;
+            else invSprite.areUsable = false;
+
             mapDisplay.Draw(spriteBatch, scale, offset);
             invSprite.getItemPos();
             invSprite.Draw(spriteBatch, scale, offset);
-           // itemDisp.Draw(spriteBatch, scale, offset);
+         
         }
     }
 }

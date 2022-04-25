@@ -7,6 +7,7 @@
 		<PositionY>0</PositionY>
 		<roomNumber>2</roomNumber>
 	</Item>
+
 	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>HalfWallLen</ObjectName>

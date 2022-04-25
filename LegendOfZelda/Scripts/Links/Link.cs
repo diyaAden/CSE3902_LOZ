@@ -1,9 +1,9 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
+using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.Items.WeaponSprites;
 using LegendOfZelda.Scripts.Links.State;
 using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
@@ -21,24 +21,23 @@ namespace LegendOfZelda.Scripts.Links
         public bool HasCompass { get; private set; } = false;
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
+        private bool hasTriforce = false;
         private int attackCooldown, hurtCooldown = 0, clockCooldown = 0;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70, clockCooldownLimit = 300;
         private ICollision enemyCollisionSide;
         private readonly HandlerManager handlerManager;
-        private readonly HUDInventoryManager HUDInventoryManager;
+        private readonly HealthManager HUDInventoryManager;
         private readonly List<Vector2> roomSwapPositions = new List<Vector2>() { new Vector2(122, 32), new Vector2(122, 127), new Vector2(208, 80), new Vector2(34, 80), new Vector2(48, 5), new Vector2(111, 80) };
         public int CatchByEnemy { get; set; }
         public int numKeys { get; set; } = 0;
         public int numRupees { get; set; } = 10;
         public int numBombs { get; set; } = 3;
         public List<IItem> linkInventory = new List<IItem>();
-        //  Texture2D itemSprSheet = 
-        IItem firstItem;
+      
         protected int currentFrame = 0;
 
-        //HUDItems.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
-        // linkInventory.Add(new SwordWeaponSprite());
-        public Link(Vector2 position, Vector2 screenOffset, int scale, HUDInventoryManager HUDManager, HandlerManager handlerManager)
+      
+        public Link(Vector2 position, Vector2 screenOffset, int scale, HealthManager HUDManager, HandlerManager handlerManager)
         {
             CatchByEnemy = -1;
             this.handlerManager = handlerManager;
@@ -107,12 +106,16 @@ namespace LegendOfZelda.Scripts.Links
                 HUDInventoryManager.gainHeart();
                 SoundController.Instance.PlayGetHeartSound(); 
             }
+            else if (name.Equals("Fairy")) {
+                HUDInventoryManager.setFullHealth();
+            }
+
             else if (name.Contains("Triforce"))
             {
                 attackCooldown = getTriforceCooldownLimit;
                 SoundController.Instance.PlayGetTriforceMusic();
                 state.PickItem(name, scale);
-
+                hasTriforce = true;
             }
             else if (name.Equals("Bow") || name.Contains("Boomerang"))
             {
@@ -263,7 +266,11 @@ namespace LegendOfZelda.Scripts.Links
         //Update and draw
         public void Update()
         {
-            if (attackCooldown > 0) attackCooldown--;
+            if (attackCooldown > 0)
+            {
+                attackCooldown--;
+                if (hasTriforce && attackCooldown == 0) GameStateController.Instance.SetGameStateWonGame();
+            }
             state.Update();
 
             if (CatchByEnemy == -1)

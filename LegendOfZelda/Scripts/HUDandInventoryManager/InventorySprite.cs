@@ -22,8 +22,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public Vector2 itemSelectBox = new Vector2(290, 75);
         public IItem itemCursor;
-        int pos = 0;
+        public int itemIndex = 1;
         public bool areVisible = false;
+        public bool areUsable = false;
         public int cursorCoolDown = 0;
         public int cursorCoolDownLimit = 10;
         Texture2D indicatorSprTexture;
@@ -42,24 +43,18 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         }
         public InventorySprite()
         {
-           // SpriteSheet = HUDTexture;
-            sourceRect = new Rectangle(xPos, yPos, width, height);
 
+            sourceRect = new Rectangle(xPos, yPos, width, height);
             if (displayItems.Count > 0)
             {
                 itemCursor = displayItems[0];
                 itemCursor.Position = itemSelectBox;
-              //  itemCursor.Draw(spriteBatch, 2);
             }
-
-
         }
 
-        public void getItemPos() //add item sprites to list
+        public void getItemPos() 
         {
-         
             int offs = 1;
-          
             if (displayItems.Count < 4)
             {
                 for (int i = 0; i < displayItems.Count; i++)
@@ -72,14 +67,12 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 for (int i = 0; i < 4; i++)
                 {
-                   // Debug.WriteLine("in display " + displayItems[i]);
                     displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y);
                     offs++;
                 }
                 offs = 1;
                 for (int i = 4; i < displayItems.Count; i++)
                 {
-                   // Debug.WriteLine("in display " + displayItems[i]);
                     displayItems[i].Position = new Vector2(startPos.X + (50 * offs), startPos.Y + 50);
                     offs++;
                 }
@@ -93,32 +86,28 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void checkCursorPos(KeyboardState k)
         {
-            
-            //if user presses arrow key, depending on direction shift
-            if (k.IsKeyDown(Keys.D) && pos < displayItems.Count - 1 && cursorCoolDown == 0 )
+            if (areUsable)
             {
-                pos++;
-                cursorCoolDown = cursorCoolDownLimit;
-            }
-            if (k.IsKeyDown(Keys.A) && pos > 0 && cursorCoolDown == 0)
-            {
-                pos--;
-                cursorCoolDown = cursorCoolDownLimit;
-            }
+                //if user presses arrow key, depending on direction shift
+                if (k.IsKeyDown(Keys.J) && itemIndex < displayItems.Count - 1 && cursorCoolDown == 0)
+                {
+                    itemIndex++;
+                    cursorCoolDown = cursorCoolDownLimit;
+                }
+                if (k.IsKeyDown(Keys.G) && itemIndex > 0 && cursorCoolDown == 0)
+                {
+                    itemIndex--;
+                    cursorCoolDown = cursorCoolDownLimit;
+                }
 
-            if (cursorCoolDown > 0)
-            {
-                cursorCoolDown--;
-                indicatorPos = new Vector2(displayItems[pos].Position.X - 10, displayItems[pos].Position.Y);
+                if (cursorCoolDown > 0)
+                {
+                    cursorCoolDown--;
+                    indicatorPos = new Vector2(displayItems[itemIndex].Position.X - 10, displayItems[itemIndex].Position.Y);
+                }
+                if (k.IsKeyDown(Keys.B) && displayItems.Count > 0) itemCursor = displayItems[itemIndex];
             }
-            //if user clicks enter, update item cursor and B choice on HUD
-            if (k.IsKeyDown(Keys.B) && displayItems.Count > 0 )
-            {
-                Debug.WriteLine("change registered" + pos);
-                itemCursor = displayItems[pos];
-                //set indicator box to same pos as item
-               // indicatorPos = new Vector2(displayItems[pos].Position.X, displayItems[pos].Position.Y);
-            }
+            
         }
         public void Update() 
         { 

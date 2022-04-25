@@ -50,6 +50,7 @@ namespace LegendOfZelda.Scripts
                 }
                 distMoved += shiftSpeed;
                 HUD.isVisible = false;
+                HUD.isUsable = false;
                 if (distMoved >= distToShift)
                 {
                     shiftingScreen = false;
@@ -61,6 +62,7 @@ namespace LegendOfZelda.Scripts
                     {
                         GameStateController.Instance.SetGameStateItemSelection();
                         HUD.isVisible = true;
+                        HUD.isUsable = true;
                     }
                     else
                     {

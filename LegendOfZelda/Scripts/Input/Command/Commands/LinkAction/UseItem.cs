@@ -19,7 +19,7 @@ namespace LegendOfZelda.Scripts.Input.Command.Commands
             if (myGame.link.CatchByEnemy == -1)
             {
                 UseCurrentItem(myGame.HUD.HUD.invDisplayItems[myGame.HUD.HUD.currentItem]);
-                myGame.HUD.HUD.currentItem = ++myGame.HUD.HUD.currentItem % myGame.HUD.HUD.invDisplayItems.Count;
+                //myGame.HUD.HUD.currentItem = ++myGame.HUD.HUD.currentItem % myGame.HUD.HUD.invDisplayItems.Count;
             }
         }
         private void UseCurrentItem(IItem item)

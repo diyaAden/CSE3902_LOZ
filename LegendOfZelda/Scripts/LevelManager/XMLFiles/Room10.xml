@@ -14,6 +14,12 @@
 		<PositionY>144</PositionY>
 	</Item>
 	<Item>
+		<ObjectType>Enemy</ObjectType>
+		<ObjectName>Darknut</ObjectName>
+		<PositionX>130</PositionX>
+		<PositionY>48</PositionY>
+	</Item>
+	<Item>
 		<ObjectType>Block</ObjectType>
 		<ObjectName>OpenDoorLeft</ObjectName>
 		<PositionX>224</PositionX>

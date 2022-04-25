@@ -144,12 +144,7 @@ namespace LegendOfZelda.Scripts.Collision
                 if (!sides.Contains(ICollision.SideNone) && sides.Count > 0)
                 {
                     indices.Add(index);
-                }
-
-                foreach (ICollision side in sides)
-                {
-                    //Debug.WriteLine(index);
-                    collisionHandlers[0].HandleCollision(Link, item, side, gameScale);
+                    collisionHandlers[0].HandleCollision(Link, item, sides[0], gameScale);
                 }
                 index++;
             }

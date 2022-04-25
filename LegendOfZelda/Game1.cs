@@ -17,6 +17,11 @@ using LegendOfZelda.Scripts;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using LegendOfZelda.Scripts.Achievement;
+using LegendOfZelda.Scripts.PlayerStats;
+using System.Text.Json;
+using System.IO;
+using System;
+using LegendOfZelda.Scripts.HUDandInventoryManager.HUDItemSprites;
 
 namespace LegendOfZelda
 {
@@ -24,8 +29,12 @@ namespace LegendOfZelda
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteFont spriteFont;
         private List<IController> controllerList;
-
+        private PlayerStat pstat;
+        private const string PATH = "stats.json";
+        
+        private int currentTime = 0;
         private readonly Vector2 screenOffset = new Vector2(80, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
@@ -36,7 +45,7 @@ namespace LegendOfZelda
         public RoomManager roomManager;
 
         public EndGameController endGameControl;
-        public HUDInventoryManager HUDManager;
+        public HealthManager HUDManager;
 
         public GameState Gstate;
         public ItemSelection HUD;
@@ -45,8 +54,7 @@ namespace LegendOfZelda
         //HUD testing
         public InventorySprite invSpr;
 
-
-        //public GameStateManager gameStateManager;
+        public PlayTimer playTimer;
 
         Texture2D startTexture;
         Rectangle startRectangle;
@@ -89,18 +97,21 @@ namespace LegendOfZelda
             GameStateController.Instance.LoadGame(this);
             roomManager = new RoomManager();
             detectorManager = new DetectorManager();
-            //handlerManager = new HandlerManager(detectorManager.collisionDetectors);
+           
             HUD = new ItemSelection(gameScale, screenOffset, 1);
-            HUDManager = new HUDInventoryManager(HUD.HUD);
+            HUDManager = new HealthManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
             achievementCollection = new AchievementCollection();
             //gameStateManager = new GameStateManager();
+            playTimer = new PlayTimer();
+
 
             base.Initialize();
         }
         public void ResetGame()
         {
+            Save(pstat);
             Initialize();
             LoadContent();
             GameStateController.Instance.SetGameStateStart();
@@ -109,7 +120,7 @@ namespace LegendOfZelda
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            spriteFont = Content.Load<SpriteFont>("Fonts/basicFont");
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
@@ -120,6 +131,21 @@ namespace LegendOfZelda
             HUDManager.LoadContent();
             HUD.LoadAllTextures(Content);
             invSpr.LoadAllTextures(Content); //REMOVE LATER
+            currentTime = 0;
+            Save(pstat);
+            if (pstat is null)
+            {
+                pstat = new PlayerStat()
+                {
+                    TimeToBeat = 650,
+                    BestTime = "N/A"
+
+                };
+                Save(pstat);
+            }
+            pstat = Load();
+            
+            
 
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
@@ -163,7 +189,7 @@ namespace LegendOfZelda
             KeyboardState keyboard = Keyboard.GetState();
             //Gstate = GameState.Paused;
             HUD.Update(gameScale, screenOffset, roomManager.CurrentRoom, keyboard);
-            
+            HUDManager.Update();
 
             switch (Gstate)
             {
@@ -174,7 +200,7 @@ namespace LegendOfZelda
                     }
                     break;
                 case GameState.Playing:
-                    if (HUDManager.health == 0)
+                    if (HUDManager.hearts == 0)
                     {
                         GameStateController.Instance.SetGameStateGameOver();
                     }
@@ -184,7 +210,7 @@ namespace LegendOfZelda
                         GameStateController.Instance.SetGameStateWonGame();
                     }
                     */
-
+                    currentTime++;
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     foreach (IController controller in controllerList) { controller.Update(); }
 
@@ -202,7 +228,7 @@ namespace LegendOfZelda
 
                     //update HUD
                     HUD.GetItemSprites(link);
-                    HUDManager.Update();
+                    //HUDManager.Update();
                     achievementCollection.Update();
 
                     break;
@@ -224,14 +250,26 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
+
+                    Save(pstat);
                     link.Update();
                     endGameControl.Update();
                     //update HUD
 
-                    
-
                     break;
                 case GameState.WonGame:
+                    if(pstat.BestTime.Equals("N/A")){
+                        pstat.BestTime = (currentTime / 60).ToString();
+                    }
+                    else
+                    {
+                        if((currentTime / 60) < Int32.Parse(pstat.BestTime))
+                        {
+                           pstat.BestTime = (currentTime / 60).ToString();
+
+                        }
+                    }
+                    Save(pstat);
                     endGameControl.Update();
 
 
@@ -245,12 +283,13 @@ namespace LegendOfZelda
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
 
-            //  roomManager.Draw(_spriteBatch, gameScale);
+           
             
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
+
             
-          
+
             switch (Gstate)
             {
                 case GameState.Start:
@@ -258,12 +297,14 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(startTexture, destRect4, startRectangle, Color.White);
                     break;
                 case GameState.Playing:
+                    playTimer.Draw(_spriteBatch, spriteFont, currentTime, pstat);
                     roomManager.Draw(_spriteBatch, gameScale);
                     foreach (IWeapon w in activeWeapons)
                     {
                         w.Draw(_spriteBatch, gameScale);
                     }
                     link.Draw(_spriteBatch, gameScale);
+                    HUDManager.Draw(_spriteBatch, gameScale, screenOffset);
                     break;
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
@@ -290,6 +331,18 @@ namespace LegendOfZelda
             achievementCollection.Draw(_spriteBatch, gameScale);
             _spriteBatch.End();
             base.Draw(gameTime);
+        }
+        private void Save(PlayerStat stat)
+        {
+            string serializedText = JsonSerializer.Serialize<PlayerStat>(stat);
+            Trace.WriteLine(serializedText);
+            File.WriteAllText(PATH, serializedText);
+        }
+
+        private PlayerStat Load()
+        {
+            var fileContent = File.ReadAllText(PATH);
+            return JsonSerializer.Deserialize<PlayerStat>(fileContent);
         }
     }
 }

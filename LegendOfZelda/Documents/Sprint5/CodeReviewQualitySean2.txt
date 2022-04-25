@@ -1,0 +1,14 @@
+Review Author: Sean Burns
+Review Date: 4-25-22
+Sprint: 5
+File Name: BasicDarknutSprite.cs
+File Author: Diya
+Time Spent Reviewing: 15 min
+
+Comments: 
+	-The class doesn't appear to be very complex. Each method has a clear purpose and seems to do it without to much else going on.
+	-The class overall is very readable, but there is a lot of stuff that can be removed since this class was started by copying another class and a lot of stuff from that class are not used in this new class.
+	-This class is very maintainable. If the enemy needed to do something new, it would not be very hard to add that new functionality.
+	-I don't think this class could be very reusable unless the new project just wants to copy the entire enemy over into it. This enemy is designed for this game and using it elsewhere while also wanting it to do something different would be difficult.
+
+Hypothetical change: If the enemy needed to be changed to do something new, such as use a new attack, it would likely be easy to add to this class since this class already controls most of the enemy's code. Some code might need to be moved around, but adding in new functionality certainly wouldn't be difficult.

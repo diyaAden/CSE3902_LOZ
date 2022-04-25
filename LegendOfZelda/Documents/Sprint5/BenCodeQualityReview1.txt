@@ -1,0 +1,9 @@
+﻿Author of Code Review: Ben Roth
+Date: 4/25/22
+Sprint 5
+ComboController.cs (Author: Sean)
+Time Spent: 10min
+Comments:
+	- This class handles the input for combo commands and does so well.
+	- It collects the keyboard input and if a certain input is entered then a command will execute.
+	- This is a great class because more combos can be added and handled with the ComboController in the future.

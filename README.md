@@ -10,13 +10,11 @@ Player Controls
 - The 'm' and 'x' keys cause Link to use the item in the secondary slot.
 
 Item Controls
-- Items can be collected by touching them
-
-Enemy/NPC (other character) Controls
-- Enemies collide with blocks and players
-- Colliding with an enemy causes the player to become damaged (turn red)
+- The 'g' and 'j' keys are used to browse the secondary items within the pause screen.
+- The 'b' key sets the secondary item to the currently highlighted item in the pause screen.
 
 Other Controls
+- Use 'Space' to start the game from the start screen
 - Use 'q' to quit 
 - Use 'r' to reset the program back to its initial state
 - Use left mouse click to move to next room room
@@ -28,6 +26,12 @@ Cheat Codes
 - WDSAWDSA - Reduce the number of enemies in the current room down to 1
 - DDDDDW - Set the number of collected rupees to 99
 - PPP - Warp to the special Pokemon rooms
+
+Sprint 5 Additions
+- Cheat Codes
+- Game Timer
+- Start Screen
+- Extra Rooms and Enemies
 
 Updates Log:
 - Sprint 2 Completion 2/21/22

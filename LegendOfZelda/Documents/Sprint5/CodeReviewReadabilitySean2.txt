@@ -1,0 +1,11 @@
+Review Author: Sean Burns
+Review Date: 4-25-22
+Sprint: 5
+File Name: BasicDarknutSprite.cs
+File Author: Diya
+Time Spent Reviewing: 10 min
+
+Comments: 
+	-It appears that this class was created by first copying an existing class and then changing the functionality. However, it appears that a lot of the original class that is not needed or used was not removed from the new class. Because of that, there is a lot of unnecessary clutter throughout the class.
+	-There are a handful of spots throughout the class where magic numbers are used. Replacing these with a variable with a good name can make it easier to understand the purpose of each value.
+	-Other than that, white space and naming conventions used are used effectively and readability is enhanced because of it.

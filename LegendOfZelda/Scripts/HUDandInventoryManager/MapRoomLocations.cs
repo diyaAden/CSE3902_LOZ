@@ -83,6 +83,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 case 17:
                     location = new Vector2(128, 27);
                     break;
+                case 18:
+                    location = new Vector2(128, 27);
+                    break;
                 default:
                     location = new Vector2(0, 0);
                     break;
