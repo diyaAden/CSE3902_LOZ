@@ -22,23 +22,16 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
                 {
                     enemy.HandleCollision(side, scale, screenOffset, link.CatchByEnemy);
                     link.HandleEnemyCollision(enemy, scale);
-                    //Debug.WriteLine("why not come" + index);
                     if (enemy.IsCollisionWithLink == false)
                     {
                         roomManager.CurrentRoom = 2;
-                        link.State.SetPosition(new Vector2(400, 350));
-                        link.Update();
-                        link.CatchByEnemy = -1;
-                        //Debug.WriteLine("change" + index);                        
+                        BackRoom(link);                                     
                     }
                 }
                 else if (link.CatchByEnemy == -1 && !(side == ICollision.SideNone))
                 {
-                    link.MoveDown();
-                    link.ToIdle();
-                    link.CatchByEnemy = index;
+                    CatchByEnemy(link, index);
                     link.HandleEnemyCollision(enemy, scale);
-                    //Debug.WriteLine(link.CatchByEnemy + "  " + index);
                 }
                 else
                 {
@@ -49,6 +42,20 @@ namespace LegendOfZelda.Scripts.Collision.CollisionHandler
             {
                 link.HandleEnemyCollision(enemy, side);
             }
+        }
+
+        private void BackRoom(ILink link)
+        {
+            link.State.SetPosition(new Vector2(400, 350));
+            link.Update();
+            link.CatchByEnemy = -1;
+        }
+
+        private void CatchByEnemy(ILink link, int index)
+        {
+            link.MoveDown();
+            link.ToIdle();
+            link.CatchByEnemy = index;
         }
         public void HandleCollision(ILink link, IGameObject gameObject, ICollision side, int scale)
         {
