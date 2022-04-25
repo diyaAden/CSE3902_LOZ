@@ -284,7 +284,7 @@ namespace LegendOfZelda
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
 
-            HUDManager.Draw(_spriteBatch, gameScale, screenOffset);
+            
 
             switch (Gstate)
             {
@@ -300,6 +300,7 @@ namespace LegendOfZelda
                         w.Draw(_spriteBatch, gameScale);
                     }
                     link.Draw(_spriteBatch, gameScale);
+                    HUDManager.Draw(_spriteBatch, gameScale, screenOffset);
                     break;
                 case GameState.RoomSwitch:
                     roomMovingController.Draw(_spriteBatch);
