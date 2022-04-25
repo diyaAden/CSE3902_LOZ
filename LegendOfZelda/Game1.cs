@@ -185,7 +185,7 @@ namespace LegendOfZelda
             KeyboardState keyboard = Keyboard.GetState();
             //Gstate = GameState.Paused;
             HUD.Update(gameScale, screenOffset, roomManager.CurrentRoom, keyboard);
-            
+            HUDManager.Update();
 
             switch (Gstate)
             {
@@ -283,8 +283,8 @@ namespace LegendOfZelda
             
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
-           
 
+            HUDManager.Draw(_spriteBatch, gameScale, screenOffset);
 
             switch (Gstate)
             {

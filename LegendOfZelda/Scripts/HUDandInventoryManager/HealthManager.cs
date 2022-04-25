@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
@@ -11,11 +14,13 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private int HeartposX = 179, HeartposY = 36;
         private int firstEmpty, lastHeart;
         public HUDSprite HUD { get; set; }
+        public List<IHUDItem> Hearts { get; set; }
         private bool firstTime = true;
-        
+
         public HealthManager(HUDSprite HUDG)
         {
             HUD = HUDG;
+            Hearts = new List<IHUDItem>();
         }
         public bool IsFullHealth() { return hearts == maxHearts; }
         public void LoadContent()
@@ -59,7 +64,9 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 //Add hearts
                 for (int w = 0; w < maxHearts; w++)
                 {
-                    HUD.AddHearts("HeartItem", HeartposX, HeartposY);
+                    Hearts.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString("HeartItem"));
+                    Hearts[^1].Position = new Vector2(HeartposX, HeartposY);
+                    Hearts[^1].name = "HeartItem";
                     if (!((w + 1) == maxHearts))
                         HeartposX += 8;
                 }
@@ -71,56 +78,106 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 setFullHealth();
             }
         }
-        public void damageLink() {
-            
-            if (hearts % 1 != 0)
-            {
-                HUD.ChangeHeart("EmptyHeart", lastHeart);
-                firstEmpty = lastHeart;
-                lastHeart--;
-            } else
-            {
-                HUD.ChangeHeart("HalfHeart", lastHeart);
-            }
+        public void damageLink()
+        {
+
+            //if (hearts % 1 != 0)
+            //{
+            //    HUD.ChangeHeart("EmptyHeart", lastHeart);
+            //    firstEmpty = lastHeart;
+            //    lastHeart--;
+            //}
+            //else
+            //{
+            //    HUD.ChangeHeart("HalfHeart", lastHeart);
+            //}
             hearts -= halfHeart;
         }
         public void gainHeart()
         {
             if (!IsFullHealth())
             {
-                if (hearts % 1 == 0)
+                //if (hearts % 1 == 0)
+                //{
+                //    HUD.ChangeHeart("FullHeart", firstEmpty);
+                //    firstEmpty = lastHeart;
+                //    firstEmpty++;
+                //    hearts += fullHeart;
+                //}
+                //else
+                //{
+                //    if (hearts == (maxHearts - halfHeart))
+                //    {
+                //        HUD.ChangeHeart("FullHeart", lastHeart);
+                //        hearts += halfHeart;
+                //    }
+                //    else
+                //    {
+                //        HUD.ChangeHeart("FullHeart", lastHeart);
+                //        HUD.ChangeHeart("HalfHeart", firstEmpty);
+                //        firstEmpty++;
+                //        lastHeart++;
+                //        hearts += fullHeart;
+                //    }
+                //}
+                hearts += fullHeart;
+            }
+
+        }
+        public void setFullHealth()
+        {
+            for (int k = 0; k < maxHearts; k++)
+            {
+                //HUD.ChangeHeart("FullHeart", k);
+            }
+        }
+        public void Update()
+        {
+            if (hearts > 4) hearts = 4;
+            
+
+            bool isHalfHeart = false;
+            if(hearts % 1 != 0)
+            {
+                isHalfHeart = true;
+                hearts -= 0.5f;
+            }
+
+            foreach (IHUDItem Heart in Hearts) Heart.Update();
+            HeartposX = 179;
+            HeartposY = 36;
+            int k;
+            for (k = 0; k < maxHearts; k++)
+            {
+                if(k < hearts)
                 {
-                    HUD.ChangeHeart("FullHeart", firstEmpty);
-                    firstEmpty = lastHeart;
-                    firstEmpty++;
-                    hearts += fullHeart;
+                    Hearts[k] = HUDSpriteFactory.Instance.CreateHUDItemFromString("HeartItem");
+                    Hearts[k].Position = new Vector2(HeartposX, HeartposY);
+                }else if(k == hearts && isHalfHeart)
+                {
+                    Hearts[(int)hearts] = HUDSpriteFactory.Instance.CreateHUDItemFromString("HalfHeartItem");
+                    Hearts[(int)hearts].Position = new Vector2(HeartposX, HeartposY);
                 }
                 else
                 {
-                    if (hearts == (maxHearts - halfHeart))
-                    {
-                        HUD.ChangeHeart("FullHeart", lastHeart);
-                        hearts += halfHeart;
-                    }
-                    else
-                    {
-                        HUD.ChangeHeart("FullHeart", lastHeart);
-                        HUD.ChangeHeart("HalfHeart", firstEmpty);
-                        firstEmpty++;
-                        lastHeart++;
-                        hearts += fullHeart;
-                    }
+                    Hearts[k] = HUDSpriteFactory.Instance.CreateHUDItemFromString("EmptyHeartItem");
+                    Hearts[k].Position = new Vector2(HeartposX, HeartposY);
                 }
-
+                if (!((k + 1) == maxHearts))
+                    HeartposX += 8;
             }
-
-        }
-        public void setFullHealth() {
-            for (int k = 0; k < maxHearts; k++)
+            if (isHalfHeart)
             {
-                HUD.ChangeHeart("FullHeart", k);
+
+                hearts += 0.5f;
             }
         }
-
+        public void Draw(SpriteBatch spriteBatch, int scale, Vector2 offset)
+        {
+            foreach (IHUDItem Heart in Hearts)
+            {
+                Heart.Draw(spriteBatch, scale, offset);
+            }
+        }
     }
 }
