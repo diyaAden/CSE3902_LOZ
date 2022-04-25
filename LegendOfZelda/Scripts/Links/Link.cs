@@ -1,9 +1,9 @@
 ﻿using LegendOfZelda.Scripts.Collision;
 using LegendOfZelda.Scripts.Enemy;
 using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
+using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using LegendOfZelda.Scripts.Items;
-using LegendOfZelda.Scripts.Items.WeaponSprites;
 using LegendOfZelda.Scripts.Links.State;
 using LegendOfZelda.Scripts.Sounds;
 using Microsoft.Xna.Framework;
@@ -21,6 +21,7 @@ namespace LegendOfZelda.Scripts.Links
         public bool HasCompass { get; private set; } = false;
         public ILinkState State{ get {return state; } set { state = value; } }
         private ILinkState state;
+        private bool hasTriforce = false;
         private int attackCooldown, hurtCooldown = 0, clockCooldown = 0;
         private const int cooldownLimit = 30, getTriforceCooldownLimit = 460, hurtCooldownLimit = 70, clockCooldownLimit = 300;
         private ICollision enemyCollisionSide;
@@ -114,7 +115,7 @@ namespace LegendOfZelda.Scripts.Links
                 attackCooldown = getTriforceCooldownLimit;
                 SoundController.Instance.PlayGetTriforceMusic();
                 state.PickItem(name, scale);
-
+                hasTriforce = true;
             }
             else if (name.Equals("Bow") || name.Contains("Boomerang"))
             {
@@ -265,7 +266,11 @@ namespace LegendOfZelda.Scripts.Links
         //Update and draw
         public void Update()
         {
-            if (attackCooldown > 0) attackCooldown--;
+            if (attackCooldown > 0)
+            {
+                attackCooldown--;
+                if (hasTriforce && attackCooldown == 0) GameStateController.Instance.SetGameStateWonGame();
+            }
             state.Update();
 
             if (CatchByEnemy == -1)
