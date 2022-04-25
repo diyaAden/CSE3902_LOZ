@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using LegendOfZelda.Scripts.Items;
 using LegendOfZelda.Scripts.Collision;
-using LegendOfZelda.Scripts.Enemy.Goriya;
-using LegendOfZelda.Scripts.Enemy.Goriya.Sprite;
+
 using System.Collections.Generic;
 using LegendOfZelda.Scripts.Links;
 using System.Diagnostics;
@@ -15,8 +14,8 @@ namespace LegendOfZelda.Scripts.Enemy
     {
         private readonly int moveSpeed = 1;
         private readonly Random rnd = new Random();
-        private readonly List<IEnemy> boomerang = new List<IEnemy>();
-        private int animationTimer = 0, direction, attackTimer = 0, attackTimeLimit;
+       
+        private int animationTimer = 0;
         private int moveTimer = 0, moveTimerLimit = 2;
         private IEnemy sprite;
         public Vector2 targetPos;
@@ -33,8 +32,7 @@ namespace LegendOfZelda.Scripts.Enemy
         {
             sprite = EnemySpriteFactory.Instance.CreateDarknutDownSprite(moveSpeed);
             MoveSpeed = moveSpeed;
-            direction = 0;
-            attackTimeLimit = rnd.Next(100, 181);
+           
             Health = 3; //red is 3, blue is 5.
         }
         public override void HandleBlockCollision(IGameObject block, ICollision side, int scale)
@@ -87,7 +85,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 {
                     Debug.WriteLine("check A");
                     sprite = EnemySpriteFactory.Instance.CreateDarknutLeftSprite(moveSpeed);
-                    direction = 2;
+                 
                     moveTimer++;
 
                 }
@@ -96,7 +94,7 @@ namespace LegendOfZelda.Scripts.Enemy
                 else
                 {
                     sprite = EnemySpriteFactory.Instance.CreateDarknutRightSprite(moveSpeed);
-                    direction = 3;
+                 
                     moveTimer++;
                 }
                 //if above
@@ -112,7 +110,7 @@ namespace LegendOfZelda.Scripts.Enemy
                     else
                     {
                         sprite = EnemySpriteFactory.Instance.CreateDarknutDownSprite(moveSpeed);
-                        direction = 0;
+                       
 
                     }
                 }
