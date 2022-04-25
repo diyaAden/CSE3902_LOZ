@@ -23,13 +23,14 @@ namespace LegendOfZelda.Scripts.Achievement
 
         private Boolean isGainedAchievement;
         private string AchivementText;
-        public SpriteFont font;
-        private Vector2 pos = new Vector2(170, 10);
+        private Vector2 pos = new Vector2(20, 10);
+        private int remainTimer = 0;
+        private int remainTimerLimit = 100;
         public Achievements(AchievementType achievementType)
         {
             this.achievementType = achievementType;
             isGainedAchievement = false;
-            AchivementText = "test message";
+            AchivementText = "test";
         }
         public void returnSentence(Achievements achievement)
         {
@@ -55,15 +56,24 @@ namespace LegendOfZelda.Scripts.Achievement
 
             }
         }
-        public void LoadAllTextures(ContentManager content)
+
+        public void Update()
         {
-            font = content.Load<SpriteFont>("SpriteSheets/General/textFont");
+            
+            if (remainTimer <= remainTimerLimit)
+            {
+                remainTimer++;
+                returnSentence(this);
+            }
+            else
+            {
+                AchivementText = "test";
+            }
         }
 
-
-        public void Draw(SpriteBatch spriteBatch, int scale)
+        public void Draw(SpriteBatch spriteBatch, int scale, SpriteFont font)
         {
-            spriteBatch.DrawString(font, AchivementText, pos, Color.Black);
+            spriteBatch.DrawString(font, AchivementText, pos, Color.Red);
         }
     }
 

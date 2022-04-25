@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
 using System.Threading.Tasks;
 using System.Diagnostics;
-
+using LegendOfZelda.Scripts.Achievement;
 
 namespace LegendOfZelda
 {
@@ -61,7 +61,8 @@ namespace LegendOfZelda
         Texture2D wonGameTexture;
         Rectangle wonGameRectangle;
 
-        
+        //Achievement
+        public AchievementCollection achievementCollection;
 
 
         public Game1()
@@ -93,7 +94,7 @@ namespace LegendOfZelda
             HUDManager = new HUDInventoryManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
-
+            achievementCollection = new AchievementCollection();
             //gameStateManager = new GameStateManager();
 
             base.Initialize();
@@ -128,7 +129,7 @@ namespace LegendOfZelda
             link = new Link(linkStartPosition, screenOffset, gameScale, HUDManager, handlerManager);
 
             SoundController.Instance.StartDungeonMusic();
-
+            achievementCollection.LoadAllTextures(Content);
 
 
             // ********* GameState **********
@@ -202,7 +203,7 @@ namespace LegendOfZelda
                     //update HUD
                     HUD.GetItemSprites(link);
                     HUDManager.Update();
-                    
+                    achievementCollection.Update();
 
                     break;
                 case GameState.ItemSelection:
@@ -248,6 +249,7 @@ namespace LegendOfZelda
             
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
+            
           
             switch (Gstate)
             {
@@ -285,7 +287,7 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
-          
+            achievementCollection.Draw(_spriteBatch, gameScale);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
