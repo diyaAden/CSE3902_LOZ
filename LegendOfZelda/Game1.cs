@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using LegendOfZelda.Scripts.Achievement;
 using LegendOfZelda.Scripts.PlayerStats;
 using System.Text.Json;
 using System.IO;
@@ -68,7 +69,8 @@ namespace LegendOfZelda
         Texture2D wonGameTexture;
         Rectangle wonGameRectangle;
 
-        
+        //Achievement
+        public AchievementCollection achievementCollection;
 
 
         public Game1()
@@ -100,6 +102,8 @@ namespace LegendOfZelda
             HUDManager = new HealthManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
+            achievementCollection = new AchievementCollection();
+            //gameStateManager = new GameStateManager();
             playTimer = new PlayTimer();
 
 
@@ -140,18 +144,18 @@ namespace LegendOfZelda
                 Save(pstat);
             }
             pstat = Load();
-            
-            
 
+
+            achievementCollection.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
-            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController);
+            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController, achievementCollection);
 
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale, HUDManager, handlerManager);
 
             SoundController.Instance.StartDungeonMusic();
-
+            
 
 
             // ********* GameState **********
@@ -224,8 +228,8 @@ namespace LegendOfZelda
 
                     //update HUD
                     HUD.GetItemSprites(link);
-                    
-                    
+                    //HUDManager.Update();
+                    //Debug.WriteLine(roomManager.CurrentRoom);
 
                     break;
                 case GameState.ItemSelection:
@@ -246,7 +250,7 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
-
+                    achievementCollection.currentAchivement = 0;
                     Save(pstat);
                     link.Update();
                     endGameControl.Update();
@@ -271,6 +275,9 @@ namespace LegendOfZelda
 
                     break;
             }
+
+
+            achievementCollection.Update();
             base.Update(gameTime);
         }
 
@@ -324,7 +331,7 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
-          
+            achievementCollection.Draw(_spriteBatch, gameScale);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
