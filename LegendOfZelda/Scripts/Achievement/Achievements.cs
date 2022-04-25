@@ -36,7 +36,7 @@ namespace LegendOfZelda.Scripts.Achievement
         {
             this.achievementType = achievementType;
             isGainedAchievement = false;
-            AchivementText = "test";
+            AchivementText = "";
         }
         public void returnSentence(Achievements achievement)
         {
