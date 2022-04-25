@@ -1,0 +1,10 @@
+﻿using System;
+namespace LegendOfZelda.Documents.Sprint5
+{
+    public class BenCodeQualityReview1
+    {
+        public BenCodeQualityReview1()
+        {
+        }
+    }
+}
