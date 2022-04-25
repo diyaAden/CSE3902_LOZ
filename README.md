@@ -13,6 +13,7 @@ Item Controls
 - The 'g' and 'j' keys are used to select the secondary item within the pause screen.
 
 Other Controls
+- Use 'Space' to start the game from the start screen
 - Use 'q' to quit 
 - Use 'r' to reset the program back to its initial state
 - Use left mouse click to move to next room room
