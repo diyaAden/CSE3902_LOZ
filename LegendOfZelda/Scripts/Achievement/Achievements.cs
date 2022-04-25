@@ -37,18 +37,18 @@ namespace LegendOfZelda.Scripts.Achievement
             switch (achievement.AchievementType)
             {
                 case AchievementType.KilledByEnemy:
-                    AchivementText = "U DEAD :(";
+                    AchivementText = "U DEAD :(";    // When dead
                     break;
-                case AchievementType.BombHurtEnemy:
+                case AchievementType.BombHurtEnemy:  //Use bomb hurt enemy
                     AchivementText = "OMG, BOMB!";
                     break;
-                case AchievementType.FirstMeetOldMan:
+                case AchievementType.FirstMeetOldMan: //First come old man room
                     AchivementText = "Hi! Old Man.";
                     break;
-                case AchievementType.PickUpOneItem:
+                case AchievementType.PickUpOneItem:  //first pick up item
                     AchivementText = "What is that?";
                     break;
-                case AchievementType.GetBackToStart:
+                case AchievementType.GetBackToStart: //go back first room since wall monster
                     AchivementText = "OK, IM BACK.";
                     break;
 

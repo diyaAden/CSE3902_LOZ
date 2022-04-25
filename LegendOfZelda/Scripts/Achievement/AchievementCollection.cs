@@ -9,7 +9,7 @@ namespace LegendOfZelda.Scripts.Achievement
     public class AchievementCollection
     {
         private List<Achievements> achievementCollection = new List<Achievements>();
-        public int currentAchivement = 0;
+        public int currentAchivement = -1;
         public SpriteFont font;
         public AchievementCollection()
         {
@@ -24,11 +24,13 @@ namespace LegendOfZelda.Scripts.Achievement
             font = content.Load<SpriteFont>("SpriteSheets/General/textFont");
         }
         public void Update() {
-            achievementCollection[currentAchivement].Update();
+            if (currentAchivement >= 0)
+                achievementCollection[currentAchivement].Update();
         }
         public void Draw(SpriteBatch spriteBatch, int scale)
         {
-            achievementCollection[currentAchivement].Draw(spriteBatch, scale, font);
+            if(currentAchivement >= 0)
+                achievementCollection[currentAchivement].Draw(spriteBatch, scale, font);
         }
     }
 }

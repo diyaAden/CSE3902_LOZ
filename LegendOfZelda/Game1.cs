@@ -229,7 +229,6 @@ namespace LegendOfZelda
                     //update HUD
                     HUD.GetItemSprites(link);
                     //HUDManager.Update();
-                    achievementCollection.Update();
                     //Debug.WriteLine(roomManager.CurrentRoom);
 
                     break;
@@ -251,7 +250,7 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
-
+                    achievementCollection.currentAchivement = 0;
                     Save(pstat);
                     link.Update();
                     endGameControl.Update();
@@ -277,7 +276,8 @@ namespace LegendOfZelda
                     break;
             }
 
-            
+
+            achievementCollection.Update();
             base.Update(gameTime);
         }
 

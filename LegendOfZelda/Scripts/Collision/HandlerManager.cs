@@ -106,7 +106,7 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
-                        if (weapon is BombWeapon) //Actually want to have a fire but not find
+                        if (weapon is BombWeapon bomb && bomb.DetonatingNow()) //Actually want to have a fire but not find
                             achievementCollection.currentAchivement = 1; 
                     }
                 }
@@ -161,6 +161,8 @@ namespace LegendOfZelda.Scripts.Collision
                 List<ICollision> sides = collisionDetectors[0].BoxTest(Link, item, gameScale);
                 if (!sides.Contains(ICollision.SideNone) && sides.Count > 0)
                 {
+                    if (achievementCollection.currentAchivement != 3)
+                        achievementCollection.currentAchivement = 3;
                     indices.Add(index);
                     collisionHandlers[0].HandleCollision(Link, item, sides[0], gameScale);
                 }
