@@ -16,7 +16,11 @@ using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
 using System.Threading.Tasks;
 using System.Diagnostics;
-
+using LegendOfZelda.Scripts.PlayerStats;
+using System.Text.Json;
+using System.IO;
+using System;
+using LegendOfZelda.Scripts.HUDandInventoryManager.HUDItemSprites;
 
 namespace LegendOfZelda
 {
@@ -24,8 +28,12 @@ namespace LegendOfZelda
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteFont spriteFont;
         private List<IController> controllerList;
-
+        private PlayerStat pstat;
+        private const string PATH = "stats.json";
+        
+        private int currentTime = 0;
         private readonly Vector2 screenOffset = new Vector2(80, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
@@ -44,6 +52,8 @@ namespace LegendOfZelda
 
         //HUD testing
         public InventorySprite invSpr;
+
+        public PlayTimer playTimer;
 
 
         //public GameStateManager gameStateManager;
@@ -93,6 +103,7 @@ namespace LegendOfZelda
             HUDManager = new HealthManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
+            playTimer = new PlayTimer();
 
             //gameStateManager = new GameStateManager();
 
@@ -100,6 +111,7 @@ namespace LegendOfZelda
         }
         public void ResetGame()
         {
+            Save(pstat);
             Initialize();
             LoadContent();
             GameStateController.Instance.SetGameStateStart();
@@ -108,7 +120,7 @@ namespace LegendOfZelda
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            spriteFont = Content.Load<SpriteFont>("Fonts/basicFont");
             ItemSpriteFactory.Instance.LoadAllTextures(Content);
             EnemySpriteFactory.Instance.LoadAllTextures(Content);
             BlockSpriteFactory.Instance.LoadAllTextures(Content);
@@ -119,6 +131,9 @@ namespace LegendOfZelda
             HUDManager.LoadContent();
             HUD.LoadAllTextures(Content);
             invSpr.LoadAllTextures(Content); //REMOVE LATER
+            currentTime = 0;
+            pstat = Load();
+            
 
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
@@ -183,7 +198,7 @@ namespace LegendOfZelda
                         GameStateController.Instance.SetGameStateWonGame();
                     }
                     */
-
+                    currentTime++;
                     handlerManager.room = roomManager.Rooms[roomManager.CurrentRoom];
                     foreach (IController controller in controllerList) { controller.Update(); }
 
@@ -223,14 +238,26 @@ namespace LegendOfZelda
                 case GameState.GameOver:
 
                     // play animation
+
+                    Save(pstat);
                     link.Update();
                     endGameControl.Update();
                     //update HUD
 
-                    
-
                     break;
                 case GameState.WonGame:
+                    if(pstat.BestTime.Equals("N/A")){
+                        pstat.BestTime = (currentTime / 60).ToString();
+                    }
+                    else
+                    {
+                        if((currentTime / 60) < Int32.Parse(pstat.BestTime))
+                        {
+                           pstat.BestTime = (currentTime / 60).ToString();
+
+                        }
+                    }
+                    Save(pstat);
                     endGameControl.Update();
 
 
@@ -248,7 +275,9 @@ namespace LegendOfZelda
             
             HUD.updateItemCounts(link);
             HUD.Draw(_spriteBatch, gameScale, screenOffset);
-          
+           
+
+
             switch (Gstate)
             {
                 case GameState.Start:
@@ -256,6 +285,7 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(startTexture, destRect4, startRectangle, Color.White);
                     break;
                 case GameState.Playing:
+                    playTimer.Draw(_spriteBatch, spriteFont, currentTime, pstat);
                     roomManager.Draw(_spriteBatch, gameScale);
                     foreach (IWeapon w in activeWeapons)
                     {
@@ -288,6 +318,18 @@ namespace LegendOfZelda
           
             _spriteBatch.End();
             base.Draw(gameTime);
+        }
+        private void Save(PlayerStat stat)
+        {
+            string serializedText = JsonSerializer.Serialize<PlayerStat>(stat);
+            Trace.WriteLine(serializedText);
+            File.WriteAllText(PATH, serializedText);
+        }
+
+        private PlayerStat Load()
+        {
+            var fileContent = File.ReadAllText(PATH);
+            return JsonSerializer.Deserialize<PlayerStat>(fileContent);
         }
     }
 }
