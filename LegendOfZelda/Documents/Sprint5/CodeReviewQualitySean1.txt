@@ -1,0 +1,14 @@
+Review Author: Sean Burns
+Review Date: 4-25-22
+Sprint: 5
+File Name: InventorySprite.cs
+File Author: Diya
+Time Spent Reviewing: 15 min
+
+Comments: 
+	-Several of the methods in the class are simple since they don't do much unnecessary work. However, I feel that the CheckCursorPos method could be further simplified by making helper methods, that way the first method doesn't need to do all of the checking for if statements.
+	-The file is quite readable since white space is used effectively and good naming conventions are used. However, a lot of the method names do not start with a capital letter, which can confuse the reader if they see a call in another class. Also, there seems to be a few unused using statements and parameters throughout the class that don't need to be there.
+	-The file seems to be very maintainable since there is very little work being offloaded to other classes, meaning that if there is some sort of defect in the software that is related to this class, finding the source should be very easy. Also, it would not be too difficult to add in new functionality due to how simple the class is overall.
+	-Since a lot of this class seems to be hard-coded values, the class is not very reusable unless the new project has a similar inventory system to this project or the new developers don't mind manually changing all of the values. The functionality works great, but all of the values are just set specifically for this project.
+
+Hypothetical change: If the inventory menu size needed to be increased to fit more than 8 items at once, this class could be used easily to make the change. Right now, it is set up to only display up to 4 items in each row in the menu, but that number could just be changed to fit more items since it is just a magic number.
