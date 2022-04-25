@@ -97,7 +97,7 @@ namespace LegendOfZelda.Scripts.Achievement
             }
             else
             {
-                AchivementText = "test";
+                AchivementText = "";
             }
         }
 
