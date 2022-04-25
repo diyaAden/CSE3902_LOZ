@@ -9,9 +9,7 @@ namespace LegendOfZelda.Scripts.Achievement
 {
     public class AchivementFactory
     {
-        private string AchivementText;
-        public SpriteFont font;
-        public string KilledByEnemyText;
+        
         //maybe add sprites?
         private static readonly AchivementFactory instance = new AchivementFactory();
         public static AchivementFactory Instance => instance;
@@ -21,37 +19,9 @@ namespace LegendOfZelda.Scripts.Achievement
 
         }
 
-        public void LoadAllTextures(ContentManager content)
-        {
-            font = content.Load<SpriteFont>("SpriteSheets/General/textFont");
-        }
-
-        public void returnSentence(Achievements achievement)
-        {
-            switch (achievement.AchievementType)
-            {
-                case AchievementType.KilledByEnemy:
-                    AchivementText = "U DEAD :(";
-                    break;
-                case AchievementType.UseFireKillEnemy:
-                    AchivementText = "OMG, Fire!";
-                    break;
-                case AchievementType.FirstMeetOldMan:
-                    AchivementText = "Hi! Old Man.";
-                    break;
-                case AchievementType.PickUpOneItem:
-                    AchivementText = "What is that?";
-                    break;
-                case AchievementType.GetBackToStart:
-                    AchivementText = "IM BACK.";
-                    break;
-                default:
-                    break;
-
-            }
+      
 
 
-        }
         public Achievements KilledByEnemyAchievement()
         {
             return new Achievements(AchievementType.KilledByEnemy);
@@ -80,6 +50,7 @@ namespace LegendOfZelda.Scripts.Achievement
         {
             return new Achievements(AchievementType.GetBackToStart);
         }
+
 
     }
 }
