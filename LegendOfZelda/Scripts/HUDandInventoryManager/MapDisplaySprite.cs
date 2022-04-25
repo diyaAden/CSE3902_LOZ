@@ -13,13 +13,16 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public Rectangle mapSource, wordsSource;
         Texture2D MapTexture;
+        Texture2D compassMap;
         private IItem mapIcon, compassIcon;
         private bool hasMap = false, hasCompass = false;
         public Vector2 Position { get; set; } = new Vector2(190, -170);
+        public Vector2 compassMapPos = new Vector2(400, -160);
         
         public void LoadAllTextures(ContentManager content)
         {
             MapTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
+            compassMap = content.Load<Texture2D>("SpriteSheets/General/tempCompassMap");
             mapIcon = ItemSpriteFactory.Instance.CreateMapSprite();
             mapIcon.Position = new Vector2(240, -130);
             compassIcon = ItemSpriteFactory.Instance.CreateCompassSprite();
@@ -33,6 +36,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void ShiftMapDisplay(Vector2 shiftDist, int scale)
         {
             Position = new Vector2(Position.X, Position.Y + shiftDist.Y * scale);
+            compassMapPos = new Vector2(compassMapPos.X, compassMapPos.Y + shiftDist.Y * scale);
             mapIcon.Position = new Vector2(mapIcon.Position.X, mapIcon.Position.Y + shiftDist.Y * scale); compassIcon.Position = new Vector2(compassIcon.Position.X, compassIcon.Position.Y + shiftDist.Y * scale);
         }
         public void GetMapAndCompass(bool hasMap, bool hasCompass)
@@ -54,6 +58,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             {
                 mapIcon.Draw(spriteBatch, scale);
                 spriteBatch.Draw(MapTexture, mapDest, mapSource, Color.White);
+                spriteBatch.Draw(compassMap, compassMapPos, Color.White);
             }
             if (hasCompass) compassIcon.Draw(spriteBatch, scale);
         }
