@@ -10,6 +10,8 @@ using LegendOfZelda.Scripts.LevelManager;
 using LegendOfZelda.Scripts.Links;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using LegendOfZelda.Scripts.Achievement;
+using LegendOfZelda.Scripts.Enemy.WallMaster.Sprite;
 
 namespace LegendOfZelda.Scripts.Collision
 {
@@ -22,6 +24,7 @@ namespace LegendOfZelda.Scripts.Collision
         private List<IWeapon> activeWeapons;
         private RoomManager roomManager;
         public RoomMovingController roomMovingController;
+        public AchievementCollection achievementCollection;
         private int gameScale = 2;
 
 
@@ -29,11 +32,11 @@ namespace LegendOfZelda.Scripts.Collision
         private List<IItem> items;
         private List<IEnemy> enemies;
 
-        public HandlerManager(List<ICollisionDetector> CollisionDetectors, RoomMovingController roomMovingController)
+        public HandlerManager(List<ICollisionDetector> CollisionDetectors, RoomMovingController roomMovingController, AchievementCollection achievementCollection)
         {
             collisionDetectors = CollisionDetectors;
             this.roomMovingController = roomMovingController;
-
+            this.achievementCollection = achievementCollection;
             PlayerGameObjectCollisionHandler playerBlockCollisionHandler = new PlayerGameObjectCollisionHandler();
             EnemyGameObjectCollisionHandler enemyItemCollisionHandler = new EnemyGameObjectCollisionHandler();
             PlayerEnemyCollisionHandler playerEnemyCollisionHandler = new PlayerEnemyCollisionHandler();
@@ -68,6 +71,19 @@ namespace LegendOfZelda.Scripts.Collision
             roomManager = RoomManager;
             gameScale = GameScale;
             ForAllUpdate(screenOffset);
+            triggerRoomAchivement();
+        }
+
+        public void triggerRoomAchivement()
+        {
+            switch (roomManager.CurrentRoom)
+            {
+                case 8:
+                    achievementCollection.currentAchivement = 2;
+                    break;
+                default:
+                    break;
+            }
         }
         public void ForWeaponObject()
         {
@@ -90,6 +106,8 @@ namespace LegendOfZelda.Scripts.Collision
                     if (sides.Count > 0 && sides[0] != ICollision.SideNone)
                     {
                         setToDestroy = true;
+                        if (weapon is BombWeapon) //Actually want to have a fire but not find
+                            achievementCollection.currentAchivement = 1; 
                     }
                 }
                 if (setToDestroy) weapon.DestroyWeapon(gameScale);
@@ -168,9 +186,15 @@ namespace LegendOfZelda.Scripts.Collision
             foreach (IEnemy enemy in enemies)
             {
                 List<ICollision> sides2 = collisionDetectors[2].BoxTest(Link, enemy, gameScale);
+                if (!sides2.Contains(ICollision.SideNone) && sides2.Count > 0)
+                {
+                    if (enemy is BasicWallMasterSprite)
+                        achievementCollection.currentAchivement = 4;
+                }
                 foreach (ICollision side in sides2)
                 {
                     collisionHandlers[2].HandleCollision(Link, enemy, side, gameScale, screenOffset, index, roomManager);
+                    
                 }
                 foreach (IWeapon weapon in activeWeapons)
                 {

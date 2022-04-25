@@ -16,7 +16,6 @@ namespace LegendOfZelda.Scripts.Achievement
 
         private AchivementFactory()
         {
-
         }
 
       
@@ -28,9 +27,9 @@ namespace LegendOfZelda.Scripts.Achievement
         }
 
 
-        public Achievements UseFireKillEnemyAchievement()
+        public Achievements BombHurtEnemyAchievement()
         {
-            return new Achievements(AchievementType.UseFireKillEnemy);
+            return new Achievements(AchievementType.BombHurtEnemy);
         }
 
 

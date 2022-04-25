@@ -10,7 +10,7 @@ namespace LegendOfZelda.Scripts.Achievement
     public enum AchievementType
     {
         KilledByEnemy, //player health 
-        UseFireKillEnemy, //enemy health, player weapon
+        BombHurtEnemy, //enemy health, player weapon
         FirstMeetOldMan, //player, room
         PickUpOneItem, //player, item
         GetBackToStart //hand, player, room
@@ -23,7 +23,7 @@ namespace LegendOfZelda.Scripts.Achievement
 
         private Boolean isGainedAchievement;
         private string AchivementText;
-        private Vector2 pos = new Vector2(20, 10);
+        private Vector2 pos = new Vector2(12, 450);
         private int remainTimer = 0;
         private int remainTimerLimit = 100;
         public Achievements(AchievementType achievementType)
@@ -39,8 +39,8 @@ namespace LegendOfZelda.Scripts.Achievement
                 case AchievementType.KilledByEnemy:
                     AchivementText = "U DEAD :(";
                     break;
-                case AchievementType.UseFireKillEnemy:
-                    AchivementText = "OMG, Fire!";
+                case AchievementType.BombHurtEnemy:
+                    AchivementText = "OMG, BOMB!";
                     break;
                 case AchievementType.FirstMeetOldMan:
                     AchivementText = "Hi! Old Man.";
@@ -49,8 +49,9 @@ namespace LegendOfZelda.Scripts.Achievement
                     AchivementText = "What is that?";
                     break;
                 case AchievementType.GetBackToStart:
-                    AchivementText = "IM BACK.";
+                    AchivementText = "OK, IM BACK.";
                     break;
+
                 default:
                     break;
 

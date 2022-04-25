@@ -144,18 +144,18 @@ namespace LegendOfZelda
                 Save(pstat);
             }
             pstat = Load();
-            
-            
 
+
+            achievementCollection.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
-            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController);
+            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController, achievementCollection);
 
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale, HUDManager, handlerManager);
 
             SoundController.Instance.StartDungeonMusic();
-            achievementCollection.LoadAllTextures(Content);
+            
 
 
             // ********* GameState **********
@@ -230,6 +230,7 @@ namespace LegendOfZelda
                     HUD.GetItemSprites(link);
                     //HUDManager.Update();
                     achievementCollection.Update();
+                    //Debug.WriteLine(roomManager.CurrentRoom);
 
                     break;
                 case GameState.ItemSelection:
@@ -275,6 +276,8 @@ namespace LegendOfZelda
 
                     break;
             }
+
+            
             base.Update(gameTime);
         }
 

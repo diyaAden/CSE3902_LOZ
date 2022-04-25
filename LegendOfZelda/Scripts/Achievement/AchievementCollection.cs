@@ -9,12 +9,12 @@ namespace LegendOfZelda.Scripts.Achievement
     public class AchievementCollection
     {
         private List<Achievements> achievementCollection = new List<Achievements>();
-        private int currentAchivement = 0;
+        public int currentAchivement = 0;
         public SpriteFont font;
         public AchievementCollection()
         {
             achievementCollection.Add(AchivementFactory.Instance.KilledByEnemyAchievement());
-            achievementCollection.Add(AchivementFactory.Instance.UseFireKillEnemyAchievement());
+            achievementCollection.Add(AchivementFactory.Instance.BombHurtEnemyAchievement());
             achievementCollection.Add(AchivementFactory.Instance.FirstMeetOldManAchievement());
             achievementCollection.Add(AchivementFactory.Instance.PickUpOneItemAchievement());
             achievementCollection.Add(AchivementFactory.Instance.GetBackToStartAchievement());
