@@ -28,8 +28,8 @@ Cheat Codes
 - PPP - Warp to the special Pokemon rooms
 
 Achievements
-- U DEAD :( - When game over
-- OMG, BOMB! - When bomb collide with enemy
+- U DEAD :( - First time game over
+- OMG, BOMB! - First time use bomb collide with enemy
 - Hi! Old Man. - First meet old man
 - What is that? - Pick up item
 - OK, IM BACK. - Wall monster catch the enemy and send link back to first room
