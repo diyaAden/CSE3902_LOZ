@@ -81,55 +81,19 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void damageLink()
         {
 
-            //if (hearts % 1 != 0)
-            //{
-            //    HUD.ChangeHeart("EmptyHeart", lastHeart);
-            //    firstEmpty = lastHeart;
-            //    lastHeart--;
-            //}
-            //else
-            //{
-            //    HUD.ChangeHeart("HalfHeart", lastHeart);
-            //}
             hearts -= halfHeart;
         }
         public void gainHeart()
         {
             if (!IsFullHealth())
             {
-                //if (hearts % 1 == 0)
-                //{
-                //    HUD.ChangeHeart("FullHeart", firstEmpty);
-                //    firstEmpty = lastHeart;
-                //    firstEmpty++;
-                //    hearts += fullHeart;
-                //}
-                //else
-                //{
-                //    if (hearts == (maxHearts - halfHeart))
-                //    {
-                //        HUD.ChangeHeart("FullHeart", lastHeart);
-                //        hearts += halfHeart;
-                //    }
-                //    else
-                //    {
-                //        HUD.ChangeHeart("FullHeart", lastHeart);
-                //        HUD.ChangeHeart("HalfHeart", firstEmpty);
-                //        firstEmpty++;
-                //        lastHeart++;
-                //        hearts += fullHeart;
-                //    }
-                //}
                 hearts += fullHeart;
             }
 
         }
         public void setFullHealth()
         {
-            for (int k = 0; k < maxHearts; k++)
-            {
-                //HUD.ChangeHeart("FullHeart", k);
-            }
+            hearts = maxHearts;
         }
         public void Update()
         {

@@ -62,7 +62,6 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             invSprite.Position = new Vector2(invSprite.Position.X, invSprite.Position.Y + shiftDist.Y * scale);
             mapDisplay.ShiftMapDisplay(shiftDist, scale);
             foreach (IItem item in invDisplayItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
-            //foreach (IHUDItem heart in Hearts) heart.Position = new Vector2(heart.Position.X, heart.Position.Y + shiftDist.Y);
             foreach (IHUDItem item in HUDItems) item.Position = new Vector2(item.Position.X, item.Position.Y + shiftDist.Y);
             
         }
@@ -96,39 +95,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             HUDItems[^1].Position = new Vector2(xPos, yPos);
             HUDItems[^1].name = name;
         }
-        //public void AddHearts(string name, int xPos, int yPos)
-        //{
-        //    Hearts.Add(HUDSpriteFactory.Instance.CreateHUDItemFromString(name));
-        //    Hearts[^1].Position = new Vector2(xPos, yPos);
-        //    Hearts[^1].name = name;
-        //}
-        //public void ChangeHeart(string name, int index) {
-        //    Vector2 heartPos = Hearts[index].Position;
-        //    if (name.Equals("EmptyHeart"))
-        //    {
-        //        Hearts.Insert(index, HUDSpriteFactory.Instance.CreateEmptyHeart());
-        //        Hearts.RemoveAt(index + 1);
-        //        Hearts[index].Position = heartPos;
-        //        Hearts[index].name = name;
-        //    } else if (name.Equals("HalfHeart"))
-        //    {
-        //        Hearts.Insert(index, HUDSpriteFactory.Instance.CreateHalfHeart());
-        //        Hearts.RemoveAt(index + 1);
-        //        Hearts[index].Position = heartPos;
-        //        Hearts[index].name = name;
-        //    } else
-        //    {
-        //        Hearts.Insert(index, HUDSpriteFactory.Instance.CreateFullHeart());
-        //        Hearts.RemoveAt(index + 1);
-        //        Hearts[index].Position = heartPos;
-        //        Hearts[index].name = name;
-        //    }
 
-        //}
-        //public void RemoveHeart()
-        //{
-        //   if(Hearts.Count > 0) Hearts.RemoveAt(Hearts.Count-1);
-        //}
         public int findObject(string name) {
             for ( int i = HUDItems.Count-1; i > 0; i--) {
                     if( HUDItems[i].name.Equals(name)) {
