@@ -271,7 +271,7 @@ namespace LegendOfZelda
                         }
                     }
 
-                    if(currentTime/60 == 300)
+                    if(currentTime/60 <= 200)
                     {
                         achievementCollection.changeCurrentAchievement(7);
                     }
