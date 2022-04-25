@@ -1,0 +1,11 @@
+Review Author: Sean Burns
+Review Date: 4-25-22
+Sprint: 5
+File Name: InventorySprite.cs
+File Author: Diya
+Time Spent Reviewing: 10 min
+
+Comments: 
+	-There are some spots that use magic numbers that could be replaced with a variable to make its purpose clearer
+	-The methods are easy to follow through, but it could be made easier by making more helper methods to make the purpose of each chunk clearer
+	-White space and variable names are used in a way that helps with readability
