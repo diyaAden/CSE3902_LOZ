@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace LegendOfZelda.Scripts.HUDandInventoryManager
 {
     public class MapRoomLocations
     {
+        
         public enum Rooms {
             Room1,
             Room2,
@@ -24,6 +26,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Room16,
             Room17
         }
+
         public Vector2 RoomLocation(int room)
         {
             Vector2 location;

@@ -18,9 +18,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         private bool hasMap = false, hasCompass = false;
         public Vector2 Position { get; set; } = new Vector2(190, -170);
         public Vector2 compassMapPos = new Vector2(400, -160);
+        CompassMapDisplay c = new CompassMapDisplay();
         
         public void LoadAllTextures(ContentManager content)
         {
+            c.LoadAllTextures(content);
             MapTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
             compassMap = content.Load<Texture2D>("SpriteSheets/General/tempCompassMap");
             mapIcon = ItemSpriteFactory.Instance.CreateMapSprite();
@@ -44,6 +46,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             this.hasMap = hasMap;
             this.hasCompass = hasCompass;
         }
+
+        public void addToRoomList(int i)
+        {
+            if (!c.roomsToDraw.Contains(i)) c.roomsToDraw.Add(i);
+        }
         public void Update() 
         { 
 
@@ -54,12 +61,15 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             Rectangle wordsDest = new Rectangle((int)Position.X, (int)Position.Y, wordsSource.Width * scale, wordsSource.Height * scale);
             Rectangle mapDest = new Rectangle((int)Position.X + 60 * scale, (int)Position.Y, mapSource.Width * scale, mapSource.Height * scale);
             spriteBatch.Draw(MapTexture, wordsDest, wordsSource, Color.White);
+           
             if (hasMap) 
             {
                 mapIcon.Draw(spriteBatch, scale);
                 spriteBatch.Draw(MapTexture, mapDest, mapSource, Color.White);
-                spriteBatch.Draw(compassMap, compassMapPos, Color.White);
+                // spriteBatch.Draw(compassMap, compassMapPos, Color.White);
+                c.Draw(spriteBatch, scale);
             }
+            
             if (hasCompass) compassIcon.Draw(spriteBatch, scale);
         }
     }

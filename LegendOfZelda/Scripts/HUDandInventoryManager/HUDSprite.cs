@@ -125,6 +125,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public void Update(int currentRoom, KeyboardState k) 
         {
             invSprite.checkCursorPos(k);
+            mapDisplay.addToRoomList(currentRoom);
             foreach (IHUDItem HUDitem in HUDItems) HUDitem.Update();
             
             Vector2 roomDestination = roomLocations.RoomLocation(currentRoom);
