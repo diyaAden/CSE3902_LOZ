@@ -16,6 +16,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         Texture2D compassMap;
         private IItem mapIcon, compassIcon;
         private bool hasMap = false, hasCompass = false;
+        public bool areVisible = false;
         public Vector2 Position { get; set; } = new Vector2(190, -170);
         public Vector2 compassMapPos = new Vector2(400, -160);
         CompassMapDisplay c = new CompassMapDisplay();
@@ -67,10 +68,14 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 mapIcon.Draw(spriteBatch, scale);
                 spriteBatch.Draw(MapTexture, mapDest, mapSource, Color.White);
                 // spriteBatch.Draw(compassMap, compassMapPos, Color.White);
+                
+            }
+
+            if (hasCompass && areVisible)
+            {
+                compassIcon.Draw(spriteBatch, scale);
                 c.Draw(spriteBatch, scale);
             }
-            
-            if (hasCompass) compassIcon.Draw(spriteBatch, scale);
         }
     }
 }

@@ -79,7 +79,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 switch (i)
                 {
                     case 0:
-                        //location = new Vector2(120, 50);
+                        
                         break;
                     case 1:
                         spriteBatch.Draw(r2, new Rectangle(430, 300, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
@@ -100,41 +100,42 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                         spriteBatch.Draw(r8, new Rectangle(446, 268, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 7:
-                        spriteBatch.Draw(r2, new Rectangle(414, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r6, new Rectangle(462, 267, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 8:
-                        spriteBatch.Draw(r6, new Rectangle(430, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r2, new Rectangle(414, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 9:
-                        spriteBatch.Draw(r12, new Rectangle(446, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r6, new Rectangle(430, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 10:
-                        spriteBatch.Draw(r4, new Rectangle(462, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r12, new Rectangle(446, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 11:
-                        spriteBatch.Draw(r11, new Rectangle(478, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r4, new Rectangle(462, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 12:
-                        spriteBatch.Draw(r13, new Rectangle(446, 236, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r11, new Rectangle(478, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 13:
-                        spriteBatch.Draw(r5, new Rectangle(478, 236, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r13, new Rectangle(446, 236, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 14:
-                        spriteBatch.Draw(r3, new Rectangle(494, 236, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r5, new Rectangle(478, 236, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 15:
-                        spriteBatch.Draw(r1, new Rectangle(414, 220, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r3, new Rectangle(494, 236, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 16:
-                        spriteBatch.Draw(r2, new Rectangle(430, 220, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r1, new Rectangle(414, 220, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 17:
-                        spriteBatch.Draw(r3, new Rectangle(446, 220, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r2, new Rectangle(430, 220, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 18:
-
+                        spriteBatch.Draw(r3, new Rectangle(446, 220, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
+                   
                     default:
                         //location = new Vector2(0, 0);
                         break;

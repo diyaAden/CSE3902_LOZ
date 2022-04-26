@@ -182,12 +182,20 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                 slotB.Position = new Vector2(itemBPos.X, itemBPos.Y);
                 slotB.Draw(spriteBatch, scale);
 
-            } 
-            
-            
+            }
 
-            if (isVisible) invSprite.areVisible = true;
-            else invSprite.areVisible = false;
+
+
+            if (isVisible)
+            {
+                invSprite.areVisible = true;
+                mapDisplay.areVisible = true;
+            }
+            else
+            {
+                invSprite.areVisible = false;
+                mapDisplay.areVisible = false;
+            }
 
 
             if (isUsable) invSprite.areUsable = true;
