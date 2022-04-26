@@ -1,0 +1,9 @@
+﻿Author of the code review: Diya Adengada
+Date of the code review: 4/25/22
+Sprint number:5
+Name of the file being reviewed: BasicZapadosSprite.cs
+Author of the .cs file being reviewed: Ben R. 
+Specific comments on code quality:
+* The quality of this class is also very clean. The file isn;t long, and only contains what code is necessary for this sprite.  It is very clear that this code has been refactored to ensure that it is as clean as possible
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+* A hypothetical change might be to add another ability of the zapados sprite, like allow them to shoot multiple types of fireballs or varying amounts. The code would fit this change well and it would be easy to add this feature due to how it is structured

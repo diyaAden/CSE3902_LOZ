@@ -1,0 +1,12 @@
+﻿Author: Diya Adengada
+Date: 4/25/22
+Sprint 5
+File: HealthManager.cs
+Author of the .cs file: Ben R
+Specific comments on code quality:
+* Overall, the quality of this code was very good. The code was easy to read, was well formatted, and most of the names were easy to understand. There were a lot of different functions contained within this class comparatively to the other ones within this project, but this made it so it was easier to trace various parts of the heart health system. I believe this would make it easier to debug if needed.
+
+
+* A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+   * Some changes we might make in the future might be the addition of other components that can damage health other than enemies. For example, there might be items that harm link, or even a mode where link’s health gradually decreases. It may be difficult to modify the existing functions to account for this, but I think another function could easily be added without messing with the rest of the code.
+Amount of time taken to complete review: ~5 minutes.
