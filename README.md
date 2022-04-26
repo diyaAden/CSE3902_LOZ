@@ -56,4 +56,4 @@ Updates Log:
 Potential Bugs:
 - Handler Manager might be refactored in the future.
 - Increase firing speed of certain items
-- The map and item selection menu remains unfinished
+
