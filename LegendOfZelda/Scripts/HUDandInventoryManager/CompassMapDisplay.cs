@@ -106,7 +106,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                         spriteBatch.Draw(r8, new Rectangle(446, 268, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 7:
-                        spriteBatch.Draw(r6, new Rectangle(462, 268, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r3, new Rectangle(462, 268, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 8:
                         spriteBatch.Draw(r2, new Rectangle(414, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
