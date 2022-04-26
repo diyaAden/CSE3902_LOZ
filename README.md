@@ -45,6 +45,7 @@ Sprint 5 Additions
 - Start Screen
 - Extra Rooms and Enemies
 - Achievements
+- Pause Screen Item Selection and Map Finalized and Functional
 
 Updates Log:
 - Sprint 2 Completion 2/21/22
