@@ -28,16 +28,16 @@ Cheat Codes
 - PPP - Warp to the special Pokemon rooms
 
 Achievements (only show the events at the first time)
-- U DEAD :( - game over
-- OMG, BOMB! - use bomb collide with enemy
-- Hi! Old Man. - meet old man
+- U DEAD :( - Game over
+- OMG, BOMB! - Use bomb collide with enemy
+- Hi! Old Man. - Meet old man
 - What is that? - Pick up item
 - OK, IM BACK. - Wall monster catch the enemy and send link back to first room
 - An easy fight - Kill the dungeon dragon
 - U got it!! - Win the game out of a time limit
 - SUPERMAN - Win the game in a time limit
 - Soft but Dangerous - Hurt by gel
-- keen intuition - use bomb to get a door
+- keen intuition - Use bomb to get a door
 
 Sprint 5 Additions
 - Cheat Codes
