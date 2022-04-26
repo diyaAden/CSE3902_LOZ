@@ -1,5 +1,6 @@
 ﻿using LegendOfZelda.Scripts.Input.Command;
 using LegendOfZelda.Scripts.Input.Command.Commands;
+using LegendOfZelda.Scripts.Sounds;
 
 namespace LegendOfZelda.Scripts.GameStateMachine
 {
@@ -32,6 +33,7 @@ namespace LegendOfZelda.Scripts.GameStateMachine
 
         public void SetGameStateStart()
         {
+            SoundController.Instance.StartDungeonMusic();
             ICommand command = new GameStateStart(myGame);
             command.Execute();
         }

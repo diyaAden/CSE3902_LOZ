@@ -482,6 +482,18 @@
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/General/enemies.png
 
+#begin SpriteSheets/General/FullMap.PNG
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteSheets/General/FullMap.PNG
+
 #begin SpriteSheets/General/GameOverScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -632,6 +644,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SpriteSheets/General/TitleScreen.png
+
+#begin SpriteSheets/General/winner.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:SpriteSheets/General/winner.png
 
 #begin SpriteSheets/General/winner.png
 /importer:TextureImporter

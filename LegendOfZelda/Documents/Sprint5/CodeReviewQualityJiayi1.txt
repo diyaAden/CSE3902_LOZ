@@ -1,0 +1,12 @@
+Review Author: Jiayi Pu
+Review Date: 4-25-22
+Sprint: 5
+File Name: PlayTimer.cs
+File Author: Alex
+Time Spent Reviewing: 5 min
+
+Comments: 
+	- It's a simple file to read
+	- Nice use of pstat to draw the timer
+
+- The file is only for playerTimer, maybe not reusable for other. 

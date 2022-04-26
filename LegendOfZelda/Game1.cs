@@ -14,8 +14,8 @@ using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using LegendOfZelda.Scripts.Achievement;
 using LegendOfZelda.Scripts.PlayerStats;
 using System.Text.Json;
 using System.IO;
@@ -33,11 +33,11 @@ namespace LegendOfZelda
         private PlayerStat pstat;
         private const string PATH = "stats.json";
         
-        private int currentTime = 0;
+        private int currentTime = 0, endGameTimer = 0;
         private readonly Vector2 screenOffset = new Vector2(80, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
-        public readonly int gameScale = 2;
+        public readonly int gameScale = 2, endGameTimeLimit = 300;
         public DetectorManager detectorManager;
         public HandlerManager handlerManager;
         public ILink link;
@@ -68,7 +68,8 @@ namespace LegendOfZelda
         Texture2D wonGameTexture;
         Rectangle wonGameRectangle;
 
-        
+        //Achievement
+        public AchievementCollection achievementCollection;
 
 
         public Game1()
@@ -100,6 +101,8 @@ namespace LegendOfZelda
             HUDManager = new HealthManager(HUD.HUD);
             invSpr =  new InventorySprite();
             Gstate = GameState.Start;
+            achievementCollection = new AchievementCollection();
+            //gameStateManager = new GameStateManager();
             playTimer = new PlayTimer();
 
 
@@ -140,18 +143,18 @@ namespace LegendOfZelda
                 Save(pstat);
             }
             pstat = Load();
-            
-            
 
+
+            achievementCollection.LoadAllTextures(Content);
             roomManager.LoadContent(gameScale, screenOffset);
             roomMovingController = new RoomMovingController(roomManager, gameScale, screenOffset);
-            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController);
+            handlerManager = new HandlerManager(detectorManager.collisionDetectors, roomMovingController, achievementCollection);
 
             LoadLink.LoadTexture(Content);
             link = new Link(linkStartPosition, screenOffset, gameScale, HUDManager, handlerManager);
 
             SoundController.Instance.StartDungeonMusic();
-
+            
 
 
             // ********* GameState **********
@@ -171,7 +174,7 @@ namespace LegendOfZelda
             gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //WonGame
-            wonGameTexture = Content.Load<Texture2D>("SpriteSheets/General/GameOverScreen");
+            wonGameTexture = Content.Load<Texture2D>("SpriteSheets/General/winner");
             wonGameRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //*******************************
@@ -186,7 +189,6 @@ namespace LegendOfZelda
             //Gstate = GameState.Paused;
             HUD.Update(gameScale, screenOffset, roomManager.CurrentRoom, keyboard);
             HUDManager.Update();
-
             switch (Gstate)
             {
                 case GameState.Start:
@@ -196,6 +198,7 @@ namespace LegendOfZelda
                     }
                     break;
                 case GameState.Playing:
+                    endGameTimer = endGameTimeLimit;
                     if (HUDManager.hearts == 0)
                     {
                         GameStateController.Instance.SetGameStateGameOver();
@@ -224,8 +227,8 @@ namespace LegendOfZelda
 
                     //update HUD
                     HUD.GetItemSprites(link);
-                    
-                    
+                    //HUDManager.Update();
+                    Debug.WriteLine(roomManager.CurrentRoom);
 
                     break;
                 case GameState.ItemSelection:
@@ -244,17 +247,18 @@ namespace LegendOfZelda
 
                     break;
                 case GameState.GameOver:
-
                     // play animation
-
+                    achievementCollection.changeCurrentAchievement(0);
                     Save(pstat);
                     link.Update();
                     endGameControl.Update();
+                    if (--endGameTimer == 0) ResetGame();
                     //update HUD
 
                     break;
                 case GameState.WonGame:
-                    if(pstat.BestTime.Equals("N/A")){
+                    achievementCollection.changeCurrentAchievement(6);
+                    if (pstat.BestTime.Equals("N/A")){
                         pstat.BestTime = (currentTime / 60).ToString();
                     }
                     else
@@ -265,12 +269,20 @@ namespace LegendOfZelda
 
                         }
                     }
+
+                    if(currentTime/60 <= 200)
+                    {
+                        achievementCollection.changeCurrentAchievement(7);
+                    }
                     Save(pstat);
                     endGameControl.Update();
-
+                    if (--endGameTimer == 0) ResetGame();
 
                     break;
             }
+
+
+            achievementCollection.Update();
             base.Update(gameTime);
         }
 
@@ -324,7 +336,7 @@ namespace LegendOfZelda
                     _spriteBatch.Draw(gameOverTexture, destRect2, gameOverRectangle, Color.White);
                     break;
             }
-          
+            achievementCollection.Draw(_spriteBatch, gameScale);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

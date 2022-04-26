@@ -36,6 +36,7 @@ namespace LegendOfZelda.Scripts.Sounds
         }
         public void StartDungeonMusic()
         {
+            MediaPlayer.Stop();
             MediaPlayer.Volume = gameVolume;
             MediaPlayer.Play(music);
             MediaPlayer.IsRepeating = true;

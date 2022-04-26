@@ -1,0 +1,12 @@
+Review Author: Jiayi Pu
+Review Date: 4-25-22
+Sprint: 5
+File Name: PlayerStat.cs
+File Author: Alex
+Time Spent Reviewing: 5 min
+
+Comments: 
+	-The class is easy to follow. 
+	-The class variable is readable.
+
+-Could be reused in the future to save more stat.

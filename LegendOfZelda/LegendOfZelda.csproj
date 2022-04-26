@@ -128,7 +128,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Documents\Sprint5\" />
     <Folder Include="Scripts\Blocks\BlockSprites\DoorSprites\" />
     <Folder Include="Scripts\Enemy\Zapdos\" />
   </ItemGroup>
