@@ -20,16 +20,19 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
         public Vector2 Position { get; set; } = new Vector2(190, -170);
         public Vector2 compassMapPos = new Vector2(400, -160);
         CompassMapDisplay c = new CompassMapDisplay();
+
         
         public void LoadAllTextures(ContentManager content)
         {
             c.LoadAllTextures(content);
             MapTexture = content.Load<Texture2D>("SpriteSheets/General/HUDPauseScreen");
-            compassMap = content.Load<Texture2D>("SpriteSheets/General/FullMap");
+          //  compassMap = content.Load<Texture2D>("SpriteSheets/General/FullMap");
+           
             mapIcon = ItemSpriteFactory.Instance.CreateMapSprite();
             mapIcon.Position = new Vector2(240, -130);
             compassIcon = ItemSpriteFactory.Instance.CreateCompassSprite();
             compassIcon.Position = new Vector2(235, -50);
+
         }
         public MapDisplaySprite()
         {
@@ -48,9 +51,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
             this.hasCompass = hasCompass;
         }
 
-        public void addToRoomList(int i)
+        public void addToRoomList(int currentRoom)
         {
-            if (!c.roomsToDraw.Contains(i)) c.roomsToDraw.Add(i);
+            c.currRoom = currentRoom;
+            if (!c.roomsToDraw.Contains(currentRoom)) c.roomsToDraw.Add(currentRoom);
         }
         public void Update() 
         { 

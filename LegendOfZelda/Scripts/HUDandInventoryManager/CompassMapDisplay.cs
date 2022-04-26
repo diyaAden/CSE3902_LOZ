@@ -9,8 +9,10 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
     public class CompassMapDisplay
     {
         public List<int> roomsToDraw = new List<int>();
-       // public Dictionary<int, Vector2> roomsList = new Dictionary<int, Vector2>();
-        Texture2D r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16;
+        public Vector2 indPos;
+        public int currRoom;
+        
+        Texture2D r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, indSpr;
         public enum Rooms {
             Room1,
             Room2,
@@ -38,6 +40,8 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
 
         public void LoadAllTextures(ContentManager content)
         {
+            indSpr = content.Load<Texture2D>("SpriteSheets/General/indSpr");
+
             r1 = content.Load<Texture2D>("SpriteSheets/RoomSprites/r1spr");
             r2 = content.Load<Texture2D>("SpriteSheets/RoomSprites/r2spr");
 
@@ -83,9 +87,11 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                         break;
                     case 1:
                         spriteBatch.Draw(r2, new Rectangle(430, 300, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+     
                         break;
                     case 2:
                         spriteBatch.Draw(r16, new Rectangle(446, 300, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        
                         break;
                     case 3:
                         spriteBatch.Draw(r3, new Rectangle(462, 300, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
@@ -100,7 +106,7 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                         spriteBatch.Draw(r8, new Rectangle(446, 268, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 7:
-                        spriteBatch.Draw(r6, new Rectangle(462, 267, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
+                        spriteBatch.Draw(r6, new Rectangle(462, 268, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
                         break;
                     case 8:
                         spriteBatch.Draw(r2, new Rectangle(414, 252, r2.Width * scale, r2.Height * scale), rSprSource, Color.White);
@@ -139,7 +145,31 @@ namespace LegendOfZelda.Scripts.HUDandInventoryManager
                     default:
                         //location = new Vector2(0, 0);
                         break;
+
+
                 }
+
+                if (1 == currRoom) indPos = new Vector2(430, 300);
+                else if (2 == currRoom) indPos = new Vector2(446, 300);
+                else if (3 == currRoom) indPos = new Vector2(462, 300);
+                else if (4 == currRoom) indPos = new Vector2(446, 284);
+                else if (5 == currRoom) indPos = new Vector2(430, 268);
+                else if (6 == currRoom) indPos = new Vector2(446, 268);
+                else if (7 == currRoom) indPos = new Vector2(462, 268);
+                else if (8 == currRoom) indPos = new Vector2(462, 252);
+                else if (9 == currRoom) indPos = new Vector2(430, 252);
+                else if (10 == currRoom) indPos = new Vector2(446, 252);
+                else if (11 == currRoom) indPos = new Vector2(462, 252);
+                else if (12 == currRoom) indPos = new Vector2(478, 252);
+                else if (13 == currRoom) indPos = new Vector2(446, 336);
+                else if (14 == currRoom) indPos = new Vector2(478, 336);
+                else if (15 == currRoom) indPos = new Vector2(494, 336);
+                else if (16 == currRoom) indPos = new Vector2(414, 220);
+                else if (17 == currRoom) indPos = new Vector2(430, 220);
+                else if (18 == currRoom) indPos = new Vector2(446, 220);
+                else indPos = new Vector2(446, 300);
+
+                spriteBatch.Draw(indSpr, new Vector2(indPos.X + 5, indPos.Y + 5), Color.White);
             }
         }
     }
