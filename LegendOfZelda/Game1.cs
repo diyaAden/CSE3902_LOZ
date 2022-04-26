@@ -14,7 +14,6 @@ using LegendOfZelda.Scripts.GameStateMachine;
 using LegendOfZelda.Scripts.HUDandInventoryManager;
 using Microsoft.Xna.Framework.Input;
 using LegendOfZelda.Scripts;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using LegendOfZelda.Scripts.Achievement;
 using LegendOfZelda.Scripts.PlayerStats;
@@ -34,11 +33,11 @@ namespace LegendOfZelda
         private PlayerStat pstat;
         private const string PATH = "stats.json";
         
-        private int currentTime = 0;
+        private int currentTime = 0, endGameTimer = 0;
         private readonly Vector2 screenOffset = new Vector2(80, 60);
         private readonly Vector2 linkStartPosition = new Vector2(120, 120);
         internal readonly List<IWeapon> activeWeapons = new List<IWeapon>();
-        public readonly int gameScale = 2;
+        public readonly int gameScale = 2, endGameTimeLimit = 300;
         public DetectorManager detectorManager;
         public HandlerManager handlerManager;
         public ILink link;
@@ -175,7 +174,7 @@ namespace LegendOfZelda
             gameOverRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //WonGame
-            wonGameTexture = Content.Load<Texture2D>("SpriteSheets/General/GameOverScreen");
+            wonGameTexture = Content.Load<Texture2D>("SpriteSheets/General/winner");
             wonGameRectangle = new Rectangle(0, 0, gameOverTexture.Width, gameOverTexture.Height);
 
             //*******************************
@@ -190,7 +189,6 @@ namespace LegendOfZelda
             //Gstate = GameState.Paused;
             HUD.Update(gameScale, screenOffset, roomManager.CurrentRoom, keyboard);
             HUDManager.Update();
-
             switch (Gstate)
             {
                 case GameState.Start:
@@ -200,6 +198,7 @@ namespace LegendOfZelda
                     }
                     break;
                 case GameState.Playing:
+                    endGameTimer = endGameTimeLimit;
                     if (HUDManager.hearts == 0)
                     {
                         GameStateController.Instance.SetGameStateGameOver();
@@ -248,12 +247,12 @@ namespace LegendOfZelda
 
                     break;
                 case GameState.GameOver:
-
                     // play animation
                     achievementCollection.changeCurrentAchievement(0);
                     Save(pstat);
                     link.Update();
                     endGameControl.Update();
+                    if (--endGameTimer == 0) ResetGame();
                     //update HUD
 
                     break;
@@ -277,7 +276,7 @@ namespace LegendOfZelda
                     }
                     Save(pstat);
                     endGameControl.Update();
-
+                    if (--endGameTimer == 0) ResetGame();
 
                     break;
             }
